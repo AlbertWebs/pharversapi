@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailChimpController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ImageUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -251,6 +252,13 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('edit_Blog/{id}', [AdminsController::class, 'edit_Blog']);
         Route::get('delete_Blog/{id}', [AdminsController::class, 'delete_Blog']);
 
+        Route::get('podcast', [AdminsController::class, 'podcast']);
+        Route::get('addPodcast', [AdminsController::class, 'addPodcast']);
+        Route::post('add_Podcast', [AdminsController::class, 'add_Podcast']);
+        Route::get('editPodcast/{id}', [AdminsController::class, 'editPodcast']);
+        Route::post('edit_Podcast/{id}', [AdminsController::class, 'edit_Podcast']);
+        Route::get('delete_Podcast/{id}', [AdminsController::class, 'delete_Podcast']);
+
 
         // Payments
         Route::get('b2b', [AdminsController::class, 'b2b']);
@@ -322,6 +330,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('addProductToFacebookPixel', [AdminsController::class, 'addProductToFacebookPixel']);
         Route::get('emptyProductToFacebookPixel', [AdminsController::class, 'emptyProductToFacebookPixel']);
 
+        Route::get('image-upload', [ ImageUploadController::class, 'imageUpload' ])->name('image.upload');
+        Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
     });
 });
 

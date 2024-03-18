@@ -59,16 +59,18 @@
                      <?php $Message = App\Models\Message::all() ?>
                      <?php $User = App\Models\User::all() ?>
                      <?php $Posts = App\Models\Blog::all() ?>
-                    <a title="Blog Post" class='waves-effect btn-noti' href='#'><i class="fa fa-commenting-o" aria-hidden="true"></i><span><?php echo count($Message = DB::table('blogs')->get()) ?></span></a>
+                    <a title="Podcasts" class='waves-effect btn-noti' href='#'><i class="fa fa-podcast" aria-hidden="true"></i><span><?php echo count($Message = DB::table('blogs')->get()) ?></span></a>
                     <a title="Messages" class='waves-effect btn-noti' href='#'><i class="fa fa-envelope-o" aria-hidden="true"></i><span><?php echo count($Message = DB::table('messages')->get()) ?></span></a>
                     <a title="Users" class='waves-effect btn-noti' href='#'><i class="fa fa-user" aria-hidden="true"></i><span><?php echo count($Users = DB::table('users')->get()) ?></span></a>
-                    <a title="Site Settings" class='waves-effect btn-noti' href='{{url('/')}}/admin/SiteSettings'><i class="fa fa-cog" aria-hidden="true"></i><span>100</span></a>
+                    <a title="Site Settings" class='waves-effect btn-noti' href='{{url('/')}}/admin/SiteSettings'><i class="fa fa-cog" aria-hidden="true"></i><span>1</span></a>
                 </div>
             </div>
             <!--== MY ACCCOUNT ==-->
             <div class="col-md-2 col-sm-3 col-xs-6">
                 <!-- Dropdown Trigger -->
-                <a class='waves-effect dropdown-button top-user-pro' href='#' data-activates='top-menu'><img src="{{asset('admin-theme/images/user/6.png')}}" alt="" />My Account <i class="fa fa-angle-down" aria-hidden="true"></i>
+                <a class='waves-effect dropdown-button top-user-pro' href='#' data-activates='top-menu'>
+                    <img src="{{url('/')}}/uploads/users/{{Auth::user()->image }}" alt="" />My Account
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
                 </a>
 
                 <!-- Dropdown Structure -->

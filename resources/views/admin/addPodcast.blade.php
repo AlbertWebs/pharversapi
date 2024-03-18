@@ -24,9 +24,9 @@
                 <ul>
                     <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                     </li>
-                    <li class="active-bre"><a href="#"> Add New Post</a>
+                    <li class="active-bre"><a href="#"> Add New Podcast</a>
                     </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/blog"><i class="fa fa-backward" aria-hidden="true"></i> All Posts</a>
+                    <li class="page-back"><a href="{{url('/')}}/admin/podcast"><i class="fa fa-backward" aria-hidden="true"></i> All Podcasts</a>
                     </li>
                 </ul>
 
@@ -34,7 +34,7 @@
             <div class="sb2-2-add-blog sb2-2-1">
                 <div class="box-inn-sp">
                     <div class="inn-title">
-                        <h4>Add New Post</h4>
+                        <h4>Add New Podcast</h4>
                         {{-- <p> Create Blog Posts </p> --}}
                         <center>
                             @if(Session::has('message'))
@@ -47,7 +47,7 @@
                         </center>
                     </div>
                     <div class="bor">
-                        <form method="POST" action="{{url('/')}}/admin/add_Blog" enctype="multipart/form-data">
+                        <form method="POST" action="{{url('/')}}/admin/add_Podcast" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="row">
                                 <div class="input-field col s12">
@@ -57,18 +57,16 @@
                                 <div class="input-field col s12">
                                     <div class="file-field">
                                         <div class="btn">
-                                            <span>File</span>
-                                            <input required name="image_one" type="file">
+                                            <span>Featured Image</span>
+                                            <input required name="image" type="file">
                                         </div>
                                         <div class="file-path-wrapper">
-                                            <input  class="file-path validate" type="text" placeholder="Upload Blog Banner">
+                                            <input  class="file-path validate" type="text" placeholder="Upload Featured Image">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-
-                                {{--  --}}
                                 <div class="input-field col s12">
                                     <select required name="category" class="icons" id="mydiv">
                                         <option value="" disabled selected>Choose your Category</option>
@@ -78,31 +76,9 @@
                                     </select>
                                     <label>Choose Category</label>
                                 </div>
-                                <a href="#ex1" rel="modal:open"> <strong>+ Add New Category</strong> </a>
-                                {{--  --}}
-                                {{-- <div class="section-space col s12"></div>
-                                <div class="input-field col s12">
-                                    <select required name="tags" multiple>
-                                        <option value="" disabled selected>Choose Tags</option>
-                                        <option value="Bitcoin">Bitcoin</option>
-                                        <option value="Forex">Forex</option>
-                                        <option value="Crypto">Crypto</option>
-                                        <option value="Stock">Stock</option>
-                                        <option value="Currency">Currency</option>
-                                        <option value="New York">New York</option>
-                                        <option value="Forbes">Forbes</option>
-                                        <option value="Educations">Educations</option>
-                                        <option value="Events">Events</option>
-                                        <option value="Clubs">Clubs</option>
-                                    </select>
-                                    <label>Select Tags</label>
-                                </div> --}}
                             </div>
-                            <style>
-                                .cke_reset{
-                                    height: 500px !important;
-                                }
-                            </style>
+
+
                             <div class="row">
                                 <div class="input-field col s12">
                                     <textarea required name="meta" class="materialize-textarea"></textarea>
