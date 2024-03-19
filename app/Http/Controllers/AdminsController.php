@@ -8,11 +8,9 @@ use App\Models\Term;
 
 use App\Models\Privacy;
 
-use App\Models\Color;
+use App\Models\Podcast;
 
-use App\Models\Water;
-
-use App\Models\Extra;
+use App\Models\Video;
 
 use App\Models\Section;
 
@@ -1255,29 +1253,23 @@ class AdminsController extends Controller
         $category = $request->cat;
         $path = 'uploads/blogs';
         if(isset($request->image_one)){
-
-
-                $file = $request->file('image_one');
-                $filename = str_replace(' ', '', $file->getClientOriginalName());
-                $timestamp = new Datetime();
-                $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-                $image_main_temp = $new_timestamp.'image'.$filename;
-                $image_one = str_replace(' ', '',$image_main_temp);
-                $file->move($path, $image_one);
-
+            $dir = 'uploads/blogs';
+            $file = $request->file('image_one');
+            $realPath = $request->file('image_one')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
         }else{
-            $image_one = $request->pro_img_cheat;
+            $SaveFilePath = $request->pro_img_cheat;
         }
 
         $blog = new Blog;
         $blog->title = $request->title;
         $blog->meta = $request->meta;
         $blog->slung = Str::slug($request->title);
-        $blog->content = $request->content;
+        $blog->content = $request->ckeditor;
         $blog->author = $request->author;
         $blog->category = $request->category;
         $blog->tags = $request->tags;
-        $blog->image_one = $image_one;
+        $blog->image_one = $SaveFilePath;
         $blog->save();
         Session::flash('message', "Post Saved Successfully");
         return Redirect::back();
@@ -1313,74 +1305,24 @@ class AdminsController extends Controller
         activity()->log('Evoked an Edit Blog Operation For Blog ID number '.$id.' ');
         $path = 'uploads/blogs';
         if(isset($request->image_one)){
-
-
-                $file = $request->file('image_one');
-                $filename = str_replace(' ', '', $file->getClientOriginalName());
-                $timestamp = new Datetime();
-                $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-                $image_main_temp = $new_timestamp.'image'.$filename;
-                $image_one = str_replace(' ', '',$image_main_temp);
-                $file->move($path, $image_one);
-
+            $dir = 'uploads/blogs';
+            $file = $request->file('image_one');
+            $realPath = $request->file('image_one')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
         }else{
-            $image_one = $request->image_one_cheat;
+            $SaveFilePath = $request->image_one_cheat;
         }
 
-        if(isset($request->image_two)){
-
-                $file = $request->file('image_two');
-                $filename = str_replace(' ', '', $file->getClientOriginalName());
-                $timestamp = new Datetime();
-                $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-                $image_main_temp = $new_timestamp.'image'.$filename;
-                $image_two = str_replace(' ', '',$image_main_temp);
-                $file->move($path, $image_two);
-
-        }else{
-            $image_two = $request->image_two_cheat;
-        }
-
-
-        if(isset($request->image_three)){
-
-                $file = $request->file('image_three');
-                $filename = str_replace(' ', '', $file->getClientOriginalName());
-                $timestamp = new Datetime();
-                $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-                $image_main_temp = $new_timestamp.'image'.$filename;
-                $image_three = str_replace(' ', '',$image_main_temp);
-                $file->move($path, $image_three);
-
-        }else{
-            $image_three = $request->image_three_cheat;
-        }
-        //Additional images
-
-        if(isset($request->image_four)){
-                $file = $request->file('image_four');
-                $filename = str_replace(' ', '', $file->getClientOriginalName());
-                $timestamp = new Datetime();
-                $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-                $image_main_temp = $new_timestamp.'image'.$filename;
-                $image_four = str_replace(' ', '',$image_main_temp);
-                $file->move($path, $image_four);
-
-        }else{
-            $image_four = $request->image_four_cheat;
-        }
 
         $updateDetails = array(
             'title' => $request->title,
             'slung' => Str::slug($request->title),
-            'content' => $request->content,
+            'content' => $request->ckeditor,
             'author' => $request->author,
             'category' => $request->category,
             'tags' => $request->tags,
-            'image_one' =>$image_one,
-            'image_two' =>$image_two,
-            'image_three' =>$image_three,
-            'image_four' =>$image_four,
+            'image_one' =>$SaveFilePath,
+
         );
         DB::table('blogs')->where('id',$id)->update($updateDetails);
         Session::flash('message', "Changes have been saved");
@@ -2249,6 +2191,20 @@ class AdminsController extends Controller
         return response()->json(['success'=>'Deleted Successfully!']);
     }
 
+    public function deletePodcastAjax(Request $request){
+        activity()->log('Evoked a delete Podcast with id '.$id.' Request');
+        $id = $request->id;
+        DB::table('podcasts')->where('id',$id)->delete();
+        return response()->json(['success'=>'Deleted Successfully!']);
+    }
+
+    public function deleteVideoAjax(Request $request){
+        activity()->log('Evoked a delete Video with id '.$id.' Request');
+        $id = $request->id;
+        DB::table('videos')->where('id',$id)->delete();
+        return response()->json(['success'=>'Deleted Successfully!']);
+    }
+
 
     public function updateSiteSettingsAjax(Request $request){
         activity()->log('Evoked an update Settings Request');
@@ -2684,34 +2640,31 @@ class AdminsController extends Controller
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+        $dir = 'uploads/podcasts';
         $file = $request->file('image');
-        $filename = $file->getClientOriginalName();
-        $store = $file->storeAs(path: 'podcasts/'.$filename, options: 's3');
-        Storage::disk('s3')->put('podcasts/'.$filename, file_get_contents($request->file('image')->getRealPath()));
-        // $url = Storage::disk('s3')->temporaryUrl('podcasts/'.$filename,now()->addMinutes(10));
-        $SaveFilePath = "https://africanpharmaceuticalreviewbucket.s3.eu-central-1.amazonaws.com/podcasts/$filename";
+        $realPath = $request->file('image')->getRealPath();
+        $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
 
         $Podcast = new Podcast;
         $Podcast->title = $request->title;
         $Podcast->meta = $request->meta;
         $Podcast->slung = Str::slug($request->title);
-        $Podcast->content = $request->content;
+        $Podcast->content = $request->ckeditor;
         $Podcast->author = $request->author;
         $Podcast->category = $request->category;
         $Podcast->file = $request->file;
-        $Podcast->image_one = $SaveFilePath;
+        $Podcast->image = $SaveFilePath;
         $Podcast->save();
         Session::flash('message', "Podcast Has Been Added");
         return Redirect::back();
     }
 
-    public function Podcast(){
+    public function podcasts (){
         activity()->log('Accessed the all podcasts page ');
         $Podcast = Podcast::all();
         $page_title = 'list';
         $page_name = 'Podcast';
-        return view('admin.Podcast',compact('page_title','Podcast','page_name'));
+        return view('admin.podcasts ',compact('page_title','Podcast','page_name'));
     }
 
     public function editPodcast($id){
@@ -2726,76 +2679,25 @@ class AdminsController extends Controller
 
     public function edit_Podcast(Request $request, $id){
         activity()->log('Evoked an Edit Podcast Operation For Podcast ID number '.$id.' ');
-        $path = 'uploads/podcasts';
-        if(isset($request->image_one)){
 
-
-                $file = $request->file('image_one');
-                $filename = str_replace(' ', '', $file->getClientOriginalName());
-                $timestamp = new Datetime();
-                $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-                $image_main_temp = $new_timestamp.'image'.$filename;
-                $image_one = str_replace(' ', '',$image_main_temp);
-                $file->move($path, $image_one);
-
+        if(isset($request->image)){
+            $dir = 'uploads/podcasts';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
         }else{
-            $image_one = $request->image_one_cheat;
-        }
-
-        if(isset($request->image_two)){
-
-                $file = $request->file('image_two');
-                $filename = str_replace(' ', '', $file->getClientOriginalName());
-                $timestamp = new Datetime();
-                $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-                $image_main_temp = $new_timestamp.'image'.$filename;
-                $image_two = str_replace(' ', '',$image_main_temp);
-                $file->move($path, $image_two);
-
-        }else{
-            $image_two = $request->image_two_cheat;
-        }
-
-
-        if(isset($request->image_three)){
-
-                $file = $request->file('image_three');
-                $filename = str_replace(' ', '', $file->getClientOriginalName());
-                $timestamp = new Datetime();
-                $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-                $image_main_temp = $new_timestamp.'image'.$filename;
-                $image_three = str_replace(' ', '',$image_main_temp);
-                $file->move($path, $image_three);
-
-        }else{
-            $image_three = $request->image_three_cheat;
-        }
-        //Additional images
-
-        if(isset($request->image_four)){
-                $file = $request->file('image_four');
-                $filename = str_replace(' ', '', $file->getClientOriginalName());
-                $timestamp = new Datetime();
-                $new_timestamp = $timestamp->format('Y-m-d H:i:s');
-                $image_main_temp = $new_timestamp.'image'.$filename;
-                $image_four = str_replace(' ', '',$image_main_temp);
-                $file->move($path, $image_four);
-
-        }else{
-            $image_four = $request->image_four_cheat;
+            $SaveFilePath = $request->image_cheat;
         }
 
         $updateDetails = array(
             'title' => $request->title,
+            'meta' => $request->meta,
             'slung' => Str::slug($request->title),
-            'content' => $request->content,
+            'content' => $request->ckeditor,
             'author' => $request->author,
             'category' => $request->category,
-            'tags' => $request->tags,
-            'image_one' =>$image_one,
-            'image_two' =>$image_two,
-            'image_three' =>$image_three,
-            'image_four' =>$image_four,
+            'file' => $request->file,
+            'image' =>$SaveFilePath,
         );
         DB::table('podcasts')->where('id',$id)->update($updateDetails);
         Session::flash('message', "Changes have been saved");
@@ -2809,7 +2711,101 @@ class AdminsController extends Controller
         return Redirect::back();
     }
 
+    public function addVideo(){
+        activity()->log('Accessed Add Video Page');
+        $Category = DB::table('categories')->orderBy('id','DESC')->get();
+        $page_title = 'formfiletext';//For Layout Inheritance
+        $page_name = 'add Video';
+        return view('admin.addVideo',compact('page_title','page_name','Category'));
+    }
 
+    public function add_Video(Request $request){
+        activity()->log('Evoked an add Video Operation');
+        $title = $request->title;
+        $description = $request->content;
+        $category = $request->cat;
+
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $dir = 'uploads/Videos';
+        $file = $request->file('image');
+        $realPath = $request->file('image')->getRealPath();
+        $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+
+        $Video = new Video;
+        $Video->title = $request->title;
+        $Video->meta = $request->meta;
+        $Video->slung = Str::slug($request->title);
+        $Video->content = $request->ckeditor;
+        $Video->author = $request->author;
+        $Video->category = $request->category;
+        $Video->file = $request->file;
+        $Video->image = $SaveFilePath;
+        $Video->save();
+        Session::flash('message', "Video Has Been Added");
+        return Redirect::back();
+    }
+
+    public function Videos (){
+        activity()->log('Accessed the all Videos page ');
+        $Video = Video::all();
+        $page_title = 'list';
+        $page_name = 'Video';
+        return view('admin.videos ',compact('page_title','Video','page_name'));
+    }
+
+    public function editVideo($id){
+        activity()->log('Accessed Edit Video For Video ID number '.$id.' ');
+        $Category = DB::table('categories')->orderBy('id','DESC')->get();
+        $Video = Video::find($id);
+        $page_title = 'formfiletext';
+        $page_name = 'Edit Video';
+        return view('admin.editVideo',compact('page_title','Video','page_name','Category'));
+    }
+
+
+    public function edit_Video(Request $request, $id){
+        activity()->log('Evoked an Edit Video Operation For Video ID number '.$id.' ');
+
+        if(isset($request->image)){
+            $dir = 'uploads/Videos';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+        $updateDetails = array(
+            'title' => $request->title,
+            'meta' => $request->meta,
+            'slung' => Str::slug($request->title),
+            'content' => $request->ckeditor,
+            'author' => $request->author,
+            'category' => $request->category,
+            'file' => $request->file,
+            'image' =>$SaveFilePath,
+        );
+        DB::table('videos')->where('id',$id)->update($updateDetails);
+        Session::flash('message', "Changes have been saved");
+        return Redirect::back();
+    }
+
+    public function delete_Video($id){
+        activity()->log('Deleted Video With ID number '.$id.' ');
+        DB::table('videos')->where('id',$id)->delete();
+        Session::flash('message', "Post Deleted Successfully");
+        return Redirect::back();
+    }
+
+    public function genericFIleUpload($file,$dir,$realPath){
+        $filename = $file->getClientOriginalName();
+        $store = $file->storeAs(path: ''.$dir.'/'.$filename, options: 's3');
+        Storage::disk('s3')->put(''.$dir.'/'.$filename, file_get_contents($realPath));
+        // $url = Storage::disk('s3')->temporaryUrl('podcasts/'.$filename,now()->addMinutes(10));
+        $SaveFilePath = "https://africanpharmaceuticalreviewbucket.s3.eu-central-1.amazonaws.com/$dir/$filename";
+        return $SaveFilePath;
+    }
 
 }
 

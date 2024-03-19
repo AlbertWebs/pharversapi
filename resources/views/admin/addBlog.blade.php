@@ -99,9 +99,9 @@
                                 </div> --}}
                             </div>
                             <style>
-                                .cke_reset{
-                                    height: 500px !important;
-                                }
+                                /* .cke_reset{
+                                    height: 400px !important;
+                                } */
                             </style>
                             <div class="row">
                                 <div class="input-field col s12">
@@ -118,12 +118,12 @@
                             </div>
                             <br><br>
                             <div class="section-space col s12"></div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="input-field col s12">
                                     <input readonly required autocomplete="off" value="{{Auth::user()->name }}" id="post-auth" name="author" type="text" class="validate">
                                     <label for="post-auth">Author</label>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="row">
                                 <div class="input-field col s12">

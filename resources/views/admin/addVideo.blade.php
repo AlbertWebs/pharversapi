@@ -24,9 +24,9 @@
                 <ul>
                     <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                     </li>
-                    <li class="active-bre"><a href="#"> Add New Podcast</a>
+                    <li class="active-bre"><a href="#"> Add New Video</a>
                     </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/podcasts"><i class="fa fa-backward" aria-hidden="true"></i> All Podcasts</a>
+                    <li class="page-back"><a href="{{url('/')}}/admin/videos"><i class="fa fa-backward" aria-hidden="true"></i> All Videos</a>
                     </li>
                 </ul>
 
@@ -34,7 +34,7 @@
             <div class="sb2-2-add-blog sb2-2-1">
                 <div class="box-inn-sp">
                     <div class="inn-title">
-                        <h4>Add New Podcast</h4>
+                        <h4>Add New Video</h4>
                         {{-- <p> Create Blog Posts </p> --}}
                         <center>
                             @if(Session::has('message'))
@@ -47,7 +47,7 @@
                         </center>
                     </div>
                     <div class="bor">
-                        <form method="POST" action="{{url('/')}}/admin/add_Podcast" enctype="multipart/form-data">
+                        <form method="POST" action="{{url('/')}}/admin/add_Video" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="row">
                                 <div class="input-field col s12">
@@ -55,8 +55,8 @@
                                     <label for="list-title">Title</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input autocomplete="off" name="file" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">Audio URL</label>
+                                    <input autocomplete="off" name="file" id="list-title" type="text" placeholder="NSmevXhc6IA" class="validate" required>
+                                    <label for="list-title">Video ID</label>
                                 </div>
                                 <div class="input-field col s12">
                                     <div class="file-field">

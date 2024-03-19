@@ -8,38 +8,29 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('blogs', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('videos', function (Blueprint $table) {
+            $table->id();
             $table->boolean('active')->default(true);
-            $table->string('slung')->unique();
             $table->string('title')->unique();
-            $table->string('tags')->nullable();
-            $table->string('video')->nullable();
             $table->text('meta')->nullable();
+            $table->string('slung')->unique();
             $table->text('content')->nullable();
             $table->string('author')->nullable();
             $table->string('category')->nullable();
+            $table->string('file')->nullable();
             $table->string('image')->nullable();
-            $table->string('image_one')->nullable();
-            $table->string('image_two')->nullable();
-            $table->string('image_three')->nullable();
-            $table->string('image_four')->nullable();
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('videos');
     }
 };

@@ -252,13 +252,19 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('edit_Blog/{id}', [AdminsController::class, 'edit_Blog']);
         Route::get('delete_Blog/{id}', [AdminsController::class, 'delete_Blog']);
 
-        Route::get('podcast', [AdminsController::class, 'podcast']);
+        Route::get('podcasts', [AdminsController::class, 'podcasts']);
         Route::get('addPodcast', [AdminsController::class, 'addPodcast']);
         Route::post('add_Podcast', [AdminsController::class, 'add_Podcast']);
         Route::get('editPodcast/{id}', [AdminsController::class, 'editPodcast']);
         Route::post('edit_Podcast/{id}', [AdminsController::class, 'edit_Podcast']);
         Route::get('delete_Podcast/{id}', [AdminsController::class, 'delete_Podcast']);
 
+        Route::get('videos', [AdminsController::class, 'videos']);
+        Route::get('addVideo', [AdminsController::class, 'addVideo']);
+        Route::post('add_Video', [AdminsController::class, 'add_Video']);
+        Route::get('editVideo/{id}', [AdminsController::class, 'editVideo']);
+        Route::post('edit_Video/{id}', [AdminsController::class, 'edit_Video']);
+        Route::get('delete_Video/{id}', [AdminsController::class, 'delete_Video']);
 
         // Payments
         Route::get('b2b', [AdminsController::class, 'b2b']);
@@ -325,6 +331,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('deletePortfolioAjax', [AdminsController::class, 'deletePortfolioAjax']);
         Route::post('deleteSectionAjax', [AdminsController::class, 'deleteSectionAjax']);
         Route::post('deleteWaterAjax', [AdminsController::class, 'deleteWaterAjax']);
+        Route::post('deletePodcastAjax', [AdminsController::class, 'deletePodcastAjax']);
+        Route::post('deleteVideoAjax', [AdminsController::class, 'deleteVideoAjax']);
 
 
         Route::get('addProductToFacebookPixel', [AdminsController::class, 'addProductToFacebookPixel']);

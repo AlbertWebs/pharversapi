@@ -47,7 +47,7 @@
                <ul>
                   <li><a href="{{url('/')}}/admin/videos">All Videos</a>
                   </li>
-                  <li><a href="{{url('/')}}/admin/addBlog">Add Video</a>
+                  <li><a href="{{url('/')}}/admin/addVideo">Add Video</a>
                   </li>
                </ul>
             </div>
