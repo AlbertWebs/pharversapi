@@ -18,7 +18,7 @@
                     <span class="ad-hom-col-com ad-hom-col-1"><i class="fa fa-podcast"></i></span>
                     <div class="ad-hom-view-com">
                     <p><i class="fa  fa-arrow-up up"></i> Podcasts</p>
-                    <?php $Message = App\Models\Message::all() ?>
+                    <?php $Message = App\Models\Podcast::all() ?>
                     <h3><?php echo count($Message) ?></h3>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <span class="ad-hom-col-com ad-hom-col-2"><i class="fa fa-video-camera"></i></span>
                     <div class="ad-hom-view-com">
                     <p><i class="fa  fa-arrow-up up"></i> Videos</p>
-                    <?php $Message = App\Models\Message::all() ?>
+                    <?php $Message = App\Models\Video::all() ?>
                     <h3><?php echo count($Message) ?></h3>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <span class="ad-hom-col-com ad-hom-col-4"><i class="fa fa-fa-newspaper-o"></i></span>
                     <div class="ad-hom-view-com">
                     <p><i class="fa  fa-arrow-up up"></i> Articles</p>
-                    <?php $Message = App\Models\Message::all() ?>
+                    <?php $Message = App\Models\Blog::all() ?>
                     <h3><?php echo count($Message) ?></h3>
                     </div>
                 </div>

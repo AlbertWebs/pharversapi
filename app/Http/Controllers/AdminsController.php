@@ -12,6 +12,8 @@ use App\Models\Podcast;
 
 use App\Models\Video;
 
+use App\Models\Advertisements;
+
 use App\Models\Section;
 
 use App\Models\Copyright;
@@ -2797,6 +2799,53 @@ class AdminsController extends Controller
         Session::flash('message', "Post Deleted Successfully");
         return Redirect::back();
     }
+
+    public function addAdvertisement(){
+        activity()->log('Accessed Add Advertisement Page');
+        $page_title = 'formfiletext';//For Layout Inheritance
+        $page_name = 'add Advertisement';
+        return view('admin.addAdvertisement', compact('page_title', 'page_name'));
+    }
+
+    // advertisements
+    public function advertisements(){
+        activity()->log('Accessed the all advertisements page ');
+        $Advertisement = Advertisements::all();
+        $page_title = 'list';
+        $page_name = 'Advertisement';
+        return view('admin.advertisements ', compact('page_title', 'Advertisement', 'page_name'));
+    }
+
+    // editAdvertisement
+    public function editAdvertisement($id){
+        activity()->log('Accessed Edit Advertisement For Advertisement ID number '.$id.' ');
+        $Advertisement = Advertisements::find($id);
+        $page_title = 'formfiletext';
+        $page_name = 'Edit Advertisement';
+        return view('admin.editAdvertisement', compact('page_title', 'Advertisement', 'page_name'));
+    }
+
+    // edit_Advertisement
+    public function edit_Advertisement(Request $request, $id){
+        activity()->log('Evoked an Edit Advertisement Operation For Advertisement ID number '.$id.' ');
+        if(isset($request->image)){
+            $dir = 'uploads/advertisements';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+
+        $updateDetails = array(
+            'date'=>$request->date,
+            'image' =>$SaveFilePath,
+        );
+        DB::table('advertisements')->where('id', $id)->update($updateDetails);
+        Session::flash('message', "Changes have been saved");
+        return Redirect::back();
+    }
+
 
     public function genericFIleUpload($file,$dir,$realPath){
         $filename = $file->getClientOriginalName();

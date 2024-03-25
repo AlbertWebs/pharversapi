@@ -252,6 +252,16 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('edit_Blog/{id}', [AdminsController::class, 'edit_Blog']);
         Route::get('delete_Blog/{id}', [AdminsController::class, 'delete_Blog']);
 
+        // Blog
+        Route::get('advertisements', [AdminsController::class, 'advertisements']);
+        Route::get('addAdvertisement', [AdminsController::class, 'addAdvertisement']);
+        Route::post('add_Advertisement', [AdminsController::class, 'add_Advertisement']);
+        Route::get('editAdvertisement/{id}', [AdminsController::class, 'editAdvertisement']);
+        Route::post('edit_Advertisement/{id}', [AdminsController::class, 'edit_Advertisement']);
+        Route::get('delete_Advertisement/{id}', [AdminsController::class, 'delete_Advertisement']);
+
+
+        // Podcasts
         Route::get('podcasts', [AdminsController::class, 'podcasts']);
         Route::get('addPodcast', [AdminsController::class, 'addPodcast']);
         Route::post('add_Podcast', [AdminsController::class, 'add_Podcast']);
