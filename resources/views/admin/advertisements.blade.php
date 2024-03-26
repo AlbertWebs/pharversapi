@@ -50,6 +50,7 @@
                             <th>Page</th>
                             <th>Placement</th>
                             <th>Active</th>
+                            <th>Stop Date</th>
                             <th>Edit</th>
                             {{-- <th>Delete</th> --}}
                         </tr>
@@ -86,6 +87,9 @@
                                     </label>
                                     @endif
                                 </div>
+                            </td>
+                            <td>
+                                {{$item->date}}
                             </td>
                             <td><a href="{{url('/')}}/admin/editAdvertisement/{{$item->id}}" class="sb2-2-1-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                             </td>
