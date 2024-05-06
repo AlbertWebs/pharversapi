@@ -19,17 +19,30 @@
          </li>
          <li><a target="_blank" href="{{url('/')}}/" class="menu-active"><i class="fa fa-globe" aria-hidden="true"></i> Visit Website</a>
          </li>
-         <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-rss" aria-hidden="true"></i> Blog & Articles</a>
-            <div class="collapsible-body left-sub-menu">
-               <ul>
-                  <li><a href="{{url('/')}}/admin/blog">All Blogs</a>
-                  </li>
-                  <li><a href="{{url('/')}}/admin/addBlog">Add Blog</a>
-                  </li>
-               </ul>
-            </div>
-         </li>
+              {{--  --}}
+              <li>
+                <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-folder" aria-hidden="true"></i> Categories </a>
+                <div class="collapsible-body left-sub-menu">
+                   <ul>
+                      <li><a href="{{url('/')}}/admin/categories">All Category </a>
+                      </li>
+                      <li><a href="{{url('/')}}/admin/addCategory">Add Category</a>
+                      </li>
+                   </ul>
+                </div>
+             </li>
+             {{--  --}}
+            <li>
+                <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-rss" aria-hidden="true"></i> News, Interviews & Articles</a>
+                <div class="collapsible-body left-sub-menu">
+                <ul>
+                    <li><a href="{{url('/')}}/admin/blog">All Blogs</a>
+                    </li>
+                    <li><a href="{{url('/')}}/admin/addBlog">Add Blog</a>
+                    </li>
+                </ul>
+                </div>
+            </li>
 
          <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-podcast" aria-hidden="true"></i> Podcasts </a>
@@ -55,12 +68,10 @@
          </li>
 
          <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-ad" aria-hidden="true"></i> Manage Ads  </a>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bar-chart" aria-hidden="true"></i> Manage Ads  </a>
             <div class="collapsible-body left-sub-menu">
                <ul>
-                  <li>
-                       {{-- <a href="{{url('/')}}/admin/addAdvertisement">Add Ad</a> --}}
-                  </li>
+
                   <li>
                     <a href="{{url('/')}}/admin/advertisements">All Ads</a>
                   </li>
@@ -82,21 +93,7 @@
             </div>
          </li>
          {{--  --}}
-         {{--  --}}
-         <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-list-alt" aria-hidden="true"></i> Sections </a>
-            <div class="collapsible-body left-sub-menu">
-               <ul>
-                  <li><a href="{{url('/')}}/admin/sections">All Sections</a>
-                  </li>
-                  {{--
-                  <li><a href="{{url('/')}}/admin/addBanner">Add Banners</a>
-                  </li>
-                  --}}
-               </ul>
-            </div>
-         </li>
-         {{--  --}}
+
          <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-handshake-o" aria-hidden="true"></i> Partners </a>
             <div class="collapsible-body left-sub-menu">
@@ -111,19 +108,7 @@
             </div>
          </li>
          {{--  --}}
-         {{--  --}}
-         <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-folder" aria-hidden="true"></i> Categories </a>
-            <div class="collapsible-body left-sub-menu">
-               <ul>
-                  <li><a href="{{url('/')}}/admin/categories">All Category </a>
-                  </li>
-                  <li><a href="{{url('/')}}/admin/addCategory">Add Category</a>
-                  </li>
-               </ul>
-            </div>
-         </li>
-         {{--  --}}
+
          {{--  --}}
          <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-comment" aria-hidden="true"></i> Testimonials </a>
@@ -146,19 +131,9 @@
                      <a style="color:#000000 !important; font-weight:600" href="javascript:void(0)" class="collapsible-header"><i class="fa fa-money" aria-hidden="true"></i>M-PESA API</a>
                      <div class="left-sub-menu">
                         <ul>
-                           <li><a style="color:#000000 !important; text-align: center;" href="{{url('/')}}/admin/b2b">B2B Transfers</a>
-                           </li>
-                           <li><a style="color:#000000 !important; text-align: center;" href="{{url('/')}}/admin/b2c">B2C Transfers</a>
-                           </li>
                            <li><a style="color:#000000 !important; text-align: center;" href="{{url('/')}}/admin/lnmo_api_response">STK Transactions</a>
                            </li>
                            <li><a style="color:#000000 !important; text-align: center;" href="{{url('/')}}/admin/mobile_payments">C2B Transactions</a>
-                           </li>
-                           <li><a style="color:#000000 !important; text-align: center;" href="{{url('/')}}/admin/reverse_transaction">Reversed Transcations</a>
-                           </li>
-                           <li><a style="color:#000000 !important; text-align: center;" href="{{url('/')}}/admin/transaction_status">Transaction Statuses</a>
-                           </li>
-                           <li><a style="color:#000000 !important; text-align: center;" href="{{url('/')}}/admin/accountbalance">Account Balance</a>
                            </li>
                         </ul>
                      </div>

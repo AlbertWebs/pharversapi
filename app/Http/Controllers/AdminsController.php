@@ -543,19 +543,22 @@ class AdminsController extends Controller
     public function add_Category(Request $request){
         activity()->log('Evoked add Category Operation');
         $path = 'uploads/categories';
+
         if(isset($request->image)){
+            $dir = 'uploads/categories';
             $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $file->move($path, $filename);
-            $image = $filename;
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
         }else{
-            $image = "0";
+            $SaveFilePath = $request->image_cheat;
         }
+
         $Category = new Category;
         $Category->title = $request->title;
+        $Category->meta = $request->meta;
         $Category->slung = Str::slug($request->title);
-        $Category->content = $request->content;
-        $Category->image = $image;
+        $Category->content = $request->ckeditor;
+        $Category->image = $SaveFilePath;
         $Category->save();
         Session::flash('message', "Category Has Been Added");
         return Redirect::back();
@@ -571,24 +574,22 @@ class AdminsController extends Controller
 
     public function edit_Category(Request $request, $id){
         activity()->log('Evoked Edit Category For Category ID number '.$id.' ');
-        $path = 'uploads/categories';
-            if(isset($request->image)){
-                $file = $request->file('image');
-                $filename = $file->getClientOriginalName();
-                $file->move($path, $filename);
-                $image = $filename;
-            }else{
-                $image = $request->image_cheat;
-            }
+
+        if(isset($request->image)){
+            $dir = 'uploads/categories';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
 
         $updateDetails = array(
             'title'=>$request->title,
-            'heading_two_section'=>$request->heading_two_section,
-            'heading_two'=>$request->heading_two,
             'slung' => Str::slug($request->title),
             'meta'=>$request->meta,
-            'content'=>$request->content,
-            'image'=>$image
+            'content'=>$request->ckeditor,
+            'image'=>$SaveFilePath
 
         );
         DB::table('categories')->where('id',$id)->update($updateDetails);
@@ -1265,6 +1266,7 @@ class AdminsController extends Controller
 
         $blog = new Blog;
         $blog->title = $request->title;
+        $blog->type = $request->type;
         $blog->meta = $request->meta;
         $blog->slung = Str::slug($request->title);
         $blog->content = $request->ckeditor;
@@ -1315,16 +1317,15 @@ class AdminsController extends Controller
             $SaveFilePath = $request->image_one_cheat;
         }
 
-
         $updateDetails = array(
             'title' => $request->title,
+            'type' => $request->type,
             'slung' => Str::slug($request->title),
             'content' => $request->ckeditor,
             'author' => $request->author,
             'category' => $request->category,
             'tags' => $request->tags,
             'image_one' =>$SaveFilePath,
-
         );
         DB::table('blogs')->where('id',$id)->update($updateDetails);
         Session::flash('message', "Changes have been saved");

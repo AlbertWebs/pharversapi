@@ -56,6 +56,22 @@
                                 </div>
                             </div>
 
+                            {{--  --}}
+                            <div class="row">
+
+                                {{--  --}}
+                                <div class="input-field col s12">
+                                    <select required name="type" class="icons" >
+                                        <option value="" disabled selected>{{$Blog->type}}</option>
+                                        <option value="News"  class="circle">News</option>
+                                        <option value="Interviews"  class="circle">Interviews</option>
+                                        <option value="Articles"  class="circle">Articles</option>
+                                    </select>
+                                    <label>Choose Type</label>
+                                </div>
+                            </div>
+                            {{--  --}}
+
                             <div class="row">
 
                                 {{--  --}}

@@ -51,46 +51,11 @@
                             <label for="list-title">Edit Category Title</label>
                         </div>
                     </div>
-                    {{--  --}}
+
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="list-title" name="heading_two" type="text" value="{{$Category->heading_two}}" class="validate">
-                            <label for="list-title">Heading Two</label>
-                        </div>
-                    </div>
-                    {{--  --}}
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="list-title" name="heading_two_section" type="text" value="{{$Category->heading_two_section}}" class="validate">
-                            <label for="list-title">Section Heading</label>
-                        </div>
-                    </div>
-                    {{-- Meta --}}
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea required name="meta" class="materialize-textarea">{{$Category->meta}}</textarea>
-                            <label for="textarea1">Excerpt:</label>
-                        </div>
-                    </div>
-                    {{--  --}}
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea required name="color" class="materialize-textarea">{!!html_entity_decode($Category->color)!!}</textarea>
-                            <label for="textarea1">Color:</label>
-                        </div>
-                    </div>
-                    {{--  --}}
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea required name="thicknesses" class="materialize-textarea">{!!html_entity_decode($Category->thicknesses)!!}</textarea>
-                            <label for="textarea1">Thicknesses:</label>
-                        </div>
-                    </div>
-                    {{--  --}}
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea required name="a_c_ratings" class="materialize-textarea">{!!html_entity_decode($Category->a_c_ratings)!!}</textarea>
-                            <label for="textarea1">AC-Ratings:</label>
+                            <textarea required name="meta" class="materialize-textarea">{!!html_entity_decode($Category->meta)!!}</textarea>
+                            <label for="textarea1">Meta</label>
                         </div>
                     </div>
                     {{--  --}}
@@ -99,16 +64,12 @@
                         <div class="input-field col s12">
                             <label for="textarea1">Descriptions:</label>
                             <br>
-                            <textarea required id="article-ckeditor" name="content" class="materialilze-textarea" placeholder="content">{!!html_entity_decode($Category->content)!!}</textarea>
+                            <textarea required id="article-ckeditor" name="ckeditor" class="materialilze-textarea" placeholder="content">{!!html_entity_decode($Category->content)!!}</textarea>
 
 
                         </div>
-                    </div><br><br>
+                    </div><br>
 
-                    <script src="https://amanivehiclesounds.co.ke/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-                    <script>
-                        CKEDITOR.replace( 'article_ckeditor' );
-                    </script>
                      {{-- Images --}}
                                  {{-- Preview --}}
                             {{-- Style --}}
@@ -151,7 +112,7 @@
                                                 </span>
                                                 <input type="text" class="form-control" readonly>
                                             </div>
-                                            <img class="image-preview" style="width:auto;" src="{{url('/')}}/uploads/categories/{{$Category->image}}" id='img-upload'/>
+                                            <img class="image-preview" style="width:auto;" src="{{$Category->image}}" id='img-upload'/>
                                         </div>
                                     </div>
                                 </div>

@@ -46,7 +46,7 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Extras</th>
+                            <th>Meta</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -56,11 +56,11 @@
                         @foreach ($Category as $item)
                         <tr>
                             <td>{{$item->id}}</td>
-                            <td>{{$item->title}}</td>
-                            <td>
-                                <a href="{{url('/')}}/admin/extras/{{$item->id}}" class="sb2-2-1-edit btn">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </a>
+                            <td style="max-width:300px">{{$item->title}}</td>
+                            <td style="max-width:400px">
+                                <div>
+                                    {{$item->meta}}
+                                </div>
 
                             </td>
                             <td>

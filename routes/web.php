@@ -35,6 +35,20 @@ Route::post('/subscribe', [MailChimpController::class, 'subscribe']);
 Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('contact-form');
 
 Auth::routes();
+// manages
+
+
+/*------------------------------------------
+--------------------------------------------
+All Managers Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::middleware(['auth', 'user-access:manager'])->group(function () {
+
+    Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
+});
+
+
 // Admin Routes
 Auth::routes();
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
@@ -353,6 +367,4 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     });
 });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

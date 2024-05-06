@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->boolean('active')->default(true);
             $table->string('slung')->unique();
+            $table->string('type')->nullable();
             $table->string('title')->unique();
             $table->string('tags')->nullable();
             $table->string('video')->nullable();
