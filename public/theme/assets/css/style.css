@@ -773,6 +773,8 @@ label {
 }
 .header-logo-area {
     padding: 25px 0;
+    /* line-height: 150px; */
+    display: relative;
 }
 .hl-left-side {
     display: flex;

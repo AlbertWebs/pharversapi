@@ -83,14 +83,14 @@
                 <!-- <div class="multi_color_border"></div> -->
                 <div class="top_nav" style="background-color: #000000">
                     {{--  --}}
-                    <div id="header-fixed-height"></div>
+                    {{-- <div id="header-fixed-height"></div> --}}
                     <div class="header-logo-area">
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-lg-4">
                                     <div class="hl-left-side">
                                         <div class="logo">
-                                            <a href="#"><img src="{{url('/')}}/uploads/logo/aprlogo.png" alt=""></a>
+                                            <a href="#"><img style="padding:50px;" src="{{url('/')}}/uploads/logo/aprlogowhitetheme.png" alt=""></a>
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
                             <div class="col-lg-5 col-md-7">
                                 <div class="footer-widget">
                                     <div class="fw-logo">
-                                        <a href="#"><img src="{{asset('uploads/logo/aprlogowhite.png')}}" alt=""></a>
+                                        <a href="#"><img src="{{asset('uploads/logo/aprlogowhitetheme.png')}}" alt=""></a>
                                     </div>
                                     <div class="footer-content">
                                         <p>The African Pharmaceutical Review is an online resource for readers and professionals working or have an interest in the pharmaceutical industry. Our goal is to provide a voice to the African pharmaceutical industry and ensure that the pharmaceutical community is kept in touch with the latest news, developments and insights around the pharma industry in Africa.</p>
