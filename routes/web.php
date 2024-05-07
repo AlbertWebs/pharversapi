@@ -23,14 +23,22 @@ use App\Http\Controllers\ImageUploadController;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/products', [HomeController::class, 'products']);
-Route::get('/search-product', [HomeController::class, 'search'])->name('search');
+Route::get('/contents/{content}', [HomeController::class, 'contents']);
+Route::get('/topics/{topic}', [HomeController::class, 'topics']);
 Route::get('/contact-us', [HomeController::class, 'contact']);
-Route::get('/frequently-asked-questions/{slung}', [HomeController::class, 'faq']);
-Route::get('/clients', [HomeController::class, 'clients']);
+Route::get('/about-us', [HomeController::class, 'about']);
+Route::get('/featured-companies', [HomeController::class, 'companies']);
+Route::get('/advertise-with-us', [HomeController::class, 'advertise']);
+Route::get('/write-for-us', [HomeController::class, 'write']);
+Route::get('/pharvers-limited', [HomeController::class, 'pharvers']);
 Route::get('/terms-and-conditions', [HomeController::class, 'terms']);
 Route::get('/privacy-policy', [HomeController::class, 'privacy']);
 Route::get('/copyright', [HomeController::class, 'copyright']);
+
+
+Route::get('/search-product', [HomeController::class, 'search'])->name('search');
+Route::get('/frequently-asked-questions/{slung}', [HomeController::class, 'faq']);
+Route::get('/clients', [HomeController::class, 'clients']);
 Route::post('/subscribe', [MailChimpController::class, 'subscribe']);
 Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('contact-form');
 
