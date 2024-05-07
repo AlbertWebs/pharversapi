@@ -90,7 +90,7 @@
                                 <div class="col-lg-4">
                                     <div class="hl-left-side">
                                         <div class="logo">
-                                            <a href="#"><img style="padding:50px;" src="{{url('/')}}/uploads/logo/aprlogowhitetheme.png" alt=""></a>
+                                            <a href="#"><img style="width:250px; padding:50px;" src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                 </div>
                 <div class="bottom_nav">
                     <a class="burger-nav"></a>
-        
+
                     <ul>
                         <li><a href="#">Home</a></li>
                         <li><a href="about.html">About</a></li>
@@ -136,7 +136,7 @@
                 </div>
             </nav>
             <!--end of wrapper div-->
-        
+
             <!--third nav-->
             <div class="third-nav">
                 <ul>
@@ -151,10 +151,10 @@
                     <li><a href="#">Regs & Legs</a></li>
                 </ul>
             </div>
-        
+
             <script src="{{url('/')}}/theme/assets/js/thirdnav.js"></script>
         </header>
-        
+
         <!-- header-area-end -->
 
 
