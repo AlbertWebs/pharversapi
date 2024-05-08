@@ -54,8 +54,8 @@
         <div id="preloader">
             <div class="loader-inner">
                 <div id="loader">
-                    <h2 id="bg-loader">African Pharmaceutical Reviews<span>.</span></h2>
-                    <h2 id="fg-loader">African Pharmaceutical Reviews<span>.</span></h2>
+                    <h2 id="bg-loader">African Pharmaceutical Review<span>.</span></h2>
+                    <h2 id="fg-loader">African Pharmaceutical Review<span>.</span></h2>
                 </div>
             </div>
         </div>
@@ -77,84 +77,7 @@
         <!-- Scroll-top-end-->
 
         <!-- header-area -->
-        <header class="header-style-five">
-            <!-- double navbar-->
-            <nav class="wrapper fixed-top">
-                <!-- <div class="multi_color_border"></div> -->
-                <div class="top_nav" style="background-color: #000000">
-                    {{--  --}}
-                    {{-- <div id="header-fixed-height"></div> --}}
-                    <div class="header-logo-area">
-                        <div class="container">
-                            <div class="row align-items-center">
-                                <div class="col-lg-4">
-                                    <div class="hl-left-side">
-                                        <div class="logo">
-                                            <a href="#"><img style="width:250px; padding:50px;" src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="hl-right-side">
-                                        <div class="header-search-wrap">
-                                            <form action="#">
-                                                <input type="text" placeholder="Search here . . .">
-                                                <button type="submit"><i class="flaticon-search"></i></button>
-                                            </form>
-                                        </div>
-                                        <div class="header-social">
-                                            <ul class="list-wrap">
-                                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{--  --}}
-                </div>
-                <div class="bottom_nav">
-                    <a class="burger-nav"></a>
-
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li class="news-link"><a href="news.html">News</a></li>
-                        <li id="articles-link"><a class="active-menu" href="articles.html">Articles</a></li>
-                        <li id="podcasts-link"><a href="podcasts.html">Podcasts</a></li>
-                        <li class="videos-link"><a href="videos.html">Videos</a></li>
-                        <li><a href="partnering-companies.html">Partnering Companies</a></li>
-                        <li><a href="publications.html">Publications</a></li>
-                        <li><a href="webinars.html">Webinars</a></li>
-                        <!-- <li><a href="#">Content Hubs</a></li> -->
-                        <li><a href="events.html">Events</a></li>
-                    </ul>
-                </div>
-            </nav>
-            <!--end of wrapper div-->
-
-            <!--third nav-->
-            <div class="third-nav">
-                <ul>
-                    <li><a href="#">Analytical Techniques</a></li>
-                    <li><a href="#">Biopharma </a></li>
-                    <li><a href="#">Drug Delivery</a></li>
-                    <li><a href="#">Formulation </a></li>
-                    <li><a href="#">Manufacturing</a></li>
-                    <li><a href="#">Pa ckaging & Labelling </a></li>
-                    <li><a href="#">QA/QC</a></li>
-                    <li><a href="#">R&D</a></li>
-                    <li><a href="#">Regs & Legs</a></li>
-                </ul>
-            </div>
-
-            <script src="{{url('/')}}/theme/assets/js/thirdnav.js"></script>
-        </header>
-
+        @include('front.header')
         <!-- header-area-end -->
 
 

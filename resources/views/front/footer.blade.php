@@ -56,7 +56,7 @@
                                             <li><a href="{{url('/')}}/content">Whitepapers/App Notes</a></li>
                                             <li><a href="{{url('/')}}/content">Webinars</a></li>
                                             <li><a href="{{url('/')}}/content">Content Hubs</a></li>
-                                         
+
                                             <li><a href="{{url('/')}}/content">All Content</a></li>
                                         </ul>
                                     </div>
@@ -67,8 +67,8 @@
                                     <h4 class="fw-title">Resources</h4>
                                     <div class="footer-link-wrap">
                                         <ul class="list-wrap">
-                                            <li><a href="{{url('/')}}">Home</a></li>
                                             <li><a href="{{url('/')}}/about-us">About Us</a></li>
+                                            <li><a href="{{url('/')}}/contact-us">Contact Us</a></li>
                                             <li><a href="{{url('/')}}/featured-companies">Featured Companies</a></li>
                                             <li><a href="{{url('/')}}/advertise-with-us">Advertise With Us</a></li>
                                             <li><a href="{{url('/')}}/write-for-us">Write For Us</a></li>
