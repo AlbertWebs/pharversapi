@@ -15,6 +15,10 @@ class HomeController extends Controller
     public function contents_list(){
         return view('front.contents_list');
     }
+    public function topics_list(){
+        return view('front.topics');
+    }
+
 
     // podcasts method
     public function podcasts(){
@@ -24,4 +28,18 @@ class HomeController extends Controller
     public function contact(){
         return view('front.contact');
     }
+
+    public function videos(){
+        return view('front.videos');
+    }
+
+    public function write(){
+        return view('front.write');
+    }
+    public function step_2(){
+        return view('front.step_2');
+    }
+
+
+
 }

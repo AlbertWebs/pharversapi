@@ -41,7 +41,7 @@
                                                 <li><a href="#">Digitization</a></li>
                                                 <li><a href="#">Automation</a></li>
                                                 <li><a href="#">Artificial intelligence</a></li> --}}
-                                                <li><a href="events.html">All Topics</a></li>
+                                                <li><a href="{{url('/')}}/topics">All Topics</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                             <li><a href="{{url('/')}}/content">Webinars</a></li>
                                             <li><a href="{{url('/')}}/content">Content Hubs</a></li>
 
-                                            <li><a href="{{url('/')}}/content">All Content</a></li>
+                                            <li><a href="{{url('/')}}/contents">All Content</a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -32,7 +32,7 @@
                                 <a href="blog.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2023/07/pexels-anna-tarazevich-7904443-870x570.jpg" alt=""></a>
                             </div>
                             <div class="categories-content-two">
-                                <a href="blog.html" class="post-tag">News</a>
+                                <a href="blog.html" class="post-tag">Microbiology</a>
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                                 <a href="blog.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2023/07/pexels-anna-tarazevich-7904443-870x570.jpg" alt=""></a>
                             </div>
                             <div class="categories-content-two">
-                                <a href="blog.html" class="post-tag">Articles</a>
+                                <a href="blog.html" class="post-tag">Analytical Techniques</a>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                                 <a href="blog.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2023/07/pexels-anna-tarazevich-7904443-870x570.jpg" alt=""></a>
                             </div>
                             <div class="categories-content-two">
-                                <a href="blog.html" class="post-tag">Videos</a>
+                                <a href="blog.html" class="post-tag">Drug Delivery</a>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                                 <a href="blog.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2023/07/pexels-anna-tarazevich-7904443-870x570.jpg" alt=""></a>
                             </div>
                             <div class="categories-content-two">
-                                <a href="blog.html" class="post-tag">Publications</a>
+                                <a href="blog.html" class="post-tag">Formulation Development</a>
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                                 <a href="blog.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2023/07/pexels-anna-tarazevich-7904443-870x570.jpg" alt=""></a>
                             </div>
                             <div class="categories-content-two">
-                                <a href="blog.html" class="post-tag">Interviews</a>
+                                <a href="blog.html" class="post-tag">Bioprocessing</a>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                 <a href="blog.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2023/07/pexels-anna-tarazevich-7904443-870x570.jpg" alt=""></a>
                             </div>
                             <div class="categories-content-two">
-                                <a href="blog.html" class="post-tag">Webinars</a>
+                                <a href="blog.html" class="post-tag">Manufacturing</a>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                 <a href="blog.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2023/07/pexels-anna-tarazevich-7904443-870x570.jpg" alt=""></a>
                             </div>
                             <div class="categories-content-two">
-                                <a href="blog.html" class="post-tag">White papers/Application Notes</a>
+                                <a href="blog.html" class="post-tag">Quality Assurance/Quality Control,</a>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                 <a href="blog.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2023/07/pexels-anna-tarazevich-7904443-870x570.jpg" alt=""></a>
                             </div>
                             <div class="categories-content-two">
-                                <a href="blog.html" class="post-tag">Events</a>
+                                <a href="blog.html" class="post-tag">Biopharma</a>
                             </div>
                         </div>
                     </div>
@@ -115,12 +115,32 @@
                                 <a href="blog.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2023/07/pexels-anna-tarazevich-7904443-870x570.jpg" alt=""></a>
                             </div>
                             <div class="categories-content-two">
-                                <a href="blog.html" class="post-tag">Podcasts</a>
+                                <a href="blog.html" class="post-tag">Packaging and Labelling</a>
                             </div>
                         </div>
                     </div>
 
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <div class="categories-item-two">
+                            <div class="categories-img-two">
+                                <a href="blog.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2023/07/pexels-anna-tarazevich-7904443-870x570.jpg" alt=""></a>
+                            </div>
+                            <div class="categories-content-two">
+                                <a href="blog.html" class="post-tag">Regulatory Affairs</a>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <div class="categories-item-two">
+                            <div class="categories-img-two">
+                                <a href="blog.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2023/07/pexels-anna-tarazevich-7904443-870x570.jpg" alt=""></a>
+                            </div>
+                            <div class="categories-content-two">
+                                <a href="blog.html" class="post-tag">health supply chain management</a>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

@@ -30,10 +30,10 @@
                                 {{--  --}}
                                 <div class="hl-right-side-four">
                                     <div class="sign-in">
-                                        <a href="contact.html"><i class="flaticon-user"></i>Sign In</a>
+                                        <a href="https://subscribers.africanpharmaceuticalreview.com/dashboard"><i class="flaticon-user"></i>Sign In</a>
                                     </div>
                                     <div class="subscribe-btn">
-                                        <a href="contact.html" class="btn btn-two">Subscribe</a>
+                                        <a href="https://subscribers.africanpharmaceuticalreview.com/" class="btn btn-two">Subscribe</a>
                                     </div>
                                 </div>
                                 {{--  --}}

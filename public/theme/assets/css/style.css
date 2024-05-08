@@ -6868,3 +6868,8 @@ label {
     text-decoration: none;
     margin: 0 10px;
 }
+
+.pull-right{
+    /* margin-right: 5px; */
+    float: right;
+}
