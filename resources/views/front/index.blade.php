@@ -882,7 +882,7 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
         <div class="trending-shape-wrap">

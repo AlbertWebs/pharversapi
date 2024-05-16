@@ -14,7 +14,7 @@
                     <div class="col-100">
                         <div class="section-title-wrap mb-30">
                             <div class="section-title">
-                                <h2 class="title">Videos</h2>
+                                <h2 class="title">{{$page_title}}</h2>
                             </div>
                             <div class="view-all-btn">
                                 <a href="blog.html" class="link-btn">View All
@@ -33,12 +33,11 @@
                                 <div class="col-lg-3">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post01.jpg')}}" alt=""></a>
+                                            <a href="#"><img src="{{asset('theme/assets/img/blog/cr_recent_post01.jpg')}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
-                                            <a href="https://www.youtube.com/watch?v=RoLd7dTWkAs" class="paly-btn popup-video post-tag"><i class="fas fa-play"></i></a>
-
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
+                                            <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-newspaper  fa-2x"></i></a>
+                                            <h2 class="post-title"><a href="#">The Game Changing ar
                                             roadeily Breakfast</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
@@ -51,11 +50,11 @@
                                 <div class="col-lg-3">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post02.jpg')}}" alt=""></a>
+                                            <a href="#"><img src="{{asset('theme/assets/img/blog/cr_recent_post02.jpg')}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
-                                            <a href="https://www.youtube.com/watch?v=RoLd7dTWkAs" class="paly-btn popup-video post-tag"><i class="fas fa-play"></i></a>
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
+                                            <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-newspaper  fa-2x"></i></a>
+                                            <h2 class="post-title"><a href="#">The Game Changing ar
                                             roadeily Breakfast</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
@@ -68,11 +67,11 @@
                                 <div class="col-lg-3">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post03.jpg')}}" alt=""></a>
+                                            <a href="#"><img src="{{asset('theme/assets/img/blog/cr_recent_post03.jpg')}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
-                                            <a href="https://www.youtube.com/watch?v=RoLd7dTWkAs" class="paly-btn popup-video post-tag"><i class="fas fa-play"></i></a>
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
+                                            <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-newspaper  fa-2x"></i></a>
+                                            <h2 class="post-title"><a href="#">The Game Changing ar
                                             roadeily Breakfast</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
@@ -85,11 +84,11 @@
                                 <div class="col-lg-3">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post02.jpg')}}" alt=""></a>
+                                            <a href="#"><img src="{{asset('theme/assets/img/blog/cr_recent_post02.jpg')}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
-                                            <a href="https://www.youtube.com/watch?v=RoLd7dTWkAs" class="paly-btn popup-video post-tag"><i class="fas fa-play"></i></a>
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
+                                            <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-newspaper  fa-2x"></i></a>
+                                            <h2 class="post-title"><a href="#">The Game Changing ar
                                             roadeily Breakfast</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
@@ -102,11 +101,11 @@
                                 <div class="col-lg-3">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post04.jpg')}}" alt=""></a>
+                                            <a href="#"><img src="{{asset('theme/assets/img/blog/cr_recent_post04.jpg')}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
-                                            <a href="https://www.youtube.com/watch?v=RoLd7dTWkAs" class="paly-btn popup-video post-tag"><i class="fas fa-play"></i></a>
-                                            <h2 class="post-title"><a href="blog-details.html">Racing Games Browned Butte roadert Cookies Daily Breakfast</a></h2>
+                                            <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-newspaper  fa-2x"></i></a>
+                                            <h2 class="post-title"><a href="#">Racing Games Browned Butte roadert Cookies Daily Breakfast</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
                                                     <li><i class="flaticon-calendar"></i>4 August, 2024</li>
@@ -119,11 +118,11 @@
                                 <div class="col-lg-3">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post05.jpg')}}" alt=""></a>
+                                            <a href="#"><img src="{{asset('theme/assets/img/blog/cr_recent_post05.jpg')}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
-                                            <a href="https://www.youtube.com/watch?v=RoLd7dTWkAs" class="paly-btn popup-video post-tag"><i class="fas fa-play"></i></a>
-                                            <h2 class="post-title"><a href="blog-details.html">Racing Games Browned Butte roadert Cookies Daily Breakfast</a></h2>
+                                            <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-newspaper  fa-2x"></i></a>
+                                            <h2 class="post-title"><a href="#">Racing Games Browned Butte roadert Cookies Daily Breakfast</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
                                                     <li><i class="flaticon-calendar"></i>4 August, 2024</li>
@@ -137,11 +136,11 @@
                                 <div class="col-lg-3">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post01.jpg')}}" alt=""></a>
+                                            <a href="#"><img src="{{asset('theme/assets/img/blog/cr_recent_post01.jpg')}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
-                                            <a href="https://www.youtube.com/watch?v=RoLd7dTWkAs" class="paly-btn popup-video post-tag"><i class="fas fa-play"></i></a>
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
+                                            <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-newspaper  fa-2x"></i></a>
+                                            <h2 class="post-title"><a href="#">The Game Changing ar
                                             roadeily Breakfast</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
@@ -154,11 +153,11 @@
                                 <div class="col-lg-3">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post02.jpg')}}" alt=""></a>
+                                            <a href="#"><img src="{{asset('theme/assets/img/blog/cr_recent_post02.jpg')}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
-                                            <a href="https://www.youtube.com/watch?v=RoLd7dTWkAs" class="paly-btn popup-video post-tag"><i class="fas fa-play"></i></a>
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
+                                            <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-newspaper  fa-2x"></i></a>
+                                            <h2 class="post-title"><a href="#">The Game Changing ar
                                             roadeily Breakfast</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">

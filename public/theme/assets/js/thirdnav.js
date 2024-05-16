@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    var newsLink = document.getElementById("news-link");
-    var articlesLink = document.getElementById("articles-link");
-    
+    var articlesLink = document.getElementByClass("articles-link");
+
     var thirdNav = document.querySelector(".third-nav");
 
     articlesLink.addEventListener("mouseover", function () {
@@ -12,12 +11,17 @@ document.addEventListener("DOMContentLoaded", function () {
     articlesLink.addEventListener("mouseout", function () {
         thirdNav.style.visibility = "hidden";
     });
-
-    newsLink.addEventListener("mouseover", function () {
-        thirdNav.style.visibility = "visible";
-    });
-
-    newsLink.addEventListener("mouseout", function () {
-        thirdNav.style.visibility = "hidden";
-    });
 });
+
+
+// Stick Fixed Menu on Scroll
+let menu = document.getElementById('menu');
+let offset = menu.offsetHeight;
+window.onscroll = function() {
+    if (window.scrollY > offset-10) {
+        menu.classList.add("sticky");
+    } else if(window.scrollY < offset-20) {
+        menu.classList.remove("sticky");
+    }
+}
+

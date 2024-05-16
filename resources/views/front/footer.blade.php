@@ -106,7 +106,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="copyright-text">
-                                    <p>Copyright © {{date('Y')}} <a href="">African Pharmaceutical Reviews</a> All Rights Reserved | Powered By <a href="">Pharvers Limited</a></p>
+                                    <p>Copyright © {{date('Y')}} <a href="">African Pharmaceutical Review</a> All Rights Reserved | Published By <a href="">Pharvers Limited</a></p>
                                 </div>
                             </div>
                         </div>
