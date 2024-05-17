@@ -6925,7 +6925,8 @@ label {
     bottom: 0px;
     z-index: 10000;
     width: 728px;
-    left: 384px;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 .pharverse-close-button{

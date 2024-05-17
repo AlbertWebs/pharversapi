@@ -46,6 +46,7 @@
         <link rel="stylesheet" href="{{asset('theme/assets/css/swiper-bundle.css')}}">
         <link rel="stylesheet" href="{{asset('theme/assets/css/default.css')}}">
         <link rel="stylesheet" href="{{asset('theme/assets/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('theme/assets/css/ads.css')}}">
         <link rel="stylesheet" href="{{asset('theme/assets/css/responsive.css')}}">
     </head>
     <body>
@@ -90,12 +91,11 @@
 
 
         <div class="pharverse-fixed-footer pharverse-sticky" id="footer-ad">
-            <span class="pharverse-close-button" id="pharverse-close-button" onclick="closeBtn()" title="close"> × </span>
+            <span class="pharverse-close-button " id="pharverse-close-button" onclick="closeBtn()" title="close"> × </span>
             <div id="placement_fixed_footer">
-               <div id="placement_fixed_footer" style="margin:0;padding:0;">
-                <a href="#" target="_blank" rel="nofollow">
+                <a href="#" target="_blank" rel="nofollow" class="">
                     <img src="{{url('/')}}/uploads/ads/ad-footer.gif" alt="Footer Ad" title="Footer Ad" border="0" width="728" height="90">
-                </a></div>
+                </a>
             </div>
         </div>
 
