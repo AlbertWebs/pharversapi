@@ -6903,6 +6903,22 @@ label {
     background-color:#183354;
 }
 
+.pharverse-fixed-super{
+    margin-left: -14px;
+    position: relative;
+    margin:0 auto;
+}
+
+.pharverse-close-button-super{
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    position:absolute;
+    line-height: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
 .pharverse-fixed-footer{
     margin-left: -14px;
     position: fixed;

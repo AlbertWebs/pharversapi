@@ -27,6 +27,12 @@ function closeBtn(){
      (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,40)})();
 }
 
+function closeSuperBtn(){
+    var s = document.getElementById('pharverse-fixed-super').style;
+    s.opacity = 1;
+    (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,40)})();
+}
+
 // Stick Fixed Menu on Scroll
 let menu = document.getElementById('menu');
 let offset = menu.offsetHeight;
