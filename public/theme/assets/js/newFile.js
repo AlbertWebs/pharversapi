@@ -14,30 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
         thirdNav.style.visibility = "hidden";
     });
     //Footer Ad Actions
-    fixed_footer_btn.addEventListener("click", function() {
-        alert("This")
+    fixed_footer_btn.addEventListener("click", function () {
+        alert("This");
         fixed_footer.hidden = true;
     });
-
-
 });
-function closeBtn(){
-     var s = document.getElementById('footer-ad').style;
-     s.opacity = 1;
-     (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,40)})();
-}
-
-// Stick Fixed Menu on Scroll
-let menu = document.getElementById('menu');
-let offset = menu.offsetHeight;
-window.onscroll = function() {
-    if (window.scrollY > offset-10) {
-        menu.classList.add("sticky");
-    } else if(window.scrollY < offset-20) {
-        menu.classList.remove("sticky");
-    }
-}
-
-
-
-

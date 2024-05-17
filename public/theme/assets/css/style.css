@@ -6903,3 +6903,26 @@ label {
     background-color:#183354;
 }
 
+.pharverse-fixed-footer{
+    margin-left: -14px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 10000;
+    width: 728px;
+    left: 384px;
+}
+
+.pharverse-close-button{
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    position: relative;
+    line-height: 15px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10000;
+    left:-15px;
+    float: left;
+    margin-right: -15px;
+
+}

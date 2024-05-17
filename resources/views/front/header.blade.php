@@ -72,7 +72,7 @@
                 </div>
 
             </nav>
-            <script src="{{url('/')}}/theme/assets/js/thirdnav.js"></script>
+
 
         </header>
 
