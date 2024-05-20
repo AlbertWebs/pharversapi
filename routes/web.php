@@ -34,6 +34,7 @@ Route::get('/topics/{topic}', [HomeController::class, 'topics']);
 Route::get('/contact-us', [HomeController::class, 'contact']);
 Route::get('/about-us', [HomeController::class, 'about']);
 Route::get('/companies/partnering-companies', [HomeController::class, 'companies']);
+Route::get('/companies/partnering-companies/{slung}', [HomeController::class, 'company']);
 Route::get('/advertise-with-us', [HomeController::class, 'advertise']);
 Route::get('/write-for-us', [HomeController::class, 'write']);
 Route::get('/write-for-us/step-2', [HomeController::class, 'step_2']);

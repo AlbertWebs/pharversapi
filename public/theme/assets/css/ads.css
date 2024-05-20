@@ -110,6 +110,7 @@
     }
 
 
+
 @media (max-width: 900px) {
     .pharverse-fixed-super{
       display: none;
@@ -120,12 +121,14 @@
       }
 }
 
-@media (max-width: 1800px) {
-   #wrapRight{
-    display: none;
+@media (max-width: 1780px) {
+   .wrapRight{
+    display: none !important;
    }
 
-   #wrapLeft{
-    display: none;
+   .wrapLeft{
+    display: none !important;
    }
+
 }
+

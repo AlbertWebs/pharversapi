@@ -46,8 +46,9 @@
         <link rel="stylesheet" href="{{asset('theme/assets/css/swiper-bundle.css')}}">
         <link rel="stylesheet" href="{{asset('theme/assets/css/default.css')}}">
         <link rel="stylesheet" href="{{asset('theme/assets/css/style.css')}}">
-        <link rel="stylesheet" href="{{asset('theme/assets/css/ads.css')}}">
+        {{-- <link rel="stylesheet" href="{{asset('theme/assets/css/ads.css')}}"> --}}
         <link rel="stylesheet" href="{{asset('theme/assets/css/responsive.css')}}">
+        <link rel="stylesheet" href="{{asset('theme/assets/css/ads.css')}}">
     </head>
     <body>
 
@@ -99,25 +100,9 @@
             </div>
         </div>
 
-        {{-- <div class="pharverse-fixed-side-left pharverse-sticky-left" id="left-ad">
-            <span class="pharverse-close-button-left" id="pharverse-close-button" onclick="closeLeftBtn()" title="close"> × </span>
-            <div id="placement_fixed_left">
-                <a href="#" target="_blank" rel="nofollow" class="">
-                    <img src="{{url('/')}}/uploads/ads/side-left.gif" alt="Footer Ad" title="Left Ad" border="0" width="90" height="728">
-                </a>
-            </div>
-        </div>
 
-        <div class="pharverse-fixed-side-right pharverse-sticky-right" id="right-ad">
-            <span class="pharverse-close-button-left" id="pharverse-close-button" onclick="closeLeftBtn()" title="close"> × </span>
-            <div id="placement_fixed_left">
-                <a href="#" target="_blank" rel="nofollow" class="">
-                    <img src="{{url('/')}}/uploads/ads/side-left.gif" alt="Footer Ad" title="Left Ad" border="0" width="90" height="728">
-                </a>
-            </div>
-        </div> --}}
 
-        <div id="wrapLeft" class="wraps advertisement-banner" style="position: absolute; top: 283px;">
+        <div style="position: absolute; top: 283px;" class="wraps advertisement-banner wrapLeft"  id="wrapLeft">
             <div id="ad1">
                <div id="placement_255245_0_ins" style="margin:0;padding:0;"><a href="#" target="_blank" rel="nofollow">
                   <img src="{{url('/')}}/uploads/ads/side-left.gif" alt="GEA " title="GEA " border="0" width="210" height="900"></a>
@@ -135,7 +120,7 @@
                });
             </script>
          </div>
-         <div id="wrapRight" class="wraps advertisement-banner" style="position: absolute; top: 283px;">
+         <div style="position: absolute; top: 283px;" class="wraps advertisement-banner wrapRight"  id="wrapRight">
             <div id="ad2">
                <div id="placement_255246_0_ins" style="margin:0;padding:0;">
                   <a href="#" target="_blank" rel="nofollow">

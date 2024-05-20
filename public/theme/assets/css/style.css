@@ -6948,3 +6948,34 @@ label {
 .advertisement-banner{
     display: none;
 }
+.weekly-post-thumbs{
+    display: flex;
+    height: 300px; /* Or whatever */
+    background-color: #E8F1F1;
+    /* border: 1px solid #ff00ff; */
+    /* padding:10px; */
+
+}
+.weekly-post-thumbs img{
+    /* width:250px !important; */
+    margin: auto;  /* Magic! */
+    text-align: center;
+    padding:30px;
+    /* background-color: #ffffff; */
+}
+
+.company-title{
+    text-align: center;
+}
+
+.company-thumbs{
+    display: flex;
+    /* background-color: #E8F1F1; */
+}
+
+.company-thumbs img{
+    width:300px !important;
+    text-align: center;
+    padding:5px;
+    margin: auto;  /* Magic! */
+}

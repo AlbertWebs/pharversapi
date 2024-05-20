@@ -46,6 +46,11 @@ class HomeController extends Controller
          }
     }
 
+    public function company($slung){
+        $page_title = "Partnering Companies";
+        $page_topic = "";
+        return view('front.company',compact('page_title','page_topic'));
+    }
 
     public function companies(){
         $page_title = "Partnering Companies";
