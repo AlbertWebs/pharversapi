@@ -1033,6 +1033,99 @@
     </section>
     {{-- Podcasts End --}}
 
+      <!-- editor-post-area -->
+      <section class="editor-post-area pt-50 pb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title-wrap mb-30">
+                        <div class="section-title">
+                            <h2 class="title">Partnering Companies</h2>
+                        </div>
+                        <div class="editor-nav"></div>
+                        <div class="section-title-line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="editor-post-wrap">
+                <div class="row editor-post-active">
+                    <div class="col-lg-4">
+                        <div class="editor-post-item">
+                            <div class="editor-post-thumb">
+                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="editor-post-item">
+                            <div class="editor-post-thumb">
+                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="editor-post-item">
+                            <div class="editor-post-thumb">
+                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="editor-post-item">
+                            <div class="editor-post-thumb">
+                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="editor-post-item">
+                            <div class="editor-post-thumb">
+                                <a href="blog-details.html"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="editor-post-item">
+                            <div class="editor-post-thumb">
+                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="editor-post-item">
+                            <div class="editor-post-thumb">
+                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="editor-post-item">
+                            <div class="editor-post-thumb">
+                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="editor-post-item">
+                            <div class="editor-post-thumb">
+                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="editor-post-item">
+                            <div class="editor-post-thumb">
+                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- editor-post-area-end -->
+
+
     <!-- newsletter-area -->
     <section class="newsletter-area-three">
         <div class="container">
