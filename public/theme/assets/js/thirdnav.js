@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("This")
         fixed_footer.hidden = true;
     });
-
-
 });
 function closeBtn(){
      var s = document.getElementById('footer-ad').style;
@@ -43,6 +41,12 @@ window.onscroll = function() {
         menu.classList.remove("sticky");
     }
 }
+
+$(document).ready(function() {
+    setTimeout(function() {
+      $('.advertisement-banner').fadeIn("5000");
+    }, 5000);
+  });
 
 
 

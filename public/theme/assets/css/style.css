@@ -6929,7 +6929,7 @@ label {
     transform: translate(-50%, 0);
 }
 
-.pharverse-close-button{
+.pharverse-close-button-left{
     width: 15px;
     height: 15px;
     background: #fff;
@@ -6938,8 +6938,13 @@ label {
     text-align: center;
     cursor: pointer;
     z-index: 10000;
-    left:-15px;
-    float: left;
+    /* right:-15px; */
+    float: right;
     margin-right: -15px;
 
+}
+
+
+.advertisement-banner{
+    display: none;
 }

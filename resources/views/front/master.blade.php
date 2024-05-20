@@ -90,7 +90,7 @@
 
 
 
-        <div class="pharverse-fixed-footer pharverse-sticky" id="footer-ad">
+        <div class="pharverse-fixed-footer pharverse-sticky advertisement-banner" id="footer-ad">
             <span class="pharverse-close-button " id="pharverse-close-button" onclick="closeBtn()" title="close"> × </span>
             <div id="placement_fixed_footer">
                 <a href="#" target="_blank" rel="nofollow" class="">
@@ -98,6 +98,65 @@
                 </a>
             </div>
         </div>
+
+        {{-- <div class="pharverse-fixed-side-left pharverse-sticky-left" id="left-ad">
+            <span class="pharverse-close-button-left" id="pharverse-close-button" onclick="closeLeftBtn()" title="close"> × </span>
+            <div id="placement_fixed_left">
+                <a href="#" target="_blank" rel="nofollow" class="">
+                    <img src="{{url('/')}}/uploads/ads/side-left.gif" alt="Footer Ad" title="Left Ad" border="0" width="90" height="728">
+                </a>
+            </div>
+        </div>
+
+        <div class="pharverse-fixed-side-right pharverse-sticky-right" id="right-ad">
+            <span class="pharverse-close-button-left" id="pharverse-close-button" onclick="closeLeftBtn()" title="close"> × </span>
+            <div id="placement_fixed_left">
+                <a href="#" target="_blank" rel="nofollow" class="">
+                    <img src="{{url('/')}}/uploads/ads/side-left.gif" alt="Footer Ad" title="Left Ad" border="0" width="90" height="728">
+                </a>
+            </div>
+        </div> --}}
+
+        <div id="wrapLeft" class="wraps advertisement-banner" style="position: absolute; top: 283px;">
+            <div id="ad1">
+               <div id="placement_255245_0_ins" style="margin:0;padding:0;"><a href="#" target="_blank" rel="nofollow">
+                  <img src="{{url('/')}}/uploads/ads/side-left.gif" alt="GEA " title="GEA " border="0" width="210" height="900"></a>
+               </div>
+            </div>
+            <script type="text/javascript">jQuery(document).ready(function() {
+               var cur_width = jQuery(document).width();
+               console.log("Screen width: " + cur_width);
+
+               if ( cur_width > 1597 ) {
+                   console.log("Showing show-if-gt in ad1 (167548)");
+                   scrsize_load_url("ad1", 167548, 255245, 210, 900);
+               }
+
+               });
+            </script>
+         </div>
+         <div id="wrapRight" class="wraps advertisement-banner" style="position: absolute; top: 283px;">
+            <div id="ad2">
+               <div id="placement_255246_0_ins" style="margin:0;padding:0;">
+                  <a href="#" target="_blank" rel="nofollow">
+                  <img src="{{url('/')}}/uploads/ads/side-left.gif" alt="GEA " title="GEA " border="0" width="210" height="900"></a>
+               </div>
+            </div>
+            <script type="text/javascript">jQuery(document).ready(function() {
+               var cur_width = jQuery(document).width();
+               console.log("Screen width: " + cur_width);
+
+               if ( cur_width > 1597 ) {
+                   console.log("Showing show-if-gt in ad2 (167548)");
+                   scrsize_load_url("ad2", 167548, 255246, 210, 900);
+               }
+
+               });
+            </script>
+         </div>
+
+
+
 
         <!-- JS here -->
         <script src="{{asset('theme/assets/js/vendor/jquery-3.6.0.min.js')}}"></script>

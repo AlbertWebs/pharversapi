@@ -7,7 +7,7 @@
     <!-- ad-banner-area -->
     <div class="ad-banner-area pt-30 pb-30">
         <div class="container">
-            <div class="ad-banner-img ad-banner-img-two text-center">
+            <div class="ad-banner-img ad-banner-img-two text-center advertisement-banner">
                 {{--  --}}
                 <div class="pharverse-fixed-super" id="pharverse-fixed-super">
                     <span class="pharverse-close-button-super" id="pharverse-close-super-button" onclick="closeSuperBtn()" title="close"> × </span>
@@ -24,7 +24,7 @@
 
     <!-- banner-post-area -->
     <section class="banner-post-area-four pb-30">
-        <div class="container custom-container">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="banner-post-four">

@@ -6,7 +6,7 @@
                             <div class="col-lg-5 col-md-7">
                                 <div class="footer-widget">
                                     <div class="fw-logo">
-                                        <a href="#"><img src="{{asset('uploads/logo/aprlogowhitetheme.png')}}" alt=""></a>
+                                        <a href="#"><img src="{{url('/')}}/uploads/logo/log.png" alt=""></a>
                                     </div>
                                     <div class="footer-content">
                                         <p>The African Pharmaceutical Review is an online resource for readers and professionals working or have an interest in the pharmaceutical industry. Our goal is to provide a voice to the African pharmaceutical industry and ensure that the pharmaceutical community is kept in touch with the latest news, developments and insights around the pharma industry in Africa.</p>
