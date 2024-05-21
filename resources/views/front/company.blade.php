@@ -1,8 +1,11 @@
 @extends('front.master')
 
 @section('content')
- <!-- main-area -->
- <main class="fix">
+{{--  --}}
+
+
+<!-- main-area -->
+<main class="fix">
 
      <!-- author-area -->
      <section class="author-area pt-60 pb-60">
@@ -51,6 +54,6 @@
     </section>
     <!-- author-area-end -->
 
- </main>
+</main>
 
 @endsection

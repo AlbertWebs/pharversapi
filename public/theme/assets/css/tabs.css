@@ -1,0 +1,47 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    /* max-width: 730px; */
+  }
+}
+
+.nav-tabs {
+  margin-bottom: 15px;
+}
+
+.header h3 {
+  padding-bottom: 19px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  text-align: center;
+}
+
+.sub-tabs {
+  border-bottom: none;
+  float: right;
+}
+
+.sub-tabs>li {
+  float: right;
+  clear: right;
+  font-size: 12px;
+}
+
+.sub-tabs>li>a {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sub-tabs>li.active>a, .sub-tabs>li.active>a:hover, .sub-tabs>li.active>a:focus {
+  border-color: #fff;
+}
+
+.sub-tabs>li>a:hover {
+  background-color: inherit;
+  border-color: #fff;
+}
