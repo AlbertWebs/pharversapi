@@ -9,7 +9,7 @@
                 <div class="col-lg-8">
                     <div class="section-title-wrap mb-30">
                         <div class="section-title">
-                            <h2 class="title">Step 2</h2>
+                            <h2 class="title">Step 3</h2>
                         </div>
                         <div class="view-all-btn">
                             <a href="#next" class="link-btn">Write For Us
@@ -40,65 +40,67 @@
 
                                     <form id="contact-form" action="#" method="POST">
                                         <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-grp">
+                                                    <input type="text" name="name" placeholder="Company Name*">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="text" name="name" placeholder="Your Name*">
+                                                    <input type="text" name="email" placeholder="Company Email*">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="email" name="email" placeholder="Your Email*">
+                                                    <input type="email" name="mob ile" placeholder="Company Mobile*">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-grp">
-                                                    <input type="text" name="username" placeholder="Your Prefrefered Username*">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-grp">
-                                                    <input type="email" name="experties" placeholder="Your Area of Experties*">
+                                                    <input type="text" name="address" placeholder="Address*">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-grp">
-                                                    <input type="text" name="country" placeholder="Your Country*">
+                                                    <input type="url" name="facebook" placeholder="Facebook*">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-grp">
-                                                    <input type="email" name="city" placeholder="Your City*">
+                                                    <input type="url" name="instagram" placeholder="Instagram*">
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-grp">
-                                                    <input type="text" name="mobile" placeholder="Mobile*">
+                                                    <input type="url" name="linkedin" placeholder="linkedin*">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-grp">
-                                                    <input type="email" name="address" placeholder="Address*">
+                                                    <input type="url" name="twitter" placeholder="Twitter*">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-grp">
-                                            <textarea name="message" placeholder="Short Bio*"></textarea>
+                                            <textarea name="message" placeholder="Overview*"></textarea>
                                         </div>
 
                                         <p>
                                             <div class="pull-right" id="next">
                                                 <div class="view-all-btn">
-                                                    <a href="{{url('/')}}/write-for-us/step-3" class="link-btn">Submit <i class="fa fa-arrow-right"></i>
+                                                    <a href="{{url('/')}}/write-for-us/step-3" class="link-btn"> Finish <i class="fa fa-arrow-right"></i>
 
                                                     </a>
                                                 </div>

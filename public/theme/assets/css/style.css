@@ -6996,7 +6996,7 @@ label {
 .nav-pills .nav-link {
     border-radius: 0;
     border-right: 1px solid #eee;
-    min-width: 250px;
+    min-width: 180px;
 }
 
 @media(min-width:1200px)and (max-width:1399px) {
@@ -7052,7 +7052,7 @@ label {
 .nav-pills .nav-link {
     border-radius: 0;
     border-right: 1px solid #eee;
-    min-width: 250px;
+    min-width: 180px;
 }
 
 @media(min-width:1200px)and (max-width:1399px) {
@@ -7080,4 +7080,8 @@ label {
 
 .tour-information .details-img-group {
     margin: 18px 0 40px
+}
+
+.form-grp{
+    border:2px solid #183354;
 }

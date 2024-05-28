@@ -81,10 +81,19 @@ class HomeController extends Controller
     }
 
     public function write(){
-        return view('front.write');
+        $page_title = "Partnering Companies";
+        $page_topic = "Write For Us";
+        return view('front.write', compact('page_title','page_topic'));
     }
     public function step_2(){
-        return view('front.step_2');
+        $page_title = "Partnering Companies";
+        $page_topic = "Write For Us";
+        return view('front.step_2', compact('page_title','page_topic'));
+    }
+    public function step_3(){
+        $page_title = "Partnering Companies";
+        $page_topic = "Write For Us";
+        return view('front.step_3', compact('page_title','page_topic'));
     }
 
 

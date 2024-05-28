@@ -23,14 +23,13 @@ use App\Http\Controllers\ImageUploadController;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/{slung}', [HomeController::class, 'content']);
 Route::get('/contents', [HomeController::class, 'contents_list']);
 Route::get('/contents/{content}', [HomeController::class, 'contents']);
 Route::get('/topics', [HomeController::class, 'topics_list']);
 Route::get('/topic/{slung}', [HomeController::class, 'topic']);
 Route::get('/videos', [HomeController::class, 'videos']);
 Route::get('/podcasts', [HomeController::class, 'podcasts']);
-// Route::get('/topics/{topic}', [HomeController::class, 'topics']);
+Route::get('/topics/{topic}', [HomeController::class, 'topics']);
 Route::get('/contact-us', [HomeController::class, 'contact']);
 Route::get('/about-us', [HomeController::class, 'about']);
 Route::get('/companies/partnering-companies', [HomeController::class, 'companies']);
@@ -38,6 +37,8 @@ Route::get('/companies/partnering-companies/{slung}', [HomeController::class, 'c
 Route::get('/advertise-with-us', [HomeController::class, 'advertise']);
 Route::get('/write-for-us', [HomeController::class, 'write']);
 Route::get('/write-for-us/step-2', [HomeController::class, 'step_2']);
+Route::get('/write-for-us/step-3', [HomeController::class, 'step_3']);
+
 
 Route::get('/pharvers-limited', [HomeController::class, 'pharvers']);
 Route::get('/terms-and-conditions', [HomeController::class, 'terms']);
@@ -51,7 +52,7 @@ Route::get('/clients', [HomeController::class, 'clients']);
 Route::post('/subscribe', [MailChimpController::class, 'subscribe']);
 Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('contact-form');
 
-
+// Route::get('/{slung}', [HomeController::class, 'content']);
 
 // Admin Routes
 Auth::routes();

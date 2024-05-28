@@ -55,7 +55,7 @@
     <!-- author-area-end -->
 
     {{--  --}}
-    <div class="destination-details-section pt-60 pb-60">
+    <div class="destination-details-section pb-60">
         <div class="container">
            <div class="row gy-5 justify-content-center">
               <div class="col-lg-12">

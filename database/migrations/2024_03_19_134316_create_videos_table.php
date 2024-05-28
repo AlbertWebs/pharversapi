@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->boolean('active')->default(true);
             $table->string('title')->unique();
+            $table->string('company_id')->default('0');
             $table->text('meta')->nullable();
             $table->string('slung')->unique();
             $table->text('content')->nullable();
