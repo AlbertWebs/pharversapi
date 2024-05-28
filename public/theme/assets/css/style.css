@@ -90,6 +90,7 @@
     --instagram: #FF2F7A;
     --youtube: #c4302b;
     --skype: #00aff0;
+    --white: #ffffff;
 }
 body {
 	font-family: var(--tg-body-font-family);
@@ -6978,4 +6979,105 @@ label {
     text-align: center;
     padding:5px;
     margin: auto;  /* Magic! */
+}
+
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: var(--white);
+    background-color: var(--primary-color1)
+}
+
+.nav-pills .nav-link.active svg,
+.nav-pills .show>.nav-link svg {
+    fill: var(--white)
+}
+
+.nav-pills .nav-link {
+    border-radius: 0;
+    border-right: 1px solid #eee;
+    min-width: 250px;
+}
+
+@media(min-width:1200px)and (max-width:1399px) {
+    .nav-pills .nav-link {
+        min-width: 144px;
+        font-size: 18px
+    }
+}
+
+.nav-pills .nav-link:last-child {
+    border-right: unset
+}
+
+@media(max-width:1399px) {
+    .nav-pills .nav-link {
+        border-right: unset
+    }
+}
+
+@media(max-width:576px) {
+    .nav-pills .nav-link {
+        width: 100%
+    }
+}
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    border: 1px solid #eee;
+    margin-bottom: 45px
+}
+
+@media(max-width:1199px) {
+    .nav {
+        padding: 20px;
+        gap: 12px
+    }
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: var(--white);
+    background-color: var(--tg-secondary-color)
+}
+
+.nav-pills .nav-link.active svg,
+.nav-pills .show>.nav-link svg {
+    fill: var(--white)
+}
+
+.nav-pills .nav-link {
+    border-radius: 0;
+    border-right: 1px solid #eee;
+    min-width: 250px;
+}
+
+@media(min-width:1200px)and (max-width:1399px) {
+    .nav-pills .nav-link {
+        min-width: 144px;
+        font-size: 18px
+    }
+}
+
+.nav-pills .nav-link:last-child {
+    border-right: unset
+}
+
+@media(max-width:1399px) {
+    .nav-pills .nav-link {
+        border-right: unset
+    }
+}
+
+@media(max-width:576px) {
+    .nav-pills .nav-link {
+        width: 100%
+    }
+}
+
+.tour-information .details-img-group {
+    margin: 18px 0 40px
 }

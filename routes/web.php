@@ -30,7 +30,7 @@ Route::get('/topics', [HomeController::class, 'topics_list']);
 Route::get('/topic/{slung}', [HomeController::class, 'topic']);
 Route::get('/videos', [HomeController::class, 'videos']);
 Route::get('/podcasts', [HomeController::class, 'podcasts']);
-Route::get('/topics/{topic}', [HomeController::class, 'topics']);
+// Route::get('/topics/{topic}', [HomeController::class, 'topics']);
 Route::get('/contact-us', [HomeController::class, 'contact']);
 Route::get('/about-us', [HomeController::class, 'about']);
 Route::get('/companies/partnering-companies', [HomeController::class, 'companies']);
@@ -51,19 +51,6 @@ Route::get('/clients', [HomeController::class, 'clients']);
 Route::post('/subscribe', [MailChimpController::class, 'subscribe']);
 Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('contact-form');
 
-Auth::routes();
-// manages
-
-
-/*------------------------------------------
---------------------------------------------
-All Managers Routes List
---------------------------------------------
---------------------------------------------*/
-Route::middleware(['auth', 'user-access:manager'])->group(function () {
-
-    Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
-});
 
 
 // Admin Routes
@@ -71,7 +58,7 @@ Auth::routes();
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::group(['prefix' => '/admin'], function () {
         Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-        Route::get('', [AdminsController::class, 'adminHome'])->name('admin.home');
+        Route::get('/', [AdminsController::class, 'adminHome'])->name('admin.home');
         Route::get('/home', [AdminsController::class, 'adminHome'])->name('admin.homes');
 
         // SiteSettings
@@ -383,5 +370,20 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
     });
 });
+
+Auth::routes();
+// manages
+
+
+/*------------------------------------------
+--------------------------------------------
+All Managers Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::middleware(['auth', 'user-access:manager'])->group(function () {
+
+    Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
+});
+
 
 
