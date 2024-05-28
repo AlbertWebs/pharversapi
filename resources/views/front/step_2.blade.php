@@ -38,7 +38,8 @@
                                         By submitting this form to apply to write for us you agree to our terms and conditions
                                     </p>
 
-                                    <form id="contact-form" action="#" method="POST">
+                                    <form id="contact-form" action="{{route('custom-register')}}" method="POST">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-grp">
@@ -60,7 +61,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="email" name="experties" placeholder="Your Area of Experties*">
+                                                    <input type="text" name="expertise" placeholder="Your Area of Experties*">
                                                 </div>
                                             </div>
                                         </div>
@@ -73,7 +74,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="email" name="city" placeholder="Your City*">
+                                                    <input type="text" name="city" placeholder="Your City*">
                                                 </div>
                                             </div>
                                         </div>
@@ -86,21 +87,46 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="email" name="address" placeholder="Address*">
+                                                    <input type="text" name="address" placeholder="Address*">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="type" value="2">
+
+                                        <div class="form-grp">
+                                            <textarea name="content" placeholder="Short Bio*"></textarea>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-grp">
+                                                    <input type="password" name="password" placeholder="password*">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-grp">
+                                                    <input type="password" name="password_confirmation" placeholder="Password Confirmation*">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="form-grp">
-                                            <textarea name="message" placeholder="Short Bio*"></textarea>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-12 ">
+                                                <div class="form-check">
+                                                    <p style="padding-left:50px; font-size:14px;">
+                                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" > &nbsp; I acknowledge that I have read and fully understand the terms and conditions
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <p>
                                             <div class="pull-right" id="next">
                                                 <div class="view-all-btn">
-                                                    <a href="{{url('/')}}/write-for-us/step-3" class="link-btn">Submit <i class="fa fa-arrow-right"></i>
+                                                    <button type="submit" class="link-btn">Next <i class="fa fa-arrow-right"></i>
 
-                                                    </a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </p>

@@ -7,6 +7,9 @@ use App\Http\Controllers\MailChimpController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ImageUploadController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\LoginRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +39,10 @@ Route::get('/companies/partnering-companies', [HomeController::class, 'companies
 Route::get('/companies/partnering-companies/{slung}', [HomeController::class, 'company']);
 Route::get('/advertise-with-us', [HomeController::class, 'advertise']);
 Route::get('/write-for-us', [HomeController::class, 'write']);
-Route::get('/write-for-us/step-2', [HomeController::class, 'step_2']);
-Route::get('/write-for-us/step-3', [HomeController::class, 'step_3']);
+Route::get('/write-for-us/step-2', [HomeController::class, 'step_2'])->name('step-2');
+Route::get('/write-for-us/step-3', [HomeController::class, 'step_3'])->name('step-3');
+Route::post('/custom-register', [LoginRegisterController::class, 'store'])->name('custom-register');
+Route::post('/create-company', [CompanyController::class, 'store'])->name('create-company');
 
 
 Route::get('/pharvers-limited', [HomeController::class, 'pharvers']);
@@ -53,6 +58,20 @@ Route::post('/subscribe', [MailChimpController::class, 'subscribe']);
 Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('contact-form');
 
 // Route::get('/{slung}', [HomeController::class, 'content']);
+
+
+
+Route::middleware(['auth', 'user-access:manager'])->group(function () {
+    Route::group(['prefix' => '/dashboard'], function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('manager.home');
+
+        // SiteSettings
+        Route::get('SiteSettings', [DashboardController::class, 'SiteSettings']);
+        Route::get('SocialMediaSettings', [DashboardController::class, 'SocialMediaSettings']);
+        Route::get('logo-and-favicon', [DashboardController::class, 'logo_and_favicon']);
+        Route::post('logo-and-favicon-update', [DashboardController::class, 'logo_and_favicon_update']);
+    });
+});
 
 // Admin Routes
 Auth::routes();

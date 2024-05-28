@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
+use Illuminate\Support\Str;
 
 class CompanyController extends Controller
 {
@@ -28,10 +30,45 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCompanyRequest $request)
+    public function store(Request $request)
     {
-        //
+        if(isset($request->image)){
+            $dir = 'uploads/companies';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = "0";
+        }
+        // slungify
+
+        Company::create([
+            'title' => $request->company,
+            'slung' => Str::slug($request->company),
+            'website' => $request->website,
+            'email' => $request->email,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            'mobile' => $request->mobile,
+            'address' => $request->address,
+            'content' => $request->content,
+            'linkedin' => $request->linkedin,
+            'twitter' => $request->twitter,
+            'image' => $SaveFilePath,
+        ]);
+
+        return response(["success" => true])->header('Content-Type', 'application/json');
     }
+
+    public function genericFIleUpload($file,$dir,$realPath){
+        $filename = $file->getClientOriginalName();
+        $store = $file->storeAs(path: ''.$dir.'/'.$filename, options: 's3');
+        Storage::disk('s3')->put(''.$dir.'/'.$filename, file_get_contents($realPath));
+        // $url = Storage::disk('s3')->temporaryUrl('podcasts/'.$filename,now()->addMinutes(10));
+        $SaveFilePath = "https://africanpharmaceuticalreviewbucket.s3.eu-central-1.amazonaws.com/$dir/$filename";
+        return $SaveFilePath;
+    }
+
 
     /**
      * Display the specified resource.

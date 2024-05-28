@@ -84,9 +84,23 @@
                                 </div>
                                 {{--  --}}
                                 <div class="hl-right-side-four">
+                                    @if(Auth::User())
                                     <div class="sign-in">
-                                        <a href="https://subscribers.africanpharmaceuticalreview.com/dashboard"><i class="flaticon-user"></i>Sign In</a>
+                                        <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i>Logout</a>
                                     </div>
+                                    @else
+                                    <div class="sign-in">
+                                        <a href="{{url('/')}}/login"><i class="flaticon-user"></i>Sign In</a>
+                                    </div>
+                                    @endif
+
+
+
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+
                                     <div class="subscribe-btn">
                                         <a href="https://subscribers.africanpharmaceuticalreview.com/" class="btn btn-two">Subscribe</a>
                                     </div>

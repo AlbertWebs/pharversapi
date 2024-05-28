@@ -38,11 +38,12 @@
                                         By submitting this form to apply to write for us you agree to our terms and conditions
                                     </p>
 
-                                    <form id="contact-form" action="#" method="POST">
+                                    <form id="contact-forms" action="{{route('create-company')}}" method="POST" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-grp">
-                                                    <input type="text" name="name" placeholder="Company Name*">
+                                                    <input type="text" name="company" placeholder="Company Name*">
                                                 </div>
                                             </div>
                                         </div>
@@ -57,15 +58,20 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="email" name="mob ile" placeholder="Company Mobile*">
+                                                    <input type="text" name="mobile" placeholder="Company Mobile*">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-grp">
                                                     <input type="text" name="address" placeholder="Address*">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-grp">
+                                                    <input type="url" name="website" placeholder="Website*">
                                                 </div>
                                             </div>
                                         </div>
@@ -94,15 +100,17 @@
                                         </div>
 
                                         <div class="form-grp">
-                                            <textarea name="message" placeholder="Overview*"></textarea>
+                                            <textarea name="content" placeholder="Overview*"></textarea>
                                         </div>
+
+
 
                                         <p>
                                             <div class="pull-right" id="next">
                                                 <div class="view-all-btn">
-                                                    <a href="{{url('/')}}/write-for-us/step-3" class="link-btn"> Finish <i class="fa fa-arrow-right"></i>
+                                                    <button type="submit" class="link-btn"> Finish <i class="fa fa-arrow-right"></i>
 
-                                                    </a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </p>
