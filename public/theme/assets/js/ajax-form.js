@@ -33,7 +33,7 @@ $(function() {
 			$('#contact-form input,#contact-form textarea').val('');
             // redirect
             var url = window.location.host;
-            window.location.href  = "/write-for-us/step-3";
+            window.location.href  = "/public/write-for-us/step-3";
 
 		})
 		.fail(function(data) {
@@ -75,7 +75,7 @@ $(function() {
 			$('#contact-form input,#contact-form textarea').val('');
             // redirect
             var url = window.location.host;
-            window.location.href  = "/dashboard";
+            window.location.href  = "/public/dashboard";
 
 		})
 		.fail(function(data) {
