@@ -69,7 +69,7 @@
                                         <ul class="list-wrap">
                                             <li><a href="{{url('/')}}/about-us">About Us</a></li>
                                             <li><a href="{{url('/')}}/contact-us">Contact Us</a></li>
-                                            <li><a href="{{url('/')}}/featured-companies">Featured Companies</a></li>
+                                            <li><a href="{{url('/')}}/companies/featured-companies">Featured Companies</a></li>
                                             <li><a href="{{url('/')}}/advertise-with-us">Advertise With Us</a></li>
                                             <li><a href="{{url('/')}}/write-for-us">Write For Us</a></li>
                                             <li><a href="{{url('/')}}/copyright">Copyright Statement</a></li>

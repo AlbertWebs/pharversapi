@@ -1040,7 +1040,7 @@
                 <div class="col-lg-12">
                     <div class="section-title-wrap mb-30">
                         <div class="section-title">
-                            <h2 class="title">Partnering Companies</h2>
+                            <h2 class="title">Featured Companies</h2>
                         </div>
                         <div class="editor-nav"></div>
                         <div class="section-title-line"></div>

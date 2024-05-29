@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use DB;
 
 class CompanyController extends Controller
 {
@@ -41,6 +43,12 @@ class CompanyController extends Controller
             $SaveFilePath = "0";
         }
         // slungify
+
+        $userID = Auth::User()->id;
+        $updateDetails = array(
+            'company_id' => $userID
+        );
+        $Update = DB::table('users')->where('id',$userID)->update($updateDetails);
 
         Company::create([
             'title' => $request->company,
