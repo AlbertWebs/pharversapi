@@ -43,25 +43,12 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="text" name="name" placeholder="Your Name*">
+                                                    <input type="text" name="name" placeholder="Your Name*" required="This field is required">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="email" name="email" placeholder="Your Email*">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-grp">
-                                                    <input type="text" name="username" placeholder="Your Prefrefered Username*">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-grp">
-                                                    <input type="text" name="expertise" placeholder="Your Area of Experties*">
+                                                    <input type="email" name="email" placeholder="Your Email*" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -69,12 +56,12 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="text" name="country" placeholder="Your Country*">
+                                                    <input type="text" name="username" placeholder="Your Prefrefered Username*" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="text" name="city" placeholder="Your City*">
+                                                    <input type="text" name="expertise" placeholder="Your Area of Experties*" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,30 +69,43 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="text" name="mobile" placeholder="Mobile*">
+                                                    <input type="text" name="country" placeholder="Your Country*" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="text" name="address" placeholder="Address*">
+                                                    <input type="text" name="city" placeholder="Your City*" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-grp">
+                                                    <input type="text" name="mobile" placeholder="Mobile*" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-grp">
+                                                    <input type="text" name="address" placeholder="Address*" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <input type="hidden" name="type" value="2">
 
                                         <div class="form-grp">
-                                            <textarea name="content" placeholder="Short Bio*"></textarea>
+                                            <textarea name="content" placeholder="Short Bio*" required></textarea>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="password" name="password" placeholder="password*">
+                                                    <input type="password" name="password" placeholder="password*" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-grp">
-                                                    <input type="password" name="password_confirmation" placeholder="Password Confirmation*">
+                                                    <input type="password" name="password_confirmation" placeholder="Password Confirmation*" required>
                                                 </div>
                                             </div>
                                         </div>

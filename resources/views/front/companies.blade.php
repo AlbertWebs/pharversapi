@@ -54,150 +54,150 @@
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                                             </div>
                                             <div class="weekly-post-content company-title">
-                                                <h2 class="post-title"><a href="{{url('/')}}/companies/partnering-companies/name">African Pharmaceutical Review</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/name">African Pharmaceutical Review</a></h2>
                                             </div>
                                         </div>
                                     </div>

@@ -35,8 +35,8 @@ Route::get('/podcasts', [HomeController::class, 'podcasts']);
 Route::get('/topics/{topic}', [HomeController::class, 'topics']);
 Route::get('/contact-us', [HomeController::class, 'contact']);
 Route::get('/about-us', [HomeController::class, 'about']);
-Route::get('/companies/partnering-companies', [HomeController::class, 'companies']);
-Route::get('/companies/partnering-companies/{slung}', [HomeController::class, 'company']);
+Route::get('/companies/featured-companies', [HomeController::class, 'companies']);
+Route::get('/companies/featured-companies/{slung}', [HomeController::class, 'company']);
 Route::get('/advertise-with-us', [HomeController::class, 'advertise']);
 Route::get('/write-for-us', [HomeController::class, 'write']);
 Route::get('/write-for-us/step-2', [HomeController::class, 'step_2'])->name('step-2');
@@ -59,11 +59,15 @@ Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('con
 
 // Route::get('/{slung}', [HomeController::class, 'content']);
 
+// Route::middleware(['auth', 'user-access:manager'])->group(function () {
 
+//     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
+// });
 
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
-    Route::group(['prefix' => '/dashboard'], function () {
+    Route::group(['prefix' => '/manager'], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('manager.home');
+        Route::get('/home', [DashboardController::class, 'index'])->name('manager.home');
 
         // SiteSettings
         Route::get('SiteSettings', [DashboardController::class, 'SiteSettings']);
@@ -400,10 +404,10 @@ Auth::routes();
 All Managers Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:manager'])->group(function () {
+// Route::middleware(['auth', 'user-access:manager'])->group(function () {
 
-    Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
-});
+//     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
+// });
 
 
 

@@ -45,9 +45,9 @@
                         <div class="col-lg-4">
                             <div class="header-top-social header-top-social-two">
                                 <ul class="list-wrap">
-                                    <li class="articles-link"><a href="{{url('/')}}/advertise-with-us">Contact Us</a></li>
+                                    <li class="articles-link"><a href="{{url('/')}}/write-for-us"><span style="color:#ffffff" class="fa fa-edit"></span> &nbsp; Write For Us</a></li>
                                     |
-                                    <li class="articles-link"><a href="{{url('/')}}/advertise-with-us">Advertise with us</a></li>
+                                    <li class="articles-link"><a href="{{url('/')}}/advertise-with-us"><span style="color:#ffffff" class="fas fa-ad"></span> &nbsp; Advertise with us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                         @foreach ($Content as $content)
                         <li class="articles-link @if($page_title == $content->title) active-menu @else @endif"><a href="{{url('/')}}/{{$content->slung}}">{{$content->title}}</a></li>
                         @endforeach
-                        <li class="articles-link @if($page_title == "Partnering Companies") active-menu @else @endif"><a href="{{url('/')}}/companies/partnering-companies">Partnering Companies</a></li>
+                        <li class="articles-link @if($page_title == "Partnering Companies") active-menu @else @endif"><a href="{{url('/')}}/companies/featured-companies">Featured Companies</a></li>
                     </ul>
                 </div>
                 <?php
