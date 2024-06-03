@@ -48,9 +48,10 @@ class HomeController extends Controller
     }
 
     public function company($slung){
+        $Company = DB::table('companies')->where('slung', $slung)->get();
         $page_title = "Partnering Companies";
         $page_topic = "";
-        return view('front.company',compact('page_title','page_topic'));
+        return view('front.company',compact('page_title','page_topic','Company'));
     }
 
     public function companies(){

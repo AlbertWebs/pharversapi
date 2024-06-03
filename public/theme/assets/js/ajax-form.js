@@ -75,7 +75,7 @@ $(function() {
 			$('#contact-form input,#contact-form textarea').val('');
             // redirect
             var url = window.location.host;
-            window.location.href  = "/dashboard";
+            window.location.href  = "manager/dashboard";
 
 		})
 		.fail(function(data) {

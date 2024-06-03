@@ -45,16 +45,12 @@ class CompanyController extends Controller
         // slungify
 
         $userID = Auth::User()->id;
-        $updateDetails = array(
-            'company_id' => $userID
-        );
-        $Update = DB::table('users')->where('id',$userID)->update($updateDetails);
-
         Company::create([
             'title' => $request->company,
             'slung' => Str::slug($request->company),
             'website' => $request->website,
             'email' => $request->email,
+            'user_id' => $userID,
             'facebook' => $request->facebook,
             'instagram' => $request->instagram,
             'mobile' => $request->mobile,
@@ -64,6 +60,12 @@ class CompanyController extends Controller
             'twitter' => $request->twitter,
             'image' => $SaveFilePath,
         ]);
+        $Last =  DB::table('companies')->latest('upload_time')->first();
+
+        $updateDetails = array(
+            'company_id' => $Last->id
+        );
+        $Update = DB::table('users')->where('id',$userID)->update($updateDetails);
 
         return response(["success" => true])->header('Content-Type', 'application/json');
     }

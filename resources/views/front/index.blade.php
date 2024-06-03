@@ -1052,28 +1052,28 @@
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                <a href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                <a href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                <a href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                <a href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -1087,35 +1087,35 @@
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                <a href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                <a href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                <a href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                <a href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/partnering-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
+                                <a href="{{url('/')}}/companies/featured-companies/name"><img src="{{url('/')}}/uploads/logo/beige.png" alt=""></a>
                             </div>
                         </div>
                     </div>

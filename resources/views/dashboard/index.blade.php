@@ -19,7 +19,7 @@
                     </li>
                     <li class="active-bre"><a href="#"> Dashboard</a>
                     </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/SiteSettings"><i class="fa fa-forward" aria-hidden="true"></i>Go To Site Settings</a>
+                    <li class="page-back"><a href="{{url('/')}}/manager/dashboard/SiteSettings"><i class="fa fa-forward" aria-hidden="true"></i>Go To Site Settings</a>
                     </li>
                 </ul>
             </div>

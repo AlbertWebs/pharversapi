@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
+            $table->string('tagline')->nullable();
             $table->string('slung')->nullable();
             $table->string('address')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('email')->nullable();
             $table->string('mobile')->nullable();
             $table->string('website')->nullable();
@@ -24,6 +26,8 @@ return new class extends Migration
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
             $table->string('image')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('favicon')->nullable();
             $table->text('content')->nullable();
             $table->timestamps();
         });

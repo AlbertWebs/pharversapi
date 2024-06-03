@@ -1,9 +1,9 @@
-@extends('admin.master')
+@extends('dashboard.master')
 @section('content')
 <!--== BODY CONTNAINER ==-->
  <div class="container-fluid sb2">
     <div class="row">
-        @include('admin.sidebar')
+        @include('dashboard.sidebar')
 
         <!--== BODY INNER CONTAINER ==-->
 
@@ -23,7 +23,7 @@
                 </div>
                 @foreach ($SiteSettings as $SiteSettings)
                 <div class="bor">
-                    <form method="POST" action="{{url('/')}}/admin/logo-and-favicon-update" enctype="multipart/form-data">
+                    <form method="POST" action="{{url('/')}}/manager/dashboard/logo-and-favicon-update" enctype="multipart/form-data">
                         {{csrf_field()}}
 
                         <hr>
@@ -69,39 +69,11 @@
                                                 </span>
                                                 <input type="text" class="form-control" readonly>
                                             </div>
-                                            <img class="image-preview" style="min-width:100%;" src="{{url('/')}}/uploads/logo/{{$SiteSettings->logo}}" id='img-upload'/>
+                                            <img class="image-preview" style="min-width:100%;" src="{{url('/')}}/uploads/companies/{{$SiteSettings->logo}}" id='img-upload'/>
                                         </div>
                                     </div>
 
-                                    <div class="input-field col s6 col-lg-6" style="min-height:200px">
-                                        <div class="form-group">
-                                            <label>Footer  Logo</label>
-                                            <div class="input-group">
-                                                <span class="input-group-btn">
-                                                    <span class="btn btn-default btn-file">
-                                                        Footer Logo: Browse… <input name="logo_footer" type="file" id="imgInp">
-                                                    </span>
-                                                </span>
-                                                <input type="text" class="form-control" readonly>
-                                            </div>
-                                            <img class="image-preview" style="min-width:100%;" src="{{url('/')}}/uploads/logo/{{$SiteSettings->logo_footer}}" id='img-upload'/>
-                                        </div>
-                                    </div>
-                                    {{--  --}}
-                                    <div class="input-field col s6 col-lg-6" style="min-height:200px">
-                                        <div class="form-group">
-                                            <label>Logo Two  Image</label>
-                                            <div class="input-group">
-                                                <span class="input-group-btn">
-                                                    <span class="btn btn-default btn-file">
-                                                        Logo 2: Browse… <input name="logo_two" type="file" id="imgInp">
-                                                    </span>
-                                                </span>
-                                                <input type="text" class="form-control" readonly>
-                                            </div>
-                                            <img class="image-preview" style="min-width:100%;" src="{{url('/')}}/uploads/logo/{{$SiteSettings->logo_two}}" id='img-upload'/>
-                                        </div>
-                                    </div>
+
                                     {{--  --}}
                                     <div class="input-field col s6 col-lg-6" style="min-height:200px">
                                         <div class="form-group">
@@ -114,9 +86,26 @@
                                                 </span>
                                                 <input type="text" class="form-control" readonly>
                                             </div>
-                                            <img class="image-preview" style="min-width:100%;" src="{{url('/')}}/uploads/logo/{{$SiteSettings->favicon}}" id='img-upload'/>
+                                            <img class="image-preview" style="min-width:100%;" src="{{url('/')}}/uploads/companies/{{$SiteSettings->favicon}}" id='img-upload'/>
                                         </div>
                                     </div>
+                                    {{--  --}}
+
+                                    <div class="input-field col s12 col-lg-12" style="min-height:200px">
+                                        <div class="form-group">
+                                            <label>Banner  Image</label>
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <span class="btn btn-default btn-file">
+                                                        Logo 1: Browse… <input name="banner" type="file" id="imgInp">
+                                                    </span>
+                                                </span>
+                                                <input type="text" class="form-control" readonly>
+                                            </div>
+                                            <img class="image-preview" style="min-width:100%;" src="{{url('/')}}/uploads/companies/{{$SiteSettings->image}}" id='img-upload'/>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
                                 </div>
                             </div>
                             {{-- Preview --}}
@@ -124,10 +113,7 @@
                             {{-- Images --}}
 
                         <input type="hidden" name="logo_cheat" value="{{$SiteSettings->logo}}">
-                        <input type="hidden" name="logo_footer_cheat" value="{{$SiteSettings->logo_footer}}">
 
-
-                        <input type="hidden" name="logo_two_cheat" value="{{$SiteSettings->logo_two}}">
                         <input type="hidden" name="favicon_cheat" value="{{$SiteSettings->favicon}}">
 
 

@@ -1,7 +1,9 @@
-@extends('front.master-noads')
+@extends('front.master-company')
 
 @section('content')
 {{--  --}}
+@foreach ($Company as $company)
+
 
 
 <!-- main-area -->
@@ -17,29 +19,27 @@
                             <div class="col-lg-7">
                                 <div class="author-wrap">
                                     <div class="author-content">
-                                        <h2>Africa Pharmaceutical Review</h2>
-                                        <span><a href="www.africanpharmaceuticalreview.com">www.africanpharmaceuticalreview.com</a></span><br>
+                                        <h2>{{$company->title}}</h2>
+                                        <span><a href="{{$company->website}}">{{$company->website}}</a></span><br>
                                         <address>
-                                            Chalbi Condominiums, Suite 5C.<br>
-                                            Cotton Avenue, Ringroad Kilimani<br>
-                                            Nairobi, <br>Kenya
+                                            {{$company->address}}
                                         </address>
-                                        <span><a href="mailto:info@africanpharmaceuticalreview.com">info@africanpharmaceuticalreview.com</a></span>
-                                        <h6>0723014032</h6>
+                                        <span><a href="mailto:{{$company->email}}">{{$company->email}}</a></span>
+                                        <h6>{{$company->mobile}}</h6>
                                         <br>
                                         <div class="blog-details-social">
                                             <ul class="list-wrap">
-                                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                                <li><a href="{{$company->facebook}}"><i class="fab fa-facebook-f"></i></a></li>
+                                                <li><a href="{{$company->twitter}}"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="{{$company->instagram}}"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="{{$company->linkedin}}"><i class="fab fa-linkedin-in"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-5 company-thumbs">
-                                    <img src="{{url('/')}}/uploads/logo/beige.png" alt="">
+                                    <img src="{{url('/')}}/uploads/companies/{{$company->logo}}" alt="">
                             </div>
                         </div>
 
@@ -86,11 +86,7 @@
 
 
                           <p>
-                                At Entegris, our 50+ years of proven materials science experience in the most demanding industries allows us to easily become a strategic partner by applying our expertise to develop the cleanest, most scalable, and most reliable solutions to reduce your validation time, development costs, and time to market.
-                                <br><br>
-                                We combine product innovation with quick-turn customisation to deliver critical answers for your upstream and downstream needs. Our comprehensive set of bag solutions, bioreactors, mixing systems, and microcarrier separation systems meet the emerging requirements of fast-growing, single-use bioprocessing applications.
-                                <br><br>
-                                For biopharmaceutical, pharmaceutical and CDMOs, we are playing a supporting but crucial role in their efforts to develop and manufacture vaccine therapies for COVID-19.   We are committed to remaining a strong partner and as such, have dedicated ourselves to maintaining critical operations by relying on our business continuity plans and leveraging trusted supply partners.
+                               {!!html_entity_decode($company->content)!!}
                           </p>
 
                        </div>
@@ -218,5 +214,7 @@
     {{--  --}}
 
 </main>
+
+@endforeach
 
 @endsection

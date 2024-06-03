@@ -65,15 +65,36 @@ Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('con
 // });
 
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
-    Route::group(['prefix' => '/manager'], function () {
+    Route::group(['prefix' => '/manager/dashboard'], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('manager.home');
         Route::get('/home', [DashboardController::class, 'index'])->name('manager.home');
+
+        Route::get('/blog', [DashboardController::class, 'blog'])->name('manager.blog');
+        Route::get('/addBlog', [DashboardController::class, 'addBlog'])->name('manager.addBlog');
+        Route::post('/add_Blog', [DashboardController::class, 'add_Blog'])->name('manager.add_Blog');
+        Route::get('/editBlog/{id}', [DashboardController::class, 'editBlog'])->name('manager.editBlog');
+        Route::post('/edit_Blog/{id}', [DashboardController::class, 'edit_Blog'])->name('manager.edit_Blog');
+
+        Route::get('/podcasts', [DashboardController::class, 'podcasts'])->name('manager.podcasts');
+        Route::get('/addPodcast', [DashboardController::class, 'addPodcast'])->name('manager.addPodcast');
+        Route::post('/add_Podcast', [DashboardController::class, 'add_Podcast'])->name('manager.add_Podcast');
+
+        Route::get('/videos', [DashboardController::class, 'videos'])->name('manager.videos');
+        Route::get('/addVideo', [DashboardController::class, 'addVideo'])->name('manager.addVideo');
+        Route::post('/add_Video', [DashboardController::class, 'add_Video'])->name('manager.add_Video');
+        Route::get('/editVideo/{id}', [DashboardController::class, 'editVideo'])->name('manager.editVideo');
+        Route::post('/edit_Video/{id}', [DashboardController::class, 'edit_Video'])->name('manager.edit_Video');
 
         // SiteSettings
         Route::get('SiteSettings', [DashboardController::class, 'SiteSettings']);
         Route::get('SocialMediaSettings', [DashboardController::class, 'SocialMediaSettings']);
         Route::get('logo-and-favicon', [DashboardController::class, 'logo_and_favicon']);
         Route::post('logo-and-favicon-update', [DashboardController::class, 'logo_and_favicon_update']);
+
+        // Ajax
+        Route::put('updateSiteSettingsAjax', [DashboardController::class, 'updateSiteSettingsAjax']);
+
+
     });
 });
 
