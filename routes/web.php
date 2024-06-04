@@ -57,7 +57,7 @@ Route::get('/frequently-asked-questions/{slung}', [HomeController::class, 'faq']
 Route::get('/clients', [HomeController::class, 'clients']);
 Route::post('/subscribe', [MailChimpController::class, 'subscribe']);
 Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('contact-form');
-Route::get('/{type}/{slung}', [HomeController::class, 'contents']);
+// Route::get('/{type}/{slung}', [HomeController::class, 'contents']);
 
 // Route::get('/{slung}', [HomeController::class, 'content']);
 

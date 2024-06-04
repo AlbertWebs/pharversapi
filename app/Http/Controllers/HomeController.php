@@ -81,10 +81,13 @@ class HomeController extends Controller
 
 
     public function contents_list(){
+
         return view('front.contents_list');
     }
     public function topics_list(){
-        return view('front.topics');
+        $page_title = "Partnering Companies";
+        $page_topic = "";
+        return view('front.topics', compact('page_title','page_topic'));
     }
 
 

@@ -109,7 +109,22 @@
                 </div>
             </div>
 
-
+                        {{-- Mobile --}}
+                    <!-- Top Navigation Menu -->
+                    <div class="topnav">
+                        <a href="#home" class="active">Logo</a>
+                        <!-- Navigation links (hidden by default) -->
+                        <div id="myLinks">
+                        <a href="#news">News</a>
+                        <a href="#contact">Contact</a>
+                        <a href="#about">About</a>
+                        </div>
+                        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+                        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                    {{-- Mobile --}}
 
             <nav class="wrapper fixed-tops" id="menu">
 
@@ -118,7 +133,7 @@
                     {{-- <div class="mobile-logo">
                         <a href="{{url('/')}}"><img src="{{url('/')}}/uploads/logo/log.png" alt=""></a>
                     </div> --}}
-                    {{-- <a class="burger-nav"></a> --}}
+                    <a class="burger-nav"></a>
                     <ul class="m-0">
                         <li class="articles-link @if($page_title == "Home") active-menu @else @endif"><a href="{{url('/')}}/">Home</a></li>
                         <?php
@@ -143,76 +158,6 @@
                 </div>
 
             </nav>
-
-            <div id="sticky-header" class="menu-area menu-style-two">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="menu-wrap">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-7 col-md-4">
-                                        <div class="logo d-none">
-                                            <a href="{{url('/')}}"><img src="{{url('/')}}/uploads/logo/log.png" alt=""></a>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
-                            </div>
-
-                            <!-- Mobile Menu  -->
-                            <div class="mobile-menu">
-                                <nav class="menu-box">
-                                    <div class="close-btn"><i class="fas fa-times"></i></div>
-                                    <div class="nav-logo navy-bg">
-                                        <a class="mobile-logo" href="{{url('/')}}"><img style="width:170px;" src="{{url('/')}}/uploads/logo/log.png" alt="Logo"></a>
-                                    </div>
-                                    <div class="nav-logo d-none navy-bg">
-                                        <a class="mobile-logo" href="{{url('/')}}"><img style="width:170px !inportant;" src="{{url('/')}}/uploads/logo/log.png" alt="Logo"></a>
-                                    </div>
-                                    <br>
-                                    <div class="mobile-search">
-                                        <form action="#">
-                                            <input type="text" placeholder="Search here...">
-                                            <button><i class="flaticon-search"></i></button>
-                                        </form>
-                                    </div>
-                                    <div class="menu-outer">
-                                        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
-
-                                            <ul class="navigation">
-
-
-
-                                                <?php
-                                                $Content = DB::table('contents')->get();
-                                             ?>
-                                             @foreach ($Content as $content)
-                                             <li><a href="{{url('/')}}/{{$content->slung}}">{{$content->title}}</a></li>
-                                             @endforeach
-
-
-                                            </ul>
-                                        </div>
-                                    <div class="social-links">
-                                        <ul class="clearfix list-wrap">
-                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </nav>
-                            </div>
-                            <div class="menu-backdrop"></div>
-                            <!-- End Mobile Menu -->
-
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
         </header>
