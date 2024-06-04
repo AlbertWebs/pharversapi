@@ -5,10 +5,10 @@
 <main class="fix">
 
     <!-- ad-banner-area -->
-    <div class="ad-banner-area pt-30 pb-30">
+    {{-- <div class="ad-banner-area pt-30 pb-30">
         <div class="container">
             <div class="ad-banner-img ad-banner-img-two text-center advertisement-banner">
-                {{--  --}}
+
                 <div class="pharverse-fixed-super" id="pharverse-fixed-super">
                     <span class="pharverse-close-button-super" id="pharverse-close-super-button" onclick="closeSuperBtn()" title="close"> × </span>
                         <a href="#" target="_blank" rel="nofollow">
@@ -16,70 +16,41 @@
                         </a></div>
                     </div>
                 </div>
-                {{--  --}}
+
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- ad-banner-area-end -->
 
+
+
     <!-- banner-post-area -->
-    <section class="banner-post-area-four pb-30">
+    <section class="banner-post-area-four pb-30 pt-30">
         <div class="container">
             <div class="row">
+                <?php
+                    $Latest = DB::table('blogs')->OrderBy('created_at', 'desc')->limit('3')->get();
+                ?>
+                @foreach ($Latest as $latest)
                 <div class="col-lg-4">
                     <div class="banner-post-four">
                         <div class="banner-post-thumb-four">
-                            <a href="blog-details.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2024/04/2024-04-22_AI-drugs.jpg" alt=""></a>
+                            <a href="{{url('/')}}/{{$latest->type}}/{{$latest->slung}}"><img src="{{$latest->image_one}}" alt=""></a>
                         </div>
                         <div class="banner-post-content-four">
-                            <a href="blog.html" class="post-tag">News</a>
-                            <h2 class="post-title bold-underline"><a href="blog-details.html">Using AI to tailor drugs for Africa</a></h2>
+                            <a href="{{url('/')}}/" class="post-tag">{{$latest->type}}</a>
+                            <h2 class="post-title bold-underline"><a href="{{url('/')}}/{{$latest->type}}/{{$latest->slung}}">Using AI to tailor drugs for Africa</a></h2>
                             <div class="blog-post-meta white-blog-meta">
                                 <ul class="list-wrap">
                                     <li><i class="flaticon-user"></i>by<a href="author.html">Bevin Likuyani</a></li>
-                                    <li><i class="flaticon-calendar"></i>4 August, 2024</li>
-                                    <li><i class="flaticon-history"></i>20 Mins</li>
+                                    <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($latest->created_at))}}</li>
+                                    <li><i class="flaticon-history"></i>5 Mins</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="banner-post-four">
-                        <div class="banner-post-thumb-four">
-                            <a href="blog-details.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2024/04/Untitled-design-15-600x600.jpg" alt=""></a>
-                        </div>
-                        <div class="banner-post-content-four">
-                            <a href="blog.html" class="post-tag">Article</a>
-                            <h2 class="post-title bold-underline"><a href="blog-details.html">Nigeria sets pace with rollout of new meningitis vaccine</a></h2>
-                            <div class="blog-post-meta white-blog-meta">
-                                <ul class="list-wrap">
-                                    <li><i class="flaticon-user"></i>by<a href="author.html">Bevin Likuyani</a></li>
-                                    <li><i class="flaticon-calendar"></i>4 August, 2024</li>
-                                    <li><i class="flaticon-history"></i>20 Mins</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="banner-post-four">
-                        <div class="banner-post-thumb-four">
-                            <a href="blog-details.html"><img src="https://www.africanpharmaceuticalreview.com/wp-content/uploads/2024/04/SAHPRA-RwandaFDA-MoU-600x600.jpg" alt=""></a>
-                        </div>
-                        <div class="banner-post-content-four">
-                            <a href="blog.html" class="post-tag">News</a>
-                            <h2 class="post-title bold-underline"><a href="blog-details.html">SAHPRA signs MoU with Rwanda Food and Drug Authority</a></h2>
-                            <div class="blog-post-meta white-blog-meta">
-                                <ul class="list-wrap">
-                                    <li><i class="flaticon-user"></i>by<a href="author.html">Bevin Likuyani</a></li>
-                                    <li><i class="flaticon-calendar"></i>4 August, 2024</li>
-                                    <li><i class="flaticon-history"></i>20 Mins</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

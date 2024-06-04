@@ -47,6 +47,17 @@ class HomeController extends Controller
          }
     }
 
+    public function podcast($slung){
+        $Podcast = DB::table('podcasts')->where('slung',$slung)->limit(1)->get();
+        $page_topic = "Podcasts";
+        $page_title = "Podcasts";
+        return view('front.podcast', compact('page_title','page_topic'));
+    }
+
+
+
+
+
     public function company($slung){
         $Company = DB::table('companies')->where('slung', $slung)->get();
         $page_title = "Partnering Companies";
@@ -58,6 +69,14 @@ class HomeController extends Controller
         $page_title = "Partnering Companies";
         $page_topic = "";
         return view('front.companies',compact('page_title','page_topic'));
+    }
+
+    public function contents($type,$slung){
+        $Content = DB::table('blogs')->where('slung', $slung)->get();
+        // dd($Content);
+        $page_title = "Partnering Companies";
+        $page_topic = "";
+        return view('front.explore',compact('page_title','page_topic','Content'));
     }
 
 

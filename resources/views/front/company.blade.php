@@ -70,6 +70,10 @@
                        </svg>
                        Overview
                     </button>
+                    <?php
+                       $Blog = DB::table('blogs')->where('type','News')->where('company_id',Auth::User()->id)->get();
+                    ?>
+                    @foreach ($Blog as $blog)
                     <button class="nav-link nav-btn-style" id="v-pills-news-tab" data-bs-toggle="pill" data-bs-target="#v-pills-news" type="button" role="tab" aria-controls="v-pills-news" aria-selected="false">
                         <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                            <path d="M3.00592 1.04681C2.2153 1.21868 1.50592 1.81868 1.18717 2.58118C0.987171 3.05931 0.996546 2.77181 1.00592 8.10306L1.0153 12.9531L1.1028 13.1968C1.35592 13.9187 1.81217 14.4406 2.44967 14.7499C2.97467 15.0031 2.51217 14.9843 7.98405 14.9843H12.859L13.1028 14.9124C14.034 14.6437 14.7215 13.9343 14.9372 13.0156C14.9997 12.7593 14.9997 12.6531 14.9934 7.89993L14.984 3.04681L14.8965 2.79681C14.5997 1.95931 14.009 1.37181 13.1715 1.09056L12.9528 1.01556L8.0778 1.00931C4.04655 1.00618 3.16842 1.01243 3.00592 1.04681ZM12.8434 2.07493C13.3622 2.24681 13.7559 2.64056 13.9247 3.15618C13.9778 3.31868 13.984 3.54368 13.9934 6.84368L14.0028 10.3593L12.8528 9.21556C12.2215 8.58431 11.6715 8.05306 11.634 8.03431C11.5372 7.98431 11.2622 7.99056 11.1622 8.04368C11.1153 8.06868 10.5997 8.56868 10.0153 9.15306L8.9528 10.2187L6.74967 8.01868C5.53717 6.80931 4.5153 5.80306 4.4778 5.78431C4.3903 5.74056 4.10905 5.74056 4.02155 5.78431C3.98405 5.80306 3.51217 6.25618 2.97467 6.79368L1.99655 7.76556L2.00905 5.54681C2.01842 3.51243 2.02155 3.31243 2.07467 3.15618C2.19967 2.76868 2.48405 2.41243 2.8153 2.22806C3.02467 2.10931 3.18092 2.05931 3.42155 2.03118C3.52467 2.01868 5.64967 2.00931 8.1403 2.01243C12.4403 2.01556 12.6809 2.01868 12.8434 2.07493ZM7.7653 10.4999L11.2653 13.9999L7.29655 13.9937C3.5528 13.9843 3.31842 13.9812 3.15592 13.9249C2.63717 13.7531 2.2403 13.3562 2.07467 12.8437C2.02467 12.6906 2.01842 12.4937 2.00592 10.9562L1.99342 9.24056L3.1153 8.11868C3.73092 7.50306 4.2403 6.99993 4.24967 6.99993C4.25905 6.99993 5.8403 8.57493 7.7653 10.4999ZM12.7153 10.5437L14.009 11.8374L13.9903 12.2624C13.959 12.8812 13.8278 13.2124 13.4809 13.5437C13.3153 13.7031 12.9778 13.8906 12.7997 13.9218L12.6809 13.9468L11.184 12.4499L9.68717 10.9531L10.5372 10.1031C11.0059 9.63431 11.3965 9.24993 11.4059 9.24993C11.4153 9.24993 12.0028 9.83118 12.7153 10.5437Z"></path>
@@ -77,9 +81,40 @@
                         </svg>
                         News
                     </button>
+                    @endforeach
 
+                    <?php
+                        $Blog = DB::table('blogs')->where('type','Interviews')->where('company_id',Auth::User()->id)->get();
+                    ?>
+                    @foreach ($Blog as $blog)
+                    <button class="nav-link nav-btn-style" id="v-pills-interviews-tab" data-bs-toggle="pill" data-bs-target="#v-pills-interviews" type="button" role="tab" aria-controls="v-pills-interviews" aria-selected="false">
+                        <span class="fa fa-microphone"></span>
+                        Interviews
+                    </button>
+                    @endforeach
+
+                    <?php
+                    $Blog = DB::table('blogs')->where('type','Articles')->where('company_id',Auth::User()->id)->get();
+                    ?>
+                    @foreach ($Blog as $blog)
+                    <button class="nav-link nav-btn-style" id="v-pills-articles-tab" data-bs-toggle="pill" data-bs-target="#v-pills-articles" type="button" role="tab" aria-controls="v-pills-articles" aria-selected="false">
+                       <span class="fa fa-edit"></span>
+                        Articles
+                    </button>
+                    @endforeach
+
+                    <?php
+                    $Blog = DB::table('podcasts')->where('company_id',Auth::User()->id)->get();
+                    ?>
+                    @foreach ($Blog as $blog)
+                    <button class="nav-link nav-btn-style" id="v-pills-podcasts-tab" data-bs-toggle="pill" data-bs-target="#v-pills-podcasts" type="button" role="tab" aria-controls="v-pills-podcasts" aria-selected="false">
+                        <span class="fa fa-podcast"></span>
+                        Podcasts
+                    </button>
+                    @endforeach
 
                  </div>
+
                  <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade active show" id="v-pills-information" role="tabpanel" aria-labelledby="v-pills-information-tab">
                        <div class="tour-information">
@@ -92,120 +127,154 @@
                        </div>
                     </div>
 
+                    <?php
+                        $News = DB::table('blogs')->where('type','News')->where('company_id',Auth::User()->id)->get();
+                    ?>
+                    @if($News->isEmpty())
+
+                    @else
 
                     <div class="tab-pane fade" id="v-pills-news" role="tabpanel" aria-labelledby="v-pills-news-tab">
                        <div class="tour-review-area">
                           {{--  --}}
                           <div class="popular-post-item-wrap">
                             <div class="row">
+                                @foreach ($News as $blog)
                                 <div class="col-lg-4">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post01.jpg')}}" alt=""></a>
+                                            <a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
-                                            <a href="blog.html" class="post-tag post-tag-three">News</a>
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
-                                            roadeily Breakfast</a></h2>
+                                            <a href="blog.html" class="post-tag post-tag-three">{{$blog->type}}</a>
+                                            <h2 class="post-title"><a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
-                                                    <li><i class="flaticon-calendar"></i>4 August, 2024</li>
+                                                    <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="ta-overlay-post-two">
-                                        <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post02.jpg')}}" alt=""></a>
-                                        </div>
-                                        <div class="overlay-post-content-two">
-                                            <a href="blog.html" class="post-tag post-tag-three">News</a>
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
-                                            roadeily Breakfast</a></h2>
-                                            <div class="blog-post-meta white-blog-meta">
-                                                <ul class="list-wrap">
-                                                    <li><i class="flaticon-calendar"></i>4 August, 2024</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="ta-overlay-post-two">
-                                        <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post03.jpg')}}" alt=""></a>
-                                        </div>
-                                        <div class="overlay-post-content-two">
-                                            <a href="blog.html" class="post-tag post-tag-three">News</a>
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
-                                            roadeily Breakfast</a></h2>
-                                            <div class="blog-post-meta white-blog-meta">
-                                                <ul class="list-wrap">
-                                                    <li><i class="flaticon-calendar"></i>4 August, 2024</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="ta-overlay-post-two">
-                                        <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post01.jpg')}}" alt=""></a>
-                                        </div>
-                                        <div class="overlay-post-content-two">
-                                            <a href="blog.html" class="post-tag post-tag-three">News</a>
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
-                                            roadeily Breakfast</a></h2>
-                                            <div class="blog-post-meta white-blog-meta">
-                                                <ul class="list-wrap">
-                                                    <li><i class="flaticon-calendar"></i>4 August, 2024</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="ta-overlay-post-two">
-                                        <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post02.jpg')}}" alt=""></a>
-                                        </div>
-                                        <div class="overlay-post-content-two">
-                                            <a href="blog.html" class="post-tag post-tag-three">News</a>
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
-                                            roadeily Breakfast</a></h2>
-                                            <div class="blog-post-meta white-blog-meta">
-                                                <ul class="list-wrap">
-                                                    <li><i class="flaticon-calendar"></i>4 August, 2024</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="ta-overlay-post-two">
-                                        <div class="overlay-post-thumb-two">
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_recent_post03.jpg')}}" alt=""></a>
-                                        </div>
-                                        <div class="overlay-post-content-two">
-                                            <a href="blog.html" class="post-tag post-tag-three">News</a>
-                                            <h2 class="post-title"><a href="blog-details.html">The Game Changing ar
-                                            roadeily Breakfast</a></h2>
-                                            <div class="blog-post-meta white-blog-meta">
-                                                <ul class="list-wrap">
-                                                    <li><i class="flaticon-calendar"></i>4 August, 2024</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                           {{--  --}}
                        </div>
                     </div>
+                    @endif
+
+                    <?php
+                        $Interviews = DB::table('blogs')->where('type','interviews')->where('company_id',Auth::User()->id)->get();
+                    ?>
+                    @if($Interviews->isEmpty())
+
+                    @else
+
+                    <div class="tab-pane fade" id="v-pills-interviews" role="tabpanel" aria-labelledby="v-pills-interviews-tab">
+                       <div class="tour-review-area">
+                          {{--  --}}
+                          <div class="popular-post-item-wrap">
+                            <div class="row">
+                                @foreach ($Interviews as $blog)
+                                <div class="col-lg-4">
+                                    <div class="ta-overlay-post-two">
+                                        <div class="overlay-post-thumb-two">
+                                            <a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                        </div>
+                                        <div class="overlay-post-content-two">
+                                            <a href="blog.html" class="post-tag post-tag-three">{{$blog->type}}</a>
+                                            <h2 class="post-title"><a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                            <div class="blog-post-meta white-blog-meta">
+                                                <ul class="list-wrap">
+                                                    <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                          {{--  --}}
+                       </div>
+                    </div>
+                    @endif
+
+                    <?php
+                        $Articles = DB::table('blogs')->where('type','Articles')->where('company_id',Auth::User()->id)->get();
+                    ?>
+                    @if($Articles->isEmpty())
+
+                    @else
+
+                    <div class="tab-pane fade" id="v-pills-articles" role="tabpanel" aria-labelledby="v-pills-articles-tab">
+                       <div class="tour-review-area">
+                          {{--  --}}
+                          <div class="popular-post-item-wrap">
+                            <div class="row">
+                                @foreach ($Articles as $blog)
+                                <div class="col-lg-4">
+                                    <div class="ta-overlay-post-two">
+                                        <div class="overlay-post-thumb-two">
+                                            <a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                        </div>
+                                        <div class="overlay-post-content-two">
+                                            <a href="blog.html" class="post-tag post-tag-three">{{$blog->type}}</a>
+                                            <h2 class="post-title"><a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                            <div class="blog-post-meta white-blog-meta">
+                                                <ul class="list-wrap">
+                                                    <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                          {{--  --}}
+                       </div>
+                    </div>
+                    @endif
+
+                    <?php
+                        $Podcasts = DB::table('podcasts')->where('company_id',Auth::User()->id)->get();
+                    ?>
+                    @if($Podcasts->isEmpty())
+
+                    @else
+
+                    <div class="tab-pane fade" id="v-pills-podcasts" role="tabpanel" aria-labelledby="v-pills-podcasts-tab">
+                       <div class="tour-review-area">
+                          {{--  --}}
+                          <div class="popular-post-item-wrap">
+                            <div class="row">
+                                @foreach ($Podcasts as $blog)
+                                <div class="col-lg-4">
+                                    <div class="ta-overlay-post-two">
+                                        <div class="overlay-post-thumb-two">
+                                            <a href="{{url('/')}}/podcasts/{{$blog->slung}}"><img src="{{$blog->image}}" alt=""></a>
+                                        </div>
+                                        <div class="overlay-post-content-two">
+                                            <a href="blog.html" class="post-tag post-tag-three">Podcasts</a>
+                                            <h2 class="post-title"><a href="{{url('/')}}/podcasts/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                            <div class="blog-post-meta white-blog-meta">
+                                                <ul class="list-wrap">
+                                                    <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                          </div>
+                          {{--  --}}
+                       </div>
+                    </div>
+                    @endif
+
                  </div>
               </div>
            </div>
