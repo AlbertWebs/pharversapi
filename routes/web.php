@@ -27,7 +27,7 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 // });
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/contents', [HomeController::class, 'contents_list']);
-Route::get('/{type}/{slung}', [HomeController::class, 'contents']);
+
 Route::get('/topics', [HomeController::class, 'topics_list']);
 Route::get('/topic/{slung}', [HomeController::class, 'topic']);
 Route::get('/videos', [HomeController::class, 'videos']);
@@ -57,6 +57,7 @@ Route::get('/frequently-asked-questions/{slung}', [HomeController::class, 'faq']
 Route::get('/clients', [HomeController::class, 'clients']);
 Route::post('/subscribe', [MailChimpController::class, 'subscribe']);
 Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('contact-form');
+Route::get('/{type}/{slung}', [HomeController::class, 'contents']);
 
 // Route::get('/{slung}', [HomeController::class, 'content']);
 
