@@ -25,11 +25,33 @@ function closeBtn(){
      (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,40)})();
 }
 
+
 function closeSuperBtn(){
     var s = document.getElementById('pharverse-fixed-super').style;
     s.opacity = 1;
     (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,40)})();
 }
+
+
+
+function closeBtn_interviews(){
+    var tag = $(this).closest('.advertisement-banner').attr('id');
+    alert(tag);
+    var s = document.getElementById('pharverse-interviews').style;
+    s.opacity = 1;
+    (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,40)})();
+}
+
+// Whitepapers Section
+function closeBtn_whitepapers(){
+    var s = document.getElementById('pharverse-fixed-super').style;
+    s.opacity = 1;
+    (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,40)})();
+}
+
+//
+
+
 
 // Stick Fixed Menu on Scroll
 let menu = document.getElementById('menu');
@@ -46,7 +68,16 @@ $(document).ready(function() {
     setTimeout(function() {
       $('.advertisement-banner').fadeIn("5000");
     }, 5000);
-  });
+
+    // Listen to closed buttons
+    $('.pharverse-close-button-super').click(function(){
+        var tag = $(this).closest('.advertisement-banner').attr('id');
+        s = document.getElementById(tag).style;
+        s.opacity = 1;
+       (function fade(){(s.opacity-=.1)<0?s.display="none":setTimeout(fade,40)})();
+
+   });
+});
 
 
 

@@ -7137,7 +7137,8 @@ label {
 
   /* Style the active link (or home/logo) */
   .active {
-    background-color: #183354;
+    /* background-color: #183354; */
+    /* border:2px solid #183354; */
     color: white;
   }
 
@@ -7161,4 +7162,28 @@ label {
 
 .navy-bg{
     background-color: #183354;
+}
+
+.text-white{
+    color:#ffffff !important;
+}
+
+.thumb-middle{
+    height: 180px;
+    width: 110px;
+    background-color: #183354;
+    position: relative;
+    /* border:2px solid #183354; */
+}
+
+.thumb-middle img{
+    /* position: absolute; */
+    top: 50%;
+    border-radius:10px;
+    /* transform: translateY(-50%); */
+}
+
+.align-center{
+    margin: 0 auto;
+    text-align: center;
 }

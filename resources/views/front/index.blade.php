@@ -4,23 +4,21 @@
 <!-- main-area -->
 <main class="fix">
 
-    <!-- ad-banner-area -->
-    {{-- <div class="ad-banner-area pt-30 pb-30">
+
+
+
+
+    <!-- ad-banner-area-end -->
+    <div class=" advertisement-banner pharverse-fixed-super ad-banner-area align-center pt-70" id="pharverse-ad-superleadboard">
         <div class="container">
-            <div class="ad-banner-img ad-banner-img-two text-center advertisement-banner">
-
-                <div class="pharverse-fixed-super" id="pharverse-fixed-super">
-                    <span class="pharverse-close-button-super" id="pharverse-close-super-button" onclick="closeSuperBtn()" title="close"> × </span>
-                        <a href="#" target="_blank" rel="nofollow">
-                            <img src="{{url('/')}}/uploads/ads/ad-footer.gif" alt="Footer Ad" title="Footer Ad" border="0" >
-                        </a></div>
-                    </div>
-                </div>
-
+            <div class="ad-banner-img">
+                <span class="pharverse-close-button-super" id="pharverse-close-super-button" title="close"> × </span>
+                <a href="#">
+                    <img src="{{url('/')}}/uploads/ads/ad-footer.gif" alt="">
+                </a>
             </div>
         </div>
-    </div> --}}
-    <!-- ad-banner-area-end -->
+    </div>
 
 
 
@@ -161,7 +159,8 @@
                                             @foreach ($Podcasts as $podcast)
                                             <div class="popular-post popular-post-two">
                                                 <div class="thumb">
-                                                    <a href="{{url('/')}}/podcasts/{{$podcast->slung}}"><img src="{{$podcast->image}}" alt=""></a>
+                                                    <br>
+                                                    <a href="{{url('/')}}/podcasts/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image}}" alt=""></a>
                                                 </div>
                                                 <div class="content">
                                                     <a href="{{url('/')}}/podcasts/{{$podcast->slung}}" class="post-tag-two"><span class="fa fa-podcast"></span> Podcasts</a>
@@ -184,7 +183,8 @@
                                          @foreach ($Podcasts as $podcast)
                                          <div class="popular-post popular-post-two">
                                             <div class="thumb">
-                                                <a href="{{url('/')}}/videos/{{$podcast->slung}}"><img src="{{$podcast->image}}" alt=""></a>
+                                                <br>
+                                                <a href="{{url('/')}}/videos/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image}}" alt=""></a>
                                             </div>
                                             <div class="content">
                                                 <a href="{{url('/')}}/videos/{{$podcast->slung}}" class="post-tag-two"><span class="fa fa-film"></span> Podcasts</a>
@@ -307,17 +307,20 @@
     </section>
     <!-- trending-post-area-end -->
 
-    <!-- ad-banner-area -->
-    <div class="ad-banner-area pt-70">
+
+
+    <!-- ad-banner-area-end -->
+    <div class="advertisement-banner ad-banner-area align-center pharverse-fixed-super pt-70" id="pharverse-ad-interviews">
         <div class="container">
             <div class="ad-banner-img">
+                <span class="pharverse-close-button-super" id="pharverse-close-super-button" title="close"> × </span>
                 <a href="#">
                     <img src="{{asset('theme/assets/img/images/advertisement11.jpg')}}" alt="">
                 </a>
             </div>
         </div>
     </div>
-    <!-- ad-banner-area-end -->
+     <!-- ad-banner-area-end -->
 
     <!-- mining-post-area -->
     <section class="mining-post-area pt-70 pb-70">
@@ -335,7 +338,7 @@
                             {{--  --}}
                             <div class="row">
                                 <?php
-                                    $Whitepapers = DB::table('blogs')->where('type','Whitepapers/Application Notes')->OrderBy('created_at', 'desc')->limit('4')->get();
+                                    $Whitepapers = DB::table('blogs')->where('type','Whitepapers/Application Notes')->OrderBy('created_at', 'desc')->limit('6')->get();
                                 ?>
                                 @foreach ($Whitepapers as $whitepapers)
                                 <div class="col-md-6">
@@ -360,11 +363,15 @@
                             </div>
                             {{--  --}}
                         </div>
-                        <div class="ad-banner-area mb-70">
-                            <div class="ad-banner-img ad-banner-img-two text-center">
-                                <a href="#">
-                                    <img src="{{asset('theme/assets/img/images/advertisement12.jpg')}}" alt="">
-                                </a>
+
+                        <div class="advertisement-banner ad-banner-area align-center pt-70" id="pharverse-ad-whitepapers">
+                            <div class="container">
+                                <div class="ad-banner-img">
+                                    <span class="pharverse-close-button-super" id="pharverse-close-super-button"  title="close"> × </span>
+                                    <a href="#">
+                                        <img src="{{asset('theme/assets/img/images/advertisement12.jpg')}}" alt="">
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
@@ -411,6 +418,20 @@
                                     <h6 class="title">Hot Reads</h6>
                                     <div class="section-title-line"></div>
                                 </div>
+
+                                <div class="advertisement-banner ad-banner-area align-center" id="pharverse-ad-side-home">
+                                    <div class="container">
+                                        <div class="ad-banner-img">
+                                            {{-- <a href="#">
+                                                <img src="{{asset('theme/assets/img/blog/cr_banner_post01.jpg')}}" alt="">
+                                            </a> --}}
+                                            <div class="hot-post-thumb">
+                                                <span class="pharverse-close-button-super" id="pharverse-close-super-button"  title="close"> × </span>
+                                                <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_banner_post01.jpg')}}" alt=""></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="sidebar-categories">
                                     <ul class="list-wrap">
                                         <?php
@@ -432,6 +453,20 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="advertisement-banner ad-banner-area align-center" id="pharverse-ad-side-home-last">
+                                <div class="container">
+                                    <div class="ad-banner-img">
+                                        {{-- <a href="#">
+                                            <img src="{{asset('theme/assets/img/blog/cr_banner_post01.jpg')}}" alt="">
+                                        </a> --}}
+                                        <div class="hot-post-thumb">
+                                            <span class="pharverse-close-button-super" id="pharverse-close-super-button"  title="close"> × </span>
+                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/images/sidebar_img04.jpg')}}" alt=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
