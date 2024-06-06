@@ -4,23 +4,7 @@
 <!-- main-area -->
 <main class="fix">
 
-
-
-
-
-    <!-- ad-banner-area-end -->
-    <div class=" advertisement-banner pharverse-fixed-super ad-banner-area align-center pt-70" id="pharverse-ad-superleadboard">
-        <div class="container">
-            <div class="ad-banner-img">
-                <span class="pharverse-close-button-super" id="pharverse-close-super-button" title="close"> × </span>
-                <a href="#">
-                    <img src="{{url('/')}}/uploads/ads/ad-footer.gif" alt="">
-                </a>
-            </div>
-        </div>
-    </div>
-
-
+    @include('front.superleadboard')
 
     <!-- banner-post-area -->
     <section class="banner-post-area-four pb-30 pt-30">
@@ -54,17 +38,7 @@
     </section>
     <!-- banner-post-area-end -->
 
-    <!-- ad-banner-area -->
-    {{-- <div class="ad-banner-area">
-        <div class="container">
-            <div class="ad-banner-img ad-banner-img-two text-center">
-                <a href="#">
-                    <img src="{{asset('theme/assets/img/images/advertisement10.jpg')}}" alt="">
-                </a>
-            </div>
-        </div>
-    </div> --}}
-    <!-- ad-banner-area-end -->
+    @include('front.leadboard')
 
     <!-- recent-post-area -->
     <section class="recent-post-area-two pt-60 pb-60">
@@ -307,20 +281,7 @@
     </section>
     <!-- trending-post-area-end -->
 
-
-
-    <!-- ad-banner-area-end -->
-    <div class="advertisement-banner ad-banner-area align-center pharverse-fixed-super pt-70" id="pharverse-ad-interviews">
-        <div class="container">
-            <div class="ad-banner-img">
-                <span class="pharverse-close-button-super" id="pharverse-close-super-button" title="close"> × </span>
-                <a href="#">
-                    <img src="{{asset('theme/assets/img/images/advertisement11.jpg')}}" alt="">
-                </a>
-            </div>
-        </div>
-    </div>
-     <!-- ad-banner-area-end -->
+    @include('front.ad-interviews')
 
     <!-- mining-post-area -->
     <section class="mining-post-area pt-70 pb-70">
@@ -364,16 +325,7 @@
                             {{--  --}}
                         </div>
 
-                        <div class="advertisement-banner ad-banner-area align-center pt-70" id="pharverse-ad-whitepapers">
-                            <div class="container">
-                                <div class="ad-banner-img">
-                                    <span class="pharverse-close-button-super" id="pharverse-close-super-button"  title="close"> × </span>
-                                    <a href="#">
-                                        <img src="{{asset('theme/assets/img/images/advertisement12.jpg')}}" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        @include('front.ad-whitepaper')
 
                     </div>
                     <div class="col-30">
@@ -419,19 +371,8 @@
                                     <div class="section-title-line"></div>
                                 </div>
 
-                                <div class="advertisement-banner ad-banner-area align-center" id="pharverse-ad-side-home">
-                                    <div class="container">
-                                        <div class="ad-banner-img">
-                                            {{-- <a href="#">
-                                                <img src="{{asset('theme/assets/img/blog/cr_banner_post01.jpg')}}" alt="">
-                                            </a> --}}
-                                            <div class="hot-post-thumb">
-                                                <span class="pharverse-close-button-super" id="pharverse-close-super-button"  title="close"> × </span>
-                                                <a href="blog-details.html"><img src="{{asset('theme/assets/img/blog/cr_banner_post01.jpg')}}" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('front.ad-square-30')
+
                                 <div class="sidebar-categories">
                                     <ul class="list-wrap">
                                         <?php
@@ -453,19 +394,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="advertisement-banner ad-banner-area align-center" id="pharverse-ad-side-home-last">
-                                <div class="container">
-                                    <div class="ad-banner-img">
-                                        {{-- <a href="#">
-                                            <img src="{{asset('theme/assets/img/blog/cr_banner_post01.jpg')}}" alt="">
-                                        </a> --}}
-                                        <div class="hot-post-thumb">
-                                            <span class="pharverse-close-button-super" id="pharverse-close-super-button"  title="close"> × </span>
-                                            <a href="blog-details.html"><img src="{{asset('theme/assets/img/images/sidebar_img04.jpg')}}" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @include('front.ad-square-31')
 
                         </div>
                     </div>

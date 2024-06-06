@@ -90,37 +90,13 @@
         <!-- footer-area-end -->
 
 
-        <div class="ad-banner-area">
-            <div class="pharverse-fixed-footer pharverse-sticky advertisement-banner" id="footer-ad">
-                <span class="pharverse-close-button pharverse-close-button-super" id="pharverse-close-button"  title="close"> × </span>
-                <div id="placement_fixed_footer">
-                    <a href="#" target="_blank" rel="nofollow" class="">
-                        <img src="{{url('/')}}/uploads/ads/ad-footer.gif" alt="Footer Ad" title="Footer Ad" border="0" width="728" height="90">
-                    </a>
-                </div>
-            </div>
-        </div>
+        @include('front.footer-ad')
 
 
 
-        <div style="position: absolute; top: 283px; left:5px;" class="wraps advertisement-banner wrapLeft"  id="wrapLeft">
-            <span class="pharverse-close-button pharverse-close-button-super" id="pharverse-close-button"  title="close"> × </span>
-            <div id="ad1">
-               <div id="placement_255245_0_ins" style="margin:0;padding:0;"><a href="#" target="_blank" rel="nofollow">
-                  <img src="{{url('/')}}/uploads/ads/side-left.gif" alt="wrapLeft " title="wrapLeft" border="0" width="210" height="900"></a>
-               </div>
-            </div>
-         </div>
+        @include('front.ad-left')
 
-         <div style="position: absolute; top: 283px; right:5px" class="wraps advertisement-banner wrapRight"  id="wrapRight">
-            <div id="ad2">
-               <div id="placement_255246_0_ins" style="margin:0;padding:0;">
-                  <a href="#" target="_blank" rel="nofollow">
-                  <img src="{{url('/')}}/uploads/ads/side-left.gif" alt="wrapRight " title="wrapRight " border="0" width="210" height="900"></a>
-               </div>
-            </div>
-
-         </div>
+        @include('front.ad-right')
 
 
 
