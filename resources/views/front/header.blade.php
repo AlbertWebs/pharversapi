@@ -125,7 +125,7 @@
                            $Content = DB::table('contents')->get();
                         ?>
                         @foreach ($Content as $content)
-                        <li class="articles-link @if($page_title == $content->title) active-menu @else @endif"><a href="{{url('/')}}/{{$content->slung}}">{{$content->title}}</a></li>
+                        <li class="articles-link @if($page_title == $content->title) active-menu @else @endif"><a href="{{url('/')}}/contents/{{$content->slung}}">{{$content->title}}</a></li>
                         @endforeach
                         <li class="articles-link @if($page_title == "Partnering Companies") active-menu @else @endif"><a href="{{url('/')}}/companies/featured-companies">Featured Companies</a></li>
                     </ul>
@@ -189,7 +189,7 @@
                                                 $Content = DB::table('contents')->get();
                                              ?>
                                              @foreach ($Content as $content)
-                                             <li><a href="{{url('/')}}/{{$content->slung}}">{{$content->title}}</a></li>
+                                             <li><a href="{{url('/')}}/contents/{{$content->slung}}">{{$content->title}}</a></li>
                                              @endforeach
 
 

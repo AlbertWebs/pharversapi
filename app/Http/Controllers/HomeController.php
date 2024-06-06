@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Logiek\ReadingTime\ReadingTime;
+use Stevebauman\Hypertext\Transformer;
 use DB;
 
 class HomeController extends Controller
@@ -43,9 +45,46 @@ class HomeController extends Controller
          foreach($Category as $category){
              $page_topic = $category->title;
              $page_title = $page_topic;
-             return view('front.default', compact('page_title','page_topic'));
+             $page_slung = $category->slung;
+             $Posts = DB::table('blogs')->where('category',$category->id)->get();
+             return view('front.default', compact('page_title','page_topic','Posts','page_slung'));
          }
     }
+
+    public function topic_explore($topic, $slung){
+        $Posts = DB::table('blogs')->where('slung',$slung)->get();
+        foreach($Posts as $posts){
+            $page_topic = $posts->type;
+            $page_title = $page_topic;
+            $page_slung = $posts->slung;
+            return view('front.single', compact('page_title','page_topic','Posts','page_slung'));
+        }
+   }
+
+
+
+
+   public function contents_single($slung){
+        $Category = DB::table('contents')->where('slung',$slung)->limit(1)->get();
+        foreach($Category as $category){
+            $page_topic = $category->title;
+            $page_title = $page_topic;
+            $page_slung = $category->slung;
+            $Posts = DB::table('blogs')->where('type',$page_topic)->get();
+            return view('front.default', compact('page_title','page_topic','Posts','page_slung'));
+        }
+   }
+
+
+
+   public function author($slung){
+        $Author = DB::table('users')->where('username',$slung)->get();
+        $page_topic = "Featured Companies";
+        $page_title = "Author";
+        return view('front.author', compact('page_title','page_topic','Author'));
+
+   }
+
 
     public function podcast($slung){
         $Podcast = DB::table('podcasts')->where('slung',$slung)->limit(1)->get();
@@ -81,9 +120,12 @@ class HomeController extends Controller
 
 
     public function contents_list(){
-
-        return view('front.contents_list');
+        $Contents = DB::table('contents')->get();
+        $page_title = "Partnering Companies";
+        $page_topic = "";
+        return view('front.contents_list', compact('page_title','page_topic','Contents'));
     }
+
     public function topics_list(){
         $page_title = "Partnering Companies";
         $page_topic = "";

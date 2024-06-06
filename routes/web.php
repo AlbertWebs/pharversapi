@@ -26,10 +26,15 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/contents', [HomeController::class, 'contents_list']);
-
 Route::get('/topics', [HomeController::class, 'topics_list']);
 Route::get('/topic/{slung}', [HomeController::class, 'topic']);
+Route::get('/topic/{slung}/{product}', [HomeController::class, 'topic_explore']);
+Route::get('/topics/{slung}/{product}', [HomeController::class, 'topic_explore']);
+//
+Route::get('/contents', [HomeController::class, 'contents_list']);
+Route::get('/contents/{slung}', [HomeController::class, 'contents_single']);
+Route::get('/author/{slung}', [HomeController::class, 'author']);
+
 Route::get('/videos', [HomeController::class, 'videos']);
 Route::get('/podcasts', [HomeController::class, 'podcasts']);
 Route::get('/podcasts/{slung}', [HomeController::class, 'podcast']);
@@ -45,7 +50,7 @@ Route::get('/write-for-us/step-3', [HomeController::class, 'step_3'])->name('ste
 Route::post('/custom-register', [LoginRegisterController::class, 'store'])->name('custom-register');
 Route::post('/create-company', [CompanyController::class, 'store'])->name('create-company');
 
-
+Route::get('/contents', [HomeController::class, 'contents_list']);
 Route::get('/pharvers-limited', [HomeController::class, 'pharvers']);
 Route::get('/terms-and-conditions', [HomeController::class, 'terms']);
 Route::get('/privacy-policy', [HomeController::class, 'privacy']);

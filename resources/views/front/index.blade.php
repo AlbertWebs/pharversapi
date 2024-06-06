@@ -17,16 +17,26 @@
                 <div class="col-lg-4">
                     <div class="banner-post-four">
                         <div class="banner-post-thumb-four">
-                            <a href="{{url('/')}}/{{$latest->type}}/{{$latest->slung}}"><img src="{{$latest->image_one}}" alt=""></a>
+                            <a href="{{url('/')}}/topics/{{$latest->type}}/{{$latest->slung}}"><img src="{{$latest->image_one}}" alt="{{$latest->title}}"></a>
                         </div>
                         <div class="banner-post-content-four">
                             <a href="{{url('/')}}/" class="post-tag">{{$latest->type}}</a>
-                            <h2 class="post-title bold-underline"><a href="{{url('/')}}/{{$latest->type}}/{{$latest->slung}}">Using AI to tailor drugs for Africa</a></h2>
+                            <h2 class="post-title bold-underline"><a href="{{url('/')}}/topics/{{$latest->type}}/{{$latest->slung}}">{{$latest->title}}</a></h2>
                             <div class="blog-post-meta white-blog-meta">
                                 <ul class="list-wrap">
-                                    <li><i class="flaticon-user"></i>by<a href="author.html">Bevin Likuyani</a></li>
+                                    <li><i class="flaticon-user"></i>by<a href="{{url('/')}}/author/{{getAuthorSlung($latest->author)}}"><?php echo getAuthor($latest->author) ?></a></li>
                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($latest->created_at))}}</li>
-                                    <li><i class="flaticon-history"></i>5 Mins</li>
+                                    <li><i class="flaticon-history"></i>
+                                        <?php
+                                           $tranfomer = new \Stevebauman\Hypertext\Transformer;
+                                           $formated = $tranfomer->toText($latest->content);
+                                           $contents = html_entity_decode($latest->content);
+                                           $prep = preg_replace('/[^A-Za-z0-9\-]/', ' ', $formated);
+                                        //    dd($prep)
+                                        ?>
+                                        {{app(\Logiek\ReadingTime\ReadingTime::class)->average($prep)}}
+                                        Read
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -75,11 +85,11 @@
                                     <div class="col-lg-6">
                                         <div class="ta-overlay-post-two">
                                             <div class="overlay-post-thumb-two">
-                                                <a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
                                             </div>
                                             <div class="overlay-post-content-two">
                                                 <a href="blog.html" class="post-tag post-tag-three">{{$blog->type}}</a>
-                                                <h2 class="post-title"><a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
                                                 <div class="blog-post-meta white-blog-meta">
                                                     <ul class="list-wrap">
                                                         <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
@@ -92,11 +102,11 @@
                                     <div class="col-lg-4">
                                         <div class="ta-overlay-post-two">
                                             <div class="overlay-post-thumb-two">
-                                                <a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
                                             </div>
                                             <div class="overlay-post-content-two">
                                                 <a href="blog.html" class="post-tag post-tag-three">{{$blog->type}}</a>
-                                                <h2 class="post-title"><a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                                <h2 class="post-title"><a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
                                                 <div class="blog-post-meta white-blog-meta">
                                                     <ul class="list-wrap">
                                                         <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
@@ -216,10 +226,10 @@
                 <div class="col-lg-6">
                     <div class="overlay-post-five">
                         <div class="overlay-post-thumb-five">
-                            <a href="{{url('/')}}/interviews/{{$recentInterviews->slung}}"><img src="{{$recentInterviews->image_one}}" alt=""></a>
+                            <a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}"><img src="{{$recentInterviews->image_one}}" alt=""></a>
                         </div>
                         <div class="overlay-post-content-five">
-                            <a href="{{url('/')}}/interviews/{{$recentInterviews->slung}}" class="post-tag post-tag-three">Interviews</a>
+                            <a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}" class="post-tag post-tag-three">Interviews</a>
                             <h2 class="post-title bold-underline"><a href="{{url('/')}}/interviews/{{$recentInterviews->slung}}">{{$recentInterviews->title}}</a></h2>
                             <div class="blog-post-meta white-blog-meta">
                                 <ul class="list-wrap">
@@ -236,11 +246,11 @@
                 <div class="col-lg-6">
                     <div class="overlay-post-five">
                         <div class="overlay-post-thumb-five">
-                            <a href="{{url('/')}}/interviews/{{$recentInterviews->slung}}"><img src="{{$recentInterviews->image_one}}" alt=""></a>
+                            <a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}"><img src="{{$recentInterviews->image_one}}" alt=""></a>
                         </div>
                         <div class="overlay-post-content-five">
-                            <a href="{{url('/')}}/interviews/{{$recentInterviews->slung}}" class="post-tag post-tag-three">Interviews</a>
-                            <h2 class="post-title bold-underline"><a href="{{url('/')}}/interviews/{{$recentInterviews->slung}}">{{$recentInterviews->title}}</a></h2>
+                            <a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}" class="post-tag post-tag-three">Interviews</a>
+                            <h2 class="post-title bold-underline"><a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}">{{$recentInterviews->title}}</a></h2>
                             <div class="blog-post-meta white-blog-meta">
                                 <ul class="list-wrap">
                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($recentInterviews->created_at))}}</li>
@@ -305,11 +315,11 @@
                                 <div class="col-md-6">
                                     <div class="weekly-post-three">
                                         <div class="weekly-post-thumb">
-                                            <a href="{{url('/')}}/{{$whitepapers->type}}/{{$whitepapers->slung}}"><img src="{{$whitepapers->image_one}}" alt="{{$whitepapers->title}}"></a>
+                                            <a href="{{url('/')}}/topics/{{$whitepapers->type}}/{{$whitepapers->slung}}"><img src="{{$whitepapers->image_one}}" alt="{{$whitepapers->title}}"></a>
                                             <a href="blog.html" class="post-tag">Whitepapers/Application Notes</a>
                                         </div>
                                         <div class="weekly-post-content">
-                                            <h2 class="post-title"><a href="{{url('/')}}/{{$whitepapers->type}}/{{$whitepapers->slung}}">{{$whitepapers->title}}</a></h2>
+                                            <h2 class="post-title"><a href="{{url('/')}}/topics/{{$whitepapers->type}}/{{$whitepapers->slung}}">{{$whitepapers->title}}</a></h2>
                                             <div class="blog-post-meta">
                                                 <ul class="list-wrap">
                                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($whitepapers->created_at))}}</li>
@@ -435,14 +445,14 @@
                 <div class="col-lg-4">
                     <div class="overlay-post-three overlay-post-four">
                         <div class="overlay-post-thumb-three">
-                            <a href="{{url('/')}}/webinars/{{$webinar->slung}}"><img src="{{$webinar->image_one}}" alt="{{$webinar->title}}"></a>
+                            <a href="{{url('/')}}/topics/{{$webinar->type}}/{{$webinar->slung}}"><img src="{{$webinar->image_one}}" alt="{{$webinar->title}}"></a>
                         </div>
                         <div class="overlay-post-content-three">
                             <?php
                                 $webinarsCategory = \App\Models\Category::find($webinar->category);
                             ?>
                             <a href="blog.html" class="post-tag">{{$webinarsCategory->title}}</a>
-                            <h2 class="post-title"><a href="{{url('/')}}/webinars/{{$webinar->slung}}">{{$webinar->title}}</a></h2>
+                            <h2 class="post-title"><a href="{{url('/')}}/topics/{{$webinar->type}}/{{$webinar->slung}}">{{$webinar->title}}</a></h2>
                             <div class="blog-post-meta white-blog-meta">
                                 <ul class="list-wrap">
                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($webinar->created_at))}}</li>

@@ -49,8 +49,8 @@
                                                         <?php
                                                             $tranfomer = new \Stevebauman\Hypertext\Transformer;
                                                             $formated = $tranfomer->toText($posts->content);
-                                                            $prep = preg_replace('/[^A-Za-z0-9\-]/', '', $formated);
-
+                                                            $prep = preg_replace('/[^A-Za-z0-9\-]/', ' ', $formated);
+                                                            // dd($formated);
 
                                                         ?>
                                                         {{app(\Logiek\ReadingTime\ReadingTime::class)->average($prep)}}

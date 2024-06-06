@@ -72,6 +72,8 @@ use Redirect;
 
 use Illuminate\Support\Facades\Crypt;
 
+use Stevebauman\Hypertext\Transformer;
+
 use Illuminate\Support\Str;
 
 class AdminsController extends Controller
@@ -1246,7 +1248,8 @@ class AdminsController extends Controller
         return view('admin.addBlog',compact('page_title','page_name','Category'));
     }
 
-    public function add_Blog(Request $request){
+    public function
+    g(Request $request){
         activity()->log('Evoked an add Blog Operation');
         $title = $request->title;
         $description = $request->content;
@@ -1264,13 +1267,18 @@ class AdminsController extends Controller
             $SaveFilePath = $request->pro_img_cheat;
         }
 
+        $tranfomer = new \Stevebauman\Hypertext\Transformer;
+        $formated = $tranfomer->toText($request->ckeditor);
+        // Remove all special characters
+        $Counter = "";
+
         $blog = new Blog;
         $blog->title = $request->title;
         $blog->type = $request->type;
         $blog->meta = $request->meta;
         $blog->slung = Str::slug($request->title);
         $blog->content = $request->ckeditor;
-        $blog->author = $request->author;
+        $blog->author = Auth::User()->id;
         $blog->category = $request->category;
         $blog->tags = $request->tags;
         $blog->image_one = $SaveFilePath;
