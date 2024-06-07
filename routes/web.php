@@ -413,6 +413,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('deleteWaterAjax', [AdminsController::class, 'deleteWaterAjax']);
         Route::post('deletePodcastAjax', [AdminsController::class, 'deletePodcastAjax']);
         Route::post('deleteVideoAjax', [AdminsController::class, 'deleteVideoAjax']);
+        Route::post('switchAdsAjaxRequest', [AdminsController::class, 'switchAdsAjaxRequest']);
 
 
         Route::get('addProductToFacebookPixel', [AdminsController::class, 'addProductToFacebookPixel']);

@@ -8,7 +8,15 @@ use App\Models\Term;
 
 use App\Models\Privacy;
 
+use App\Models\Company;
+
+use Auth;
+
+use Illuminate\Support\Facades\Input;
+
 use App\Models\Podcast;
+
+
 
 use App\Models\Video;
 
@@ -928,7 +936,7 @@ class AdminsController extends Controller
      // Partner
      public function partners(){
         activity()->log('Accessed All Partners');
-        $Partner = Partner::all();
+        $Partner = Company::all();
         $page_title = 'list';
         $page_name = 'Partners';
         return view('admin.partners',compact('page_title','Partner','page_name'));
@@ -1248,8 +1256,7 @@ class AdminsController extends Controller
         return view('admin.addBlog',compact('page_title','page_name','Category'));
     }
 
-    public function
-    g(Request $request){
+    public function add_blog(Request $request){
         activity()->log('Evoked an add Blog Operation');
         $title = $request->title;
         $description = $request->content;
@@ -1267,20 +1274,32 @@ class AdminsController extends Controller
             $SaveFilePath = $request->pro_img_cheat;
         }
 
+        if(isset($request->whitepaper_file)){
+            $dir = 'uploads/whitepapers';
+            $file = $request->file('whitepaper_file');
+            $realPath = $request->file('whitepaper_file')->getRealPath();
+            $whitepaper_file = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $whitepaper_file = $request->pro_img_cheat;
+        }
+
+
         $tranfomer = new \Stevebauman\Hypertext\Transformer;
         $formated = $tranfomer->toText($request->ckeditor);
         // Remove all special characters
         $Counter = "";
-
         $blog = new Blog;
         $blog->title = $request->title;
         $blog->type = $request->type;
         $blog->meta = $request->meta;
+        $blog->video_url = $request->video_url;
+        $blog->podcast_url = $request->podcast_url;
         $blog->slung = Str::slug($request->title);
         $blog->content = $request->ckeditor;
         $blog->author = Auth::User()->id;
         $blog->category = $request->category;
         $blog->tags = $request->tags;
+        $blog->whitepaper_file = $whitepaper_file;
         $blog->image_one = $SaveFilePath;
         $blog->save();
         Session::flash('message', "Post Saved Successfully");
@@ -2029,6 +2048,24 @@ class AdminsController extends Controller
         DB::table('categories')->where('id',$id)->delete();
         return response()->json(['success'=>'Deleted Successfully!']);
     }
+
+    public function switchAdsAjaxRequest(Request $request){
+        $AdsId = $request->TheId;
+        $Advertisement = Advertisements::find($AdsId);
+        if($Advertisement->active == 1){
+            $newStatus = "0";
+        }else{
+            $newStatus = "1";
+        }
+        $updateDetails = array(
+            'active' => $newStatus,
+        );
+        DB::table('advertisements')->where('id', $AdsId)->update($updateDetails);
+        activity()->log('Evoked a Switch Ads Request');
+        return response()->json(['success'=>'Status Successfully!']);
+    }
+
+
 
     public function deleteWaterAjax(Request $request){
         activity()->log('Evoked a delete Categorgy Request');

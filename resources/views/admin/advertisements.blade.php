@@ -76,13 +76,13 @@
                                     @if($item->active == 1)
                                     <label>
                                         On
-                                        <input checked type="checkbox">
+                                        <input class="switcher" checked type="checkbox" id="{{$item->id}}">
                                         <span class="lever"></span> On
                                     </label>
                                     @else
                                     <label>
                                         off
-                                        <input type="checkbox">
+                                        <input class="switcher" type="checkbox" id="{{$item->id}}">
                                         <span class="lever"></span> off
                                     </label>
                                     @endif
@@ -142,6 +142,52 @@
 
     </div>
 </div>
+
+<script>
+    $('.switcher').click(function() {
+    // alert($(this).attr('id'));
+    var id = $(this).attr('id');
+    datas = {
+            TheId: $(this).attr('id'),
+            "_token": "{{ csrf_token() }}",
+        }
+    // alert(id)
+       if(this.checked){
+            $.ajax({
+                type: "POST",
+                url: '{{url('/')}}/admin/switchAdsAjaxRequest',
+                data: datas,  //--> send id of checked checkbox on other page
+                success: function(data) {
+                    // alert("Success");
+                    // $('#container').html(data);
+                },
+                 error: function() {
+                    // alert('it broke');
+                },
+                complete: function() {
+                    // alert('it completed');
+                }
+            });
+
+        }else{
+            $.ajax({
+                type: "POST",
+                url: '{{url('/')}}/admin/switchAdsAjaxRequest',
+                data: datas,  //--> send id of checked checkbox on other page
+                success: function(data) {
+                    // alert("Success");
+                    // $('#container').html(data);
+                },
+                 error: function() {
+                    // alert('it broke');
+                },
+                complete: function() {
+                    // alert('it completed');
+                }
+            });
+        }
+      });
+</script>
 
 {{--  --}}
 <div id="ex1" class="modal">

@@ -21,30 +21,30 @@
          </li>
               {{--  --}}
               <li>
-                <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-folder" aria-hidden="true"></i> Categories </a>
+                <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-folder" aria-hidden="true"></i> Topics </a>
                 <div class="collapsible-body left-sub-menu">
                    <ul>
-                      <li><a href="{{url('/')}}/admin/categories">All Category </a>
+                      <li><a href="{{url('/')}}/admin/categories">All Topics </a>
                       </li>
-                      <li><a href="{{url('/')}}/admin/addCategory">Add Category</a>
+                      <li><a href="{{url('/')}}/admin/addCategory">Add Topics</a>
                       </li>
                    </ul>
                 </div>
              </li>
              {{--  --}}
             <li>
-                <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-rss" aria-hidden="true"></i> News, Interviews & Articles</a>
+                <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-rss" aria-hidden="true"></i>Manage Posts</a>
                 <div class="collapsible-body left-sub-menu">
                 <ul>
-                    <li><a href="{{url('/')}}/admin/blog">All Blogs</a>
+                    <li><a href="{{url('/')}}/admin/blog">All Posts</a>
                     </li>
-                    <li><a href="{{url('/')}}/admin/addBlog">Add Blog</a>
+                    <li><a href="{{url('/')}}/admin/addBlog">Add Posts</a>
                     </li>
                 </ul>
                 </div>
             </li>
 
-         <li>
+         {{-- <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-podcast" aria-hidden="true"></i> Podcasts </a>
             <div class="collapsible-body left-sub-menu">
                <ul>
@@ -65,7 +65,7 @@
                   </li>
                </ul>
             </div>
-         </li>
+         </li> --}}
 
          <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bar-chart" aria-hidden="true"></i> Manage Ads  </a>

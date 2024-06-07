@@ -7,7 +7,7 @@
  * Author: RN53 Themes
  * Edited: Designekta Studios
  * Email:      designektastudios@gmail.com
- * Website:    http://www.designekta.com 
+ * Website:    http://www.designekta.com
  -----------------------------------------------*/
 /*-------------------------------------------------
  =  TABLE OF CSS
@@ -63,7 +63,7 @@ h5,
 h6 {
     margin-top: 0px;
     margin-bottom: 0px;
-	font-family: 'Quicksand', sans-serif;	
+	font-family: 'Quicksand', sans-serif;
 }
 
 a,li,p,span,td,th{
@@ -89,17 +89,17 @@ a:hover {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #e8edf2; 
+    background: #e8edf2;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #aab4bd; 
+    background: #aab4bd;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: #555;
 }
 .sb1 {
     background: #ffffff;
@@ -208,10 +208,10 @@ a:hover {
 }
 .sb2-13 {
 	background: #ffffff;
-} 
+}
 .sb2-13 ul {
     /* padding: 20px; */
-    
+
     margin-left: 0px;
     padding-left: 0px;
     margin-bottom: 0px;
@@ -401,7 +401,7 @@ a:hover {
     width: 24px;
     height: 24px;
     /* border: 1px solid #6d6d6d; */
-    
+
     padding: 5px;
     text-align: center;
     border-radius: 20px;
@@ -535,7 +535,7 @@ a:hover {
     list-style-type: none;
     background: #00BCD4;
     /* padding: 5px; */
-    
+
     margin-right: 10px;
 }
 .db-1 ul li:nth-child(1) {
@@ -587,7 +587,7 @@ a:hover {
 .db-2 {
     /* background: #e3e8ea; */
     /* padding: 25px; */
-    
+
     margin-top: 30px;
     position: relative;
     overflow: hidden;
@@ -658,7 +658,7 @@ a:hover {
 }
 .sb2-2-3 {
     /* background:#fff; */
-    
+
     margin-top: 30px;
 }
 .list-img {} .list-img img {
@@ -707,7 +707,7 @@ a:hover {
 }
 .inn-title p {
     /* padding-bottom: 10px; */
-    
+
     color: #929292;
     margin-bottom: 0px;
 }
@@ -1023,7 +1023,7 @@ a:hover {
 .select-pos {
     position: relative;
     /* overflow: hidden; */
-    
+
     display: initial;
 }
 .menu-active{
@@ -1037,7 +1037,7 @@ a:hover {
     border: 0px;
     display: block;
     pointer-events: none;
-    position: relative;	
+    position: relative;
 }
 
 
@@ -1120,4 +1120,7 @@ a:hover {
     width: 80px;
     height: 80px;
     border-radius: 10px;
+}
+#hidden_div {
+    display: none;
 }

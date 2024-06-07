@@ -27,14 +27,7 @@
                                     <li><i class="flaticon-user"></i>by<a href="{{url('/')}}/author/{{getAuthorSlung($latest->author)}}"><?php echo getAuthor($latest->author) ?></a></li>
                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($latest->created_at))}}</li>
                                     <li><i class="flaticon-history"></i>
-                                        <?php
-                                           $tranfomer = new \Stevebauman\Hypertext\Transformer;
-                                           $formated = $tranfomer->toText($latest->content);
-                                           $contents = html_entity_decode($latest->content);
-                                           $prep = preg_replace('/[^A-Za-z0-9\-]/', ' ', $formated);
-                                        //    dd($prep)
-                                        ?>
-                                        {{app(\Logiek\ReadingTime\ReadingTime::class)->average($prep)}}
+                                        {{--  --}}5 Mins
                                         Read
                                     </li>
                                 </ul>
@@ -309,7 +302,7 @@
                             {{--  --}}
                             <div class="row">
                                 <?php
-                                    $Whitepapers = DB::table('blogs')->where('type','Whitepapers/Application Notes')->OrderBy('created_at', 'desc')->limit('6')->get();
+                                    $Whitepapers = DB::table('blogs')->where('type','Whitepapers/Application Notes')->OrderBy('created_at', 'desc')->limit('4')->get();
                                 ?>
                                 @foreach ($Whitepapers as $whitepapers)
                                 <div class="col-md-6">
@@ -472,6 +465,86 @@
         </div>
     </section>
     {{--  --}}
+
+     <!-- recent-post-area -->
+     <section class="recent-post-area-two pt-60 pb-60">
+        <div class="container">
+            <div class="recent-post-inner-wrap">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <?php
+                            $RecentNews = DB::table('blogs')->where('type','Podcasts')->OrderBy('created_at', 'desc')->limit('5')->get();
+                        ?>
+                        <div class="section-title-wrap mb-30">
+                            <div class="section-title">
+                                <h2 class="title">Podcasts</h2>
+                            </div>
+                            <div class="view-all-btn">
+                                <a href="{{url('/')}}/topics" class="link-btn">View All
+                                    <span class="svg-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="none">
+                                            <path d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z" fill="currentColor" />
+                                            <path d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z" fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="section-title-line"></div>
+                        </div>
+                        <div class="popular-post-item-wrap">
+                            <div class="row">
+                                <?php
+                                   $counter = 1;
+                                ?>
+                                @foreach ($RecentNews as $blog)
+                                @if($counter == "4" || $counter == "5")
+                                    <div class="col-lg-6">
+                                        <div class="ta-overlay-post-two">
+                                            <div class="overlay-post-thumb-two">
+                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                            </div>
+                                            <div class="overlay-post-content-two">
+                                                <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-podcast"></i> {{$blog->type}}</a>
+                                                <h2 class="post-title"><a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                                <div class="blog-post-meta white-blog-meta">
+                                                    <ul class="list-wrap">
+                                                        <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="col-lg-4">
+                                        <div class="ta-overlay-post-two">
+                                            <div class="overlay-post-thumb-two">
+                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                            </div>
+                                            <div class="overlay-post-content-two">
+                                                <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-podcast"></i> {{$blog->type}}</a>
+                                                <h2 class="post-title"><a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                                <div class="blog-post-meta white-blog-meta">
+                                                    <ul class="list-wrap">
+                                                        <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                                <?php
+                                  $counter = $counter+1
+                                ?>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- recent-post-area-end -->
+
 
 
 

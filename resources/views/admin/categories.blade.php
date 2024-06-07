@@ -23,14 +23,14 @@
                 <ul>
                     <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                     </li>
-                    <li class="active-bre"><a href="#"> Categories</a>
+                    <li class="active-bre"><a href="#"> Topics</a>
                     </li>
                     <li class="page-back"><a href="{{url('/')}}/admin/addCategory"><i class="fa fa-pencil" aria-hidden="true"></i> Add New Category</a>
                     </li>
                 </ul>
             </div>
             <div class="sb2-2-1">
-                <h2>All Categories</h2>
+                <h2>All Topics</h2>
                 <center>
                     @if(Session::has('message'))
                                   <div class="alert alert-success">{{ Session::get('message') }}</div>

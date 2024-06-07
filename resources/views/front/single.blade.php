@@ -40,8 +40,8 @@
                                        $Category = \App\Models\Category::find($content->category)
                                     ?>
                                     <a href="blog.html" class="post-tag">{{$Category->title}}</a>
-                                    <h2 class="title">{{$content->title}}</h2>
-                                    <p>
+                                    <h2 class="title single-title">{{$content->title}}</h2>
+                                    <p class="meta-data">
                                         {{$content->meta}}
                                     </p>
                                     <div class="bd-content-inner">
@@ -64,8 +64,28 @@
                                     </div>
                                 </div>
                                 <div class="blog-details-thumb">
-                                    <img src="{{$content->image_one}}" alt="">
+                                    <img src="{{$content->image_one}}" alt="{{$content->title}}">
                                 </div>
+                                {{-- Process Whitepaper File --}}
+
+                                 @if($content->type == "Podcasts")
+                                 <hr>
+                                 <div class="blog-avatar-wrap mb-50">
+                                    <div class="blog-avatar-img" >
+                                        <a href="#"><img style="border-radius:0% !important" src="{{$content->image_one}}" alt="img"></a>
+                                    </div>
+                                    <div class="blog-avatar-info">
+
+                                        <h4 class="name"><a href="#">{{$content->title}}</a></h4>
+
+                                        <audio style="width:100%" class="embed-responsive-item" controls="true" preload="none">
+                                            <source src="{{$content->podcast_url}}" type="audio/mp3">
+                                        </audio>
+                                    </div>
+                                 </div>
+                                <hr>
+                                 @endif
+                                {{--  --}}
                                 <p class="first-info">
                                     {!!html_entity_decode($content->content)!!}
                                 </p>

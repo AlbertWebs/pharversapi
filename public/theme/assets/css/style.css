@@ -53,7 +53,9 @@
 	01. Variable CSS
 ===============================*/
 :root {
-    --tg-body-font-family: 'Inter', sans-serif;
+    /* --tg-body-font-family: 'Inter', sans-serif; */
+    --tg-body-font-family: "Muli", Arial !important;
+
     --tg-heading-font-family: 'Manrope', sans-serif;
     --tg-primary-color: #21EB0F;
     --tg-secondary-color: #183354;
@@ -213,7 +215,7 @@ p {
 	font-weight: var(--tg-body-font-weight);
 	line-height: var(--tg-body-line-height);
 	color: var(--tg-paragraph-color);
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 	margin-bottom: 15px;
 }
 hr {
@@ -7186,4 +7188,21 @@ label {
 .align-center{
     margin: 0 auto;
     text-align: center;
+}
+
+.meta-data{
+    font-size: 2.0em !important;
+    line-height: 120% !important;
+    font-weight: 300 !important;
+    font-family: "Muli", Arial !important;
+
+}
+
+.single-title{
+    font-size: 3.4em !important;
+    line-height: 100% !important;
+    margin: 0.5em 0 0.5em 0 !important;
+    font-weight: 400 !important;
+    font-family: "Muli", Arial !important;
+    color:#000000;
 }
