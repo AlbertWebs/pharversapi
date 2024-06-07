@@ -515,7 +515,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <div class="ta-overlay-post-two">
                                             <div class="overlay-post-thumb-two">
                                                 <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
