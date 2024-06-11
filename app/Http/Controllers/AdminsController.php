@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Input;
 
 use App\Models\Podcast;
 
-
-
 use App\Models\Video;
 
 use App\Models\Advertisements;

@@ -349,34 +349,18 @@
                                     </ul>
                                 </div>
                             </div>
+
                             <div class="sidebar-widget sidebar-widget-two">
-                                <div class="sidebar-newsletter">
-                                    <div class="icon"><i class="flaticon-envelope"></i></div>
-                                    <h4 class="title">Daily Newsletter</h4>
-                                    <p>Get all the top stories from Blogs to keep track.</p>
-                                    <div class="sidebar-newsletter-form-two">
-                                        <form action="#">
-                                            <div class="form-grp">
-                                                <input type="text" placeholder="Enter your e-mail">
-                                                <button type="submit" class="btn">Subscribe Now</button>
-                                            </div>
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="checkbox">
-                                                <label for="checkbox">I agree to the terms & conditions</label>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sidebar-widget sidebar-widget-two">
-                                <div class="widget-title mb-30">
+                                {{-- <div class="widget-title mb-30">
                                     <h6 class="title">Hot Reads</h6>
                                     <div class="section-title-line"></div>
-                                </div>
+                                </div> --}}
 
                                 @include('front.ad-square-30')
 
-                                <div class="sidebar-categories">
+                                @include('front.ad-newsletter')
+
+                                {{-- <div class="sidebar-categories">
                                     <ul class="list-wrap">
                                         <?php
                                             $Categories = DB::table('categories')->limit('8')->get();
@@ -395,7 +379,7 @@
                                         </li>
                                         @endforeach
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                             @include('front.ad-square-31')
 
