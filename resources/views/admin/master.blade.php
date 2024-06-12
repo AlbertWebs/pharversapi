@@ -162,8 +162,16 @@
     {{-- <script src="{{ asset('vendor/laraberg/js/laraberg.js') }}"></script> --}}
     {{-- <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> --}}
     <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-    <script>
+    {{-- <script>
         CKEDITOR.replace( 'ckeditor' );
+        CKEDITOR.config.filebrowserImageUploadUrl = '/ck-upload';
+    </script> --}}
+
+    <script>
+        CKEDITOR.replace('ckeditor', {
+            filebrowserUploadUrl: "{{ route('admin.product.uploadMedia', ['_token' => csrf_token()]) }}",
+            filebrowserUploadMethod: 'form'
+        });
     </script>
 
     {{-- <script>

@@ -167,4 +167,26 @@ class HomeController extends Controller
 
     }
 
+
+    public function uploadMedia(Request $request)
+        {
+            if ($request->hasFile('upload')) {
+                $originName = $request->file('upload')->getClientOriginalName();
+                $fileName = pathinfo($originName, PATHINFO_FILENAME);
+                $extension = $request->file('upload')->getClientOriginalExtension();
+                $fileName = $fileName . '_' . time() . '.' . $extension;
+                $path = base_path('public/uploads/ck');
+                $fileName = $request->file('upload')->move($path, $fileName)->getFilename();
+
+                $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+                $url = asset('public/uploads/ck/' . $fileName);
+                $msg = 'Image uploaded successfully';
+                $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+
+                @header('Content-type: text/html; charset=utf-8');
+                echo $response;
+            }
+            return false;
+        }
+
 }

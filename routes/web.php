@@ -71,6 +71,16 @@ Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('con
 //     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
 // });
 
+Route::get('ckeditor/create', 'CkeditorController@create')->name('ckeditor.create');
+Route::post('ckeditor', 'CkeditorController@store')->name('ckeditor.store');
+Route::post('upload', 'CkeditorController@upload')->name('ckeditor.upload');
+Route::post('ck-upload', 'CkeditorController@upload')->name('ckeditor.uploader');
+Route::post('product/img', [HomeController::class, 'uploadMedia'])->name('admin.product.uploadMedia');
+
+
+
+
+
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
     Route::group(['prefix' => '/manager/dashboard'], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('manager.home');
