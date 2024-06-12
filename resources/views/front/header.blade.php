@@ -173,6 +173,10 @@
                                     </div>
                                     <br>
                                     <div class="mobile-search">
+                                        <div class="subscribe-btns">
+                                            <a href="https://subscribers.africanpharmaceuticalreview.com/" class="btn btn-two">Subscribe</a>
+                                        </div>
+                                        <br>
                                         <form action="#">
                                             <input type="text" placeholder="Search here...">
                                             <button><i class="flaticon-search"></i></button>
@@ -194,6 +198,7 @@
 
 
                                             </ul>
+
                                         </div>
                                     <div class="social-links">
                                         <ul class="clearfix list-wrap">
