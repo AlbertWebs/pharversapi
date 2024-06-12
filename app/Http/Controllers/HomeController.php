@@ -175,11 +175,11 @@ class HomeController extends Controller
                 $fileName = pathinfo($originName, PATHINFO_FILENAME);
                 $extension = $request->file('upload')->getClientOriginalExtension();
                 $fileName = $fileName . '_' . time() . '.' . $extension;
-                $path = base_path('uploads/ck');
+                $path = base_path('ck');
                 $fileName = $request->file('upload')->move($path, $fileName)->getFilename();
 
                 $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-                $url = asset('uploads/ck/' . $fileName);
+                $url = asset('ck/' . $fileName);
                 $msg = 'Image uploaded successfully';
                 $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
 
