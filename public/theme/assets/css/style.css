@@ -7206,3 +7206,65 @@ label {
     font-family: "Muli", Arial !important;
     color:#000000;
 }
+
+
+
+.subscribe-btns-mobile{
+    display: none;
+}
+
+@media(max-width:976px) {
+    .subscribe-btns-mobile{
+        display: block;
+    }
+
+    .subscribe-btns-mobile a{
+        height:25px;
+        max-width:100px;
+        padding: 10px 15px;
+        border-radius:5px;
+    }
+}
+
+.theme-bg{
+    background-color: #183354;
+    color:#ffffff;
+    padding: 15px;
+}
+.newsletter-text{
+    padding-top:15px;
+    color:#ffffff;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: "Muli", Arial, sans-serif;
+
+}
+.newsletter-heading{
+    color:#ffffff;
+}
+
+.p-3fix{
+    padding: 0px 4px 0px 0px;
+
+}
+.ad-newsletter-border{
+     border-radius:0px !important;
+}
+
+.subscribe-button .btn {
+    width: 100%;
+    display: block;
+    background-color: #183354;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Muli", Arial, sans-serif;
+    font-size: 1.0em;
+    padding: 0;
+    line-height: 250%;
+    font-weight: 400;
+    border-radius:0px;
+}
+
+.sidebar-widget-two-news{
+    margin-bottom: 4px !important;
+}

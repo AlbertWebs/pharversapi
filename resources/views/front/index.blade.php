@@ -350,7 +350,7 @@
                                 </div>
                             </div>
 
-                            <div class="sidebar-widget sidebar-widget-two">
+                            <div class="sidebar-widget sidebar-widget-two sidebar-widget-two-news">
                                 {{-- <div class="widget-title mb-30">
                                     <h6 class="title">Hot Reads</h6>
                                     <div class="section-title-line"></div>

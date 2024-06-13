@@ -158,6 +158,10 @@
                                     </div>
 
                                 </div>
+
+                                <div class="subscribe-btns-mobile">
+                                    <a href="https://subscribers.africanpharmaceuticalreview.com/" class="btn btn-two">Subscribe</a>
+                                </div>
                                 <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
                             </div>
 
