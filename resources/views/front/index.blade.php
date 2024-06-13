@@ -481,7 +481,7 @@
                                    $counter = 1;
                                 ?>
                                 @foreach ($RecentNews as $blog)
-                                @if($counter == "4" || $counter == "5")
+                                @if($counter == "5" || $counter == "6")
                                     <div class="col-lg-6">
                                         <div class="ta-overlay-post-two">
                                             <div class="overlay-post-thumb-two">
