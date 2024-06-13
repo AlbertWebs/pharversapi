@@ -91,7 +91,7 @@
                                 </p>
                                 <blockquote>
                                     <p>{{$content->meta}} </p>
-                                    <cite>{{$content->author}}</cite>
+                                    <cite>{{getAuthor($content->author)}}</cite>
                                 </blockquote>
 
 
@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="blog-avatar-info">
                                     <span class="designation">Writer/Editor</span>
-                                    <h4 class="name"><a href="author.html">{{getAuthor($content->author)}}</a></h4>
+                                    <h4 class="name"><a href="#">{{getAuthor($content->author)}}</a></h4>
                                     <p>  {!!html_entity_decode(getAuthorBio($content->author))!!}</p>
                                 </div>
                             </div>
@@ -178,51 +178,17 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="sidebar-widget sidebar-widget-two">
-                                <div class="sidebar-newsletter">
-                                    <div class="icon"><i class="flaticon-envelope"></i></div>
-                                    <h4 class="title">Daily Newsletter</h4>
-                                    <p>Get all the top stories from Blogs to keep track.</p>
-                                    <div class="sidebar-newsletter-form-two">
-                                        <form action="#">
-                                            <div class="form-grp">
-                                                <input type="text" placeholder="Enter your e-mail">
-                                                <button type="submit" class="btn">Subscribe Now</button>
-                                            </div>
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="checkbox">
-                                                <label for="checkbox">I agree to the terms & conditions</label>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                            <div class="sidebar-widget sidebar-widget-two sidebar-widget-two-news">
+                                @include('front.ad-newsletter')
                             </div>
                             <div class="sidebar-widget sidebar-widget-two">
-                                <div class="widget-title mb-30">
-                                    <h6 class="title">Hot Reads</h6>
-                                    <div class="section-title-line"></div>
-                                </div>
+
 
                                 @include('front.ad-square-30')
 
                                 <div class="sidebar-categories">
                                     <ul class="list-wrap">
-                                        <?php
-                                            $Categories = DB::table('categories')->limit('8')->get();
-                                        ?>
-                                        @foreach ($Categories as $category)
-                                        <li>
-                                            <a href="{{url('/')}}/topic/{{$category->slung}}" data-background="{{$category->image}}">
-                                                <span class="post-tag post-tag-three">{{$category->title}}</span>
-                                                <span class="right-arrow">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
-                                                        <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
-                                                        <path d="M1.72308 16L0 14.2769L11.8154 2.46154H1.23077V0H16V14.7692H13.5385V4.18462L1.72308 16Z" fill="currentcolor"></path>
-                                                    </svg>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        @endforeach
+
                                     </ul>
                                 </div>
                             </div>
