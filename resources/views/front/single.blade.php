@@ -104,7 +104,7 @@
                                 <div class="blog-avatar-info">
                                     <span class="designation">{{getAuthor($content->author)}}</span>
                                     <h4 class="name"><a href="author.html">{{$content->author}}</a></h4>
-                                    <p>{{getAuthorBio($content->author)}}</p>
+                                    <p>  {!!html_entity_decode(getAuthorBio($content->author))!!}</p>
                                 </div>
                             </div>
                             <?php
