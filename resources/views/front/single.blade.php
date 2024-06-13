@@ -102,8 +102,8 @@
                                     <a href="{{url('/')}}/author/{{getAuthorSlung($content->author)}}"><img src="{{getAuthorDP($content->author)}}" alt="img"></a>
                                 </div>
                                 <div class="blog-avatar-info">
-                                    <span class="designation">{{getAuthor($content->author)}}</span>
-                                    <h4 class="name"><a href="author.html">{{$content->author}}</a></h4>
+                                    <span class="designation">Writer/Editor</span>
+                                    <h4 class="name"><a href="author.html">{{getAuthor($content->author)}}</a></h4>
                                     <p>  {!!html_entity_decode(getAuthorBio($content->author))!!}</p>
                                 </div>
                             </div>
