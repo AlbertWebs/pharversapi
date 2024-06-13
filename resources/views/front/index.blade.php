@@ -457,7 +457,7 @@
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <?php
-                            $RecentNews = DB::table('blogs')->where('type','Podcasts')->OrderBy('created_at', 'desc')->limit('5')->get();
+                            $RecentNews = DB::table('blogs')->where('type','Podcasts')->OrderBy('created_at', 'desc')->limit('6')->get();
                         ?>
                         <div class="section-title-wrap mb-30">
                             <div class="section-title">
