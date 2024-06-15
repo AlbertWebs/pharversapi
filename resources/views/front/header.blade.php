@@ -74,7 +74,7 @@
                                     <ul class="list-wrap">
                                         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+
                                         <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                         <li><a href="#"><i class="fab fa-youtube"></i></a></li>
                                     </ul>
@@ -177,10 +177,7 @@
                                     </div>
                                     <br>
                                     <div class="mobile-search">
-                                        <div class="subscribe-btns">
-                                            <a href="https://subscribers.africanpharmaceuticalreview.com/" class="btn btn-two">Subscribe</a>
-                                        </div>
-                                        <br>
+
                                         <form action="#">
                                             <input type="text" placeholder="Search here...">
                                             <button><i class="flaticon-search"></i></button>
@@ -208,7 +205,7 @@
                                         <ul class="clearfix list-wrap">
                                             <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                             <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                            {{-- <li><a href="#"><i class="fab fa-instagram"></i></a></li> --}}
                                             <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                             <li><a href="#"><i class="fab fa-youtube"></i></a></li>
                                         </ul>

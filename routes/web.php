@@ -9,6 +9,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 
 /*
@@ -30,6 +32,8 @@ Route::get('/topics', [HomeController::class, 'topics_list']);
 Route::get('/topic/{slung}', [HomeController::class, 'topic']);
 Route::get('/topic/{slung}/{product}', [HomeController::class, 'topic_explore']);
 Route::get('/topics/{slung}/{product}', [HomeController::class, 'topic_explore']);
+
+
 //
 Route::get('/contents', [HomeController::class, 'contents_list']);
 Route::get('/contents/{slung}', [HomeController::class, 'contents_single']);
@@ -62,14 +66,8 @@ Route::get('/frequently-asked-questions/{slung}', [HomeController::class, 'faq']
 Route::get('/clients', [HomeController::class, 'clients']);
 Route::post('/subscribe', [MailChimpController::class, 'subscribe']);
 Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('contact-form');
-// Route::get('/{type}/{slung}', [HomeController::class, 'contents']);
+Route::post('/open-hidden-content', [HomeController::class, 'hidden'])->name('open-hidden-content');
 
-// Route::get('/{slung}', [HomeController::class, 'content']);
-
-// Route::middleware(['auth', 'user-access:manager'])->group(function () {
-
-//     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
-// });
 
 Route::get('ckeditor/create', 'CkeditorController@create')->name('ckeditor.create');
 Route::post('ckeditor', 'CkeditorController@store')->name('ckeditor.store');
@@ -78,11 +76,22 @@ Route::post('ck-upload', 'CkeditorController@upload')->name('ckeditor.uploader')
 Route::post('product/img', [HomeController::class, 'uploadMedia'])->name('admin.product.uploadMedia');
 
 
+// Mailchimp Newsletters
+Route::get('subscribe', [NewsLetterController::class, 'subscribe'])->name('subscribe.mailchimp');
+Route::get('unsubscribe', [NewsLetterController::class, 'unsubscribe'])->name('unsubscribe.mailchimp');
 
 
+Route::middleware(['auth', 'user-access:user'])->group(function () {
+    Route::group(['prefix' => '/dashboard'], function () {
+        Route::get('/', [UserController::class, 'index'])->name('dashboard');
+        Route::post('/post-subscription-update', [UserController::class, 'update'])->name('post-subscription-update');
+
+    });
+});
 
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
     Route::group(['prefix' => '/manager/dashboard'], function () {
+
         Route::get('/', [DashboardController::class, 'index'])->name('manager.home');
         Route::get('/home', [DashboardController::class, 'index'])->name('manager.home');
 

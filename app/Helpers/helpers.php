@@ -66,7 +66,21 @@ function getAuthorDP($id){
     return $author->image;
 }
 
+function getAreas($areas_of_interest){
+        // Remove Quotes & Special Characters
+        $Prep = str_replace(str_split('"[]'), '', $areas_of_interest);
+        // echo $Prep;
+        $array = explode(',', $Prep);
+        return $array;
+}
 
+function getSubscriptions($subscription){
+    // Remove Quotes & Special Characters
+    $Prep = str_replace(str_split('"[]'), '', $subscription);
+    // echo $Prep;
+    $array = explode(',',$Prep);
+    return $array;
+}
 
 
 

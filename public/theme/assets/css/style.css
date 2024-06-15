@@ -7158,7 +7158,7 @@ label {
         display:block;
     }
     .logo img {
-        max-height: 55px;
+        max-height: 45px;
     }
 }
 
@@ -7219,10 +7219,13 @@ label {
     }
 
     .subscribe-btns-mobile a{
-        height:25px;
+        height:30px;
         max-width:100px;
         padding: 10px 15px;
         border-radius:5px;
+    }
+    #bg-loader {
+        color: #ffffff;
     }
 }
 
@@ -7244,7 +7247,7 @@ label {
 }
 
 .p-3fix{
-    padding: 0px 4px 0px 0px;
+    padding: 0px 0px 0px 0px;
 
 }
 .ad-newsletter-border{
@@ -7254,7 +7257,7 @@ label {
 .subscribe-button .btn {
     width: 100%;
     display: block;
-    background-color: #183354;
+    background-color: #21EB0F;
     text-align: center;
     text-transform: uppercase;
     font-family: "Muli", Arial, sans-serif;
@@ -7263,6 +7266,7 @@ label {
     line-height: 250%;
     font-weight: 400;
     border-radius:0px;
+     margin-top:4px;
 }
 
 .sidebar-widget-two-news{

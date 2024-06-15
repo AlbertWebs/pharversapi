@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Logiek\ReadingTime\ReadingTime;
 use Stevebauman\Hypertext\Transformer;
 use DB;
+use Redirect;
+use \App\Models\User;
 
 class HomeController extends Controller
 {
@@ -188,5 +190,36 @@ class HomeController extends Controller
             }
             return false;
         }
+
+    public function hidden(Request $request){
+        $name = $request->name;
+        $email = $request->email;
+
+        $User = User::where('email',$email)->get();
+        if($User->isEmpty()){
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+            ]);
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            event(new Registered($user));
+        }else{
+
+
+
+        }
+
+        $user = User::where('email','=',$email)->first();
+
+        Auth::login($user);
+        return Redirect::back();
+
+
+    }
 
 }

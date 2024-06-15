@@ -18,7 +18,7 @@
         @include('admin.sidebar')
 
         <!--== BODY INNER CONTAINER ==-->
-        
+
         <div class="sb2-2">
             <div class="sb2-2-2">
                 <ul>
@@ -29,7 +29,7 @@
                     <li class="page-back"><a href="{{url('/')}}/admin/privacy"><i class="fa fa-backward" aria-hidden="true"></i> Privacy Policy </a>
                     </li>
                 </ul>
-               
+
             </div>
             <div class="sb2-2-add-blog sb2-2-1">
                 <div class="box-inn-sp">
@@ -40,7 +40,7 @@
                             @if(Session::has('message'))
                                           <div class="alert alert-success">{{ Session::get('message') }}</div>
                            @endif
-           
+
                            @if(Session::has('messageError'))
                                           <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
                            @endif
@@ -55,22 +55,24 @@
                                     <label for="list-title">Post Title</label>
                                 </div>
                             </div>
-                       
-                            
-                         
+
+
+
+
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <textarea required id="article-ckeditor" name="content" class="materialilze-textarea" placeholder="content">{{$Privacy->content}}</textarea>
-                                    {{-- <label for="textarea1">Blog Descriptions:</label> --}}
+                                    <textarea  required id="article-ckeditor" name="ckeditor" class="materialilze-textarea" placeholder="content" style="min-height:500px !important">
+                                        {{$Privacy->content}}
+                                    </textarea>
                                 </div>
-                            </div><br><br>
-                       
+                            </div>
+
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input  type="submit" class="waves-effect waves-light btn-large" value="Save Changes">
                                 </div>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>

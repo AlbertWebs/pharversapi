@@ -4,8 +4,8 @@
 @foreach ($FooterAd as $footerAd)
     @if($footerAd->active == "1")
     <!-- ad-banner-area-end -->
-    <div class="advertisement-banner ad-banner-area align-center" id="pharverse-ad-side-home">
-        <div class="container">
+    <div class="advertisement-banner ad-banner-area align-center" id="pharverse-ad-side-home-1">
+        <div class="containers">
             <div class="ad-banner-img">
 
                 <div class="hot-post-thumb">

@@ -83,7 +83,7 @@
                             <ul class="list-wrap">
                                 <li><a href="#"><i class="fab fa-facebook-f"></i>Facebook</a></li>
                                 <li><a href="#"><i class="fab fa-twitter"></i>Twitter</a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i>Instagram</a></li>
+                                {{-- <li><a href="#"><i class="fab fa-instagram"></i>Instagram</a></li> --}}
                                 <li><a href="#"><i class="fab fa-youtube"></i>Youtube</a></li>
                                 <li><a href="#"><i class="fab fa-linkedin"></i>Linkedin </a></li>
                             </ul>

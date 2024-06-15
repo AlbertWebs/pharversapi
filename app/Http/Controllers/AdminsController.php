@@ -251,7 +251,6 @@ class AdminsController extends Controller
             'content'=>$request->content
         );
         DB::table('abouts')->update($updateDetails);
-
         Session::flash('message', "Changes have Been Saved");
         return Redirect::back();
     }

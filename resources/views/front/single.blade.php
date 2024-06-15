@@ -70,21 +70,97 @@
 
                                  @if($content->type == "Podcasts")
                                  <hr>
-                                 <div class="blog-avatar-wrap mb-50">
-                                    <div class="blog-avatar-img" >
-                                        <a href="#"><img style="border-radius:0% !important" src="{{$content->image_one}}" alt="img"></a>
-                                    </div>
-                                    <div class="blog-avatar-info">
+                                    <div class="blog-avatar-wrap mb-50">
+                                        <div class="blog-avatar-img" >
+                                            <a href="#"><img style="border-radius:0% !important" src="{{$content->image_one}}" alt="img"></a>
+                                        </div>
+                                        <div class="blog-avatar-info">
 
-                                        <h4 class="name"><a href="#">{{$content->title}}</a></h4>
+                                            <h4 class="name"><a href="#">{{$content->title}}</a></h4>
 
-                                        <audio style="width:100%" class="embed-responsive-item" controls="true" preload="none">
-                                            <source src="{{$content->podcast_url}}" type="audio/mp3">
-                                        </audio>
+                                            <audio style="width:100%" class="embed-responsive-item" controls="true" preload="none">
+                                                <source src="{{$content->podcast_url}}" type="audio/mp3">
+                                            </audio>
+                                        </div>
                                     </div>
-                                 </div>
                                 <hr>
-                                 @endif
+
+                                 @elseif($content->type == "Whitepapers/Application Notes")
+                                 <hr>
+                                    @if(Auth::User())
+                                            <div class="sidebar-widget sidebar-widget-two">
+                                                <div class="sidebar-newsletter">
+                                                    <div class="icon"><i class="flaticon-envelope"></i></div>
+                                                    <h4 class="title">Download Whitepapers/Application Note</h4>
+
+                                                    <div class="sidebar-newsletter-form">
+
+                                                            <a target="new" download="download" href="{{$content->whitepaper_file}}">
+                                                                <span class="fa fa-download fa-2x"></span>
+                                                                <span class="fab fa-file-pdf-o fa-2x"></span>
+                                                            </a>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+
+                                            <div class="blog-avatar-wrap mb-50">
+                                                <div class="blog-avatar-info">
+
+                                                    <h6 class="name"><a href="#download"> Register your details to access this exclusive content</a></h6>
+
+
+                                                </div>
+                                            </div>
+                                            @if(Auth::User())
+
+                                            @else
+
+                                            <!-- contact-area -->
+                                            <div class="widget-title mb-30" id="download">
+                                                <h6 class="title">Download</h6>
+                                                <div class="section-title-line"></div>
+                                            </div>
+
+
+                                            <div class="contact-form" >
+
+                                                <form id="contact-formz" action="{{route('open-hidden-content')}}" method="POST">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-grp">
+                                                                <input type="text" name="name" placeholder="First Name*">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-grp">
+                                                                <input type="text" name="lname" placeholder="Last Name*">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-grp">
+                                                                <input type="email" name="email" placeholder="E-mail*">
+                                                            </div>
+                                                        </div>
+                                                        <input type="hidden" name="password" value="inputpasswordvalue">
+                                                    </div>
+
+
+                                                    <button type="submit" class="btn btn-two">Download Now</button>
+                                                </form>
+                                                <p class="ajax-response mb-0"></p>
+                                            </div>
+
+                                            <!-- contact-area-end -->
+                                            @endif
+                                        <hr>
+                                        @endif
+
+
+                                    @endif
                                 {{--  --}}
                                 <p class="first-info">
                                     {!!html_entity_decode($content->content)!!}
@@ -152,8 +228,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-30">
+                    <div class="col-30" >
                         <div class="sidebar-wrap">
+
                             <div class="sidebar-widget">
                                 <div class="sidebar-search">
                                     <form action="#">

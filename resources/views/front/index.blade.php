@@ -6,6 +6,7 @@
 
     @include('front.superleadboard')
 
+    {{-- Featured Articles --}}
     <!-- banner-post-area -->
     <section class="banner-post-area-four pb-30 pt-30">
         <div class="container">
@@ -41,7 +42,89 @@
     </section>
     <!-- banner-post-area-end -->
 
+    <?php
+        $LatestNews = DB::table('blogs')->where('type','News')->OrderBy('created_at', 'desc')->limit('4')->get();
+        $LatestNews1 = DB::table('blogs')->where('type','News')->OrderBy('created_at', 'desc')->limit('1')->get();
+    ?>
+    <!-- trending-post-area -->
+    <section class="trending-post-area pt-60 pb-60">
+        <div class="container">
+            <div class="trending-post-inner">
+                <div class="row justify-content-center">
+                    <div class="col-100">
+                        <div class="recent-post-wrap">
+                            <div class="section-title-wrap mb-30">
+                                <div class="section-title">
+                                    <h2 class="title">Latest News</h2>
+                                </div>
+                                <div class="view-all-btn">
+                                    <a href="blog.html" class="link-btn">View All
+                                        <span class="svg-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="none">
+                                                <path d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z" fill="currentColor" />
+                                                <path d="M1.07692 10L0 8.92308L7.38462 1.53846H0.769231V0H10V9.23077H8.46154V2.61538L1.07692 10Z" fill="currentColor" />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="section-title-line"></div>
+                            </div>
+                            <div class="row">
+                                @foreach ($LatestNews1 as $latestnews)
+                                <div class="col-54">
+                                    <div class="overlay-post-two">
+                                        <div class="overlay-post-thumb">
+                                            <a href="#"><img src="{{$latestnews->image_one}}" alt=""></a>
+                                        </div>
+                                        <div class="overlay-post-content">
+                                            <a href="blog.html" class="post-tag">News</a>
+                                            <h2 class="post-title"><a href="#">{{$latestnews->title}}</a></h2>
+                                            <div class="blog-post-meta white-blog-meta">
+                                                <ul class="list-wrap">
+                                                    <li><i class="flaticon-user"></i>by<a href="author.html"><?php echo getAuthor($latestnews->author) ?></a></li>
+                                                    <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($latestnews->created_at))}}</li>
+                                                    <li><i class="flaticon-history"></i>20 Mins</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+
+                                <div class="col-46">
+                                    @foreach ($LatestNews as $latestrst)
+                                    @if($latestrst->id == $latestnews->id)
+
+                                    @else
+                                        <div class="horizontal-post-two">
+                                            <div class="horizontal-post-thumb">
+                                                <a href="blog-details.html"><img src="{{$latestrst->image_one}}" alt=""></a>
+                                            </div>
+                                            <div class="horizontal-post-content">
+                                                <a href="blog.html" class="post-tag">News</a>
+                                                <h2 class="post-title"><a href="#">{{$latestrst->title}}</a></h2>
+                                                <div class="blog-post-meta">
+                                                    <ul class="list-wrap">
+                                                        <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($latestrst->created_at))}}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- trending-post-area-end -->
+
+
     @include('front.leadboard')
+
 
     <!-- recent-post-area -->
     <section class="recent-post-area-two pt-60 pb-60">
@@ -308,11 +391,12 @@
                                 <div class="col-md-6">
                                     <div class="weekly-post-three">
                                         <div class="weekly-post-thumb">
-                                            <a href="{{url('/')}}/topics/{{$whitepapers->type}}/{{$whitepapers->slung}}"><img src="{{$whitepapers->image_one}}" alt="{{$whitepapers->title}}"></a>
+
+                                            <a href="{{url('/')}}/topics/<?php echo \Str::slug($whitepapers->type) ?>/{{$whitepapers->slung}}"><img src="{{$whitepapers->image_one}}" alt="{{$whitepapers->title}}"></a>
                                             <a href="blog.html" class="post-tag">Whitepapers/Application Notes</a>
                                         </div>
                                         <div class="weekly-post-content">
-                                            <h2 class="post-title"><a href="{{url('/')}}/topics/{{$whitepapers->type}}/{{$whitepapers->slung}}">{{$whitepapers->title}}</a></h2>
+                                            <h2 class="post-title"><a href="{{url('/')}}/topics/<?php echo \Str::slug($whitepapers->type) ?>/{{$whitepapers->slung}}">{{$whitepapers->title}}</a></h2>
                                             <div class="blog-post-meta">
                                                 <ul class="list-wrap">
                                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($whitepapers->created_at))}}</li>
@@ -342,10 +426,10 @@
                                     <ul class="list-wrap">
                                         <li><a href="#"><i class="fab fa-facebook-f"></i>facebook</a></li>
                                         <li><a href="#"><i class="fab fa-twitter"></i>twitter</a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i>instagram</a></li>
+                                        {{-- <li><a href="#"><i class="fab fa-instagram"></i>instagram</a></li> --}}
                                         <li><a href="#"><i class="fab fa-youtube"></i>youtube</a></li>
                                         <li><a href="#"><i class="fab fa-linkedin-in"></i>LinkedIn</a></li>
-                                        <li><a href="#"><i class="fab fa-pinterest-p"></i>Pinterest</a></li>
+                                        {{-- <li><a href="#"><i class="fab fa-pinterest-p"></i>Pinterest</a></li> --}}
                                     </ul>
                                 </div>
                             </div>
