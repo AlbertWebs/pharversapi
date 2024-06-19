@@ -119,8 +119,6 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
 
         // Ajax
         Route::put('updateSiteSettingsAjax', [DashboardController::class, 'updateSiteSettingsAjax']);
-
-
     });
 });
 

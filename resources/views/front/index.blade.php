@@ -214,7 +214,7 @@
                                     <div class="tab-pane fade show active" id="latest-tab-pane" role="tabpanel" aria-labelledby="latest-tab" tabindex="0">
                                         <div class="sidebar-widget sidebar-widget-two">
                                             <?php
-                                               $Podcasts = DB::table('podcasts')->OrderBy('created_at', 'desc')->limit('4')->get();
+                                               $Podcasts = DB::table('blogs')->where('type','podcasts')->OrderBy('created_at', 'desc')->limit('4')->get();
                                             ?>
                                             @foreach ($Podcasts as $podcast)
                                             <div class="popular-post popular-post-two">
@@ -238,7 +238,7 @@
                                     <div class="tab-pane fade" id="featured-tab-pane" role="tabpanel" aria-labelledby="featured-tab" tabindex="0">
                                         <div class="sidebar-widget sidebar-widget-two">
                                             <?php
-                                            $Podcasts = DB::table('videos')->OrderBy('created_at', 'desc')->limit('4')->get();
+                                            $Podcasts = DB::table('blogs')->where('type','videos')->OrderBy('created_at', 'desc')->limit('4')->get();
                                          ?>
                                          @foreach ($Podcasts as $podcast)
                                          <div class="popular-post popular-post-two">

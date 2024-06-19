@@ -87,26 +87,38 @@ class DashboardController extends Controller
             $SaveFilePath = $request->pro_img_cheat;
         }
 
+
+        if(isset($request->whitepaper_file)){
+            $dir = 'uploads/whitepapers';
+            $file = $request->file('whitepaper_file');
+            $realPath = $request->file('whitepaper_file')->getRealPath();
+            $whitepaper_file = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $whitepaper_file = $request->pro_img_cheat;
+        }
+
         $blog = new Blog;
         $blog->title = $request->title;
         $blog->type = $request->type;
         $blog->meta = $request->meta;
-        $blog->company_id = $request->company_id;
+        $blog->video_url = $request->video_url;
+        $blog->podcast_url = $request->podcast_url;
         $blog->slung = Str::slug($request->title);
         $blog->content = $request->ckeditor;
-        $blog->author = $request->author;
+        $blog->author = Auth::User()->id;
         $blog->category = $request->category;
         $blog->tags = $request->tags;
+        $blog->whitepaper_file = $whitepaper_file;
         $blog->image_one = $SaveFilePath;
         $blog->save();
         Session::flash('message', "Post Saved Successfully");
         return Redirect::back();
-
         $Blog->save();
-
         Session::flash('message', "Blog Has Been Added");
         return Redirect::back();
     }
+
+
 
     public function addPodcast(){
         activity()->log('Accessed Add Podcast Page');
