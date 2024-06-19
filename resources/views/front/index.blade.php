@@ -5,15 +5,18 @@
 <main class="fix">
 
     @include('front.superleadboard')
+    <?php
+        $Latest = DB::table('blogs')->where('featured','1')->OrderBy('created_at', 'desc')->limit('3')->get();
+    ?>
 
-    {{-- Featured Articles --}}
-    <!-- banner-post-area -->
+   @if($Latest->isEmpty())
+
+
+   @else
     <section class="banner-post-area-four pb-30 pt-30">
         <div class="container">
             <div class="row">
-                <?php
-                    $Latest = DB::table('blogs')->OrderBy('created_at', 'desc')->limit('3')->get();
-                ?>
+
                 @foreach ($Latest as $latest)
                 <div class="col-lg-4">
                     <div class="banner-post-four">
@@ -40,7 +43,7 @@
             </div>
         </div>
     </section>
-    <!-- banner-post-area-end -->
+    @endif
 
     <?php
         $LatestNews = DB::table('blogs')->where('type','News')->OrderBy('created_at', 'desc')->limit('4')->get();

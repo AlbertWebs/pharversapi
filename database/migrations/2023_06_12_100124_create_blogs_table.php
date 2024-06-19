@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('author')->nullable();
             $table->string('category')->nullable();
             $table->string('image')->nullable();
+            $table->string('image_credit')->nullable();
             $table->string('image_one')->nullable();
             $table->string('image_two')->nullable();
             $table->string('image_three')->nullable();

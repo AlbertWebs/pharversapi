@@ -42,7 +42,7 @@
 
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
-                                                    <li><i class="flaticon-user"></i>by<a href="#">{{$posts->author}}</a></li>
+                                                    <li><i class="flaticon-user"></i>by<a href="#"><?php echo getAuthor($posts->author) ?></a></li>
                                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($posts->created_at))}}</li>
                                                     <li><i class="flaticon-history"></i>
 

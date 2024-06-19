@@ -149,6 +149,28 @@
 
                             <div class="row">
                                 <div class="input-field col s12">
+                                    <input autocomplete="off" name="image_credit" id="list-title" type="text" class="validate" >
+                                    <label for="list-title">Image Credit</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <div class="file-field">
+                                        <div class="btn">
+                                            <span>Audio</span>
+                                            <input name="audio" type="file">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input  class="file-path validate" type="text" placeholder="Featured Audio">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="input-field col s12">
                                     <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
                                 </div>
                             </div>

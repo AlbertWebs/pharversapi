@@ -119,6 +119,8 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
 
         // Ajax
         Route::put('updateSiteSettingsAjax', [DashboardController::class, 'updateSiteSettingsAjax']);
+
+
     });
 });
 
@@ -431,6 +433,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('deletePodcastAjax', [AdminsController::class, 'deletePodcastAjax']);
         Route::post('deleteVideoAjax', [AdminsController::class, 'deleteVideoAjax']);
         Route::post('switchAdsAjaxRequest', [AdminsController::class, 'switchAdsAjaxRequest']);
+        Route::post('switchFeatredAjaxRequest', [AdminsController::class, 'switchFeatredAjaxRequest']);
 
 
         Route::get('addProductToFacebookPixel', [AdminsController::class, 'addProductToFacebookPixel']);

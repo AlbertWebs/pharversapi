@@ -65,14 +65,32 @@
                                 </div>
                                 <div class="blog-details-thumb">
                                     <img src="{{$content->image_one}}" alt="{{$content->title}}">
+                                    <p class="text-center"><u>{{$content->image_credit}}</u></p>
                                 </div>
                                 {{-- Process Whitepaper File --}}
+                                @if($content->audio == null)
+
+                                @else
+                                <hr>
+                                <div class="blog-avatar-wrap">
+
+                                        <audio style="width:100%" class="embed-responsive-item" controls="true" preload="none">
+                                            <source src="{{$content->audio}}" type="audio/mp3">
+                                        </audio>
+                                </div>
+                                <p class="text-center">
+                                    <br>
+                                    <u>Listen to this article</u>
+                                </p>
+                                <hr>
+                                @endif
 
                                  @if($content->type == "Podcasts")
                                  <hr>
                                     <div class="blog-avatar-wrap mb-50">
                                         <div class="blog-avatar-img" >
                                             <a href="#"><img style="border-radius:0% !important" src="{{$content->image_one}}" alt="img"></a>
+
                                         </div>
                                         <div class="blog-avatar-info">
 
@@ -165,10 +183,6 @@
                                 <p class="first-info">
                                     {!!html_entity_decode($content->content)!!}
                                 </p>
-                                <blockquote>
-                                    <p>{{$content->meta}} </p>
-                                    <cite>{{getAuthor($content->author)}}</cite>
-                                </blockquote>
 
 
                             </div>

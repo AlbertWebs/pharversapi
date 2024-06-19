@@ -1280,6 +1280,14 @@ class AdminsController extends Controller
             $whitepaper_file = $request->pro_img_cheat;
         }
 
+        if(isset($request->audio)){
+            $dir = 'uploads/audio';
+            $file = $request->file('audio');
+            $realPath = $request->file('audio')->getRealPath();
+            $audio = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $audio = null;
+        }
 
         $tranfomer = new \Stevebauman\Hypertext\Transformer;
         $formated = $tranfomer->toText($request->ckeditor);
@@ -1297,6 +1305,8 @@ class AdminsController extends Controller
         $blog->category = $request->category;
         $blog->tags = $request->tags;
         $blog->whitepaper_file = $whitepaper_file;
+        $blog->audio = $audio;
+        $blog->image_credit = $request->image_credit;
         $blog->image_one = $SaveFilePath;
         $blog->save();
         Session::flash('message', "Post Saved Successfully");
@@ -2061,6 +2071,23 @@ class AdminsController extends Controller
         activity()->log('Evoked a Switch Ads Request');
         return response()->json(['success'=>'Status Successfully!']);
     }
+
+    public function switchFeatredAjaxRequest(Request $request){
+        $AdsId = $request->TheId;
+        $Advertisement = Blog::find($AdsId);
+        if($Advertisement->featured == 1){
+            $newStatus = "0";
+        }else{
+            $newStatus = "1";
+        }
+        $updateDetails = array(
+            'featured' => $newStatus,
+        );
+        DB::table('blogs')->where('id', $AdsId)->update($updateDetails);
+        activity()->log('Evoked a Switch Ads Request');
+        return response()->json(['success'=>'Status Successfully!']);
+    }
+
 
 
 

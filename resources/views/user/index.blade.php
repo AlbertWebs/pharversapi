@@ -14,8 +14,13 @@
                             </li>
                             <li class="active-bre"><a href="#">My Preferece</a>
                             </li>
-                            <li class="active-bre"><i class="fa fa-power-off" aria-hidden="true"></i><a href="#"> &nbsp;Logout</a>
+                            <li class="active-bre"><i class="fa fa-power-off" aria-hidden="true"></i><a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();"> &nbsp;Logout</a>
                             </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                             <li class="page-back"><a target="new" href="{{url('/')}}/"><i class="fa fa-globe" aria-hidden="true"></i> Main Website </a>
                             </li>
                         </ul>
