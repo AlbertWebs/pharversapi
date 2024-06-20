@@ -129,15 +129,19 @@
     @include('front.leadboard')
 
 
+    <?php
+        $RecentNews = DB::table('blogs')->where('type','News')->orWhere('type','Articles')->OrderBy('created_at', 'desc')->limit('5')->get();
+    ?>
+    @if($RecentNews->isEmpty())
+
+    @else
     <!-- recent-post-area -->
     <section class="recent-post-area-two pt-60 pb-60">
         <div class="container">
             <div class="recent-post-inner-wrap">
                 <div class="row justify-content-center">
                     <div class="col-70">
-                        <?php
-                            $RecentNews = DB::table('blogs')->where('type','News')->orWhere('type','Articles')->OrderBy('created_at', 'desc')->limit('5')->get();
-                        ?>
+
                         <div class="section-title-wrap mb-30">
                             <div class="section-title">
                                 <h2 class="title">Recent Posts</h2>
@@ -271,7 +275,15 @@
         </div>
     </section>
     <!-- recent-post-area-end -->
+    @endif
 
+    <?php
+        $RecentInterviews = DB::table('blogs')->where('type','Interviews')->OrderBy('created_at', 'desc')->limit('2')->get();
+        $InterCount = count($RecentInterviews);
+    ?>
+    @if($RecentInterviews->isEmpty())
+
+    @else
     <!-- trending-post-area -->
     <section class="trending-post-area-three">
         <div class="container">
@@ -295,10 +307,7 @@
                     </div>
                 </div>
             </div>
-            <?php
-                $RecentInterviews = DB::table('blogs')->where('type','Interviews')->OrderBy('created_at', 'desc')->limit('2')->get();
-                $InterCount = count($RecentInterviews);
-            ?>
+
             <div class="row">
                 @foreach ($RecentInterviews as $recentInterviews)
                 @if($InterCount < 2)
@@ -309,7 +318,7 @@
                         </div>
                         <div class="overlay-post-content-five">
                             <a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}" class="post-tag post-tag-three">Interviews</a>
-                            <h2 class="post-title bold-underline"><a href="{{url('/')}}/interviews/{{$recentInterviews->slung}}">{{$recentInterviews->title}}</a></h2>
+                            <h2 class="post-title bold-underline"><a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}">{{$recentInterviews->title}}</a></h2>
                             <div class="blog-post-meta white-blog-meta">
                                 <ul class="list-wrap">
                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($recentInterviews->created_at))}}</li>
@@ -351,11 +360,11 @@
                 <div class="col-xl-4 col-lg-6">
                     <div class="horizontal-post-three">
                         <div class="horizontal-post-thumb-three">
-                            <a class="int-img" href="{{url('/')}}/interviews/{{$other->slung}}"><img src="{{$other->image_one}}" alt=""></a>
+                            <a class="int-img" href="{{url('/')}}/topics/{{$other->type}}/{{$other->slung}}"><img src="{{$other->image_one}}" alt=""></a>
                         </div>
                         <div class="horizontal-post-content-three">
                             <a href="blog.html" class="post-tag post-tag-three">Interviews</a>
-                            <h2 class="post-title"><a href="{{url('/')}}/interviews/{{$other->slung}}">{{$other->title}}</a></h2>
+                            <h2 class="post-title"><a href="{{url('/')}}/topics/{{$other->type}}/{{$other->slung}}">{{$other->title}}</a></h2>
                             <div class="blog-post-meta white-blog-meta">
                                 <ul class="list-wrap">
                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($other->created_at))}}</li>
@@ -369,9 +378,16 @@
         </div>
     </section>
     <!-- trending-post-area-end -->
+    @endif
 
     @include('front.ad-interviews')
 
+    <?php
+        $Whitepapers = DB::table('blogs')->where('type','Whitepapers/Application Notes')->OrderBy('created_at', 'desc')->limit('4')->get();
+    ?>
+    @if($Whitepapers->isEmpty())
+
+    @else
     <!-- mining-post-area -->
     <section class="mining-post-area pt-70 pb-70">
         <div class="container">
@@ -387,9 +403,7 @@
                             </div>
                             {{--  --}}
                             <div class="row">
-                                <?php
-                                    $Whitepapers = DB::table('blogs')->where('type','Whitepapers/Application Notes')->OrderBy('created_at', 'desc')->limit('4')->get();
-                                ?>
+
                                 @foreach ($Whitepapers as $whitepapers)
                                 <div class="col-md-6">
                                     <div class="weekly-post-three">
@@ -477,7 +491,14 @@
         </div>
     </section>
     <!-- mining-post-area-end -->
+    @endif
 
+    <?php
+        $Webinars = DB::table('blogs')->where('type','Webinars')->OrderBy('id','DESC')->limit('4')->get();
+    ?>
+    @if($Webinars->isEmpty())
+
+    @else
     {{-- Webinars --}}
     <section class="trending-post-area-two">
         <div class="container">
@@ -502,9 +523,7 @@
                 </div>
             </div>
             <div class="row trending-post-active">
-                <?php
-                   $Webinars = DB::table('blogs')->where('type','Webinars')->OrderBy('id','DESC')->limit('4')->get();
-                ?>
+
                 @foreach ($Webinars as $webinar)
                 <div class="col-lg-4">
                     <div class="overlay-post-three overlay-post-four">
@@ -536,16 +555,21 @@
         </div>
     </section>
     {{--  --}}
+    @endif
 
+    <?php
+        $RecentNews = DB::table('blogs')->where('type','Podcasts')->OrderBy('created_at', 'desc')->limit('6')->get();
+    ?>
+    @if($RecentNews->isEmpty())
+
+    @else
      <!-- recent-post-area -->
-     <section class="recent-post-area-two pt-60 pb-60">
+    <section class="recent-post-area-two pt-60 pb-60">
         <div class="container">
             <div class="recent-post-inner-wrap">
                 <div class="row justify-content-center">
                     <div class="col-12">
-                        <?php
-                            $RecentNews = DB::table('blogs')->where('type','Podcasts')->OrderBy('created_at', 'desc')->limit('6')->get();
-                        ?>
+
                         <div class="section-title-wrap mb-30">
                             <div class="section-title">
                                 <h2 class="title">Podcasts</h2>
@@ -615,12 +639,18 @@
         </div>
     </section>
     <!-- recent-post-area-end -->
+    @endif
 
 
 
+    <?php
+        $Companies = DB::table('companies')->get();
+    ?>
+    @if($Companies->isEmpty())
 
+    @else
       <!-- editor-post-area -->
-      <section class="editor-post-area pt-50 pb-50">
+    <section class="editor-post-area pt-50 pb-50">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -635,9 +665,7 @@
             </div>
             <div class="editor-post-wrap">
                 <div class="row editor-post-active">
-                    <?php
-                       $Companies = DB::table('companies')->get();
-                    ?>
+
                     @foreach ($Companies as $companies)
                     <div class="col-lg-4">
                         <div class="editor-post-item">
@@ -652,6 +680,7 @@
         </div>
     </section>
     <!-- editor-post-area-end -->
+    @endif
 
 
    @include('front.newsletter')
