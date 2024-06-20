@@ -223,11 +223,11 @@
                                             <div class="popular-post popular-post-two">
                                                 <div class="thumb">
                                                     <br>
-                                                    <a href="{{url('/')}}/podcasts/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image}}" alt=""></a>
+                                                    <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image_one}}" alt=""></a>
                                                 </div>
                                                 <div class="content">
-                                                    <a href="{{url('/')}}/podcasts/{{$podcast->slung}}" class="post-tag-two"><span class="fa fa-podcast"></span> Podcasts</a>
-                                                    <h2 class="post-title"><a href="{{url('/')}}/podcasts/{{$podcast->slung}}">{{$podcast->title}}</a></h2>
+                                                    <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="post-tag-two"><span class="fa fa-podcast"></span> Podcasts</a>
+                                                    <h2 class="post-title"><a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}">{{$podcast->title}}</a></h2>
                                                     <div class="blog-post-meta">
                                                         <ul class="list-wrap">
                                                             <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($podcast->created_at))}}</li>
@@ -247,11 +247,11 @@
                                          <div class="popular-post popular-post-two">
                                             <div class="thumb">
                                                 <br>
-                                                <a href="{{url('/')}}/videos/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image}}" alt=""></a>
                                             </div>
                                             <div class="content">
-                                                <a href="{{url('/')}}/videos/{{$podcast->slung}}" class="post-tag-two"><span class="fa fa-film"></span> Podcasts</a>
-                                                <h2 class="post-title"><a href="{{url('/')}}/videos/{{$podcast->slung}}">{{$podcast->title}}</a></h2>
+                                                <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="post-tag-two"><span class="fa fa-film"></span> Podcasts</a>
+                                                <h2 class="post-title"><a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}">{{$podcast->title}}</a></h2>
                                                 <div class="blog-post-meta">
                                                     <ul class="list-wrap">
                                                         <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($podcast->created_at))}}</li>

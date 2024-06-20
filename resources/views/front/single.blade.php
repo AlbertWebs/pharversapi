@@ -63,10 +63,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if($content->type == "Videos")
+                                <div class="blog-details-video">
+                                    <img src="{{$content->image_one}}" alt="">
+                                    <a href="https://www.youtube.com/watch?v={{$content->video_url}}" class="paly-btn popup-video"><i class="fas fa-play"></i></a>
+                                </div>
+                                @else
                                 <div class="blog-details-thumb">
                                     <img src="{{$content->image_one}}" alt="{{$content->title}}">
                                     <p class="text-center"><u>{{$content->image_credit}}</u></p>
                                 </div>
+                                @endif
                                 {{-- Process Whitepaper File --}}
                                 @if($content->audio == null)
 
@@ -87,7 +94,7 @@
 
                                  @if($content->type == "Podcasts")
                                  <hr>
-                                    <div class="blog-avatar-wrap mb-50">
+                                    {{-- <div class="blog-avatar-wrap mb-50">
                                         <div class="blog-avatar-img" >
                                             <a href="#"><img style="border-radius:0% !important" src="{{$content->image_one}}" alt="img"></a>
 
@@ -100,7 +107,8 @@
                                                 <source src="{{$content->podcast_url}}" type="audio/mp3">
                                             </audio>
                                         </div>
-                                    </div>
+                                    </div> --}}
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/{{$content->podcast_url}}?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                                 <hr>
 
                                  @elseif($content->type == "Whitepapers/Application Notes")
