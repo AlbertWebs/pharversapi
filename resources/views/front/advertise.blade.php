@@ -42,6 +42,7 @@
                                     <div class="subscribe-btn">
                                         <a download href="#" class="btn btn-two">Download media planner</a>
                                     </div>
+                                    <hr>
                                     <h3>Why Advertise with Us?</h3>
                                     <h4>Targeted Audience</h4>
                                     <p>
@@ -91,7 +92,7 @@
                                     {{-- Form --}}
                                     <div class="contact-form">
 
-                                        <form id="contact-form" action="{{route('advertise-with-us')}}" method="POST">
+                                        <form id="advertisment-form" action="{{route('advertise-with-us')}}" method="POST">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -101,7 +102,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-grp">
-                                                        <input type="text" name="fname" placeholder="Last Name*" required="This field is required">
+                                                        <input type="text" name="lname" placeholder="Last Name*" required="This field is required">
                                                     </div>
                                                 </div>
 
@@ -131,85 +132,81 @@
 
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" > Print advertising</label>
+                                                        <label><input type="checkbox" name="marketing_interest[]" value="Print advertising"> Print advertising</label>
                                                 </div>
                                                  <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" > Digital Advertising</label>
+                                                        <label><input type="checkbox" name="marketing_interest[]" value="Digital Advertising"> Digital Advertising</label>
                                                 </div>
 
-                                                <div class="col-md-3">
-                                                    <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" > Targeted Newsletters</label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" > Targeted Newsletters</label>
+                                                <div class="col-md-6">
+                                                    <label><input type="checkbox" name="marketing_interest[]" value="Targeted Newsletters"> Targeted Newsletters</label>
                                                 </div>
 
 
                                                 <div class="col-md-3">
-                                                    <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" > company profile listing</label>
+                                                    <label><input type="checkbox" name="marketing_interest[]" value="Company Profile Listing"> Company Profile Listing</label>
                                                 </div>
                                                 <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" >  content marketing</label>
+                                                        <label><input type="checkbox" name="marketing_interest[]" value="content marketing">  Content Marketing</label>
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" > email marketing</label>
+                                                    <label><input type="checkbox" name="marketing_interest[]" vlaue="Email Marketing"> Email Marketing</label>
                                                 </div>
                                                 <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" > retargeting</label>
+                                                        <label><input type="checkbox" name="marketing_interest[]" value="Retargeting"> Retargeting</label>
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" > e-books</label>
+                                                    <label><input type="checkbox" name="marketing_interest[]" value="E-books"> E-books</label>
                                                 </div>
                                                 <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" >  webinars</label>
+                                                        <label><input type="checkbox" name="marketing_interest[]" value="Webinars">  Webinars</label>
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" > whitepapers</label>
+                                                    <label><input type="checkbox" name="marketing_interest[]" value="Whitepapers/Application Notes"> whitepapers</label>
                                                 </div>
                                                 <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" > research</label>
+                                                        <label><input type="checkbox" name="marketing_interest[]" vlaue="Research"> Research</label>
                                                 </div>
 
 
                                                 <div class="col-md-3">
-                                                    <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" > product launch</label>
+                                                    <label><input type="checkbox" name="marketing_interest[]" value="Product Launch"> Product Launch</label>
                                                 </div>
                                                 <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest" placeholder="phone Number*" >  other </label>
+                                                        <label><input type="checkbox" name="marketing_interest[]" value="Other">  Other </label>
                                                 </div>
-
-
-
                                             </div>
                                             <hr>
                                             <h6>Marketing Goals</h6>
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest"  >  Brand Awareness</label>
+                                                        <label><input type="checkbox" name="marketing_goals[]" value="Brand Awareness" >  Brand Awareness</label>
                                                 </div>
                                                  <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest" >  Lead Generation</label>
+                                                        <label><input type="checkbox" name="marketing_goals[]" value="Lead Generation">  Lead Generation</label>
                                                 </div>
 
                                                 <div class="col-md-3">
-                                                    <label><input type="checkbox" name="area_of_interest" > Thought Leadership</label>
+                                                    <label><input type="checkbox" name="marketing_goals[]" value="Thought Leadership"> Thought Leadership</label>
                                                 </div>
                                                 <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest" > Product Promotion</label>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <label><input type="checkbox" name="area_of_interest"  >  increase website traffic</label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                        <label><input type="checkbox" name="area_of_interest" >  boost brand engagement</label>
+                                                        <label><input type="checkbox" name="marketing_goals[]" value="Product Promotion"> Product Promotion</label>
                                                 </div>
 
+                                                <div class="col-md-6">
+                                                    <label><input type="checkbox" name="marketing_goals[]"  value="Increase Website Traffic">  Increase Website Traffic</label>
+                                                </div>
+
+
+
+                                                <div class="col-md-6">
+                                                    <label><input type="checkbox" name="marketing_goals[]" value="Boost Brand Engagement">  Boost Brand Engagement</label>
+                                                </div>
                                                 <div class="col-md-3">
-                                                    <label><input type="checkbox" name="area_of_interest" > Other</label>
+                                                    <label><input type="checkbox" name="marketing_goals[]" value="Other"> Other</label>
                                                 </div>
 
                                             </div>

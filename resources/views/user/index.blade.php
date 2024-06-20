@@ -48,7 +48,6 @@
                                             </div>
 
                                             <div class="row">
-
                                                 <div class="input-field col s12">
                                                     <input autocomplete="off" type="text" value="" name="tagline"  class="validate">
                                                     <label>Tagline</label>

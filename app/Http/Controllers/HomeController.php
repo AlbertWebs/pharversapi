@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Logiek\ReadingTime\ReadingTime;
+use App\Models\SendEmail;
 use Stevebauman\Hypertext\Transformer;
 use DB;
 use Redirect;
@@ -174,7 +175,44 @@ class HomeController extends Controller
 
     public function custom_register(){
 
+
     }
+
+    public function thanks(){
+
+        return view('thanks');
+    }
+
+    public function advertise_post(Request $request){
+         $fname = $request->fname;
+         $lname = $request->lname;
+         $email = $request->email;
+         $phone = $request->phone;
+         $position = $request->position;
+         $marketing_interest = $request->marketing_interest;
+         $marketing_goals = $request->marketing_goals;
+
+         $Sender = "info@africanpharmaceuticalreviews.com";
+         $SenderId = "Africa Pharmaceutical Reviews";
+         $Subject = "Advertise With Us";
+         $SubscriberId  = $email;
+         $SubscriberName = $fname;
+         $MessageToSubscriber =
+         "
+            Name: $fname $lname, Email:$email,<br>
+            Phone: $phone, <br>
+            Position: $position,
+
+        ";
+        // Save to database
+
+          // Send Email To Subscriber
+        $SendEmail = SendEmail::sendEmail($Sender,$SenderId,$MessageToSubscriber,$SubscriberName,$SubscriberId,$Subject);
+        dd($SendEmail);
+
+    }
+
+
 
 
     public function uploadMedia(Request $request)

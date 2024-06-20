@@ -40,7 +40,7 @@ Route::get('/contents/{slung}', [HomeController::class, 'contents_single']);
 Route::get('/author/{slung}', [HomeController::class, 'author']);
 
 Route::get('/videos', [HomeController::class, 'videos']);
-Route::post('/advertise-with-us', [HomeController::class, 'advertise'])->name('advertise-with-us');
+Route::post('/advertise-with-us', [HomeController::class, 'advertise_post'])->name('advertise-with-us');
 
 Route::get('/podcasts', [HomeController::class, 'podcasts']);
 Route::get('/podcasts/{slung}', [HomeController::class, 'podcast']);
@@ -70,6 +70,8 @@ Route::post('/subscribe', [MailChimpController::class, 'subscribe']);
 Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('contact-form');
 Route::post('/open-hidden-content', [HomeController::class, 'hidden'])->name('open-hidden-content');
 
+
+Route::get('/thanks', [HomeController::class, 'thanks'])->name('open-thanks');
 
 Route::get('ckeditor/create', 'CkeditorController@create')->name('ckeditor.create');
 Route::post('ckeditor', 'CkeditorController@store')->name('ckeditor.store');
