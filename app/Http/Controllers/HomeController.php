@@ -153,6 +153,13 @@ class HomeController extends Controller
         $page_topic = "Write For Us";
         return view('front.write', compact('page_title','page_topic'));
     }
+
+    public function advertise(){
+        $page_title = "Partnering Companies";
+        $page_topic = "Write For Us";
+        return view('front.advertise', compact('page_title','page_topic'));
+    }
+
     public function step_2(){
         $page_title = "Partnering Companies";
         $page_topic = "Write For Us";

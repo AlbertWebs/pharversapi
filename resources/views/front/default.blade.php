@@ -46,7 +46,7 @@
                                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($posts->created_at))}}</li>
                                                     <li><i class="flaticon-history"></i>
 
-                                                        5 Minutes
+                                                        <?php echo estimateReadingTime($posts->content); ?>
                                                          Read
                                                     </li>
                                                 </ul>

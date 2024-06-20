@@ -40,6 +40,8 @@ Route::get('/contents/{slung}', [HomeController::class, 'contents_single']);
 Route::get('/author/{slung}', [HomeController::class, 'author']);
 
 Route::get('/videos', [HomeController::class, 'videos']);
+Route::post('/advertise-with-us', [HomeController::class, 'advertise'])->name('advertise-with-us');
+
 Route::get('/podcasts', [HomeController::class, 'podcasts']);
 Route::get('/podcasts/{slung}', [HomeController::class, 'podcast']);
 Route::get('/topics/{topic}', [HomeController::class, 'topics']);

@@ -31,7 +31,8 @@
                                     <li><i class="flaticon-user"></i>by<a href="{{url('/')}}/author/{{getAuthorSlung($latest->author)}}"><?php echo getAuthor($latest->author) ?></a></li>
                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($latest->created_at))}}</li>
                                     <li><i class="flaticon-history"></i>
-                                        {{--  --}}5 Mins
+
+                                        <?php  echo estimateReadingTime($latest->content);  ?>
                                         Read
                                     </li>
                                 </ul>
@@ -86,7 +87,7 @@
                                                 <ul class="list-wrap">
                                                     <li><i class="flaticon-user"></i>by<a href="author.html"><?php echo getAuthor($latestnews->author) ?></a></li>
                                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($latestnews->created_at))}}</li>
-                                                    <li><i class="flaticon-history"></i>20 Mins</li>
+                                                    <li><i class="flaticon-history"></i><?php  echo estimateReadingTime($latestnews->content);  ?></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -322,7 +323,7 @@
                             <div class="blog-post-meta white-blog-meta">
                                 <ul class="list-wrap">
                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($recentInterviews->created_at))}}</li>
-                                    <li><i class="flaticon-history"></i>20 Mins</li>
+                                    <li><i class="flaticon-history"></i><?php  echo estimateReadingTime($recentInterviews->content);  ?></li>
                                 </ul>
                             </div>
                         </div>
@@ -342,7 +343,7 @@
                             <div class="blog-post-meta white-blog-meta">
                                 <ul class="list-wrap">
                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($recentInterviews->created_at))}}</li>
-                                    <li><i class="flaticon-history"></i>20 Mins</li>
+                                    <li><i class="flaticon-history"></i><?php  echo estimateReadingTime($recentInterviews->content);  ?></li>
                                 </ul>
                             </div>
                         </div>

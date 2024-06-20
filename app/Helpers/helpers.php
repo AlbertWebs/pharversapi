@@ -82,6 +82,19 @@ function getSubscriptions($subscription){
     return $array;
 }
 
+function wordsCounter($content){
+    $tranfomer = new \Stevebauman\Hypertext\Transformer;
+    $formated = $tranfomer->toText($content);
+    $prep = preg_replace('/[^A-Za-z0-9\-]/', ' ', $formated);
+    $timeInSeconds = app(\Logiek\ReadingTime\ReadingTime::class)->average("'.$prep.'");
+    return $timeInSeconds;
+}
 
+function estimateReadingTime($text) {
+    $wpm = 230;
+    $totalWords = str_word_count(strip_tags($text));
+    $minutes = floor($totalWords / $wpm);
+    $seconds = floor($totalWords % $wpm / ($wpm / 60));
 
-?>
+    return "$minutes Mins";
+}
