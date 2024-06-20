@@ -247,7 +247,7 @@
                                          <div class="popular-post popular-post-two">
                                             <div class="thumb">
                                                 <br>
-                                                <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image_one}}" alt=""></a>
                                             </div>
                                             <div class="content">
                                                 <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="post-tag-two"><span class="fa fa-film"></span> Podcasts</a>
