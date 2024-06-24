@@ -95,6 +95,11 @@ function estimateReadingTime($text) {
     $totalWords = str_word_count(strip_tags($text));
     $minutes = floor($totalWords / $wpm);
     $seconds = floor($totalWords % $wpm / ($wpm / 60));
-
     return "$minutes Mins";
+}
+
+function prepareArray($String){
+    $prepare = str_replace(['[', ']', '"', '*'], '', $String);
+    $array = explode(',', $prepare);
+    return $array;
 }

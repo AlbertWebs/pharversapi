@@ -1,159 +1,287 @@
-@extends('dashboard.master')
+@extends('user.master')
+
 @section('content')
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <!--== BODY CONTNAINER ==-->
-        <div class="container-fluid sb2">
-            <div class="row">
-                <!--== BODY INNER CONTAINER ==-->
-                <div class="sb12"  style="padding:20px;">
-                    <div class="sb2-2-2">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                            </li>
-                            <li class="active-bre"><a href="#">My Profile</a>
-                            </li>
-                            <li class="active-bre"><a href="#">My Preferece</a>
-                            </li>
-                            <li class="active-bre"><i class="fa fa-power-off" aria-hidden="true"></i><a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                              document.getElementById('logout-form').submit();"> &nbsp;Logout</a>
-                            </li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                            <li class="page-back"><a target="new" href="{{url('/')}}/"><i class="fa fa-globe" aria-hidden="true"></i> Main Website </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="sb12">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="box-inn-sp">
-                                    <div class="inn-title">
-                                        <h4>Hello, {{Auth::User()->name}},</h4>
-                                        <p>Dear, {{Auth::User()->name}}, You are here because you subscribed to our Newsletters, Feel free to updates your subscription options here</p>
-                                    </div>
-                                    <div class="tab-inn">
-                                        <form method="PUT" id="saveSettings" enctype="multipart/form-data">
-                                            {{csrf_field()}}
-                                            <div class="row">
-                                                <div class="input-field col s6">
-                                                    <input autocomplete="off" type="url" name="website" value="" class="validate">
-                                                    <label for="website">Website</label>
-                                                </div>
-                                                <div class="input-field col s6">
-                                                    <input autocomplete="off" type="text" value="" name="title" class="validate">
-                                                    <label>Sitename</label>
-                                                </div>
-                                            </div>
 
-                                            <div class="row">
-                                                <div class="input-field col s12">
-                                                    <input autocomplete="off" type="text" value="" name="tagline"  class="validate">
-                                                    <label>Tagline</label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="input-field col s12">
-                                                    <input autocomplete="off" id="phone" value="" type="text" name="mobile" class="validate">
-                                                    <label for="phone">Mobile</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="input-field col s12">
-                                                    <input autocomplete="off" value="" id="email" name="email" type="email"  class="validate">
-                                                    <label for="email">Email</label>
-                                                </div>
-                                            </div>
-
-
-
-                                            <div class="row">
-                                                <div class="input-field col s6">
-                                                    <input autocomplete="off" value="" id="email1" name="address" type="text" class="validate">
-                                                    <label for="email1">Address</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="input-field col s6">
-                                                    <input autocomplete="off" value="" id="email1" name="facebook" type="text" class="validate">
-                                                    <label for="email1">Facebook</label>
-                                                </div>
-                                                <div class="input-field col s6">
-                                                    <input autocomplete="off" value="" id="email1" name="instagram" type="text" class="validate">
-                                                    <label for="email1">Instagram</label>
-                                                </div>
-                                                <div class="input-field col s6">
-                                                    <input autocomplete="off" value="" id="email1" name="twitter" type="text" class="validate">
-                                                    <label for="email1">Twitter</label>
-                                                </div>
-                                                <div class="input-field col s6">
-                                                    <input autocomplete="off" value="" id="email1" name="linkedin" type="text" class="validate">
-                                                    <label for="email1">Linkedin</label>
-                                                </div>
-                                            </div>
-
-
-
-
-                                            <div class="row">
-                                                <div class="input-field col s12">
-                                                    <textarea required id="article-ckeditor" name="ckeditor" class="materialilze-textarea" placeholder="content"></textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="input-field col s12">
-                                                    <input type="submit"  value="Save Changes" class="waves-effect waves-light btn-large">
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="page-wrapper">
+    <div class="content">
+       <div class="page-header">
+          <div class="row">
+             <div class="col-sm-12">
+                <ul class="breadcrumb">
+                   <li class="breadcrumb-item"><a href="index.html">Dashboard </a></li>
+                   <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
+                   <li class="breadcrumb-item active">Subscriber Dashboard</li>
+                </ul>
+             </div>
+          </div>
+       </div>
+       <div class="good-morning-blk">
+          <div class="row">
+             <div class="col-md-6">
+                <div class="morning-user">
+                   <h2>Good Day!, <span>{{Auth::User()->title}} {{Auth::User()->name}}</span></h2>
+                   <p>{{Auth::User()->content}}</p>
                 </div>
-                <!--== BODY INNER CONTAINER ==-->
-            </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script>
+             </div>
+             <div class="col-md-6 position-blk">
+                <div class="morning-img">
+                   <img src="assets/img/morning-img-03.png" alt>
+                </div>
+             </div>
+          </div>
+       </div>
 
-            $("#saveSettings").on('submit',function(event)
-                {
-                    event.preventDefault(); // prevent form submit
-                    swal({
-                        title: "Are you sure you want to make this changes?",
-                        text: "Once submited You cannot revert back to the previous state",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                        })
-                        .then((willDelete) => {
-                        if (willDelete) {
-                            //do the ajax stuff.
-                            $.ajax({
-                                url: "{{url('/')}}/manager/dashboard/updateSiteSettingsAjax",
-                                type: "PUT",
-                                dataType: "html",
-                                data: $(this).serialize(),
-                                success: function ()
-                                {
-                                    swal("Done!","Your Changes Have Been Updated");
-                                    setTimeout(function() {
-                                        window.location.reload();
-                                    }, 3000);
-                                }
-                            });
-                            //
+       <div class="row">
+          <div class="col-12 col-md-6 col-xl-6 d-flex">
+             <div class="card report-blk">
+                <div class="card-body">
+                   <div class="report-head">
+                      <h4>Organization</h4>
+                   </div>
+                   <div class="dash-content">
+                      <h5>{{Auth::User()->organization}}</h5>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-3 d-flex">
+             <div class="card report-blk">
+                <div class="card-body">
+                   <div class="report-head">
+                      <h4>Address</h4>
+                   </div>
+                   <div class="dash-content">
+                      <h5>{{Auth::User()->address}}</h5>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-3 d-flex">
+             <div class="card report-blk">
+                <div class="card-body">
+                   <div class="report-head">
+                      <h4>Submited Email</h4>
+                   </div>
+                   <div class="dash-content">
+                      <h5>{{Auth::User()->address}}</h5>
+                   </div>
+                </div>
+             </div>
+          </div>
 
-                        }
-                    });
-                });
-        </script>
+       </div>
+
+    </div>
+    <div class="notification-box">
+       <div class="msg-sidebar notifications msg-noti">
+          <div class="topnav-dropdown-header">
+             <span>Messages</span>
+          </div>
+          <div class="drop-scroll msg-list-scroll" id="msg_list">
+             <ul class="list-box">
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">R</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author">Richard Miles </span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item new-message">
+                         <div class="list-left">
+                            <span class="avatar">J</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author">John Doe</span>
+                            <span class="message-time">1 Aug</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">T</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author"> Tarah Shropshire </span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">M</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author">Mike Litorus</span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">C</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author"> Catherine Manseau </span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">D</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author"> Domenic Houston </span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">B</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author"> Buster Wigton </span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">R</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author"> Rolland Webber </span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">C</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author"> Claire Mapes </span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">M</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author">Melita Faucher</span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">J</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author">Jeffery Lalor</span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">L</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author">Loren Gatlin</span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="chat.html">
+                      <div class="list-item">
+                         <div class="list-left">
+                            <span class="avatar">T</span>
+                         </div>
+                         <div class="list-body">
+                            <span class="message-author">Tarah Shropshire</span>
+                            <span class="message-time">12:28 AM</span>
+                            <div class="clearfix"></div>
+                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                         </div>
+                      </div>
+                   </a>
+                </li>
+             </ul>
+          </div>
+          <div class="topnav-dropdown-footer">
+             <a href="chat.html">See all messages</a>
+          </div>
+       </div>
+    </div>
+ </div>
+
 
 @endsection

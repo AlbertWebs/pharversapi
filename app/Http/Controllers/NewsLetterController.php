@@ -16,7 +16,7 @@ class NewsLetterController extends Controller
             'zip'  => '00100',
         );
 
-        $email = "albertmuhatia@gmail.com";
+        $email = "balbertmuhatia@gmail.com";
         Newsletter::subscribe($email,
              [
                 'FNAME'=>'Albert',

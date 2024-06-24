@@ -58,8 +58,8 @@ Route::post('/create-company', [CompanyController::class, 'store'])->name('creat
 
 Route::get('/contents', [HomeController::class, 'contents_list']);
 Route::get('/pharvers-limited', [HomeController::class, 'pharvers']);
-Route::get('/terms-and-conditions', [HomeController::class, 'terms']);
-Route::get('/privacy-policy', [HomeController::class, 'privacy']);
+Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms-and-conditions');
+Route::get('/privacy-policy', [HomeController::class, 'privacy'])->name('privacy-policy');
 Route::get('/copyright', [HomeController::class, 'copyright']);
 
 
@@ -89,7 +89,16 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::group(['prefix' => '/dashboard'], function () {
         Route::get('/', [UserController::class, 'index'])->name('dashboard');
         Route::post('/post-subscription-update', [UserController::class, 'update'])->name('post-subscription-update');
+        Route::post('/update-profile', [UserController::class, 'update_profile'])->name('update-profile');
+        Route::post('/update-options', [UserController::class, 'update_options'])->name('update-options');
+        Route::get('/my-profile', [UserController::class, 'profile'])->name('my-profile');
+        Route::get('/my-profile-password', [UserController::class, 'password'])->name('my-profile-password');
+        Route::get('/subscription-options', [UserController::class, 'options'])->name('subscription-options');
+        Route::get('/whitepapers', [UserController::class, 'whitepapers'])->name('whitepapers');
 
+        // OneTime Run
+        Route::get('/subscription-options-update', [UserController::class, 'options_update'])->name('subscription-options-update');
+        Route::get('/areas-update', [UserController::class, 'areas_update'])->name('areas-update');
     });
 });
 
@@ -123,8 +132,6 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
 
         // Ajax
         Route::put('updateSiteSettingsAjax', [DashboardController::class, 'updateSiteSettingsAjax']);
-
-
     });
 });
 
