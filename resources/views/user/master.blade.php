@@ -86,11 +86,16 @@
             <div class="dropdown mobile-user-menu float-end">
                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></a>
                <div class="dropdown-menu dropdown-menu-end">
-                  <a class="dropdown-item" href="profile.html">My Profile</a>
-                  <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
-                  <a class="dropdown-item" href="settings.html">Settings</a>
-                  <a class="dropdown-item" href="login.html">Logout</a>
+                  <a class="dropdown-item" href="{{route('my-profile')}}">My Profile</a>
+                  <a class="dropdown-item" href="{{route('subscription-options')}}">Edit Subscription</a>
+                  <a onclick="document.getElementById('logout-form').submit();" class="dropdown-item" href="#">Logout</a>
                </div>
+               {{--  --}}
+
+             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+               @csrf
+             </form>
+               {{--  --}}
             </div>
          </div>
          <div class="sidebar" id="sidebar">
