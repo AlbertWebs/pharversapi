@@ -81,11 +81,17 @@
                         {{--  --}}
                         <div class="footer-social">
                             <ul class="list-wrap">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i>Facebook</a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i>Twitter</a></li>
-                                {{-- <li><a href="#"><i class="fab fa-instagram"></i>Instagram</a></li> --}}
-                                <li><a href="#"><i class="fab fa-youtube"></i>Youtube</a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i>Linkedin </a></li>
+
+                                <?php
+                                    $Settings = DB::table('_site_settings')->get();
+                                ?>
+                                @foreach ($Settings as $Set)
+                                <li><a href="{{$Set->facebook}}"><i class="fab fa-facebook-f"></i>Facebook</a></li>
+                                <li><a href="{{$Set->twitter}}"><i class="fab fa-twitter"></i>Twitter</a></li>
+                                {{-- <li><a href="#"><i class="fab fa-instagram"></i></a></li> --}}
+                                <li><a href="{{$Set->linkedin}}"><i class="fab fa-linkedin-in"></i>Linkedin</a></li>
+                                <li><a href="{{$Set->youtube}}"><i class="fab fa-youtube"></i>Youtube</a></li>
+                                @endforeach
                             </ul>
                         </div>
                         {{--  --}}

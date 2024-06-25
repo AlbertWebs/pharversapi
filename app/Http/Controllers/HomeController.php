@@ -54,6 +54,16 @@ class HomeController extends Controller
          }
     }
 
+    public function search(Request $request){
+        $Posts = DB::table('blogs')->where('title','LIKE',"%{$request->keyword}%")->get();
+        foreach($Posts as $posts){
+            $page_topic = $posts->type;
+            $page_title = "Search for $request->keyword";
+            $page_slung = $posts->slung;
+            return view('front.search', compact('page_title','page_topic','Posts','page_slung'));
+        }
+    }
+
     public function topic_explore($topic, $slung){
         $Posts = DB::table('blogs')->where('slung',$slung)->get();
         foreach($Posts as $posts){

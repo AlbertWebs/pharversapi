@@ -9,6 +9,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubscriberController;
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\Auth\LoginRegisterController;
@@ -42,6 +44,9 @@ Route::get('/author/{slung}', [HomeController::class, 'author']);
 Route::get('/videos', [HomeController::class, 'videos']);
 Route::post('/advertise-with-us', [HomeController::class, 'advertise_post'])->name('advertise-with-us');
 
+Route::post('/search', [HomeController::class, 'search'])->name('search');
+
+
 Route::get('/podcasts', [HomeController::class, 'podcasts']);
 Route::get('/podcasts/{slung}', [HomeController::class, 'podcast']);
 Route::get('/topics/{topic}', [HomeController::class, 'topics']);
@@ -50,7 +55,7 @@ Route::get('/about-us', [HomeController::class, 'about']);
 Route::get('/companies/featured-companies', [HomeController::class, 'companies']);
 Route::get('/companies/featured-companies/{slung}', [HomeController::class, 'company']);
 Route::get('/advertise-with-us', [HomeController::class, 'advertise']);
-Route::get('/write-for-us', [HomeController::class, 'write']);
+Route::get('/write-for-us', [HomeController::class, 'write'])->name('write-for-us');
 Route::get('/write-for-us/step-2', [HomeController::class, 'step_2'])->name('step-2');
 Route::get('/write-for-us/step-3', [HomeController::class, 'step_3'])->name('step-3');
 Route::post('/custom-register', [LoginRegisterController::class, 'store'])->name('custom-register');
@@ -63,7 +68,7 @@ Route::get('/privacy-policy', [HomeController::class, 'privacy'])->name('privacy
 Route::get('/copyright', [HomeController::class, 'copyright']);
 
 
-Route::get('/search-product', [HomeController::class, 'search'])->name('search');
+// Route::get('/search-product', [HomeController::class, 'search'])->name('search');
 Route::get('/frequently-asked-questions/{slung}', [HomeController::class, 'faq']);
 Route::get('/clients', [HomeController::class, 'clients']);
 Route::post('/subscribe', [MailChimpController::class, 'subscribe']);
@@ -71,6 +76,7 @@ Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('con
 Route::post('/open-hidden-content', [HomeController::class, 'hidden'])->name('open-hidden-content');
 
 
+Route::get('/home', [HomeController::class, 'index'])->name('open-thanks-home');
 Route::get('/thanks', [HomeController::class, 'thanks'])->name('open-thanks');
 
 Route::get('ckeditor/create', 'CkeditorController@create')->name('ckeditor.create');
@@ -84,6 +90,10 @@ Route::post('product/img', [HomeController::class, 'uploadMedia'])->name('admin.
 Route::get('subscribe', [NewsLetterController::class, 'subscribe'])->name('subscribe.mailchimp');
 Route::get('unsubscribe', [NewsLetterController::class, 'unsubscribe'])->name('unsubscribe.mailchimp');
 
+Route::group(['prefix' => '/subscribers'], function () {
+    Route::get('/thank-you', [App\Http\Controllers\SubscriberController::class, 'thank'])->name('thank-you');
+    Route::post('/post-subscription', [App\Http\Controllers\SubscriberController::class, 'subscription'])->name('post-subscription');
+});
 
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::group(['prefix' => '/dashboard'], function () {
@@ -99,6 +109,8 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
         // OneTime Run
         Route::get('/subscription-options-update', [UserController::class, 'options_update'])->name('subscription-options-update');
         Route::get('/areas-update', [UserController::class, 'areas_update'])->name('areas-update');
+        Route::get('/allSubscribers', [UserController::class, 'allSubscribers'])->name('allSubscribers');
+
     });
 });
 

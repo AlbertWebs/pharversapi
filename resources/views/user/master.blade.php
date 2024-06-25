@@ -73,10 +73,9 @@
                      </span>
                   </a>
                   <div class="dropdown-menu">
-                     <a class="dropdown-item" href="profile.html">My Profile</a>
-                     <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
-                     <a class="dropdown-item" href="settings.html">Settings</a>
-                     <a class="dropdown-item" href="login.html">Logout</a>
+                    <a class="dropdown-item" href="{{route('my-profile')}}">My Profile</a>
+                  <a class="dropdown-item" href="{{route('subscription-options')}}">Edit Subscription</a>
+                     <a onclick="document.getElementById('logout-form').submit();" class="dropdown-item" href="#">Logout</a>
                   </div>
                </li>
                {{-- <li class="nav-item ">

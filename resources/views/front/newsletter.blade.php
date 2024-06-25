@@ -21,10 +21,16 @@
                         <div class="newsletter-social">
                             <h4 class="title">Follow Us:</h4>
                             <ul class="list-wrap">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <?php
+                                            $Settings = DB::table('_site_settings')->get();
+                                        ?>
+                                        @foreach ($Settings as $Set)
+                                        <li><a href="{{$Set->facebook}}"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="{{$Set->twitter}}"><i class="fab fa-twitter"></i></a></li>
+                                        {{-- <li><a href="#"><i class="fab fa-instagram"></i></a></li> --}}
+                                        <li><a href="{{$Set->linkedin}}"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="{{$Set->youtube}}"><i class="fab fa-youtube"></i></a></li>
+                                        @endforeach
                             </ul>
                         </div>
                     </div>

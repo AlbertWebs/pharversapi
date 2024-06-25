@@ -351,97 +351,97 @@ class UserController extends Controller
         if( $request->has('Microbiology') ){
             $Microbiology = "Yes";
         }else{
-            $Microbiology = null;
+            $Microbiology = "No";
         }
         if( $request->has('Drug_Delivery') ){
             $Drug_Delivery = "Yes";
         }else
         {
-            $Drug_Delivery = null;
+            $Drug_Delivery = "No";
         }
         if( $request->has('Formulation_Development') )
         {
             $Formulation_Development = "Yes";
         }else{
-            $Formulation_Development = null;
+            $Formulation_Development = "No";
         }
         if( $request->has('Bioprocessing') ){
             $Bioprocessing = "Yes";
         }else{
-            $Bioprocessing = null;
+            $Bioprocessing = "No";
         }
         // do the rest
         if( $request->has('Analytical_Techniques') ){
             $Analytical_Techniques = "Yes";
         }else{
-            $Analytical_Techniques = null;
+            $Analytical_Techniques = "No";
         }
         if( $request->has('Manufacturing') ){
             $Manufacturing = "Yes";
         }else{
-            $Manufacturing = null;
+            $Manufacturing = "No";
         }
         if( $request->has('QA/QC') ){
             $QA_QC = "Yes";
         }else{
-            $QA_QC = null;
+            $QA_QC = "No";
         }
         if( $request->has('Biopharma') ){
             $Biopharma = "Yes";
         }else{
-            $Biopharma = null;
+            $Biopharma = "No";
         }
         if( $request->has('Packaging_and_Labelling') ){
             $Packaging_and_Labelling = "Yes";
         }else{
-            $Packaging_and_Labelling = null;
+            $Packaging_and_Labelling = "No";
         }
         if( $request->has('Regulatory_Affairs') ){
             $Regulatory_Affairs = "Yes";
         }else{
-            $Regulatory_Affairs = null;
+            $Regulatory_Affairs = "No";
         }
 
         if( $request->has('Health_Supply_Chain_Management') ){
             $Health_Supply_Chain_Management = "Yes";
         }else{
-            $Health_Supply_Chain_Management = null;
+            $Health_Supply_Chain_Management = "No";
         }
 
         if( $request->has('Artificial_Intelligence') ){
             $Artificial_Intelligence = "Yes";
         }else{
-            $Artificial_Intelligence = null;
+            $Artificial_Intelligence = "No";
         }
         if( $request->has('Digital_version') ){
             $Digital_version = "Yes";
         }else{
-            $Digital_version = null;
+            $Digital_version = "No";
         }
         if( $request->has('Newsletter') ){
             $Newsletter = "Yes";
         }else{
-            $Newsletter = null;
+            $Newsletter = "No";
         }
         if( $request->has('Third_party') ){
             $Third_party = "Yes";
         }else{
-            $Third_party = null;
+            $Third_party = "No";
         }
         if( $request->has('Webinar_notifications') ){
             $Webinar_notifications = "Yes";
         }else{
-            $Webinar_notifications = null;
+            $Webinar_notifications = "No";
         }
         if( $request->has('Printed_Version_of_Magazine') ){
             $Printed_Version_of_Magazine = "Yes";
         }else{
-            $Printed_Version_of_Magazine = null;
+            $Printed_Version_of_Magazine = "No";
         }
         if( $request->has('Event_notifications') ){
             $Event_notifications = "Yes";
         }else{
-            $Event_notifications = null;
+            $Event_notifications = No;
         }
 
         $updateUserDetails = array(
@@ -465,7 +465,51 @@ class UserController extends Controller
             'Event_notifications' => $Event_notifications,
         );
         DB::table('users')->where('id', Auth::User()->id)->update($updateUserDetails);
+        // Update Newsletter
+        $CollectAddres =  array(
+            'addr1' => Auth::User()->address,
+            'city'  => Auth::User()->city,
+            'state'  => Auth::User()->state,
+            'zip'  => '00100',
+        );
+
+        $email = Auth::User()->email;
+        Newsletter::subscribeOrUpdate($email,
+             [
+                'FNAME'=>Auth::User()->fname,
+                'LNAME'=>Auth::User()->lname,
+                'ADDRESS'=>$CollectAddres,
+                'PHONE'=>Auth::User()->phone,
+                'BIRTHDAY'=>'04/08',
+                'MMERGE6'=>$Drug_Delivery, //Drug Delivery
+                'MMERGE7'=>$Microbiology, //Microbiology
+                'MMERGE8'=>$Analytical_Techniques, //Analytical Techniques
+                'MMERGE9'=>$Formulation_Development, //Formulation Development
+                'MMERGE10'=>$Bioprocessing, //Bioprocessing
+                'MMERGE11'=>$Manufacturing, //Manufacturing
+                'MMERGE12'=>$QA_QC, //Quality Assurance /Quality Control,
+                'MMERGE13'=>$Biopharma, //Biopharma
+                'MMERGE14'=>$Packaging_and_Labelling, //Packaging and Labelling
+                'MMERGE15'=>$Regulatory_Affairs, //Regulatory Affairs
+                'MMERGE16'=>$Health_Supply_Chain_Management, //Health Supply Chain Management
+                'MMERGE17'=>$Artificial_Intelligence, //Artificial Intelligence
+                'MMERGE18'=>$Digital_version, //Digital version of the African Pharmaceutical Review (published quarterly)
+                'MMERGE19'=>$Newsletter, //Newsletter
+                'MMERGE20'=>$Third_party, //Third party (application notes, product development and updates from partners)
+                'MMERGE21'=>$Webinar_notifications, //Webinar notifications
+                'MMERGE22'=>$Printed_Version_of_Magazine, //Printed Version of Magazine
+                'MMERGE24'=>Auth::User()->country, //Printed Version of Magazine
+                'MMERGE23'=>$Event_notifications //Event notifications
+            ]);
+
         return Redirect::back();
+    }
+
+    public function allSubscribers(){
+        $Users = User::all();
+        foreach($Users as $User){
+            Newsletter::subscribe($User->email);
+        }
     }
 
     // generic upload

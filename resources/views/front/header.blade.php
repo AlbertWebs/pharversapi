@@ -65,18 +65,24 @@
                         <div class="col-lg-8">
                             <div class="hl-right-side">
                                 <div class="header-search-wrap">
-                                    <form action="#">
-                                        <input type="text" placeholder="Search here . . .">
+                                    <form action="{{route('search')}}" Method="POST">
+                                        @csrf
+                                        <input type="text" name="keyword" placeholder="Search here . . .">
                                         <button type="submit"><i class="flaticon-search"></i></button>
                                     </form>
                                 </div>
                                 <div class="header-social">
                                     <ul class="list-wrap">
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                        <?php
+                                            $Settings = DB::table('_site_settings')->get();
+                                        ?>
+                                        @foreach ($Settings as $Set)
+                                        <li><a href="{{$Set->facebook}}"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="{{$Set->twitter}}"><i class="fab fa-twitter"></i></a></li>
+                                        {{-- <li><a href="#"><i class="fab fa-instagram"></i></a></li> --}}
+                                        <li><a href="{{$Set->linkedin}}"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="{{$Set->youtube}}"><i class="fab fa-youtube"></i></a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                                 {{--  --}}
@@ -203,11 +209,15 @@
                                         </div>
                                     <div class="social-links">
                                         <ul class="clearfix list-wrap">
-                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+
+                                            @foreach ($Settings as $Set)
+                                            <li><a href="{{$Set->facebook}}"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="{{$Set->twitter}}"><i class="fab fa-twitter"></i></a></li>
                                             {{-- <li><a href="#"><i class="fab fa-instagram"></i></a></li> --}}
-                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                            <li><a href="{{$Set->linkedin}}"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="{{$Set->youtube}}"><i class="fab fa-youtube"></i></a></li>
+                                            @endforeach
+
                                         </ul>
                                     </div>
                                 </nav>
