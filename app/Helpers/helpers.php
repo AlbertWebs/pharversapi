@@ -48,7 +48,12 @@ function add_nol($number,$add_nol) {
 
 function getAuthor($id){
     $author = \App\Models\User::find($id);
-    return $author->name;
+    if($author == null){
+        $author = \App\Models\User::find(1);
+        return 'Bevin Likuyani';
+    }else{
+        return $author->name;
+    }
 }
 
 function getAuthorSlung($id){
