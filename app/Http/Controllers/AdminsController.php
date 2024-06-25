@@ -2088,8 +2088,21 @@ class AdminsController extends Controller
         return response()->json(['success'=>'Status Successfully!']);
     }
 
-
-
+    public function switchActiveAjaxRequest(Request $request){
+        $AdsId = $request->TheId;
+        $Advertisement = Blog::find($AdsId);
+        if($Advertisement->active == 1){
+            $newStatus = "0";
+        }else{
+            $newStatus = "1";
+        }
+        $updateDetails = array(
+            'active' => $newStatus,
+        );
+        DB::table('blogs')->where('id', $AdsId)->update($updateDetails);
+        activity()->log('Evoked a Switch Active Request');
+        return response()->json(['success'=>'Status Successfully!']);
+    }
 
     public function deleteWaterAjax(Request $request){
         activity()->log('Evoked a delete Categorgy Request');
@@ -2917,14 +2930,23 @@ class AdminsController extends Controller
     }
 
 
+    // public function genericFIleUpload($file,$dir,$realPath){
+    //     $filename = $file->getClientOriginalName();
+    //     $store = $file->storeAs(path: ''.$dir.'/'.$filename, options: 's3');
+    //     Storage::disk('s3')->put(''.$dir.'/'.$filename, file_get_contents($realPath));
+    //     // $url = Storage::disk('s3')->temporaryUrl('podcasts/'.$filename,now()->addMinutes(10));
+    //     $SaveFilePath = "https://africanpharmaceuticalreviewbucket.s3.eu-central-1.amazonaws.com/$dir/$filename";
+    //     return $SaveFilePath;
+    // }
+
     public function genericFIleUpload($file,$dir,$realPath){
-        $filename = $file->getClientOriginalName();
-        $store = $file->storeAs(path: ''.$dir.'/'.$filename, options: 's3');
-        Storage::disk('s3')->put(''.$dir.'/'.$filename, file_get_contents($realPath));
-        // $url = Storage::disk('s3')->temporaryUrl('podcasts/'.$filename,now()->addMinutes(10));
-        $SaveFilePath = "https://africanpharmaceuticalreviewbucket.s3.eu-central-1.amazonaws.com/$dir/$filename";
-        return $SaveFilePath;
+        $image_name = $file->getClientOriginalName();
+        $file->move(public_path($dir),$image_name);
+        $url = url('/');
+        $image_path = "$url/$dir/" . $image_name;
+        return $image_path;
     }
+
 
 }
 

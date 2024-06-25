@@ -60,7 +60,7 @@ class CompanyController extends Controller
             'twitter' => $request->twitter,
             'image' => $SaveFilePath,
         ]);
-        $Last =  DB::table('companies')->latest('upload_time')->first();
+        $Last =  DB::table('companies')->latest('id')->first();
 
         $updateDetails = array(
             'company_id' => $Last->id
@@ -70,13 +70,21 @@ class CompanyController extends Controller
         return response(["success" => true])->header('Content-Type', 'application/json');
     }
 
+    // public function genericFIleUpload($file,$dir,$realPath){
+    //     $filename = $file->getClientOriginalName();
+    //     $store = $file->storeAs(path: ''.$dir.'/'.$filename, options: 's3');
+    //     Storage::disk('s3')->put(''.$dir.'/'.$filename, file_get_contents($realPath));
+    //     // $url = Storage::disk('s3')->temporaryUrl('podcasts/'.$filename,now()->addMinutes(10));
+    //     $SaveFilePath = "https://africanpharmaceuticalreviewbucket.s3.eu-central-1.amazonaws.com/$dir/$filename";
+    //     return $SaveFilePath;
+    // }
+
     public function genericFIleUpload($file,$dir,$realPath){
-        $filename = $file->getClientOriginalName();
-        $store = $file->storeAs(path: ''.$dir.'/'.$filename, options: 's3');
-        Storage::disk('s3')->put(''.$dir.'/'.$filename, file_get_contents($realPath));
-        // $url = Storage::disk('s3')->temporaryUrl('podcasts/'.$filename,now()->addMinutes(10));
-        $SaveFilePath = "https://africanpharmaceuticalreviewbucket.s3.eu-central-1.amazonaws.com/$dir/$filename";
-        return $SaveFilePath;
+        $image_name = $file->getClientOriginalName();
+        $file->move(public_path($dir),$image_name);
+        $url = url('/');
+        $image_path = "$url/$dir/" . $image_name;
+        return $image_path;
     }
 
 

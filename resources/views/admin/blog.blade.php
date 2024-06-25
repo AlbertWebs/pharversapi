@@ -46,6 +46,7 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Active</th>
                             <th>Featured</th>
                             <th>Topics</th>
                             <th>Content Types</th>
@@ -60,6 +61,24 @@
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->title}}</td>
+                            <td>
+                                <!-- Switch -->
+                                <div class="switch">
+                                    @if($item->active == 1)
+                                    <label>
+                                        On
+                                        <input class="switchers" checked type="checkbox" id="{{$item->id}}">
+                                        <span class="lever"></span> On
+                                    </label>
+                                    @else
+                                    <label>
+                                        off
+                                        <input class="switchers" type="checkbox" id="{{$item->id}}">
+                                        <span class="lever"></span> off
+                                    </label>
+                                    @endif
+                                </div>
+                            </td>
                             <td>
                                 <!-- Switch -->
                                 <div class="switch">
@@ -196,6 +215,51 @@
       });
 </script>
 
+<script>
+    $('.switchers').click(function() {
+    // alert($(this).attr('id'));
+    var id = $(this).attr('id');
+    datas = {
+            TheId: $(this).attr('id'),
+            "_token": "{{ csrf_token() }}",
+        }
+    // alert(id)
+       if(this.checked){
+            $.ajax({
+                type: "POST",
+                url: '{{url('/')}}/admin/switchActiveAjaxRequest',
+                data: datas,  //--> send id of checked checkbox on other page
+                success: function(data) {
+                    // alert("Success");
+                    // $('#container').html(data);
+                },
+                 error: function() {
+                    // alert('it broke');
+                },
+                complete: function() {
+                    // alert('it completed');
+                }
+            });
+
+        }else{
+            $.ajax({
+                type: "POST",
+                url: '{{url('/')}}/admin/switchActiveAjaxRequest',
+                data: datas,  //--> send id of checked checkbox on other page
+                success: function(data) {
+                    // alert("Success");
+                    // $('#container').html(data);
+                },
+                 error: function() {
+                    // alert('it broke');
+                },
+                complete: function() {
+                    // alert('it completed');
+                }
+            });
+        }
+      });
+</script>
 {{--  --}}
 <div id="ex1" class="modal">
     <div class="sb2-2-3">

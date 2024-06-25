@@ -383,12 +383,21 @@ class DashboardController extends Controller
     }
 
 
-    public function genericFIleUpload($file,$dir,$realPath){
-        $filename = $file->getClientOriginalName();
-        $store = $file->storeAs(path: ''.$dir.'/'.$filename, options: 's3');
-        Storage::disk('s3')->put(''.$dir.'/'.$filename, file_get_contents($realPath));
-        // $url = Storage::disk('s3')->temporaryUrl('podcasts/'.$filename,now()->addMinutes(10));
-        $SaveFilePath = "https://africanpharmaceuticalreviewbucket.s3.eu-central-1.amazonaws.com/$dir/$filename";
-        return $SaveFilePath;
+    // public function genericFIleUpload($file,$dir,$realPath){
+    //     $filename = $file->getClientOriginalName();
+    //     $store = $file->storeAs(path: ''.$dir.'/'.$filename, options: 's3');
+    //     Storage::disk('s3')->put(''.$dir.'/'.$filename, file_get_contents($realPath));
+    //     // $url = Storage::disk('s3')->temporaryUrl('podcasts/'.$filename,now()->addMinutes(10));
+    //     $SaveFilePath = "https://africanpharmaceuticalreviewbucket.s3.eu-central-1.amazonaws.com/$dir/$filename";
+    //     return $SaveFilePath;
+    // }
+
+     // S3
+     public function genericFIleUpload($file,$dir,$realPath){
+        $image_name = $file->getClientOriginalName();
+        $file->move(public_path($dir),$image_name);
+        $url = url('/');
+        $image_path = "$url/$dir/" . $image_name;
+        return $image_path;
     }
 }

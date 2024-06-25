@@ -90,11 +90,8 @@ Route::post('product/img', [HomeController::class, 'uploadMedia'])->name('admin.
 Route::get('subscribe', [NewsLetterController::class, 'subscribe'])->name('subscribe.mailchimp');
 Route::get('unsubscribe', [NewsLetterController::class, 'unsubscribe'])->name('unsubscribe.mailchimp');
 
-Route::group(['prefix' => '/subscribers'], function () {
-    Route::get('/thank-you', [App\Http\Controllers\SubscriberController::class, 'thank'])->name('thank-you');
-    Route::post('/post-subscription', [App\Http\Controllers\SubscriberController::class, 'subscription'])->name('post-subscription');
-});
 
+Route::get('/subscribe-flow', [HomeController::class, 'subscribe']);
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::group(['prefix' => '/dashboard'], function () {
         Route::get('/', [UserController::class, 'index'])->name('dashboard');
@@ -457,6 +454,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('deleteVideoAjax', [AdminsController::class, 'deleteVideoAjax']);
         Route::post('switchAdsAjaxRequest', [AdminsController::class, 'switchAdsAjaxRequest']);
         Route::post('switchFeatredAjaxRequest', [AdminsController::class, 'switchFeatredAjaxRequest']);
+        Route::post('switchActiveAjaxRequest', [AdminsController::class, 'switchActiveAjaxRequest']);
 
 
         Route::get('addProductToFacebookPixel', [AdminsController::class, 'addProductToFacebookPixel']);
@@ -483,3 +481,5 @@ All Managers Routes List
 
 
 
+Route::get('/subscribers/thank-you', [App\Http\Controllers\SubscriberController::class, 'thank'])->name('thank-you');
+Route::post('/subscribers/post-subscription', [App\Http\Controllers\SubscriberController::class, 'subscription'])->name('post-subscription');

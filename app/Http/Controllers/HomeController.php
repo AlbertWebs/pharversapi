@@ -54,6 +54,10 @@ class HomeController extends Controller
          }
     }
 
+    public function subscribe(){
+        return view('subscribers.wizard');
+    }
+
     public function search(Request $request){
         $Posts = DB::table('blogs')->where('title','LIKE',"%{$request->keyword}%")->get();
         foreach($Posts as $posts){

@@ -29,28 +29,6 @@
                 </div>
             </li>
 
-         <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-podcast" aria-hidden="true"></i> Podcasts </a>
-            <div class="collapsible-body left-sub-menu">
-               <ul>
-                  <li><a href="{{url('/')}}/manager/dashboard/podcasts">My Podcasts</a>
-                  </li>
-                  <li><a href="{{url('/')}}/manager/dashboard/addPodcast">Add Podcast</a>
-                  </li>
-               </ul>
-            </div>
-         </li>
-         <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-video-camera" aria-hidden="true"></i> Videos </a>
-            <div class="collapsible-body left-sub-menu">
-               <ul>
-                  <li><a href="{{url('/')}}/manager/dashboard/videos">My Videos</a>
-                  </li>
-                  <li><a href="{{url('/')}}/manager/dashboard/addVideo">Add Video</a>
-                  </li>
-               </ul>
-            </div>
-         </li>
 
 
          <li><a href="{{url('/')}}/manager/dashboard/logo-and-favicon"><i class="fa fa-info" aria-hidden="true"></i> Logo & Favicon </a>
