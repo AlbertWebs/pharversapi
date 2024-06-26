@@ -1356,7 +1356,7 @@ class AdminsController extends Controller
             'type' => $request->type,
             'slung' => Str::slug($request->title),
             'content' => $request->ckeditor,
-            'author' => $request->author,
+            'author' => Auth::user()->id,
             'category' => $request->category,
             'tags' => $request->tags,
             'image_one' =>$SaveFilePath,
