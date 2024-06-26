@@ -117,7 +117,7 @@
 
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input required autocomplete="off" value="{{Auth::user()->name }}" id="post-auth" name="author" type="text" class="validate">
+                                    <input required autocomplete="off" value="{{Auth::user()->id }}" id="post-auth" name="author" type="text" class="validate">
                                     <label for="post-auth">Author Name</label>
                                 </div>
                             </div>
