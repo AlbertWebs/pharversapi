@@ -482,4 +482,4 @@ All Managers Routes List
 
 
 Route::get('/subscribers/thank-you', [App\Http\Controllers\SubscriberController::class, 'thank'])->name('thank-you');
-Route::post('/subscribers/post-subscription', [App\Http\Controllers\SubscriberController::class, 'subscription'])->name('post-subscription');
+Route::post('/post-subscription', [App\Http\Controllers\SubscriberController::class, 'subscription'])->name('post-subscription');
