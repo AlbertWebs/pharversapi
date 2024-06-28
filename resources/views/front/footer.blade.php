@@ -104,8 +104,8 @@
                             <div class="col-md-4">
                                 <div class="footer-bottom-menu">
                                     <ul class="list-wrap">
-                                        <li><a href="#">Privacy Policy</a></li>
-                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="{{route('privacy-policy')}}">Privacy Policy</a></li>
+                                        <li><a href="{{route('terms-and-conditions')}}">Terms & Conditions</a></li>
                                         <li><a href="#">Sitemaps</a></li>
                                     </ul>
                                 </div>

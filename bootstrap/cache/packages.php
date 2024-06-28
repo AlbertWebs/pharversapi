@@ -95,6 +95,13 @@
       'Newsletter' => 'Spatie\\Newsletter\\Facades\\Newsletter',
     ),
   ),
+  'spatie/laravel-sitemap' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Sitemap\\SitemapServiceProvider',
+    ),
+  ),
   'van-ons/laraberg' => 
   array (
     'providers' => 'VanOns\\Laraberg\\LarabergServiceProvider',

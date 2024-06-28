@@ -52,6 +52,10 @@ class NewsLetterController extends Controller
         $email = "albertmuhatia@gmail.com";
         Newsletter::unsubscribe($email);
     }
+
+    public function allSubscribe(){
+
+    }
 }
 
 // Areas of interest:

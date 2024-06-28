@@ -10,7 +10,6 @@ use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubscriberController;
-
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\Auth\LoginRegisterController;
@@ -26,32 +25,17 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 |
 */
 
-// Route::get('/home', function () {
-//     return view('welcome');
-// });
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/topics', [HomeController::class, 'topics_list']);
 Route::get('/topic/{slung}', [HomeController::class, 'topic']);
 Route::get('/topic/{slung}/{product}', [HomeController::class, 'topic_explore']);
 Route::get('/topics/{slung}/{product}', [HomeController::class, 'topic_explore']);
-
-
-Route::get('/sitemaps', [HomeController::class, 'sitemaps']);
-Route::get('/upload-subscribers', [allSubscribe::class, 'sitemaps']);
-
-
-
-//
 Route::get('/contents', [HomeController::class, 'contents_list']);
 Route::get('/contents/{slung}', [HomeController::class, 'contents_single']);
 Route::get('/author/{slung}', [HomeController::class, 'author']);
-
 Route::get('/videos', [HomeController::class, 'videos']);
 Route::post('/advertise-with-us', [HomeController::class, 'advertise_post'])->name('advertise-with-us');
-
 Route::post('/search', [HomeController::class, 'search'])->name('search');
-
-
 Route::get('/podcasts', [HomeController::class, 'podcasts']);
 Route::get('/podcasts/{slung}', [HomeController::class, 'podcast']);
 Route::get('/topics/{topic}', [HomeController::class, 'topics']);
@@ -65,40 +49,32 @@ Route::get('/write-for-us/step-2', [HomeController::class, 'step_2'])->name('ste
 Route::get('/write-for-us/step-3', [HomeController::class, 'step_3'])->name('step-3');
 Route::post('/custom-register', [LoginRegisterController::class, 'store'])->name('custom-register');
 Route::post('/create-company', [CompanyController::class, 'store'])->name('create-company');
-
 Route::get('/contents', [HomeController::class, 'contents_list']);
 Route::get('/pharvers-limited', [HomeController::class, 'pharvers']);
 Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms-and-conditions');
 Route::get('/privacy-policy', [HomeController::class, 'privacy'])->name('privacy-policy');
 Route::get('/copyright', [HomeController::class, 'copyright']);
-
-
-// Route::get('/search-product', [HomeController::class, 'search'])->name('search');
 Route::get('/frequently-asked-questions/{slung}', [HomeController::class, 'faq']);
 Route::get('/clients', [HomeController::class, 'clients']);
 Route::post('/subscribe', [MailChimpController::class, 'subscribe']);
 Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('contact-form');
 Route::post('/open-hidden-content', [HomeController::class, 'hidden'])->name('open-hidden-content');
-
-
 Route::get('/home', [HomeController::class, 'index'])->name('open-thanks-home');
 Route::get('/thanks', [HomeController::class, 'thanks'])->name('open-thanks');
-
-Route::get('ckeditor/create', 'CkeditorController@create')->name('ckeditor.create');
-Route::post('ckeditor', 'CkeditorController@store')->name('ckeditor.store');
-Route::post('upload', 'CkeditorController@upload')->name('ckeditor.upload');
-Route::post('ck-upload', 'CkeditorController@upload')->name('ckeditor.uploader');
 Route::post('product/img', [HomeController::class, 'uploadMedia'])->name('admin.product.uploadMedia');
 
-
-// Mailchimp Newsletters
+//Mailchimp Newsletters
 Route::get('subscribe', [NewsLetterController::class, 'subscribe'])->name('subscribe.mailchimp');
 Route::get('unsubscribe', [NewsLetterController::class, 'unsubscribe'])->name('unsubscribe.mailchimp');
+Route::get('/subscribers/thank-you', [App\Http\Controllers\SubscriberController::class, 'thank'])->name('thank-you');
+Route::post('/subscribers/post-subscription', [App\Http\Controllers\SubscriberController::class, 'subscription'])->name('post-subscription');
 
 
 Route::get('/subscribe-flow', [HomeController::class, 'subscribe']);
+
+
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-    Route::group(['prefix' => '/dashboard'], function () {
+    Route::group(['prefix' => 'user-dashboard'], function () {
         Route::get('/', [UserController::class, 'index'])->name('dashboard');
         Route::post('/post-subscription-update', [UserController::class, 'update'])->name('post-subscription-update');
         Route::post('/update-profile', [UserController::class, 'update_profile'])->name('update-profile');
@@ -107,45 +83,36 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
         Route::get('/my-profile-password', [UserController::class, 'password'])->name('my-profile-password');
         Route::get('/subscription-options', [UserController::class, 'options'])->name('subscription-options');
         Route::get('/whitepapers', [UserController::class, 'whitepapers'])->name('whitepapers');
-
         // OneTime Run
         Route::get('/subscription-options-update', [UserController::class, 'options_update'])->name('subscription-options-update');
         Route::get('/areas-update', [UserController::class, 'areas_update'])->name('areas-update');
         Route::get('/allSubscribers', [UserController::class, 'allSubscribers'])->name('allSubscribers');
-
     });
 });
 
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
-    Route::group(['prefix' => '/manager/dashboard'], function () {
-
-        Route::get('/', [DashboardController::class, 'index'])->name('manager.home');
-        Route::get('/home', [DashboardController::class, 'index'])->name('manager.home');
-
-        Route::get('/blog', [DashboardController::class, 'blog'])->name('manager.blog');
-        Route::get('/addBlog', [DashboardController::class, 'addBlog'])->name('manager.addBlog');
-        Route::post('/add_Blog', [DashboardController::class, 'add_Blog'])->name('manager.add_Blog');
-        Route::get('/editBlog/{id}', [DashboardController::class, 'editBlog'])->name('manager.editBlog');
-        Route::post('/edit_Blog/{id}', [DashboardController::class, 'edit_Blog'])->name('manager.edit_Blog');
-
-        Route::get('/podcasts', [DashboardController::class, 'podcasts'])->name('manager.podcasts');
-        Route::get('/addPodcast', [DashboardController::class, 'addPodcast'])->name('manager.addPodcast');
-        Route::post('/add_Podcast', [DashboardController::class, 'add_Podcast'])->name('manager.add_Podcast');
-
-        Route::get('/videos', [DashboardController::class, 'videos'])->name('manager.videos');
-        Route::get('/addVideo', [DashboardController::class, 'addVideo'])->name('manager.addVideo');
-        Route::post('/add_Video', [DashboardController::class, 'add_Video'])->name('manager.add_Video');
-        Route::get('/editVideo/{id}', [DashboardController::class, 'editVideo'])->name('manager.editVideo');
-        Route::post('/edit_Video/{id}', [DashboardController::class, 'edit_Video'])->name('manager.edit_Video');
-
+    Route::group(['prefix' => 'dashboard'], function () {
+        Route::get('/manager/home', [DashboardController::class, 'index'])->name('manager.home');
+        Route::get('/manager/blog', [DashboardController::class, 'blog'])->name('manager.blog');
+        Route::get('/manager/addBlog', [DashboardController::class, 'addBlog'])->name('manager.addBlog');
+        Route::post('/manager/add_Blog', [DashboardController::class, 'add_Blog'])->name('manager.add_Blog');
+        Route::get('/manager/editBlog/{id}', [DashboardController::class, 'editBlog'])->name('manager.editBlog');
+        Route::post('/manager/edit_Blog/{id}', [DashboardController::class, 'edit_Blog'])->name('manager.edit_Blog');
+        Route::get('/manager/podcasts', [DashboardController::class, 'podcasts'])->name('manager.podcasts');
+        Route::get('/manager/addPodcast', [DashboardController::class, 'addPodcast'])->name('manager.addPodcast');
+        Route::post('/manager/add_Podcast', [DashboardController::class, 'add_Podcast'])->name('manager.add_Podcast');
+        Route::get('/manager/videos', [DashboardController::class, 'videos'])->name('manager.videos');
+        Route::get('/manager/addVideo', [DashboardController::class, 'addVideo'])->name('manager.addVideo');
+        Route::post('/manager/add_Video', [DashboardController::class, 'add_Video'])->name('manager.add_Video');
+        Route::get('/manager/editVideo/{id}', [DashboardController::class, 'editVideo'])->name('manager.editVideo');
+        Route::post('/manager/edit_Video/{id}', [DashboardController::class, 'edit_Video'])->name('manager.edit_Video');
         // SiteSettings
-        Route::get('SiteSettings', [DashboardController::class, 'SiteSettings']);
-        Route::get('SocialMediaSettings', [DashboardController::class, 'SocialMediaSettings']);
-        Route::get('logo-and-favicon', [DashboardController::class, 'logo_and_favicon']);
-        Route::post('logo-and-favicon-update', [DashboardController::class, 'logo_and_favicon_update']);
-
+        Route::get('/manager/SiteSettings', [DashboardController::class, 'SiteSettings']);
+        Route::get('/manager/SocialMediaSettings', [DashboardController::class, 'SocialMediaSettings']);
+        Route::get('/manager/logo-and-favicon', [DashboardController::class, 'logo_and_favicon']);
+        Route::post('/manager/logo-and-favicon-update', [DashboardController::class, 'logo_and_favicon_update']);
         // Ajax
-        Route::put('updateSiteSettingsAjax', [DashboardController::class, 'updateSiteSettingsAjax']);
+        Route::put('manager/updateSiteSettingsAjax', [DashboardController::class, 'updateSiteSettingsAjax']);
     });
 });
 
@@ -470,21 +437,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     });
 });
 
-Auth::routes();
-// manages
-
-
-/*------------------------------------------
---------------------------------------------
-All Managers Routes List
---------------------------------------------
---------------------------------------------*/
-// Route::middleware(['auth', 'user-access:manager'])->group(function () {
-
-//     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
-// });
 
 
 
-Route::get('/subscribers/thank-you', [App\Http\Controllers\SubscriberController::class, 'thank'])->name('thank-you');
-Route::post('/post-subscription', [App\Http\Controllers\SubscriberController::class, 'subscription'])->name('post-subscription');

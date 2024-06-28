@@ -7,12 +7,26 @@ use Illuminate\Support\Facades\Auth;
 use Logiek\ReadingTime\ReadingTime;
 use App\Models\SendEmail;
 use Stevebauman\Hypertext\Transformer;
+use Spatie\Sitemap\SitemapGenerator;
+use Carbon\Carbon;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
+use App\Models\Blog;
 use DB;
 use Redirect;
 use \App\Models\User;
 
 class HomeController extends Controller
 {
+    public function sitemaps(){
+        $sitemapPath = public_path('sitemap.xml');
+        $Blog = Blog::all();
+        foreach($Blog as $blog){
+          Sitemap::create()->add(Url::create('/topics/'.$blog->type.'/'.$blog->slung.'')->setLastModificationDate(Carbon::yesterday()))->writeToFile($sitemapPath);
+        }
+    }
+
+
 
     public function index()
     {
@@ -111,6 +125,19 @@ class HomeController extends Controller
     }
 
 
+    public function terms(){
+        $Terms = DB::table('terms')->get();
+        $page_topic = "Terms and Conditions";
+        $page_title = "Podcasts";
+        return view('front.terms', compact('page_title','page_topic','Terms'));
+    }
+
+    public function privacy(){
+        $Terms = DB::table('privacies')->get();
+        $page_topic = "Privacy Policy";
+        $page_title = "Podcasts";
+        return view('front.privacy', compact('page_title','page_topic','Terms'));
+    }
 
 
 

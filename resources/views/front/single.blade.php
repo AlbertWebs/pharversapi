@@ -50,7 +50,7 @@
                                                 <li><i class="flaticon-user"></i>by<a href="{{url('/')}}/author/{{getAuthorSlung($content->author)}}"><?php echo getAuthor($content->author) ?></a></li>
                                                 <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($content->created_at))}}</li>
                                                 {{-- <li><i class="flaticon-chat"></i><a href="blog-details.html">05 Comments</a></li> --}}
-                                                <li><i class="flaticon-history"></i>5 Mins</li>
+                                                <li><i class="flaticon-history"></i> <?php  echo estimateReadingTime($content->content);  ?> </li>
                                             </ul>
                                         </div>
                                         <div class="blog-details-social">
