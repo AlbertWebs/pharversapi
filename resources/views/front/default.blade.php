@@ -55,6 +55,42 @@
                                     </div>
                                 </div>
                                 @endforeach
+
+                                @if($Pubs->isEmpty())
+
+
+                                @else
+                                    <hr>
+
+                                    @foreach ($Pubs as $posts)
+                                    <div class="col-lg-4">
+                                        <div class="ta-overlay-post-two">
+                                            <div class="overlay-post-thumb-two">
+                                                <a href="{{url('/')}}/topics/{{$page_slung}}/{{$posts->slung}}"><img src="{{$posts->image_one}}" alt="{{$posts->title}}"></a>
+                                            </div>
+                                            <div class="overlay-post-content-two">
+
+                                                <h2 class="post-title"><a href="{{url('/')}}/topics/{{$page_slung}}/{{$posts->slung}}">{{$posts->title}}</a></h2>
+
+                                                <div class="blog-post-meta white-blog-meta">
+                                                    <ul class="list-wrap">
+                                                        <li><i class="flaticon-user"></i>by<a href="#"><?php echo getAuthor($posts->author) ?></a></li>
+                                                        <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($posts->created_at))}}</li>
+                                                        <li><i class="flaticon-history"></i>
+
+                                                            <?php echo estimateReadingTime($posts->content); ?>
+                                                            Read
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+
+                                @endif
+
+
                             </div>
                         </div>
                     </div>

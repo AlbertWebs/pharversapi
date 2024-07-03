@@ -10,6 +10,7 @@
                 <div class="card-body">
                    <form action="{{route('update-options')}}" method="POST">
                       @csrf
+                      <input type="hidden" name="user_id" value="{{Auth::User()->id}}">
                       <div class="row">
                          <div class="col-12">
                             <div class="form-heading">

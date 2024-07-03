@@ -16,34 +16,35 @@ class NewsLetterController extends Controller
             'zip'  => '00100',
         );
 
-        $email = "balbertmuhatia@gmail.com";
-        Newsletter::subscribe($email,
+        $email = "albertmuhatia58@gmail.com";
+       $Newsletter =  Newsletter::subscribeorUpdate($email,
              [
-                'FNAME'=>'Albert',
-                'LNAME'=>'Muhatia',
-                'ADDRESS'=>$CollectAddres,
-                'PHONE'=>'+254723014032',
-                'BIRTHDAY'=>'04/08',
-                'MMERGE6'=>'Yes', //Drug Delivery
-                'MMERGE7'=>'Yes', //Microbiology
-                'MMERGE8'=>'Yes', //Analytical Techniques
-                'MMERGE9'=>'Yes', //Formulation Development
-                'MMERGE10'=>'Yes', //Bioprocessing
-                'MMERGE11'=>'Yes', //Manufacturing
-                'MMERGE12'=>'Yes', //Quality Assurance /Quality Control,
-                'MMERGE13'=>'Yes', //Biopharma
-                'MMERGE14'=>'Yes', //Packaging and Labelling
-                'MMERGE15'=>'Yes', //Regulatory Affairs
-                'MMERGE16'=>'Yes', //Health Supply Chain Management
-                'MMERGE17'=>'Yes', //Artificial Intelligence
-                'MMERGE18'=>'Yes', //Digital version of the African Pharmaceutical Review (published quarterly)
-                'MMERGE19'=>'Yes', //Newsletter
-                'MMERGE20'=>'Yes', //Third party (application notes, product development and updates from partners)
-                'MMERGE21'=>'Yes', //Webinar notifications
-                'MMERGE22'=>'Yes', //Printed Version of Magazine
-                'MMERGE24'=>'Yes', //Printed Version of Magazine
-                'MMERGE23'=>'Yes' //Event notifications
+                'MERGE1'=>'Alberts',
+                'MERGE2'=>'Muhatias',
+                'MERGE3'=>$CollectAddres,
+                'MERGE4'=>'+254723014032',
+                'MMERGE5'=>'Yes', //Drug Delivery
+                'MMERGE6'=>'Yes', //Microbiology
+                'MMERGE7'=>'Yes', //Analytical Techniques
+                'MMERGE8'=>'Yes', //Formulation Development
+                'MMERGE9'=>'Yes', //Bioprocessing
+                'MMERGE10'=>'Yes', //Manufacturing
+                'MMERGE11'=>'Yes', //Quality Assurance /Quality Control,
+                'MMERGE12'=>'Yes', //Biopharma
+                'MMERGE13'=>'Yes', //Packaging and Labelling
+                'MMERGE14'=>'Yes', //Regulatory Affairs
+                'MMERGE15'=>'Yes', //Health Supply Chain Management
+                'MMERGE16'=>'Yes', //Artificial Intelligence
+                'MMERGE17'=>'Yes', //Digital version of the African Pharmaceutical Review (published quarterly)
+                'MMERGE18'=>'Yes', //Newsletter
+                'MMERGE19'=>'Yes', //Third party (application notes, product development and updates from partners)
+                'MMERGE20'=>'Yes', //Webinar notifications
+                'MMERGE21'=>'Yes', //Printed Version of Magazine
+                'MMERGE22'=>'Yes', //Event notifications
+                'MMERGE23'=>'Yes' //Country
             ]);
+
+            return Newsletter::getLastError();
 
         echo "done";
     }

@@ -28,6 +28,14 @@ class UserController extends Controller
         return view('user.options');
     }
 
+    public function options_temp(){
+        $id = 24;
+        $User = User::find($id);
+        return view('user.options-temp', compact('User'));
+    }
+
+
+
     public function whitepapers(){
         $whitepapers = DB::table('blogs')->where('type','Whitepapers/Application Notes')->get();
 
@@ -441,7 +449,7 @@ class UserController extends Controller
         if( $request->has('Event_notifications') ){
             $Event_notifications = "Yes";
         }else{
-            $Event_notifications = No;
+            $Event_notifications = "No";
         }
 
         $updateUserDetails = array(
@@ -464,46 +472,85 @@ class UserController extends Controller
             'Printed_Version_of_Magazine' => $Printed_Version_of_Magazine,
             'Event_notifications' => $Event_notifications,
         );
-        DB::table('users')->where('id', Auth::User()->id)->update($updateUserDetails);
+        DB::table('users')->where('id', $request->user_id)->update($updateUserDetails);
+        $User = User::find($request->user_id);
         // Update Newsletter
         $CollectAddres =  array(
-            'addr1' => Auth::User()->address,
-            'city'  => Auth::User()->city,
-            'state'  => Auth::User()->state,
+            'addr1' => $User->address,
+            'city'  => $User->city,
+            'state'  => $User->state,
             'zip'  => '00100',
         );
 
-        $email = Auth::User()->email;
-        Newsletter::subscribeOrUpdate($email,
+        $email = $User->email;
+        $fname = $User->fname;
+        $lname = $User->lname;
+        // dd($User->phone);
+        if(empty($User->phone)){
+             $mobile="NA";
+        }else{
+            $mobile=$User->phone;
+        };
+
+        if(empty($User->country)){
+            $country="NA";
+       }else{
+           $country=$User->country;
+       };
+
+
+        $Newsletter = Newsletter::subscribeorUpdate($email,
              [
-                'FNAME'=>Auth::User()->fname,
-                'LNAME'=>Auth::User()->lname,
-                'ADDRESS'=>$CollectAddres,
-                'PHONE'=>Auth::User()->phone,
-                'BIRTHDAY'=>'04/08',
-                'MMERGE6'=>$Drug_Delivery, //Drug Delivery
-                'MMERGE7'=>$Microbiology, //Microbiology
-                'MMERGE8'=>$Analytical_Techniques, //Analytical Techniques
-                'MMERGE9'=>$Formulation_Development, //Formulation Development
-                'MMERGE10'=>$Bioprocessing, //Bioprocessing
-                'MMERGE11'=>$Manufacturing, //Manufacturing
-                'MMERGE12'=>$QA_QC, //Quality Assurance /Quality Control,
-                'MMERGE13'=>$Biopharma, //Biopharma
-                'MMERGE14'=>$Packaging_and_Labelling, //Packaging and Labelling
-                'MMERGE15'=>$Regulatory_Affairs, //Regulatory Affairs
-                'MMERGE16'=>$Health_Supply_Chain_Management, //Health Supply Chain Management
-                'MMERGE17'=>$Artificial_Intelligence, //Artificial Intelligence
-                'MMERGE18'=>$Digital_version, //Digital version of the African Pharmaceutical Review (published quarterly)
-                'MMERGE19'=>$Newsletter, //Newsletter
-                'MMERGE20'=>$Third_party, //Third party (application notes, product development and updates from partners)
-                'MMERGE21'=>$Webinar_notifications, //Webinar notifications
-                'MMERGE22'=>$Printed_Version_of_Magazine, //Printed Version of Magazine
-                'MMERGE24'=>Auth::User()->country, //Printed Version of Magazine
-                'MMERGE23'=>$Event_notifications //Event notifications
+                'FNAME'=>$fname,
+                'LNAME'=>$lname,
+                // 'MERGE3'=>$CollectAddres,
+                'PHONE'=>$mobile,
+                'MMERGE5'=>$Drug_Delivery, //Drug Delivery
+                'MMERGE6'=>$Microbiology, //Microbiology
+                'MMERGE7'=>$Analytical_Techniques, //Analytical Techniques
+                'MMERGE8'=>$Formulation_Development, //Formulation Development
+                'MMERGE9'=>$Bioprocessing, //Bioprocessing
+                'MMERGE10'=>$Manufacturing, //Manufacturing
+                'MMERGE11'=>$QA_QC, //Quality Assurance /Quality Control,
+                'MMERGE12'=>$Biopharma, //Biopharma
+                'MMERGE13'=>$Packaging_and_Labelling, //Packaging and Labelling
+                'MMERGE14'=>$Regulatory_Affairs, //Regulatory Affairs
+                'MMERGE15'=>$Health_Supply_Chain_Management, //Health Supply Chain Management
+                'MMERGE16'=>$Artificial_Intelligence, //Artificial Intelligence
+                'MMERGE17'=>$Digital_version, //Digital version of the African Pharmaceutical Review (published quarterly)
+                'MMERGE18'=>$Newsletter, //Newsletter
+                'MMERGE19'=>$Third_party, //Third party (application notes, product development and updates from partners)
+                'MMERGE20'=>$Webinar_notifications, //Webinar notifications
+                'MMERGE21'=>$Printed_Version_of_Magazine, //Printed Version of Magazine
+                'MMERGE22'=>$Event_notifications, //Event notifications
+                'MMERGE23'=>$country //Printed Version of Magazine
             ]);
+
+
+
+        // $CurrentID = $request->user_id;
+
+
+        //
+        // get the current user
+        // $user = User::find($CurrentID);
+
+        // get previous user id
+        // $previous = User::where('id', '<', $user->id)->max('id');
+
+        // get next user id
+        // $Users = User::where('id', '>', $user->id)->min('id');
+        // $User = User::find($Users);
+        // return view('user.options-temp', compact('User'));
+        // $getLastError = Newsletter::getLastError();
+        // echo $getLastError;
+
+        //
 
         return Redirect::back();
     }
+
+
 
     public function allSubscribers(){
         $Users = User::all();

@@ -109,7 +109,9 @@
                          </div>
                          <div class="col-12 col-md-6 col-xl-6">
                             <div class="input-block local-top-form">
-                               <label class="local-top">Avatar <span class="login-danger">*</span></label>
+                               <label class="local-top">Avatar
+                                    {{-- <span class="login-danger">*</span> --}}
+                                </label>
                                <div class="settings-btn upload-files-avator">
                                   <input type="file" accept="image/*" name="image" id="file" onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)" class="hide-input" data-cf-modified-2f1a7cf053a48a9b67532101->
                                   <label for="file" class="upload">Choose File</label>

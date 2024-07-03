@@ -19,13 +19,13 @@
           <div class="row">
              <div class="col-md-6">
                 <div class="morning-user">
-                   <h2>Good Day!, <span>{{Auth::User()->title}} {{Auth::User()->name}}</span></h2>
+                   <h2>Good Day!, <span>{{Auth::User()->title}} {{Auth::User()->name}}</span> <?php $theID = Auth::User()->id; ?> @if($theID < 120) <sup> <img style="width:30px;" src="{{url('/')}}/uploads/Golden_Badge_Transparent_PNG_Image.webp" alt></sup> @endif</h2>
                    <p>{{Auth::User()->content}}</p>
                 </div>
              </div>
              <div class="col-md-6 position-blk">
                 <div class="morning-img">
-                   <img src="assets/img/morning-img-03.png" alt>
+                   {{-- <img style="position: absolute; bottom:2px; right:2px;" src="{{url('/')}}/uploads/Golden_Badge_Transparent_PNG_Image.webp" alt> --}}
                 </div>
              </div>
           </div>

@@ -160,6 +160,19 @@
             </div>
          </li>
          {{--  --}}
+
+         <li>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-envelope" aria-hidden="true"></i>News Letters(Issue #)</a>
+            <div class="collapsible-body left-sub-menu">
+            <ul>
+                <li><a href="{{url('/')}}/admin/newsletters">All Issues</a>
+                </li>
+                <li><a href="{{url('/')}}/admin/addNewsletter">Add Issue</a>
+                </li>
+            </ul>
+            </div>
+        </li>
+
          <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-gavel" aria-hidden="true"></i>Legal Pages</a>
             <div class="collapsible-body left-sub-menu">

@@ -8,6 +8,8 @@ use App\Models\Term;
 
 use App\Models\Privacy;
 
+use App\Models\Newsletter;
+
 use App\Models\Company;
 
 use Auth;
@@ -2926,6 +2928,83 @@ class AdminsController extends Controller
         );
         DB::table('advertisements')->where('id', $id)->update($updateDetails);
         Session::flash('message', "Changes have been saved");
+        return Redirect::back();
+    }
+
+    public function newsletters(){
+        activity()->log('Accessed All Newsletters');
+        $Newsletters = Newsletter::all();
+        $page_title = 'list';
+        $page_name = 'Newsletters';
+        return view('admin.newsletters',compact('page_title','Newsletters','page_name'));
+    }
+
+    public function addNewsletter(){
+        activity()->log('Accessed Add Newsletters Page');
+        $page_title = 'formfiletext';
+        $page_name = 'Add Newsletters';
+        return view('admin.addNewsletters',compact('page_title','page_name'));
+    }
+
+    public function add_Newsletter(Request $request){
+        activity()->log('Evoked add Newsletters Operation');
+        $path = 'uploads/newsletters';
+
+        if(isset($request->image)){
+            $dir = 'uploads/newsletters';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+
+        $Newsletters = new Newsletter;
+        $Newsletters->title = $request->title;
+        $Newsletters->slung = Str::slug($request->title);
+        $Newsletters->content = $request->ckeditor;
+        $Newsletters->image = $SaveFilePath;
+        $Newsletters->save();
+        Session::flash('message', "Newsletters Has Been Added");
+        return Redirect::back();
+    }
+
+    public function editNewsletters($id){
+        activity()->log('Access Edit Newsletters ID number '.$id.' ');
+        $Newsletters = Newsletter::find($id);
+        $page_title = 'formfiletext';
+        $page_name = 'Edit Home Page Slider';
+        return view('admin.editNewsletters',compact('page_title','Newsletters','page_name'));
+    }
+
+    public function edit_Newsletters(Request $request, $id){
+        activity()->log('Evoked Edit Newsletters For Newsletters ID number '.$id.' ');
+
+        if(isset($request->image)){
+            $dir = 'uploads/newsletters';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+
+        $updateDetails = array(
+            'title'=>$request->title,
+            'slung' => Str::slug($request->title),
+            'meta'=>$request->meta,
+            'content'=>$request->ckeditor,
+            'image'=>$SaveFilePath
+
+        );
+        DB::table('newsletters')->where('id',$id)->update($updateDetails);
+        Session::flash('message', "Changes have been saved");
+        return Redirect::back();
+    }
+
+    public function deleteNewsletters($id){
+        activity()->log('Deleted Newsletters ID number '.$id.' ');
+        DB::table('newsletters')->where('id',$id)->delete();
         return Redirect::back();
     }
 

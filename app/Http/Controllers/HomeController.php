@@ -64,8 +64,17 @@ class HomeController extends Controller
              $page_title = $page_topic;
              $page_slung = $category->slung;
              $Posts = DB::table('blogs')->where('category',$category->id)->get();
-             return view('front.default', compact('page_title','page_topic','Posts','page_slung'));
+             $Pubs = DB::table('blogs')->where('category',$category->id)->where('publishable','1')->get();
+             return view('front.default', compact('page_title','page_topic','Posts','page_slung','Pubs'));
          }
+    }
+
+
+
+    public function pharverse(){
+        $page_topic = "";
+        $page_title = "Home";
+        return view('front.pharverse', compact('page_title','page_topic'));
     }
 
     public function subscribe(){
@@ -102,7 +111,8 @@ class HomeController extends Controller
             $page_title = $page_topic;
             $page_slung = $category->slung;
             $Posts = DB::table('blogs')->where('type',$page_topic)->get();
-            return view('front.default', compact('page_title','page_topic','Posts','page_slung'));
+            $Pubs = DB::table('blogs')->where('type',$page_topic)->where('publishable','1')->get();
+            return view('front.default', compact('page_title','page_topic','Posts','page_slung','Pubs'));
         }
    }
 
@@ -183,8 +193,25 @@ class HomeController extends Controller
     }
 
     public function contact(){
-        return view('front.contact');
+        $page_title = "Partnering Companies";
+        $page_topic = "";
+        return view('front.contact', compact('page_title','page_topic'));
     }
+
+    public function about(){
+        $page_title = "Partnering Companies";
+        $page_topic = "";
+        return view('front.pharverse', compact('page_title','page_topic'));
+    }
+
+
+    public function copyright(){
+        $page_title = "Copyright Statement";
+        $page_topic = "";
+        return view('front.copyright', compact('page_title','page_topic'));
+    }
+
+
 
     public function videos(){
         return view('front.videos');

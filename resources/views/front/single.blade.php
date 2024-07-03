@@ -268,12 +268,17 @@
                                 </div>
                                 <div class="sidebar-social-wrap">
                                     <ul class="list-wrap">
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i>facebook</a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i>twitter</a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i>instagram</a></li>
-                                        <li><a href="#"><i class="fab fa-youtube"></i>youtube</a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i>LinkedIn</a></li>
-                                        <li><a href="#"><i class="fab fa-pinterest-p"></i>Pinterest</a></li>
+                                        <?php
+                                            $Settings = DB::table('_site_settings')->get();
+                                        ?>
+                                        @foreach ($Settings as $Set)
+                                            <li><a href="{{$Set->facebook}}"><i class="fab fa-facebook-f"></i>facebook</a></li>
+                                            <li><a href="{{$Set->twitter}}"><i class="fab fa-twitter"></i>twitter</a></li>
+                                            {{-- <li><a href="#"><i class="fab fa-instagram"></i>instagram</a></li> --}}
+                                            <li><a href="{{$Set->youtube}}"><i class="fab fa-youtube"></i>youtube</a></li>
+                                            <li><a href="{{$Set->linkedin}}"><i class="fab fa-linkedin-in"></i>LinkedIn</a></li>
+                                            {{-- <li><a href="#"><i class="fab fa-pinterest-p"></i>Pinterest</a></li> --}}
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>

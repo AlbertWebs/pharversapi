@@ -18,6 +18,8 @@ return new class extends Migration
             $table->boolean('active')->default(true);
             $table->string('slung')->unique();
             $table->string('company_id')->default('0');
+
+            $table->interger('publishable')->default('0');
             $table->string('video_url')->nullable();
             $table->string('podcast_url')->nullable();
             $table->string('whitepaper_file')->nullable();

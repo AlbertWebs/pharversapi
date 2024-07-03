@@ -34,7 +34,7 @@ Route::get('/topics', [HomeController::class, 'topics_list']);
 Route::get('/topic/{slung}', [HomeController::class, 'topic']);
 Route::get('/topic/{slung}/{product}', [HomeController::class, 'topic_explore']);
 Route::get('/topics/{slung}/{product}', [HomeController::class, 'topic_explore']);
-
+Route::get('/pharverse', [HomeController::class, 'pharverse'])->name('pharverse');
 
 Route::get('/sitemaps', [HomeController::class, 'sitemaps']);
 Route::get('/upload-subscribers', [allSubscribe::class, 'sitemaps']);
@@ -81,7 +81,7 @@ Route::post('/contact-form', [HomeController::class, 'contact_form'])->name('con
 Route::post('/open-hidden-content', [HomeController::class, 'hidden'])->name('open-hidden-content');
 
 
-Route::get('/home', [HomeController::class, 'index'])->name('open-thanks-home');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('open-thanks-home');
 Route::get('/thanks', [HomeController::class, 'thanks'])->name('open-thanks');
 
 Route::get('ckeditor/create', 'CkeditorController@create')->name('ckeditor.create');
@@ -105,6 +105,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
         Route::post('/update-options', [UserController::class, 'update_options'])->name('update-options');
         Route::get('/my-profile', [UserController::class, 'profile'])->name('my-profile');
         Route::get('/my-profile-password', [UserController::class, 'password'])->name('my-profile-password');
+
         Route::get('/subscription-options', [UserController::class, 'options'])->name('subscription-options');
         Route::get('/whitepapers', [UserController::class, 'whitepapers'])->name('whitepapers');
 
@@ -271,6 +272,15 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('extras/{id}', [AdminsController::class, 'extras']);
         Route::post('edit_Category/{id}', [AdminsController::class, 'edit_Category']);
         Route::get('deleteCategory/{id}', [AdminsController::class, 'deleteCategory']);
+
+        // Newsletters
+        Route::get('newsletters', [AdminsController::class, 'newsletters']);
+        Route::get('addNewsletter', [AdminsController::class, 'addNewsletter']);
+        Route::post('add_Newsletter', [AdminsController::class, 'add_Newsletter']);
+        Route::get('editNewsletters/{id}', [AdminsController::class, 'editNewsletters']);
+        Route::get('extras/{id}', [AdminsController::class, 'extras']);
+        Route::post('edit_Newsletter/{id}', [AdminsController::class, 'edit_Newsletter']);
+        Route::get('deleteNewsletter/{id}', [AdminsController::class, 'deleteNewsletter']);
 
         // Products
         Route::get('products', [AdminsController::class, 'products']);

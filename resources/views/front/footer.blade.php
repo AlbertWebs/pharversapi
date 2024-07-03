@@ -18,11 +18,15 @@
                                     <h4 class="fw-title">Topics</h4>
                                     <div class="footer-link-wrap">
                                         <ul class="list-wrap">
-                                                <li><a href="#">Drug delivery</a></li>
-                                                <li><a href="#">Drug development</a></li>
+                                            <?php $Topics = DB::table('categories')->limit('5')->inRandomOrder()->get(); ?>
+                                            @foreach ($Topics as $topics)
+                                            <li><a href="{{url('/')}}/topic/{{$topics->slung}}">{{$topics->title}}</a></li>
+                                            @endforeach
+
+                                                {{-- <li><a href="#">Drug development</a></li>
                                                 <li><a href="#">Formulation</a></li>
                                                 <li><a href="#">Clinical trials</a></li>
-                                                <li><a href="#">Vaccine development</a></li>
+                                                <li><a href="#">Vaccine development</a></li> --}}
                                                 {{-- <li><a href="#">Packaging</a></li>
                                                 <li><a href="#">Logistics</a></li>
                                                 <li><a href="#">Single-use</a></li>
@@ -51,11 +55,11 @@
                                     <h4 class="fw-title">Quick Access</h4>
                                     <div class="footer-link-wrap">
                                         <ul class="list-wrap">
-                                            <li><a href="{{url('/')}}/content">Podcasts</a></li>
-                                            <li><a href="{{url('/')}}/content">Publications</a></li>
-                                            <li><a href="{{url('/')}}/content">Whitepapers/App Notes</a></li>
-                                            <li><a href="{{url('/')}}/content">Webinars</a></li>
-                                            <li><a href="{{url('/')}}/content">Content Hubs</a></li>
+                                            <?php $Content = DB::table('contents')->limit('5')->inRandomOrder()->get(); ?>
+                                            @foreach ($Content as $content)
+                                            <li><a href="{{url('/')}}/contents/{{$content->slung}}">{{$content->title}}</a></li>
+                                            @endforeach
+
 
                                             <li><a href="{{url('/')}}/contents">All Content</a></li>
                                         </ul>
@@ -112,7 +116,10 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="copyright-text">
-                                    <p>Copyright © {{date('Y')}} <a href="">African Pharmaceutical Review</a> All Rights Reserved | Published By <a href="">Pharvers Limited</a></p>
+                                    <p>Copyright © {{date('Y')}}
+                                        <a href="">African Pharmaceutical Review</a>
+                                        All Rights Reserved | Published By
+                                        <a href="{{route('pharverse')}}">Pharvers Limited</a></p>
                                 </div>
                             </div>
                         </div>
