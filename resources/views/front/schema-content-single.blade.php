@@ -15,7 +15,7 @@
                           "@type": "WebPage",
                           "@id": "{{url('/')}}/topics/{{$page_topic}}/{{$page_slung}}/",
                           "name": "Home",
-                          "description": "Get the latest news, interviews insights and developments of the African Pharmaceutical Industry. African Pharmaceutical Review keeps you up to date.",
+                          "description": "{{$post->meta}}",
                           "url": "{{url('/')}}/topics/{{$page_topic}}/{{$page_slung}}/"
                         }
                       }
@@ -50,8 +50,8 @@
                     "@type": "WebPage",
                     "@id": "{{url('/')}}/#webpage",
                     "url": "{{url('/')}}/topics/{{$page_topic}}/{{$page_slung}}/",
-                    "name": "African Pharmaceutical Review - Keep up to date with the Latest News, Articles and Insights on the drug manufacturing, trade, technology and pharma supply chains in Africa.",
-                    "description": "Get the latest news, interviews insights and developments of the African Pharmaceutical Industry. African Pharmaceutical Review keeps you up to date.",
+                    "name": "African Pharmaceutical Review - {{$post->meta}}",
+                    "description": "{{$post->meta}}",
                     "inLanguage": "en-US",
                     "isPartOf": {
                       "@id": "{{url('/')}}/topics/{{$page_topic}}/{{$page_slung}}/#website"
@@ -78,7 +78,7 @@
                     "@id": "{{url('/')}}/#website",
                     "url": "{{url('/')}}/topics/{{$page_topic}}/{{$page_slung}}/",
                     "name": "African Pharmaceutical Review",
-                    "description": "Keep up to date with the Latest News, Articles and Insights on the drug manufacturing, trade, technology and pharma supply chains in Africa.",
+                    "description": "{{$post->meta}}",
                     "inLanguage": "en-US",
                     "publisher": {
                       "@id": "{{url('/')}}/#organization"
