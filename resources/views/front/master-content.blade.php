@@ -16,7 +16,7 @@
         @foreach ($Posts as $post)
         {{--  --}}
         <title>{{$title}} - African Pharmaceutical Review</title>
-        <meta name="description" content="Get the latest news, interviews insights and developments of the African Pharmaceutical Industry. African Pharmaceutical Review keeps you up to date." />
+        <meta name="description" content="{{$post->meta}}" />
 		<meta name="robots" content="max-image-preview:large" />
 		<link rel="canonical" href="{{url('/')}}/topics/{{$page_topic}}/{{$page_slung}}" />
 
@@ -24,7 +24,7 @@
 		<meta property="og:site_name" content="African Pharmaceutical Review" />
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content="{{$title}} - African Pharmaceutical Review" />
-		<meta property="og:description" content="Get the latest news, interviews insights and developments of the African Pharmaceutical Industry. African Pharmaceutical Review keeps you up to date." />
+		<meta property="og:description" content="{{$post->meta}}" />
 		<meta property="og:url" content="{{url('/')}}/topics/{{$page_topic}}/{{$page_slung}}" />
 		<meta property="og:image" content="{{$post->image_one}}" />
 		<meta property="og:image:secure_url" content="{{$post->image_one}}" />
@@ -34,7 +34,7 @@
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@af_pharmareview" />
 		<meta name="twitter:title" content="African Pharmaceutical Review - Home" />
-		<meta name="twitter:description" content="Get the latest news, interviews insights and developments of the African Pharmaceutical Industry. African Pharmaceutical Review keeps you up to date." />
+		<meta name="twitter:description" content="{{$post->meta}}" />
 		<meta name="twitter:creator" content="@af_pharmareview" />
 		<meta name="twitter:image" content="{{$post->image_one}}" />
         @endforeach
