@@ -16,6 +16,12 @@ class CreateUsersSeeder extends Seeder
     public function run()
     {
         $users = [
+            [
+                'name'=>'Admin User',
+                'email'=>'admin@africanpharmaceuticalreview.com',
+                'type'=> 1,
+                'password'=> bcrypt('123456'),
+             ],
 
             [
                'name'=>'Manager User',
