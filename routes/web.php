@@ -49,7 +49,8 @@ Route::get('/author/{slung}', [HomeController::class, 'author']);
 Route::get('/videos', [HomeController::class, 'videos']);
 Route::post('/advertise-with-us', [HomeController::class, 'advertise_post'])->name('advertise-with-us');
 
-Route::post('/search', [HomeController::class, 'search'])->name('search');
+// Route::post('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 
 Route::get('/podcasts', [HomeController::class, 'podcasts']);

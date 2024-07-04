@@ -1,4 +1,4 @@
-@extends('front.master')
+@extends('front.master-content')
 
 @section('content')
 <!-- main-area -->

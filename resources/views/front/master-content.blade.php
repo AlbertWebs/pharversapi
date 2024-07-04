@@ -10,23 +10,24 @@
         <link rel="apple-touch-icon" sizes="180x180" href="{{asset('favicon/apple-touch-icon.png')}}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon/favicon-32x32.png')}}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{asset('favicon/favicon-16x16.png')}}">
-        <link rel="manifest" href="/site.webmanifest">
+        <link rel="manifest" href="{{asset('favicon/site.webmanifest')}}">
         <!-- Place favicon.ico in the root directory -->
 
+        @foreach ($Posts as $post)
         {{--  --}}
-        <title>African Pharmaceutical Review - Keep up to date with the Latest News, Articles and Insights on the drug manufacturing, trade, technology and pharma supply chains in Africa.</title>
+        <title>{{$title}} - African Pharmaceutical Review</title>
         <meta name="description" content="Get the latest news, interviews insights and developments of the African Pharmaceutical Industry. African Pharmaceutical Review keeps you up to date." />
 		<meta name="robots" content="max-image-preview:large" />
-		<link rel="canonical" href="{{url('/')}}" />
+		<link rel="canonical" href="{{url('/')}}/topics/{{$page_topic}}/{{$page_slung}}" />
 
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:site_name" content="African Pharmaceutical Review" />
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="African Pharmaceutical Review - Keep up to date with the Latest News, Articles and Insights on the drug manufacturing, trade, technology and pharma supply chains in Africa." />
+		<meta property="og:title" content="{{$title}} - African Pharmaceutical Review" />
 		<meta property="og:description" content="Get the latest news, interviews insights and developments of the African Pharmaceutical Industry. African Pharmaceutical Review keeps you up to date." />
-		<meta property="og:url" content="{{url('/')}}" />
-		<meta property="og:image" content="{{url('/')}}/uploads/logo/log.png" />
-		<meta property="og:image:secure_url" content="{{url('/')}}/uploads/logo/log.png" />
+		<meta property="og:url" content="{{url('/')}}/topics/{{$page_topic}}/{{$page_slung}}" />
+		<meta property="og:image" content="{{$post->image_one}}" />
+		<meta property="og:image:secure_url" content="{{$post->image_one}}" />
 		<meta property="og:image:width" content="1000" />
 		<meta property="og:image:height" content="194" />
 
@@ -35,9 +36,10 @@
 		<meta name="twitter:title" content="African Pharmaceutical Review - Home" />
 		<meta name="twitter:description" content="Get the latest news, interviews insights and developments of the African Pharmaceutical Industry. African Pharmaceutical Review keeps you up to date." />
 		<meta name="twitter:creator" content="@af_pharmareview" />
-		<meta name="twitter:image" content="{{url('/')}}/uploads/logo/log.png" />
+		<meta name="twitter:image" content="{{$post->image_one}}" />
+        @endforeach
 
-	    @include('front.schema-home')
+	    @include('front.schema-content-single')
         {{--  --}}
 
         <!-- CSS here -->

@@ -65,9 +65,9 @@
                         <div class="col-lg-8">
                             <div class="hl-right-side">
                                 <div class="header-search-wrap">
-                                    <form action="{{route('search')}}" Method="POST">
-                                        @csrf
-                                        <input type="text" name="keyword" placeholder="Search here . . .">
+                                    <form action="{{route('search')}}" Method="GET">
+
+                                        <input type="text" name="s" placeholder="Search here . . .">
                                         <button type="submit"><i class="flaticon-search"></i></button>
                                     </form>
                                 </div>

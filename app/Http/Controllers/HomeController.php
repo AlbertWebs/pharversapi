@@ -65,7 +65,7 @@ class HomeController extends Controller
              $page_slung = $category->slung;
              $Posts = DB::table('blogs')->where('category',$category->id)->get();
              $Pubs = DB::table('blogs')->where('category',$category->id)->where('publishable','1')->get();
-             return view('front.default', compact('page_title','page_topic','Posts','page_slung','Pubs'));
+             return view('front.default_topic', compact('page_title','page_topic','Posts','page_slung','Pubs'));
          }
     }
 
@@ -82,7 +82,7 @@ class HomeController extends Controller
     }
 
     public function search(Request $request){
-        $Posts = DB::table('blogs')->where('title','LIKE',"%{$request->keyword}%")->get();
+        $Posts = DB::table('blogs')->where('title','LIKE',"%{$request->s}%")->get();
         foreach($Posts as $posts){
             $page_topic = $posts->type;
             $page_title = "Search for $request->keyword";
@@ -97,7 +97,8 @@ class HomeController extends Controller
             $page_topic = $posts->type;
             $page_title = $page_topic;
             $page_slung = $posts->slung;
-            return view('front.single', compact('page_title','page_topic','Posts','page_slung'));
+            $title = $posts->title;
+            return view('front.single', compact('page_title','page_topic','Posts','page_slung','title'));
         }
    }
 
@@ -112,7 +113,7 @@ class HomeController extends Controller
             $page_slung = $category->slung;
             $Posts = DB::table('blogs')->where('type',$page_topic)->get();
             $Pubs = DB::table('blogs')->where('type',$page_topic)->where('publishable','1')->get();
-            return view('front.default', compact('page_title','page_topic','Posts','page_slung','Pubs'));
+            return view('front.contents_single', compact('page_title','page_topic','Posts','page_slung','Pubs'));
         }
    }
 

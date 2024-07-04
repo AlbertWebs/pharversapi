@@ -14,17 +14,17 @@
         <!-- Place favicon.ico in the root directory -->
 
         {{--  --}}
-        <title>African Pharmaceutical Review - Keep up to date with the Latest News, Articles and Insights on the drug manufacturing, trade, technology and pharma supply chains in Africa.</title>
+        <title>{{$page_topic}} - African Pharmaceutical Review</title>
         <meta name="description" content="Get the latest news, interviews insights and developments of the African Pharmaceutical Industry. African Pharmaceutical Review keeps you up to date." />
 		<meta name="robots" content="max-image-preview:large" />
-		<link rel="canonical" href="{{url('/')}}" />
+		<link rel="canonical" href="{{url('/')}}/topic/{{$page_slung}}" />
 
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:site_name" content="African Pharmaceutical Review" />
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="African Pharmaceutical Review - Keep up to date with the Latest News, Articles and Insights on the drug manufacturing, trade, technology and pharma supply chains in Africa." />
+		<meta property="og:title" content="{{$page_topic}} - African Pharmaceutical Review" />
 		<meta property="og:description" content="Get the latest news, interviews insights and developments of the African Pharmaceutical Industry. African Pharmaceutical Review keeps you up to date." />
-		<meta property="og:url" content="{{url('/')}}" />
+		<meta property="og:url" content="{{url('/')}}/topic/{{$page_slung}}" />
 		<meta property="og:image" content="{{url('/')}}/uploads/logo/log.png" />
 		<meta property="og:image:secure_url" content="{{url('/')}}/uploads/logo/log.png" />
 		<meta property="og:image:width" content="1000" />
@@ -37,7 +37,7 @@
 		<meta name="twitter:creator" content="@af_pharmareview" />
 		<meta name="twitter:image" content="{{url('/')}}/uploads/logo/log.png" />
 
-	    @include('front.schema-home')
+	    @include('front.schema-topic')
         {{--  --}}
 
         <!-- CSS here -->
