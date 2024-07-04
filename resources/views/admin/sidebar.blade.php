@@ -110,7 +110,7 @@
          </li>
          {{--  --}}
          {{--  --}}
-         <li>
+         {{-- <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-ticket" aria-hidden="true"></i> Payments</a>
             <div class="collapsible-body left-sub-menu">
                <ul>
@@ -132,7 +132,7 @@
                   </li>
                </ul>
             </div>
-         </li>
+         </li> --}}
          {{--  --}}
          <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i>System Users</a>
