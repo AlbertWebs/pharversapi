@@ -7,7 +7,7 @@
                         <div class="col-lg-8">
                             <div class="header-top-left-four">
                                 <div class="trending-box">
-                                    <div class="icon"><img src="assets/img/icon/trending_icon.svg" alt="Pharverse"></div>
+                                    <div class="icon"><img src="{{asset('theme/assets/img/icon/trending_icon.svg')}}" alt="Pharverse"></div>
                                     <span>Trending</span>
                                     <div class="shape">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122 36" preserveAspectRatio="none" fill="none">
