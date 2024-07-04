@@ -78,11 +78,11 @@
                                 <div class="col-54">
                                     <div class="overlay-post-two">
                                         <div class="overlay-post-thumb">
-                                            <a href="#"><img src="{{$latestnews->image_one}}" alt=""></a>
+                                            <a href="{{url('/')}}/topics/{{$latestnews->type}}/{{$latestnews->slung}}"><img src="{{$latestnews->image_one}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content">
-                                            <a href="blog.html" class="post-tag">News</a>
-                                            <h2 class="post-title"><a href="#">{{$latestnews->title}}</a></h2>
+                                            <a href="{{url('/')}}/topics/{{$latestnews->type}}/{{$latestnews->slung}}" class="post-tag">News</a>
+                                            <h2 class="post-title"><a href="{{url('/')}}/topics/{{$latestnews->type}}/{{$latestnews->slung}}">{{$latestnews->title}}</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
                                                     <li><i class="flaticon-user"></i>by<a href="author.html"><?php echo getAuthor($latestnews->author) ?></a></li>
@@ -102,11 +102,11 @@
                                     @else
                                         <div class="horizontal-post-two">
                                             <div class="horizontal-post-thumb">
-                                                <a href="blog-details.html"><img src="{{$latestrst->image_one}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$latestrst->type}}/{{$latestrst->slung}}"><img src="{{$latestrst->image_one}}" alt=""></a>
                                             </div>
                                             <div class="horizontal-post-content">
-                                                <a href="blog.html" class="post-tag">News</a>
-                                                <h2 class="post-title"><a href="#">{{$latestrst->title}}</a></h2>
+                                                <a href="{{url('/')}}/topics/{{$latestrst->type}}/{{$latestrst->slung}}" class="post-tag">News</a>
+                                                <h2 class="post-title"><a href="{{url('/')}}/topics/{{$latestrst->type}}/{{$latestrst->slung}}">{{$latestrst->title}}</a></h2>
                                                 <div class="blog-post-meta">
                                                     <ul class="list-wrap">
                                                         <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($latestrst->created_at))}}</li>

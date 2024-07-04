@@ -24,7 +24,7 @@ class DashboardController extends Controller
     }
 
     public function blog(){
-        activity()->log('User id {{Auth::User()->id}} Accessed Blog Page');
+        activity()->log('User id '.Auth::User()->id.' Accessed Blog Page');
         $Blog = DB::table('blogs')->where('company_id', Auth::User()->company_id)->get();
         return view('dashboard.blog', compact('Blog'));
     }
@@ -99,6 +99,7 @@ class DashboardController extends Controller
 
         $blog = new Blog;
         $blog->title = $request->title;
+        $blog->company_id = Auth::User()->company_id;
         $blog->type = $request->type;
         $blog->meta = $request->meta;
         $blog->video_url = $request->video_url;

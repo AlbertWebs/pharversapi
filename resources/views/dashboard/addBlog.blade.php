@@ -47,7 +47,7 @@
                         </center>
                     </div>
                     <div class="bor">
-                        <form method="POST" action="{{url('/')}}/admin/add_Blog" enctype="multipart/form-data">
+                        <form method="POST" action="{{url('/')}}/manager/dashboard/add_Blog" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="row">
                                 <div class="input-field col s12">

@@ -10,7 +10,7 @@ use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubscriberController;
-
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\Auth\LoginRegisterController;
@@ -498,3 +498,10 @@ All Managers Routes List
 
 Route::get('/subscribers/thank-you', [App\Http\Controllers\SubscriberController::class, 'thank'])->name('thank-you');
 Route::post('/post-subscription', [App\Http\Controllers\SubscriberController::class, 'subscription'])->name('post-subscription');
+
+Route::get('/impoorts', [ImportController::class, 'impoorts']);
+Route::post('/impoort', [ImportController::class, 'import'])->name('import');
+Route::get('/newAudience', [ImportController::class, 'newAudience']);
+Route::get('/update-Users', [ImportController::class, 'updateUsers']);
+
+

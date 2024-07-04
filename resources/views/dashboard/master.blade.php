@@ -46,14 +46,73 @@
                 <a href="{{url('/')}}/admin/home" class="logo"><img src="{{url('/')}}/uploads/logo/{{$SiteSettings->logo}}" alt="{{$SiteSettings->sitename}}" />
                 </a>
             </div>
+            <!--== SEARCH ==-->
+            <div class="col-md-6 col-sm-6 mob-hide">
+                <form class="app-search">
+                    <input type="text" placeholder="Search..." class="form-control">
+                    <a href="#"><i class="fa fa-search"></i></a>
+                </form>
+            </div>
+            <!--== NOTIFICATION ==-->
+            <div class="col-md-2 tab-hide">
+                <div class="top-not-cen">
+                     <?php $Message = App\Models\Message::all() ?>
+                     <?php $User = App\Models\User::all() ?>
+                     <?php $Posts = App\Models\Blog::all() ?>
+                    <a title="Podcasts" class='waves-effect btn-noti' href='#'><i class="fa fa-podcast" aria-hidden="true"></i><span><?php echo count($Message = DB::table('blogs')->get()) ?></span></a>
+                    <a title="Messages" class='waves-effect btn-noti' href='#'><i class="fa fa-envelope-o" aria-hidden="true"></i><span><?php echo count($Message = DB::table('messages')->get()) ?></span></a>
+                    <a title="Users" class='waves-effect btn-noti' href='#'><i class="fa fa-user" aria-hidden="true"></i><span><?php echo count($Users = DB::table('users')->get()) ?></span></a>
+                    <a title="Site Settings" class='waves-effect btn-noti' href='{{url('/')}}/admin/SiteSettings'><i class="fa fa-cog" aria-hidden="true"></i><span>1</span></a>
+                </div>
+            </div>
+            <!--== MY ACCCOUNT ==-->
+            <div class="col-md-2 col-sm-3 col-xs-6">
+                <!-- Dropdown Trigger -->
+                <a class='waves-effect dropdown-button top-user-pro' href='#' data-activates='top-menu'>
+                    <img src="{{url('/')}}/uploads/users/{{Auth::user()->image }}" alt="" />My Account
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
 
-
+                <!-- Dropdown Structure -->
+                <ul id='top-menu' class='dropdown-content top-menu-sty'>
+                    <li><a href="{{url('/')}}/admin/SiteSettings" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Site Settings</a>
+                    </li>
+                    <li><a href="{{url('/')}}/admin/users" class="waves-effect"><i class="fa fa-user" aria-hidden="true"></i> Manage Users </a>
+                    </li>
+                    <li><a href="{{url('/')}}/admin/admins" class="waves-effect"><i class="fa fa-support" aria-hidden="true"></i> Manage Admins </a>
+                    </li>
+                    <li><a href="{{url('/')}}/admin/addUser" class="waves-effect"><i class="fa fa-user-plus" aria-hidden="true"></i> Add New User</a>
+                    </li>
+                    <li><a href="{{url('/')}}/create-backup" class="waves-effect"><i class="fa fa-undo" aria-hidden="true"></i> Backup Data</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="{{url('/')}}/logout" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
    @yield('content')
 
-
+    <!--== BOTTOM FLOAT ICON ==-->
+    <section>
+        <div class="fixed-action-btn vertical">
+            <a class="btn-floating btn-large red pulse">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a>
+                </li>
+                <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a>
+                </li>
+                <li><a class="btn-floating green"><i class="material-icons">publish</i></a>
+                </li>
+                <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a>
+                </li>
+            </ul>
+        </div>
+    </section>
 
     <!--======== SCRIPT FILES =========-->
     <script src="{{asset('admin-theme/js/jquery.min.js')}}"></script>
@@ -103,8 +162,16 @@
     {{-- <script src="{{ asset('vendor/laraberg/js/laraberg.js') }}"></script> --}}
     {{-- <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> --}}
     <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-    <script>
+    {{-- <script>
         CKEDITOR.replace( 'ckeditor' );
+        CKEDITOR.config.filebrowserImageUploadUrl = '/ck-upload';
+    </script> --}}
+
+    <script>
+        CKEDITOR.replace('ckeditor', {
+            filebrowserUploadUrl: "{{ route('admin.product.uploadMedia', ['_token' => csrf_token()]) }}",
+            filebrowserUploadMethod: 'form'
+        });
     </script>
 
     {{-- <script>

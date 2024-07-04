@@ -104,14 +104,29 @@
                     @endforeach
 
                     <?php
-                    $Blog = DB::table('podcasts')->where('company_id',$company->id)->get();
+                        $Blog = DB::table('blogs')->where('type','podcasts')->where('company_id',$company->id)->get();
                     ?>
                     @foreach ($Blog as $blog)
                     <button class="nav-link nav-btn-style" id="v-pills-podcasts-tab" data-bs-toggle="pill" data-bs-target="#v-pills-podcasts" type="button" role="tab" aria-controls="v-pills-podcasts" aria-selected="false">
-                        <span class="fa fa-podcast"></span>
+                       <span class="fa fa-edit"></span>
                         Podcasts
                     </button>
                     @endforeach
+
+                    <?php
+                    $Blog = DB::table('blogs')->where('type','Publications')->where('company_id',$company->id)->get();
+                    ?>
+                    @foreach ($Blog as $blog)
+                    <button class="nav-link nav-btn-style" id="v-pills-Publications-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Publications" type="button" role="tab" aria-controls="v-pills-Publications" aria-selected="false">
+                    <span class="fa fa-edit"></span>
+                        Publication
+                    </button>
+                    @endforeach
+
+
+
+
+
 
                  </div>
 
@@ -143,11 +158,11 @@
                                 <div class="col-lg-4">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                            <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
                                             <a href="blog.html" class="post-tag post-tag-three">{{$blog->type}}</a>
-                                            <h2 class="post-title"><a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                            <h2 class="post-title"><a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
                                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
@@ -180,11 +195,11 @@
                                 <div class="col-lg-4">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                            <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
                                             <a href="blog.html" class="post-tag post-tag-three">{{$blog->type}}</a>
-                                            <h2 class="post-title"><a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                            <h2 class="post-title"><a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
                                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
@@ -217,11 +232,11 @@
                                 <div class="col-lg-4">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                            <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
                                             <a href="blog.html" class="post-tag post-tag-three">{{$blog->type}}</a>
-                                            <h2 class="post-title"><a href="{{url('/')}}/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                            <h2 class="post-title"><a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
                                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
@@ -239,7 +254,7 @@
                     @endif
 
                     <?php
-                        $Podcasts = DB::table('podcasts')->where('company_id',$company->id)->get();
+                        $Podcasts = DB::table('blogs')->where('type','podcasts')->where('company_id',$company->id)->get();
                     ?>
                     @if($Podcasts->isEmpty())
 
@@ -254,11 +269,11 @@
                                 <div class="col-lg-4">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
-                                            <a href="{{url('/')}}/podcasts/{{$blog->slung}}"><img src="{{$blog->image}}" alt=""></a>
+                                            <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
                                         </div>
                                         <div class="overlay-post-content-two">
                                             <a href="blog.html" class="post-tag post-tag-three">Podcasts</a>
-                                            <h2 class="post-title"><a href="{{url('/')}}/podcasts/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                            <h2 class="post-title"><a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
                                             <div class="blog-post-meta white-blog-meta">
                                                 <ul class="list-wrap">
                                                     <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
@@ -272,6 +287,43 @@
                           </div>
                           {{--  --}}
                        </div>
+                    </div>
+                    @endif
+
+                    <?php
+                    $Publications = DB::table('blogs')->where('type','Publications')->where('company_id',$company->id)->get();
+                    ?>
+                    @if($Publications->isEmpty())
+
+                    @else
+
+                    <div class="tab-pane fade" id="v-pills-Publications" role="tabpanel" aria-labelledby="v-pills-Publications-tab">
+                    <div class="tour-review-area">
+                        {{--  --}}
+                        <div class="popular-post-item-wrap">
+                            <div class="row">
+                                @foreach ($Publications as $blog)
+                                <div class="col-lg-4">
+                                    <div class="ta-overlay-post-two">
+                                        <div class="overlay-post-thumb-two">
+                                            <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                        </div>
+                                        <div class="overlay-post-content-two">
+                                            <a href="blog.html" class="post-tag post-tag-three">Publications</a>
+                                            <h2 class="post-title"><a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}">{{$blog->title}}</a></h2>
+                                            <div class="blog-post-meta white-blog-meta">
+                                                <ul class="list-wrap">
+                                                    <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($blog->created_at))}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        {{--  --}}
+                    </div>
                     </div>
                     @endif
 

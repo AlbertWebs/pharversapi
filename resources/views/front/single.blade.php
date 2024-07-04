@@ -47,7 +47,7 @@
                                     <div class="bd-content-inner">
                                         <div class="blog-post-meta">
                                             <ul class="list-wrap">
-                                                <li><i class="flaticon-user"></i>by<a href="{{url('/')}}/author/{{getAuthorSlung($content->author)}}"><?php echo getAuthor($content->author) ?></a></li>
+                                                <li><i class="flaticon-user"></i>by<a href="{{url('/')}}/author/{{getAuthorSlung($content->author)}}"><?php echo getAuthor($content->author) ?></a> </li>
                                                 <li><i class="flaticon-calendar"></i>{{date('d M, Y', strtotime($content->created_at))}}</li>
                                                 {{-- <li><i class="flaticon-chat"></i><a href="blog-details.html">05 Comments</a></li> --}}
                                                 <li><i class="flaticon-history"></i> <?php  echo estimateReadingTime($content->content);  ?> </li>
@@ -72,6 +72,11 @@
                                 <div class="blog-details-thumb">
                                     <img src="{{$content->image_one}}" alt="{{$content->title}}">
                                     <p class="text-center"><u>{{$content->image_credit}}</u></p>
+                                    @if($content->company_id == null)
+
+                                    @else
+                                    Published By <?php $Company = \App\Models\Company::find($content->company_id); ?> <a target="new" href="{{url('/')}}/companies/featured-companies/{{$Company->slung}}">@if($content->company_id == null) @else <?php  echo $Company->title ?> @endif
+                                    @endif
                                 </div>
                                 @endif
                                 {{-- Process Whitepaper File --}}
