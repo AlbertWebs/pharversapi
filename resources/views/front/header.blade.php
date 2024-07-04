@@ -182,12 +182,15 @@
                                         <a class="mobile-logo" href="{{url('/')}}"><img style="width:170px !inportant;" src="{{url('/')}}/uploads/logo/log.png" alt="Logo"></a>
                                     </div>
                                     <br>
-                                    <div class="mobile-search">
+                                    {{-- <div class="mobile-search">
 
                                         <form action="#">
                                             <input type="text" placeholder="Search here...">
                                             <button><i class="flaticon-search"></i></button>
                                         </form>
+                                    </div> --}}
+                                    <div class="mobile-search">
+                                        <a href="{{url('/')}}/login" class="btn btn-two" style="padding: 8px 35px;"><span class="fa fa-lock"></span>&nbsp;  Sign In</a>
                                     </div>
                                     <div class="menu-outer">
                                         <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
