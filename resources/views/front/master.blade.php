@@ -55,7 +55,7 @@
         <link rel="stylesheet" href="{{asset('theme/assets/css/ads.css')}}">
     </head>
     <body>
-        <h1 style="display: none">African Pharmaceutical Review - Keep up to date with the Latest News, Articles and Insights on the drug manufacturing, trade, technology and pharma supply chains in Africa.</h1>
+        <h1 style="display: none">The African Pharmaceutical Review is an online resource for readers and professionals working or have an interest in the pharmaceutical industry.</h1>
 
         <!-- preloader -->
         <div id="preloader">

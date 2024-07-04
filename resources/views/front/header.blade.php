@@ -7,7 +7,7 @@
                         <div class="col-lg-8">
                             <div class="header-top-left-four">
                                 <div class="trending-box">
-                                    <div class="icon"><img src="assets/img/icon/trending_icon.svg" alt=""></div>
+                                    <div class="icon"><img src="assets/img/icon/trending_icon.svg" alt="Pharverse"></div>
                                     <span>Trending</span>
                                     <div class="shape">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122 36" preserveAspectRatio="none" fill="none">
@@ -58,7 +58,7 @@
                         <div class="col-lg-4">
                             <div class="hl-left-side">
                                 <div class="logo">
-                                    <a href="{{url('/')}}"><img src="{{url('/')}}/uploads/logo/log.png" alt=""></a>
+                                    <a href="{{url('/')}}"><img src="{{url('/')}}/uploads/logo/log.png" alt="African Pharmaceutical Review Logo"></a>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                 <div class="bottom_nav">
 
                     {{-- <div class="mobile-logo">
-                        <a href="{{url('/')}}"><img src="{{url('/')}}/uploads/logo/log.png" alt=""></a>
+                        <a href="{{url('/')}}"><img src="{{url('/')}}/uploads/logo/log.png" alt="African Pharmaceutical Review "></a>
                     </div> --}}
                     {{-- <a class="burger-nav"></a> --}}
                     <ul class="m-0">
@@ -158,7 +158,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-lg-7 col-md-4">
                                         <div class="logo d-none">
-                                            <a href="{{url('/')}}"><img src="{{url('/')}}/uploads/logo/log.png" alt=""></a>
+                                            <a href="{{url('/')}}"><img src="{{url('/')}}/uploads/logo/log.png" alt="African Pharmaceutical Review Logo"></a>
                                         </div>
 
                                     </div>
