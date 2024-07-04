@@ -78,7 +78,7 @@
                                 <div class="col-54">
                                     <div class="overlay-post-two">
                                         <div class="overlay-post-thumb">
-                                            <a href="{{url('/')}}/topics/{{$latestnews->type}}/{{$latestnews->slung}}"><img src="{{$latestnews->image_one}}" alt=""></a>
+                                            <a href="{{url('/')}}/topics/{{$latestnews->type}}/{{$latestnews->slung}}"><img src="{{$latestnews->image_one}}" alt="{{$latestnews->title}}"></a>
                                         </div>
                                         <div class="overlay-post-content">
                                             <a href="{{url('/')}}/topics/{{$latestnews->type}}/{{$latestnews->slung}}" class="post-tag">News</a>
@@ -102,7 +102,7 @@
                                     @else
                                         <div class="horizontal-post-two">
                                             <div class="horizontal-post-thumb">
-                                                <a href="{{url('/')}}/topics/{{$latestrst->type}}/{{$latestrst->slung}}"><img src="{{$latestrst->image_one}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$latestrst->type}}/{{$latestrst->slung}}"><img src="{{$latestrst->image_one}}" alt="{{$latestrst->title}}"></a>
                                             </div>
                                             <div class="horizontal-post-content">
                                                 <a href="{{url('/')}}/topics/{{$latestrst->type}}/{{$latestrst->slung}}" class="post-tag">News</a>
@@ -169,7 +169,7 @@
                                     <div class="col-lg-6">
                                         <div class="ta-overlay-post-two">
                                             <div class="overlay-post-thumb-two">
-                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt="{{$blog->title}}"></a>
                                             </div>
                                             <div class="overlay-post-content-two">
                                                 <a href="blog.html" class="post-tag post-tag-three">{{$blog->type}}</a>
@@ -186,7 +186,7 @@
                                     <div class="col-lg-4">
                                         <div class="ta-overlay-post-two">
                                             <div class="overlay-post-thumb-two">
-                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt="{{$blog->title}}"></a>
                                             </div>
                                             <div class="overlay-post-content-two">
                                                 <a href="blog.html" class="post-tag post-tag-three">{{$blog->type}}</a>
@@ -228,7 +228,7 @@
                                             <div class="popular-post popular-post-two">
                                                 <div class="thumb">
                                                     <br>
-                                                    <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image_one}}" alt=""></a>
+                                                    <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image_one}}" alt="{{$podcast->title}}"></a>
                                                 </div>
                                                 <div class="content">
                                                     <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="post-tag-two"><span class="fa fa-podcast"></span> Podcasts</a>
@@ -252,7 +252,7 @@
                                          <div class="popular-post popular-post-two">
                                             <div class="thumb">
                                                 <br>
-                                                <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image_one}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="thumb-middle"><img src="{{$podcast->image_one}}" alt="{{$podcast->title}}"></a>
                                             </div>
                                             <div class="content">
                                                 <a href="{{url('/')}}/topics/{{$podcast->type}}/{{$podcast->slung}}" class="post-tag-two"><span class="fa fa-film"></span> Podcasts</a>
@@ -315,7 +315,7 @@
                 <div class="col-lg-6">
                     <div class="overlay-post-five">
                         <div class="overlay-post-thumb-five">
-                            <a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}"><img src="{{$recentInterviews->image_one}}" alt=""></a>
+                            <a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}"><img src="{{$recentInterviews->image_one}}" alt="{{$recentInterviews->title}}"></a>
                         </div>
                         <div class="overlay-post-content-five">
                             <a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}" class="post-tag post-tag-three">Interviews</a>
@@ -335,7 +335,7 @@
                 <div class="col-lg-6">
                     <div class="overlay-post-five">
                         <div class="overlay-post-thumb-five">
-                            <a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}"><img src="{{$recentInterviews->image_one}}" alt=""></a>
+                            <a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}"><img src="{{$recentInterviews->image_one}}" alt="{{$recentInterviews->title}}"></a>
                         </div>
                         <div class="overlay-post-content-five">
                             <a href="{{url('/')}}/topics/{{$recentInterviews->type}}/{{$recentInterviews->slung}}" class="post-tag post-tag-three">Interviews</a>
@@ -361,7 +361,7 @@
                 <div class="col-xl-4 col-lg-6">
                     <div class="horizontal-post-three">
                         <div class="horizontal-post-thumb-three">
-                            <a class="int-img" href="{{url('/')}}/topics/{{$other->type}}/{{$other->slung}}"><img src="{{$other->image_one}}" alt=""></a>
+                            <a class="int-img" href="{{url('/')}}/topics/{{$other->type}}/{{$other->slung}}"><img src="{{$other->image_one}}" alt="{{$other->title}}"></a>
                         </div>
                         <div class="horizontal-post-content-three">
                             <a href="blog.html" class="post-tag post-tag-three">Interviews</a>
@@ -551,8 +551,8 @@
             </div>
         </div>
         <div class="trending-shape-wrap">
-            <img src="assets/img/images/trending_shape01.png" alt="">
-            <img src="assets/img/images/trending_shape02.png" alt="">
+            <img src="{{asset('theme/assets/img/images/trending_shape01.png')}}" alt="Africa Phamaceutical Review">
+            <img src="{{asset('theme/assets/img/images/trending_shape02.png')}}" alt="Africa Phamaceutical Review">
         </div>
     </section>
     {{--  --}}
@@ -597,7 +597,7 @@
                                     <div class="col-lg-6">
                                         <div class="ta-overlay-post-two">
                                             <div class="overlay-post-thumb-two">
-                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt="{{$blog->title}}"></a>
                                             </div>
                                             <div class="overlay-post-content-two">
                                                 <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-podcast"></i> {{$blog->type}}</a>
@@ -614,7 +614,7 @@
                                     <div class="col-lg-3">
                                         <div class="ta-overlay-post-two">
                                             <div class="overlay-post-thumb-two">
-                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$blog->type}}/{{$blog->slung}}"><img src="{{$blog->image_one}}" alt="{{$blog->title}}"></a>
                                             </div>
                                             <div class="overlay-post-content-two">
                                                 <a href="blog.html" class="post-tag post-tag-three"><i class="fa fa-podcast"></i> {{$blog->type}}</a>
@@ -671,7 +671,7 @@
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/featured-companies/{{$companies->slung}}"><img src="{{url('/')}}/uploads/logo/{{$companies->logo}}" alt=""></a>
+                                <a href="{{url('/')}}/companies/featured-companies/{{$companies->slung}}"><img src="{{url('/')}}/uploads/logo/{{$companies->logo}}" alt="{{$companies->name}}"></a>
                             </div>
                         </div>
                     </div>
