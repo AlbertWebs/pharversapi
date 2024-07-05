@@ -14,7 +14,7 @@
         <!-- Place favicon.ico in the root directory -->
 
         {{--  --}}
-        <title>Latest Pharmaceutical News, Interviews, and Insights | African Pharmaceutical Review</title>
+        <title>Pharma News, Interviews, Insights | African Pharmaceutical Review</title>
         <meta name="description" content="Latest news, interviews, podcasts, insights, and developments in the African Pharmaceutical Industry. African Pharmaceutical Review offers expert analysis" />
 		<meta name="keywords" content="African Pharmaceutical Industry news, African Pharma updates, Pharmaceutical industry in Africa, Latest African pharmaceutical developments, African pharma insights, Pharma news Africa, African pharmaceutical interviews, Pharma industry news Africa, Developments in African pharmaceutical sector, African pharma industry trends, African pharmaceutical market updates, Africa pharmaceutical research news, African pharma sector insights, Pharmaceutical innovations in Africa, News on African pharmaceutical companies">
         <meta name="robots" content="index, follow">
@@ -23,7 +23,7 @@
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:site_name" content="African Pharmaceutical Review" />
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Latest Pharmaceutical News, Interviews, and Insights | African Pharmaceutical Review" />
+		<meta property="og:title" content="Pharma News, Interviews, Insights | African Pharmaceutical Review" />
 		<meta property="og:description" content="Latest news, interviews, podcasts, insights, and developments in the African Pharmaceutical Industry. African Pharmaceutical Review offers expert analysis" />
 		<meta property="og:url" content="{{url('/')}}" />
 		<meta property="og:image" content="{{url('/')}}/uploads/logo/log.png" />
@@ -33,7 +33,7 @@
 
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@af_pharmareview" />
-		<meta name="twitter:title" content="Latest Pharmaceutical News, Interviews, and Insights | African Pharmaceutical Review" />
+		<meta name="twitter:title" content="Pharma News, Interviews, Insights | African Pharmaceutical Review" />
 		<meta name="twitter:description" content="Latest news, interviews, podcasts, insights, and developments in the African Pharmaceutical Industry. African Pharmaceutical Review offers expert analysis" />
 		<meta name="twitter:creator" content="@af_pharmareview" />
 		<meta name="twitter:image" content="{{url('/')}}/uploads/logo/log.png" />
