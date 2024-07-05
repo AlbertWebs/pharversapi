@@ -42,7 +42,8 @@
         {{--  --}}
 
         <!-- CSS here -->
-        <link rel="stylesheet" href="{{asset('theme/assets/css/bootstrap.min.css')}}">
+        {{-- <link rel="stylesheet" href="{{asset('theme/assets/css/bootstrap.min.css')}}"> --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{asset('theme/assets/css/animate.min.css')}}">
         <link rel="stylesheet" href="{{asset('theme/assets/css/magnific-popup.css')}}">
         <link rel="stylesheet" href="{{asset('theme/assets/css/fontawesome-all.min.css')}}">
@@ -56,7 +57,7 @@
         <link rel="stylesheet" href="{{asset('theme/assets/css/ads.css')}}">
     </head>
     <body>
-        <h1 style="display: none">The African Pharmaceutical Review is an online resource for readers and professionals working or have an interest in the pharmaceutical industry.</h1>
+        <h1 style="display: none">Latest Pharmaceutical News, Interviews, Podcasts, Videos and Insights | African Pharmaceutical Review</h1>
 
         <!-- preloader -->
         <div id="preloader">
