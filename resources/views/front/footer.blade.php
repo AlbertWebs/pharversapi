@@ -18,34 +18,10 @@
                                     <h4 class="fw-title">Topics</h4>
                                     <div class="footer-link-wrap">
                                         <ul class="list-wrap">
-                                            <?php $Topics = DB::table('categories')->limit('5')->inRandomOrder()->get(); ?>
+                                            <?php $Topics = DB::table('categories')->limit('6')->inRandomOrder()->get(); ?>
                                             @foreach ($Topics as $topics)
                                             <li><a href="{{url('/')}}/topic/{{$topics->slung}}">{{$topics->title}}</a></li>
                                             @endforeach
-
-                                                {{-- <li><a href="#">Drug development</a></li>
-                                                <li><a href="#">Formulation</a></li>
-                                                <li><a href="#">Clinical trials</a></li>
-                                                <li><a href="#">Vaccine development</a></li> --}}
-                                                {{-- <li><a href="#">Packaging</a></li>
-                                                <li><a href="#">Logistics</a></li>
-                                                <li><a href="#">Single-use</a></li>
-                                                <li><a href="#">Manufacturing</a></li>
-                                                <li><a href="#">Outsourcing</a></li>
-                                                <li><a href="#">Chromatography</a></li>
-                                                <li><a href="#">HPLC</a></li>
-                                                <li><a href="#">Mass spectrometry</a></li>
-                                                <li><a href="#">Process Analytical Technology</a></li>
-                                                <li><a href="#">Upstream bioprocessing</a></li>
-                                                <li><a href="#">Bioproduction</a></li>
-                                                <li><a href="#">Cell &amp; gene therapy</a></li>
-                                                <li><a href="#">Biologics/biosimilars</a></li>
-                                                <li><a href="#">Informatics</a></li>
-                                                <li><a href="#">Data</a></li>
-                                                <li><a href="#">Digitization</a></li>
-                                                <li><a href="#">Automation</a></li>
-                                                <li><a href="#">Artificial intelligence</a></li> --}}
-                                                <li><a href="{{url('/')}}/topics">All Topics</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -55,13 +31,10 @@
                                     <h4 class="fw-title">Quick Access</h4>
                                     <div class="footer-link-wrap">
                                         <ul class="list-wrap">
-                                            <?php $Content = DB::table('contents')->limit('5')->inRandomOrder()->get(); ?>
+                                            <?php $Content = DB::table('contents')->limit('6')->inRandomOrder()->get(); ?>
                                             @foreach ($Content as $content)
                                             <li><a href="{{url('/')}}/contents/{{$content->slung}}">{{$content->title}}</a></li>
                                             @endforeach
-
-
-                                            <li><a href="{{url('/')}}/contents">All Content</a></li>
                                         </ul>
                                     </div>
                                 </div>

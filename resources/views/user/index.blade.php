@@ -19,7 +19,12 @@
           <div class="row">
              <div class="col-md-6">
                 <div class="morning-user">
-                   <h2>Good Day!, <span>{{Auth::User()->title}} {{Auth::User()->name}}</span> <?php $theID = Auth::User()->id; ?> @if($theID < 120) <sup> <img style="width:30px;" src="{{url('/')}}/uploads/Golden_Badge_Transparent_PNG_Image.webp" alt></sup> @endif</h2>
+                   <h2>Good Day!, <span>{{Auth::User()->title}} {{Auth::User()->name}}</span>
+                        <?php $theID = Auth::User()->id; ?> @if($theID < 1000)
+                        <sup data-bs-toggle="modal" data-bs-target="#full-width-modal">
+                            <img style="width:30px;" src="{{url('/')}}/uploads/Golden_Badge_Transparent_PNG_Image.webp" alt="">
+                        </sup> @endif
+                    </h2>
                    <p>{{Auth::User()->content}}</p>
                 </div>
              </div>
@@ -283,5 +288,34 @@
     </div>
  </div>
 
+
+ <div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fullWidthModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-width">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h4 class="modal-title" id="fullWidthModalLabel">You are a Gold Subscriber!</h4>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+             <p>Why?<br> By being among our first 1000 subscribers.</p>
+             <p>For believing in us you get:</p>
+             <hr>
+
+             <p>
+                Access to premium content only exclusive to gold members.<br>
+                A 10% discount on your first conference showing.<br>
+                Priority in invite-only industry round table meetings to discuss key issues.<br>
+                Priority in exclusive webinars<br>
+             </p>
+             <hr>
+             <p>Thank you for believing in us!</p>
+          </div>
+          <div class="modal-footer">
+             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+             {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+          </div>
+       </div>
+    </div>
+ </div>
 
 @endsection
