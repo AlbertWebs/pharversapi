@@ -14,8 +14,8 @@
         <!-- Place favicon.ico in the root directory -->
 
         {{--  --}}
-        <title>African Pharmaceutical Review - Keep up to date with the Latest News, Articles and Insights on the drug manufacturing, trade, technology and pharma supply chains in Africa.</title>
-        <meta name="description" content="Get the latest news, interviews insights and developments of the African Pharmaceutical Industry." />
+        <title>Latest African Pharmaceutical News, Interviews, and Insights | African Pharmaceutical Review</title>
+        <meta name="description" content="Get the Latest news, interviews, podcasts, insights, and developments in the African Pharmaceutical Industry. African Pharmaceutical Review offers expert analysis" />
 		<meta name="keywords" content="African Pharmaceutical Industry news, African Pharma updates, Pharmaceutical industry in Africa, Latest African pharmaceutical developments, African pharma insights, Pharma news Africa, African pharmaceutical interviews, Pharma industry news Africa, Developments in African pharmaceutical sector, African pharma industry trends, African pharmaceutical market updates, Africa pharmaceutical research news, African pharma sector insights, Pharmaceutical innovations in Africa, News on African pharmaceutical companies">
         <meta name="robots" content="index, follow">
 		<link rel="canonical" href="{{url('/')}}" />
@@ -23,8 +23,8 @@
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:site_name" content="African Pharmaceutical Review" />
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="African Pharmaceutical Review - Keep up to date with the Latest News, Articles and Insights on the drug manufacturing, trade, technology and pharma supply chains in Africa." />
-		<meta property="og:description" content="Get the latest news, interviews insights and developments of the African Pharmaceutical Industry." />
+		<meta property="og:title" content="Latest African Pharmaceutical News, Interviews, and Insights | African Pharmaceutical Review" />
+		<meta property="og:description" content="Get the Latest news, interviews, podcasts, insights, and developments in the African Pharmaceutical Industry. African Pharmaceutical Review offers expert analysis" />
 		<meta property="og:url" content="{{url('/')}}" />
 		<meta property="og:image" content="{{url('/')}}/uploads/logo/log.png" />
 		<meta property="og:image:secure_url" content="{{url('/')}}/uploads/logo/log.png" />
@@ -33,8 +33,8 @@
 
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@af_pharmareview" />
-		<meta name="twitter:title" content="African Pharmaceutical Review - Keep up to date with the Latest News, Articles and Insights on the drug manufacturing, trade, technology and pharma supply chains in Africa." />
-		<meta name="twitter:description" content="Get the latest news, interviews insights and developments of the African Pharmaceutical Industry." />
+		<meta name="twitter:title" content="Latest African Pharmaceutical News, Interviews, and Insights | African Pharmaceutical Review" />
+		<meta name="twitter:description" content="Get the Latest news, interviews, podcasts, insights, and developments in the African Pharmaceutical Industry. African Pharmaceutical Review offers expert analysis" />
 		<meta name="twitter:creator" content="@af_pharmareview" />
 		<meta name="twitter:image" content="{{url('/')}}/uploads/logo/log.png" />
 
