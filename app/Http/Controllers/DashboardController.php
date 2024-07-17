@@ -146,7 +146,7 @@ class DashboardController extends Controller
         $Podcast = new Podcast;
         $Podcast->title = $request->title;
         $Podcast->meta = $request->meta;
-        $Podcast->company_id = $request->company_id;
+        $Podcast->company_id = Auth::User()->company_id;
         $Podcast->slung = Str::slug($request->title);
         $Podcast->content = $request->ckeditor;
         $Podcast->author = $request->author;

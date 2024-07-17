@@ -88,16 +88,16 @@
                   <li>
                      <a href="{{url('/')}}/admin/partners">All Partners </a>
                   </li>
-                  <li>
+                  {{-- <li>
                      <a href="{{url('/')}}/admin/addPartner">Add Partner</a>
-                  </li>
+                  </li> --}}
                </ul>
             </div>
          </li>
          {{--  --}}
 
          {{--  --}}
-         <li>
+         {{-- <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-comment" aria-hidden="true"></i> Testimonials </a>
             <div class="collapsible-body left-sub-menu">
                <ul>
@@ -107,7 +107,7 @@
                   </li>
                </ul>
             </div>
-         </li>
+         </li> --}}
          {{--  --}}
          {{--  --}}
          {{-- <li>
@@ -196,17 +196,20 @@
                <ul>
                   <li><a href="{{url('/')}}/admin/SiteSettings">Systems Settings </a>
                   </li>
-                  <li><a href="{{url('/')}}/admin/mailerSettings">Mailer Settings </a>
-                  </li>
-                  <li><a href="{{url('/')}}/admin/credentials">Systems Credentials </a>
-                  </li>
+                  {{-- <li><a href="{{url('/')}}/admin/mailerSettings">Mailer Settings </a>
+                  </li> --}}
+                  {{-- <li><a href="{{url('/')}}/admin/credentials">Systems Credentials </a>
+                  </li> --}}
                </ul>
             </div>
          </li>
          <li><a href="{{url('/')}}/admin/SocialMediaSettings"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Social Media</a>
          </li>
-         <li><a href="{{url('/')}}/logout" target="_blank"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout </a>
+         <li><a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" target="_blank"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout </a>
          </li>
+         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+             @csrf
+         </form>
       </ul>
    </div>
 </div>

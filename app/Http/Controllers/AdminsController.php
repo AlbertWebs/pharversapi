@@ -2364,9 +2364,9 @@ class AdminsController extends Controller
             'google'=>$request->google,
         );
 
-        DB::table('site_settings')->update($updateDetails);
+        DB::table('_site_settings')->update($updateDetails);
         Session::flash('message', "Changes have Been Saved");
-        return Redirect::back();
+        return response()->json(['success'=>'Changes Saved Successfully!']);
     }
 
     public function updateSiteCredentials(Request $request){
@@ -2383,7 +2383,7 @@ class AdminsController extends Controller
             'b2bcallback'=>$request->linkedin,
         );
 
-        DB::table('site_settings')->update($updateDetails);
+        DB::table('_site_settings')->update($updateDetails);
         Session::flash('message', "Changes have Been Saved");
         return Redirect::back();
     }

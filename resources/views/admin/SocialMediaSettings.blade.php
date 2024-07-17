@@ -1,5 +1,6 @@
 @extends('admin.master')
 @section('content')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!--== BODY CONTNAINER ==-->
  <div class="container-fluid sb2">
     <div class="row">
@@ -24,7 +25,8 @@
                     <p>Your Social Media Settings</p>
                 </div>
                 <div class="bor">
-                    <form id="saveSettings" method="PUT">
+                    <form id="saveSettings" method="PUT" enctype="multipart/form-data">
+                        {{csrf_field()}}
                         <div class="form-group">
                             <label for="email1">Facebook:</label>
                             <input type="text" name="facebook" value="{{$Setting->facebook}}" class="form-control" id="email1" placeholder="">
@@ -33,7 +35,7 @@
                             <label for="email2">Twitter:</label>
                             <input type="text" name="twitter" value="{{$Setting->twitter}}" class="form-control" id="email2" placeholder="">
                         </div>
-                   
+
                         <div class="form-group">
                             <label for="email3">Instagram:</label>
                             <input type="text" name="instagram" value="{{$Setting->instagram}}" class="form-control" id="email3" placeholder="">
@@ -42,14 +44,7 @@
                             <label for="email4">Linked In:</label>
                             <input type="text" name="linkedin" value="{{$Setting->linkedin}}" class="form-control" id="email4" placeholder="">
                         </div>
-                        <div class="form-group">
-                            <label for="email3">Telegram:</label>
-                            <input type="text" name="telegram" value="{{$Setting->telegram}}" class="form-control" id="email3" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label for="email5">Whats App:</label>
-                            <input type="text" name="whatsapp" value="{{$Setting->whatsapp}}" class="form-control" id="email5" placeholder="">
-                        </div>
+
                         <button type="submit" class="btn btn-default">Save Changes</button>
                     </form>
                 </div>
@@ -81,7 +76,7 @@
                         type: "PUT",
                         dataType: "html",
                         data: $(this).serialize(),
-                        success: function () 
+                        success: function ()
                         {
                             swal("Done!","Your Changes Have Been Updated");
                             setTimeout(function() {
@@ -89,9 +84,9 @@
                             }, 3000);
                         }
                     });
-                    // 
-                  
-                } 
+                    //
+
+                }
             });
         });
 </script>

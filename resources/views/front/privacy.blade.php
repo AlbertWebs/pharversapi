@@ -31,21 +31,16 @@
                               {{--  --}}
                               <div class="wfu-wrapper">
 
-
-                                {{-- <h3></h3> --}}
                                 <div class="wfu-content mt-5" style="justify-content: center;">
+                                    <?php
+                                        $Terms = DB::table('privacies')->get();
+                                    ?>
+                                    @foreach ($Terms as $terms)
+                                    {!!html_entity_decode($terms->content)!!}
+                                    @endforeach
 
                                 </div>
-                                <!-- <div class="reg-header-right col-lg-6 col-md-12"></div> -->
-                                {{-- <p>
-                                    <div class="pull-right" id="next">
-                                        <div class="view-all-btn">
-                                            <a href="{{url('/')}}/write-for-us/step-2" class="link-btn">Proceed <i class="fa fa-arrow-right"></i>
 
-                                            </a>
-                                        </div>
-                                    </div>
-                                </p> --}}
 
 
 
