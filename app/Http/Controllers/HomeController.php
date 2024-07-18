@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Logiek\ReadingTime\ReadingTime;
 use App\Models\SendEmail;
+use App\Models\Download;
 use Stevebauman\Hypertext\Transformer;
 use Spatie\Sitemap\SitemapGenerator;
 use Carbon\Carbon;
@@ -14,6 +15,7 @@ use Spatie\Sitemap\Tags\Url;
 use App\Models\Blog;
 use DB;
 use Redirect;
+use Hash;
 use \App\Models\User;
 
 class HomeController extends Controller
@@ -319,9 +321,17 @@ class HomeController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => Hash::make($request->email),
             ]);
-            event(new Registered($user));
+            // event(new Registered($user));
+            // Email Customer Details about account
+            $Sender = "noreply@africanpharmaceuticalreview.com";
+            $SenderId = "No Reply";
+            $MessageToSubscriber = "";
+            $SubscriberName = $request->name;
+            $SubscriberId = $request->email;
+            $subject = "African Pharmaceutical Review";
+            SendEmail::sendEmailSubscriber($Sender,$SenderId,$MessageToSubscriber,$SubscriberName,$SubscriberId,$subject);
         }else{
 
 
@@ -329,6 +339,7 @@ class HomeController extends Controller
         }
 
         $user = User::where('email','=',$email)->first();
+        // Take count of who downloaded
 
         Auth::login($user);
         return Redirect::back();
@@ -336,4 +347,18 @@ class HomeController extends Controller
 
     }
 
+    public function mail(){
+        return view('front.mail');
+    }
+
+    public function register_download(Request $request){
+        $Download = new Download;
+        $Download->title = $request->title;
+        $Download->user = $request->user;
+        $Download->file = $request->file;
+        $Download->link = $request->link;
+        $Download->save();
+        // return response()->json(['success'=>'Download Successfully!']);
+        return Redirect::back();
+    }
 }

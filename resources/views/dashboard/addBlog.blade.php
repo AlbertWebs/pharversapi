@@ -96,8 +96,8 @@
                             </div>
                             {{--  --}}
                             {{-- Show Dynamics --}}
-                            <div class="row">
-                                <div class="input-field col s12" id="hidden_div">
+                            <div class="row" id="hidden_div">
+                                <div class="input-field col s6" >
                                     <div class="file-field">
                                         <div class="btn">
                                             <span>File</span>
@@ -107,6 +107,10 @@
                                             <input  class="file-path validate" type="text" placeholder="Whitepaper File">
                                         </div>
                                     </div>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input autocomplete="off" name="whitepaper_link" id="list-title" type="text" class="validate">
+                                    <label for="list-title">Whitepaper Link</label>
                                 </div>
                             </div>
                             {{-- Show Dynamics --}}

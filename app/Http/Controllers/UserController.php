@@ -9,6 +9,8 @@ use Spatie\Newsletter\Facades\Newsletter;
 use Redirect;
 use DB;
 use \App\Models\User;
+use Session;
+// use Redirect;
 
 class UserController extends Controller
 {
@@ -351,7 +353,8 @@ class UserController extends Controller
             'image' => $SaveFilePath,
         );
         DB::table('users')->where('id', Auth::User()->id)->update($updateUserDetails);
-        return view('user.profile');
+        Session::flash('message', "Changes have been saved");
+        return Redirect::back();
     }
 
     public function update_options(Request $request){

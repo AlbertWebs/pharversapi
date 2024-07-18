@@ -55,7 +55,12 @@
                                     <label for="list-title">Ad Type</label>
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input value="{{$Advertisement->url}}" autocomplete="off" name="url" id="list-title" type="url" class="validate"  required>
+                                    <label for="list-title">Ad URI</label>
+                                </div>
+                            </div>
 
 
                             <div class="row">

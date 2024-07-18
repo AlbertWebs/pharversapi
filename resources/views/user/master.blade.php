@@ -18,8 +18,8 @@
       <div class="main-wrapper">
          <div class="header">
             <div class="header-left">
-               <a href="index.html" class="logo">
-               <img src="{{asset('portal/assets/img/logo.png')}}" width="35" height="35" alt> <span>Pharverse</span>
+               <a href="#" class="logo" style="background-color: ##183354">
+               <img src="{{url('/')}}/favicon/apple-touch-icon.png" width="35" height="35" alt>
                </a>
             </div>
             <a id="toggle_btn" href="javascript:void(0);"><img src="{{asset('portal/assets/img/icons/bar-icon.svg')}}" alt></a>
@@ -106,7 +106,7 @@
                         <a href="{{url('/')}}/dashboard"><span class="menu-side"><img src="{{asset('portal/assets/img/icons/menu-icon-01.svg')}}" alt></span> <span> Dashboard </span> </a>
                      </li>
                      <li >
-                        <a href="{{url('/')}}/"><span class="menu-side"><img src="{{asset('portal/assets/img/icons/clock.svg')}}" alt></span> <span> Main Website </span> </a>
+                        <a target="new" href="{{url('/')}}/"><span class="menu-side"><img src="{{asset('portal/assets/img/icons/clock.svg')}}" alt></span> <span> Main Website </span> </a>
                      </li>
                      <li >
                         <a href="{{route('my-profile')}}"><span class="menu-side"><img src="{{asset('portal/assets/img/icons/menu-icon-02.svg')}}" alt></span> <span> My Profile </span> </a>

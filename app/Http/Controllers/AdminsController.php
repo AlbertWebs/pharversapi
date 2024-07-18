@@ -1353,8 +1353,19 @@ class AdminsController extends Controller
             $SaveFilePath = $request->image_one_cheat;
         }
 
+        if(isset($request->whitepaper_file)){
+            $dir = 'uploads/whitepapers';
+            $file = $request->file('whitepaper_file');
+            $realPath = $request->file('whitepaper_file')->getRealPath();
+            $whitepaper_file = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $whitepaper_file = $request->whitepaper_file_cheat;
+        }
+
         $updateDetails = array(
             'title' => $request->title,
+            'whitepaper_link' => $request->whitepaper_link,
+            'whitepaper_file' => $whitepaper_file,
             'type' => $request->type,
             'slung' => Str::slug($request->title),
             'content' => $request->ckeditor,
@@ -2924,6 +2935,7 @@ class AdminsController extends Controller
 
         $updateDetails = array(
             'date'=>$request->date,
+            'url'=>$request->url,
             'image' =>$SaveFilePath,
         );
         DB::table('advertisements')->where('id', $id)->update($updateDetails);

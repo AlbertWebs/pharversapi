@@ -98,6 +98,30 @@
                                 <div class="section-space col s12"></div>
 
                             </div>
+                            @if($Blog->type == "Whitepapers/Application Notes")
+                            <div class="row">
+                                <div class="input-field col s2" >
+                                    <div class="file-field">
+                                        <div class="btn">
+                                            <span>File</span>
+                                            <input  name="whitepaper_file" type="file">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input  class="file-path validate" type="text" placeholder="Upload Different Whitepaper File">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-field col s5">
+                                    <input autocomplete="off" name="whitepaper_link" id="list-title" type="text" value="{{$Blog->whitepaper_link}}" class="validate">
+                                    <label for="list-title">Whitepaper External Link</label>
+                                </div>
+                                <div class="input-field col s5">
+                                    <input autocomplete="off" name="" id="list-title" type="text" value="{{$Blog->whitepaper_file}}" class="validate">
+                                    <label for="list-title">Whitepaper File Link</label>
+                                </div>
+                            </div>
+                            @endif
+                            <div class="section-space col s12"></div>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <textarea required name="meta" class="materialize-textarea">{{$Blog->meta}}</textarea>
@@ -113,6 +137,7 @@
                                 </div>
                             </div>
                             <div class="section-space col s12"></div>
+
 
 
                             <div class="row">
@@ -178,6 +203,8 @@
                                 </div>
                             </div>
                             <input type="hidden" name="image_one_cheat" value="{{$Blog->image_one}}">
+                            <input type="hidden" name="whitepaper_file_cheat" value="{{$Blog->whitepaper_file}}">
+
                         </form>
                     </div>
                 </div>

@@ -23,6 +23,21 @@ class SendEmail extends Model
         });
     }
 
+    public static function sendEmailSubscriber($Sender,$SenderId,$MessageToSend,$SubscriberName,$SubscriberId,$Subject){
+        $data = array(
+            'content'=>$MessageToSend,
+            'subject'=>$Subject,
+        );
+
+
+
+        Mail::send('front.mail', $data, function($message) use ($Subject,$Sender,$SenderId,$SubscriberId,$SubscriberName){
+            $message->from($Sender , $SenderId);
+            $message->to($SubscriberId, $SubscriberName)->cc('albertmuhatia@gmail.com')->subject($Subject);
+        });
+    }
+
+
     public static function sendEmails($Sender,$SenderId,$MessageToSend,$SubscriberName,$SubscriberId,$Subject){
         $data = array(
             'content'=>$MessageToSend,

@@ -123,18 +123,22 @@
                                                 <div class="sidebar-newsletter">
                                                     <div class="icon"><i class="flaticon-envelope"></i></div>
                                                     <h4 class="title">Download Whitepapers/Application Note</h4>
-
                                                     <div class="sidebar-newsletter-form">
-
-                                                            <a target="new" download="download" href="{{$content->whitepaper_file}}">
-                                                                <span class="fa fa-download fa-2x"></span>
-                                                                <span class="fab fa-file-pdf-o fa-2x"></span>
-                                                            </a>
-
-
+                                                        <a id="register-download" target="new" download="download" href="{{$content->whitepaper_file}}">
+                                                            <span class="fa fa-download fa-2x"></span>
+                                                            <span class="fab fa-file-pdf-o fa-2x"></span>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <form id="register-form" style="display:none" action="{{route('register-download')}}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="user" value="{{Auth::User()->id}}">
+                                                <input type="hidden" name="title" value="{{$content->title}}">
+                                                <input type="hidden" name="file" value="{{$content->whitepaper_file}}">
+                                                <input type="hidden" name="link" value="{{$content->whitepaper_link}}">
+                                                <input type="submit">
+                                            </form>
                                         @else
 
                                             <div class="blog-avatar-wrap mb-50">
@@ -312,6 +316,23 @@
 
 </main>
 <!-- main-area-end -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $("#register-download").on('click', function(event)
+        {
+            var dataString = $("#register-form").serialize();
+            $.ajax({
+                type: "POST",
+                url: "{{route('register-download')}}",
+                data: dataString,
+                success: function () {
+                    // Display message back to the user here
+                }
+            });
+        });
+</script>
 
 @endforeach
 

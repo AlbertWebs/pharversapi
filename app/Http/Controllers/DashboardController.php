@@ -55,18 +55,30 @@ class DashboardController extends Controller
             $SaveFilePath = $request->image_one_cheat;
         }
 
+        if(isset($request->whitepaper_file)){
+            $dir = 'uploads/whitepapers';
+            $file = $request->file('whitepaper_file');
+            $realPath = $request->file('whitepaper_file')->getRealPath();
+            $whitepaper_file = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $whitepaper_file = $request->whitepaper_file_cheat;
+        }
+
         $updateDetails = array(
             'title' => $request->title,
             'type' => $request->type,
+            'whitepaper_link' => $request->whitepaper_link,
+            'whitepaper_file' => $whitepaper_file,
             'slung' => Str::slug($request->title),
             'content' => $request->ckeditor,
             'author' => $request->author,
             'category' => $request->category,
             'tags' => $request->tags,
             'image_one' =>$SaveFilePath,
+            'active' => 0,
         );
         DB::table('blogs')->where('id',$id)->update($updateDetails);
-        Session::flash('message', "Changes have been saved");
+        Session::flash('message', "Changes have been saved, Your Post will appear puclic as soon as the Admin approves");
         return Redirect::back();
     }
 
