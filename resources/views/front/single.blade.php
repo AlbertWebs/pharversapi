@@ -230,11 +230,11 @@
                                     <div class="col-md-6">
                                         <div class="post-item">
                                             <div class="thumb">
-                                                <a href="{{url('/')}}/{{$Previous->type}}/{{$Previous->slung}}"><img src="{{$Previous->image_one}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$Previous->type}}/{{$Previous->slung}}"><img src="{{$Previous->image_one}}" alt=""></a>
                                             </div>
                                             <div class="content">
                                                 <span>Previous Post</span>
-                                                <h5 class="post-title"><a href="{{url('/')}}/{{$Previous->type}}/{{$Previous->slung}}">{{$Previous->title}}</a></h5>
+                                                <h5 class="post-title"><a href="{{url('/')}}/topics/{{$Previous->type}}/{{$Previous->slung}}">{{$Previous->title}}</a></h5>
                                             </div>
                                         </div>
                                     </div>
@@ -246,11 +246,11 @@
                                     <div class="col-md-6">
                                         <div class="post-item next-post">
                                             <div class="thumb">
-                                                <a href="{{url('/')}}/{{$Next->type}}/{{$Next->slung}}"><img src="{{$Next->image_one}}" alt=""></a>
+                                                <a href="{{url('/')}}/topics/{{$Next->type}}/{{$Next->slung}}"><img src="{{$Next->image_one}}" alt=""></a>
                                             </div>
                                             <div class="content">
                                                 <span>Next Post</span>
-                                                <h5 class="post-title"><a href="{{url('/')}}/{{$Next->type}}/{{$Next->slung}}">{{$Next->title}}</a></h5>
+                                                <h5 class="post-title"><a href="{{url('/')}}/topics/{{$Next->type}}/{{$Next->slung}}">{{$Next->title}}</a></h5>
                                             </div>
                                         </div>
                                     </div>
