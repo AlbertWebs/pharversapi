@@ -155,7 +155,7 @@
 
   <!-- Visually Hidden Preheader Text : BEGIN -->
   <div style="display:none;font-size:1px;color:#222222;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide: all;">
-    (Optional) This text will appear in the inbox preview, but not the email body.
+    We are an online resource for readers and professionals working or have an interest in the pharmaceutical industry.
   </div>
   <!-- Visually Hidden Preheader Text : END -->
 
