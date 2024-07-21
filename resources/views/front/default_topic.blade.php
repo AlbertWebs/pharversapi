@@ -4,7 +4,7 @@
 <!-- main-area -->
 <main class="fix">
 
-
+    @include('front.superleadboard')
 
     {{-- Podcasts --}}
     <section class="recent-post-area-two pt-60 pb-60">

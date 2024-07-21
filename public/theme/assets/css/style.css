@@ -7227,6 +7227,9 @@ label {
     #bg-loader {
         color: #ffffff;
     }
+    .pharverse-fixed-footer{
+        display: none;
+    }
 }
 
 .theme-bg{

@@ -66,7 +66,7 @@
                             <div class="row">
                                 <div class="input-field col s12">
                                     <p>
-                                        <input type="hidden" id="date-picker" value="{{today()}}" name="date" class="datepicker" required>
+                                        <input type="date" id="date-picker" value="" name="date" class="datepicker" required>
                                     </p>
                                     {{--  --}}
                                 </div>

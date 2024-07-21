@@ -7,6 +7,8 @@
 
 <main class="fix">
 
+    @include('front.superleadboard')
+
     <!-- breadcrumb-area -->
     <div class="breadcrumb-area">
         <div class="container">
