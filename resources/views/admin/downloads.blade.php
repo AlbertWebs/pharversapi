@@ -25,8 +25,8 @@
                     </li>
                     <li class="active-bre"><a href="#"> Downloads</a>
                     </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/addAdvertisement"><i class="fa fa-pencil" aria-hidden="true"></i> Add Advertisement Post</a>
-                    </li>
+                    {{-- <li class="page-back"><a href="{{url('/')}}/admin/addAdvertisement"><i class="fa fa-pencil" aria-hidden="true"></i> Add Advertisement Post</a>
+                    </li> --}}
                 </ul>
             </div>
             <div class="sb2-2-1">
