@@ -180,6 +180,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('edit_term/{id}', [AdminsController::class, 'edit_term']);
         Route::get('delete_term/{id}', [AdminsController::class, 'delete_term']);
 
+        // Downloads
+        Route::get('downloads', [AdminsController::class, 'downloads']);
+
         // Privacy Policy
         Route::get('privacy', [AdminsController::class, 'privacy']);
         Route::get('addPrivacy', [AdminsController::class, 'addPrivacy']);
