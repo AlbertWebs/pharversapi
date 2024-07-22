@@ -1374,6 +1374,8 @@ class AdminsController extends Controller
             'author' => Auth::user()->id,
             'category' => $request->category,
             'tags' => $request->tags,
+            'video_url' => $request->video_url,
+            'podcast_url' => $request->podcast_url,
             'image_one' =>$SaveFilePath,
         );
         DB::table('blogs')->where('id',$id)->update($updateDetails);

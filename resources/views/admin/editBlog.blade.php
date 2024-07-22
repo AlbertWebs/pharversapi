@@ -56,6 +56,17 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input autocomplete="off" name="video_url" id="list-title" type="text" value="{{$Blog->video_url}}" class="validate" >
+                                    <label for="list-title">Video Uri</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input autocomplete="off" name="podcast_url" id="list-title" value="{{$Blog->podcast_url}}" type="text" class="validate" >
+                                    <label for="list-title">Podcats Uri</label>
+                                </div>
+                            </div>
+
                             {{--  --}}
                             <div class="row">
 
