@@ -66,7 +66,7 @@
                             <div class="row">
                                 <div class="input-field col s12">
                                     <p>
-                                        <input type="date" id="date-picker" value="" name="date" class="datepicker" required>
+                                        <input type="date" id="date-picker" value="{{$Advertisement->date}}" name="date" class="datepicker" required>
                                     </p>
                                     {{--  --}}
                                 </div>

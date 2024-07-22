@@ -559,7 +559,7 @@
     @endif
 
     <?php
-        $RecentNews = DB::table('blogs')->where('active','1')->where('type','Podcasts')->OrderBy('created_at', 'desc')->limit('6')->get();
+        $RecentNews = DB::table('blogs')->where('active','1')->where('type','Podcasts')->OrderBy('created_at', 'desc')->limit('5')->get();
     ?>
     @if($RecentNews->isEmpty())
 
@@ -627,11 +627,14 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 @endif
                                 <?php
                                   $counter = $counter+1
                                 ?>
+
                                 @endforeach
+                                @include('front.ad-medium-rectangle')
                             </div>
                         </div>
                     </div>

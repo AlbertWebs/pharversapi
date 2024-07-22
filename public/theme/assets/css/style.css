@@ -7230,6 +7230,7 @@ label {
     .pharverse-fixed-footer{
         display: none;
     }
+
 }
 
 .theme-bg{
@@ -7274,4 +7275,25 @@ label {
 
 .sidebar-widget-two-news{
     margin-bottom: 4px !important;
+}
+
+.placement_fixed_footer-img img{
+    width:728px;
+    height:90px;
+}
+@media(max-width:976px) {
+    .placement_fixed_footer-img img{
+        width:100%;
+        height:auto;
+    }
+
+    .pharverse-fixed-footer{
+        margin-left: -14px;
+        position: fixed;
+        bottom: 0px;
+        z-index: 10000;
+        width: 70%;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
 }
