@@ -6,7 +6,7 @@
     <div class="container">
         <div class="recent-post-inner-wrap">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <div class="section-title-wrap mb-30">
                         <div class="section-title">
                             <h2 class="title">Privacy Policy</h2>

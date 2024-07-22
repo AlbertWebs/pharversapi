@@ -33,7 +33,7 @@
 <script>
     $("#pharverse-ad-whitepapers-btn-walpaper-left").on('click', function(event)
         {
-            event.preventDefault();
+            // event.preventDefault();
             var dataString = $("#register-form-Medium-walpaper-left").serialize();
             $.ajax({
                 type: "POST",

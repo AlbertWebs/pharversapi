@@ -52,7 +52,7 @@
 <script>
     $("#pharverse-ad-whitepapers-btn--newsletter").on('click', function(event)
         {
-            event.preventDefault();
+            // event.preventDefault();
             var dataString = $("#register-form-newsletter").serialize();
             $.ajax({
                 type: "POST",

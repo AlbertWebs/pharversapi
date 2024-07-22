@@ -34,7 +34,7 @@
 <script>
     $("#pharverse-ad-whitepapers-btn-Medium").on('click', function(event)
         {
-            event.preventDefault();
+            // event.preventDefault();
             var dataString = $("#register-form-Medium").serialize();
             $.ajax({
                 type: "POST",

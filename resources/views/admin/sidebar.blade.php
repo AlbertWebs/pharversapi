@@ -210,6 +210,8 @@
                <ul>
                   <li><a href="{{url('/')}}/admin/downloads">All Downloads </a>
                   </li>
+                  <li><a href="{{url('/')}}/admin/leads">Ad Leads </a>
+                  </li>
 
                </ul>
             </div>

@@ -196,6 +196,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         // Downloads
         Route::get('downloads', [AdminsController::class, 'downloads']);
+        Route::get('leads', [AdminsController::class, 'leads']);
+
 
         // Privacy Policy
         Route::get('privacy', [AdminsController::class, 'privacy']);

@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use App\Models\Blog;
+use App\Models\Lead;
 use DB;
 use Redirect;
 use Hash;
@@ -369,10 +370,9 @@ class HomeController extends Controller
         $currentUserInfo = Location::get($ip);
         $encodedSku = json_encode($currentUserInfo);
         //
-        $Download = new Download;
-        $Download->title = $request->title;
+        $Download = new Lead;
+        $Download->title = $request->ad;
         $Download->user = $encodedSku;
-        $Download->file = $request->file;
         $Download->link = $request->link;
         $Download->save();
         return response()->json(['success'=>'Download Successfully!']);

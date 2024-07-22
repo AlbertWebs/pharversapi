@@ -10,6 +10,8 @@ use App\Models\Privacy;
 
 use App\Models\Download;
 
+use App\Models\Lead;
+
 use App\Models\Newsletter;
 
 use App\Models\Company;
@@ -2923,6 +2925,15 @@ class AdminsController extends Controller
         $page_name = 'Advertisement';
         return view('admin.downloads ', compact('page_title', 'Advertisement', 'page_name'));
     }
+
+    public function leads(){
+        activity()->log('Accessed the all downloads page ');
+        $Advertisement = Lead::all();
+        $page_title = 'list';
+        $page_name = 'Advertisement';
+        return view('admin.leads ', compact('page_title', 'Advertisement', 'page_name'));
+    }
+
 
 
 

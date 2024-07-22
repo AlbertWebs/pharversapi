@@ -7,10 +7,9 @@
     <div class="advertisement-banner ad-banner-area align-center" id="pharverse-ad-side-home-1">
         <div class="containers">
             <div class="ad-banner-img">
-
                 <div class="hot-post-thumb">
                     <span class="pharverse-close-button-super" id="pharverse-close-super-button"  title="close"> × </span>
-                    <a id="pharverse-ad-whitepapers-btn-30" href="blog-details.html"><img src="{{$footerAd->image}}" alt=""></a>
+                    <a id="pharverse-ad-whitepapers-btn-30" href="{{$footerAd->url}}"><img src="{{$footerAd->image}}" alt=""></a>
                 </div>
             </div>
         </div>
@@ -34,7 +33,7 @@
 <script>
     $("#pharverse-ad-whitepapers-btn-30").on('click', function(event)
         {
-            event.preventDefault();
+            // event.preventDefault();
             var dataString = $("#register-form-30").serialize();
             $.ajax({
                 type: "POST",
