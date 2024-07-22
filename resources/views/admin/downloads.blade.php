@@ -23,7 +23,7 @@
                 <ul>
                     <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                     </li>
-                    <li class="active-bre"><a href="#"> Downloads</a>
+                    <li class="active"><a href="#"> Downloads</a>
                     </li>
                     {{-- <li class="page-back"><a href="{{url('/')}}/admin/addAdvertisement"><i class="fa fa-pencil" aria-hidden="true"></i> Add Advertisement Post</a>
                     </li> --}}
@@ -32,7 +32,7 @@
             <div class="sb2-2-1">
                 <h2>All Downloads</h2>
                 <center>
-                    @if(Session::has('message'))
+                   @if(Session::has('message'))
                                   <div class="alert alert-success">{{ Session::get('message') }}</div>
                    @endif
 

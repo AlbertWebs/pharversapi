@@ -144,6 +144,18 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
         Route::get('/editVideo/{id}', [DashboardController::class, 'editVideo'])->name('manager.editVideo');
         Route::post('/edit_Video/{id}', [DashboardController::class, 'edit_Video'])->name('manager.edit_Video');
 
+
+        Route::post('deleteUserAjax', [DashboardController::class, 'deleteUserAjax']);
+
+        //Manage Users
+        Route::get('users', [DashboardController::class, 'users']);
+        Route::get('addUser', [DashboardController::class, 'addUser']);
+        Route::get('editUser/{id}', [DashboardController::class, 'editUser']);
+        Route::post('add_User', [DashboardController::class, 'add_User']);
+        Route::post('edit_User/{id}', [DashboardController::class, 'edit_User']);
+        Route::get('delete_user/{id}', [DashboardController::class, 'delete_user']);
+
+
         // SiteSettings
         Route::get('SiteSettings', [DashboardController::class, 'SiteSettings']);
         Route::get('SocialMediaSettings', [DashboardController::class, 'SocialMediaSettings']);

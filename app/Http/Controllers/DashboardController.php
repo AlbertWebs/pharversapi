@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 use Session;
 use \App\Models\Blog;
+use \App\Models\User;
 use \App\Models\Video;
 use \App\Models\Podcast;
 use Datetime;
@@ -392,6 +393,96 @@ class DashboardController extends Controller
 
         DB::table('companies')->where('id', Auth::User()->company_id)->update($updateDetails);
         Session::flash('message', "Changes have Been Saved");
+        return Redirect::back();
+    }
+
+    public function users(){
+        activity()->log('Access All users Page');
+        $Users = DB::table('users')->where('company_id', Auth::User()->company_id)->get();
+        $page_title = 'list';
+        $page_name = 'Users';
+        return view('dashboard.users',compact('page_title','Users','page_name'));
+    }
+
+    public function addUser(){
+        activity()->log('Access Addd user Page');
+        $page_title = 'formfiletext';
+        $page_name = 'Add User';
+        return view('dashboard.addUser',compact('page_title','page_name'));
+    }
+
+    public function add_User(Request $request){
+        activity()->log('Evoked and add User Operation');
+        $path = 'uploads/users';
+        if(isset($request->image)){
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $file->move($path, $filename);
+            $image = $filename;
+        }else{
+            $image = "0";
+        }
+
+        $Password = $request->mobile;
+        $password = Hash::make($Password);
+        $User = new User;
+        $User->name = $request->name;
+        $User->email = $request->email;
+        $User->mobile = $request->mobile;
+        $User->address = $request->address;
+        $User->country = $request->country;
+        $User->company_id = Auth::User()->company_id;
+        $User->is_admin = $request->is_admin;
+        $User->password = $password;
+        $User->image = $image;
+        $User->save();
+        Session::flash('message', "User Has Been Added");
+        return Redirect::back();
+    }
+
+    public function editUser($id){
+        activity()->log('Edited User ID number '.$id.' ');
+        $User = User::find($id);
+        $page_title = 'formfiletext';
+        $page_name = 'Edit User';
+        return view('dashboard.editUser',compact('page_title','User','page_name'));
+    }
+
+    public function edit_User(Request $request, $id){
+        activity()->log('Evoked an edit user for user with ID number '.$id.' ');
+        $path = 'uploads/users';
+            if(isset($request->image)){
+                $file = $request->file('image');
+                $filename = $file->getClientOriginalName();
+                $file->move($path, $filename);
+                $image = $filename;
+            }else{
+                $image = $request->image_cheat;
+            }
+        $updateDetails = array(
+            'name'=>$request->name,
+            'country'=>$request->country,
+            'email'=>$request->email,
+            'mobile'=>$request->mobile,
+            'address'=>$request->address,
+            'image'=>$image
+
+        );
+        DB::table('users')->where('id',$id)->update($updateDetails);
+        Session::flash('message', "Changes have been saved");
+        return Redirect::back();
+    }
+
+    public function deleteUserAjax(Request $request){
+        activity()->log('Evoked a delete User Request');
+        $id = $request->id;
+        DB::table('users')->where('id',$id)->delete();
+        return response()->json(['success'=>'Deleted Successfully!']);
+    }
+
+    public function delete_user($id){
+        activity()->log('Evoked a Delete user operations for ID number '.$id.' ');
+        DB::table('users')->where('id',$id)->delete();
         return Redirect::back();
     }
 

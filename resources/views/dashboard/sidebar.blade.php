@@ -38,6 +38,10 @@
         <li><a href="{{url('/')}}/manager/dashboard/logo-and-favicon"><i class="fa fa-info" aria-hidden="true"></i> Logo & Favicon </a>
         </li>
 
+
+        <li><a href="{{url('/')}}/manager/dashboard/users"><i class="fa fa-user" aria-hidden="true"></i> Users</a>
+        </li>
+
         <li>
         <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-cog" aria-hidden="true"></i> SiteSettings </a>
         <div class="collapsible-body left-sub-menu">

@@ -65,8 +65,8 @@ class HomeController extends Controller
              $page_topic = $category->title;
              $page_title = $page_topic;
              $page_slung = $category->slung;
-             $Posts = DB::table('blogs')->where('category',$category->id)->get();
-             $Pubs = DB::table('blogs')->where('category',$category->id)->where('publishable','1')->get();
+             $Posts = DB::table('blogs')->where('active','1')->where('category',$category->id)->get();
+             $Pubs = DB::table('blogs')->where('active','1')->where('category',$category->id)->where('publishable','1')->get();
              return view('front.default_topic', compact('page_title','page_topic','Posts','page_slung','Pubs'));
          }
     }
@@ -84,7 +84,7 @@ class HomeController extends Controller
     }
 
     public function search(Request $request){
-        $Posts = DB::table('blogs')->where('title','LIKE',"%{$request->s}%")->get();
+        $Posts = DB::table('blogs')->where('active','1')->where('title','LIKE',"%{$request->s}%")->get();
         foreach($Posts as $posts){
             $page_topic = $posts->type;
             $page_title = "Search for $request->keyword";
@@ -94,7 +94,7 @@ class HomeController extends Controller
     }
 
     public function topic_explore($topic, $slung){
-        $Posts = DB::table('blogs')->where('slung',$slung)->get();
+        $Posts = DB::table('blogs')->where('active','1')->where('slung',$slung)->get();
         foreach($Posts as $posts){
             $page_topic = $posts->type;
             $page_title = $page_topic;
@@ -113,8 +113,8 @@ class HomeController extends Controller
             $page_topic = $category->title;
             $page_title = $page_topic;
             $page_slung = $category->slung;
-            $Posts = DB::table('blogs')->where('type',$page_topic)->get();
-            $Pubs = DB::table('blogs')->where('type',$page_topic)->where('publishable','1')->get();
+            $Posts = DB::table('blogs')->where('active','1')->where('type',$page_topic)->get();
+            $Pubs = DB::table('blogs')->where('active','1')->where('type',$page_topic)->where('publishable','1')->get();
             return view('front.contents_single', compact('page_title','page_topic','Posts','page_slung','Pubs'));
         }
    }
@@ -168,7 +168,7 @@ class HomeController extends Controller
     }
 
     public function contents($type,$slung){
-        $Content = DB::table('blogs')->where('slung', $slung)->get();
+        $Content = DB::table('blogs')->where('active','1')->where('slung', $slung)->get();
         // dd($Content);
         $page_title = "Partnering Companies";
         $page_topic = "";

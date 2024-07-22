@@ -6,7 +6,7 @@
 
     @include('front.superleadboard')
     <?php
-        $Latest = DB::table('blogs')->where('featured','1')->OrderBy('created_at', 'desc')->limit('3')->get();
+        $Latest = DB::table('blogs')->where('featured','1')->where('active','1')->OrderBy('created_at', 'desc')->limit('3')->get();
     ?>
 
    @if($Latest->isEmpty())
@@ -47,8 +47,8 @@
     @endif
 
     <?php
-        $LatestNews = DB::table('blogs')->where('type','News')->OrderBy('created_at', 'desc')->limit('4')->get();
-        $LatestNews1 = DB::table('blogs')->where('type','News')->OrderBy('created_at', 'desc')->limit('1')->get();
+        $LatestNews = DB::table('blogs')->where('active','1')->where('type','News')->OrderBy('created_at', 'desc')->limit('4')->get();
+        $LatestNews1 = DB::table('blogs')->where('active','1')->where('type','News')->OrderBy('created_at', 'desc')->limit('1')->get();
     ?>
     <!-- trending-post-area -->
     <section class="trending-post-area pt-60 pb-60">
@@ -131,7 +131,7 @@
 
 
     <?php
-        $RecentNews = DB::table('blogs')->where('type','News')->orWhere('type','Articles')->OrderBy('created_at', 'desc')->limit('5')->get();
+        $RecentNews = DB::table('blogs')->where('type','News')->where('active','1')->orWhere('type','Articles')->OrderBy('created_at', 'desc')->limit('5')->get();
     ?>
     @if($RecentNews->isEmpty())
 
@@ -222,7 +222,7 @@
                                     <div class="tab-pane fade show active" id="latest-tab-pane" role="tabpanel" aria-labelledby="latest-tab" tabindex="0">
                                         <div class="sidebar-widget sidebar-widget-two">
                                             <?php
-                                               $Podcasts = DB::table('blogs')->where('type','podcasts')->OrderBy('created_at', 'desc')->limit('4')->get();
+                                               $Podcasts = DB::table('blogs')->where('active','1')->where('type','podcasts')->OrderBy('created_at', 'desc')->limit('4')->get();
                                             ?>
                                             @foreach ($Podcasts as $podcast)
                                             <div class="popular-post popular-post-two">
@@ -246,7 +246,7 @@
                                     <div class="tab-pane fade" id="featured-tab-pane" role="tabpanel" aria-labelledby="featured-tab" tabindex="0">
                                         <div class="sidebar-widget sidebar-widget-two">
                                             <?php
-                                            $Podcasts = DB::table('blogs')->where('type','videos')->OrderBy('created_at', 'desc')->limit('4')->get();
+                                            $Podcasts = DB::table('blogs')->where('active','1')->where('type','videos')->OrderBy('created_at', 'desc')->limit('4')->get();
                                          ?>
                                          @foreach ($Podcasts as $podcast)
                                          <div class="popular-post popular-post-two">
@@ -279,7 +279,7 @@
     @endif
 
     <?php
-        $RecentInterviews = DB::table('blogs')->where('type','Interviews')->OrderBy('created_at', 'desc')->limit('2')->get();
+        $RecentInterviews = DB::table('blogs')->where('type','Interviews')->OrderBy('created_at', 'desc')->limit('2')->where('active','1')->get();
         $InterCount = count($RecentInterviews);
     ?>
     @if($RecentInterviews->isEmpty())
@@ -354,7 +354,7 @@
 
 
                 <?php
-                    $OtherInterviews = DB::table('blogs')->where('type','Interviews')->OrderBy('created_at', 'asc')->limit('3')->get();
+                    $OtherInterviews = DB::table('blogs')->where('active','1')->where('type','Interviews')->OrderBy('created_at', 'asc')->limit('3')->get();
 
                 ?>
                 @foreach ($OtherInterviews as $other)
@@ -384,7 +384,7 @@
     @include('front.ad-interviews')
 
     <?php
-        $Whitepapers = DB::table('blogs')->where('type','Whitepapers/Application Notes')->OrderBy('created_at', 'desc')->limit('4')->get();
+        $Whitepapers = DB::table('blogs')->where('active','1')->where('type','Whitepapers/Application Notes')->OrderBy('created_at', 'desc')->limit('4')->get();
     ?>
     @if($Whitepapers->isEmpty())
 
@@ -495,7 +495,7 @@
     @endif
 
     <?php
-        $Webinars = DB::table('blogs')->where('type','Webinars')->OrderBy('id','DESC')->limit('4')->get();
+        $Webinars = DB::table('blogs')->where('active','1')->where('type','Webinars')->OrderBy('id','DESC')->limit('4')->get();
     ?>
     @if($Webinars->isEmpty())
 
@@ -559,7 +559,7 @@
     @endif
 
     <?php
-        $RecentNews = DB::table('blogs')->where('type','Podcasts')->OrderBy('created_at', 'desc')->limit('6')->get();
+        $RecentNews = DB::table('blogs')->where('active','1')->where('type','Podcasts')->OrderBy('created_at', 'desc')->limit('6')->get();
     ?>
     @if($RecentNews->isEmpty())
 
@@ -671,7 +671,7 @@
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/featured-companies/{{$companies->slung}}"><img src="{{url('/')}}/uploads/logo/{{$companies->logo}}" alt="{{$companies->name}}"></a>
+                                <a href="{{url('/')}}/companies/featured-companies/{{$companies->slung}}"><img src="{{url('/')}}/uploads/logo/{{$companies->logo}}" alt="{{$companies->title}}"></a>
                             </div>
                         </div>
                     </div>
