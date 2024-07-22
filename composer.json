@@ -19,6 +19,7 @@
         "spatie/laravel-newsletter": "^5.1",
         "spatie/laravel-sitemap": "^7.2",
         "stevebauman/hypertext": "^1.1",
+        "stevebauman/location": "^7.3",
         "van-ons/laraberg": "^2.0"
     },
     "require-dev": {

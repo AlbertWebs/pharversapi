@@ -430,7 +430,7 @@
                             {{--  --}}
                         </div>
 
-                        @include('front.ad-whitepaper')
+                        {{-- @include('front.ad-whitepaper') --}}
 
                     </div>
                     <div class="col-30">

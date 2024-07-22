@@ -55,6 +55,8 @@ Route::get('/search', [HomeController::class, 'search'])->name('search');
 // Mail Theme
 Route::get('/mail-theme', [HomeController::class, 'mail'])->name('mail-theme');
 Route::post('/register-download', [HomeController::class, 'register_download'])->name('register-download');
+Route::post('/register-ad-click', [HomeController::class, 'register_ad_click'])->name('register-ad-click');
+
 
 
 Route::get('/podcasts', [HomeController::class, 'podcasts']);

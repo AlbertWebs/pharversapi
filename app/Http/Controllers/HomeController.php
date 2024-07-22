@@ -17,6 +17,7 @@ use DB;
 use Redirect;
 use Hash;
 use \App\Models\User;
+use Stevebauman\Location\Facades\Location;
 
 class HomeController extends Controller
 {
@@ -361,4 +362,21 @@ class HomeController extends Controller
         // return response()->json(['success'=>'Download Successfully!']);
         return Redirect::back();
     }
+
+    public function register_ad_click(Request $request){
+        //
+        $ip = $request->ip();
+        $currentUserInfo = Location::get($ip);
+        $encodedSku = json_encode($currentUserInfo);
+        //
+        $Download = new Download;
+        $Download->title = $request->title;
+        $Download->user = $encodedSku;
+        $Download->file = $request->file;
+        $Download->link = $request->link;
+        $Download->save();
+        return response()->json(['success'=>'Download Successfully!']);
+    }
+
+
 }
