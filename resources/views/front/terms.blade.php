@@ -9,7 +9,7 @@
                 <div class="col-lg-10">
                     <div class="section-title-wrap mb-30">
                         <div class="section-title">
-                            <h2 class="title">Terms and Condition</h2>
+                            <h2 class="title">Terms and Conditions</h2>
                         </div>
                         <div class="view-all-btn">
                             {{-- <a href="#next" class="link-btn">Write For Us
