@@ -66,7 +66,6 @@
                             <div class="hl-right-side">
                                 <div class="header-search-wrap">
                                     <form action="{{route('search')}}" Method="GET">
-
                                         <input type="text" name="s" placeholder="Search here . . .">
                                         <button type="submit"><i class="flaticon-search"></i></button>
                                     </form>
@@ -77,33 +76,28 @@
                                             $Settings = DB::table('_site_settings')->get();
                                         ?>
                                         @foreach ($Settings as $Set)
-                                        <li><a href="{{$Set->facebook}}"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="{{$Set->twitter}}"><i class="fab fa-twitter"></i></a></li>
-                                        {{-- <li><a href="#"><i class="fab fa-instagram"></i></a></li> --}}
-                                        <li><a href="{{$Set->linkedin}}"><i class="fab fa-linkedin-in"></i></a></li>
-                                        <li><a href="{{$Set->youtube}}"><i class="fab fa-youtube"></i></a></li>
+                                            <li><a href="{{$Set->facebook}}"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="{{$Set->twitter}}"><i class="fab fa-twitter"></i></a></li>
+                                            {{-- <li><a href="#"><i class="fab fa-instagram"></i></a></li> --}}
+                                            <li><a href="{{$Set->linkedin}}"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="{{$Set->youtube}}"><i class="fab fa-youtube"></i></a></li>
                                         @endforeach
                                     </ul>
                                 </div>
                                 {{--  --}}
                                 <div class="hl-right-side-four">
                                     @if(Auth::User())
-                                    <div class="sign-in">
-                                        <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i>Logout</a>
-                                    </div>
+                                        <div class="sign-in">
+                                            <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i>Logout</a>
+                                        </div>
                                     @else
-                                    <div class="sign-in">
-                                        <a href="{{url('/')}}/login"><i class="flaticon-user"></i>Sign In</a>
-                                    </div>
+                                        <div class="sign-in">
+                                            <a href="{{url('/')}}/login"><i class="flaticon-user"></i>Sign In</a>
+                                        </div>
                                     @endif
-
-
-
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                     <div class="subscribe-btn">
                                         <a href="https://subscribers.africanpharmaceuticalreview.com/" class="btn btn-two">Subscribe</a>
                                     </div>
