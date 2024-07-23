@@ -39,7 +39,7 @@
                                     {{-- {!!html_entity_decode($terms->content)!!} --}}
                                     @endforeach
                                     <div>
-                                        <h1><strong>Privacy Policy</strong></h1>
+                                        {{-- <h1><strong>Privacy Policy</strong></h1> --}}
                                         <h2><strong>1.Introduction</strong></h2>
                                         <p>Welcome to Pharvers&rsquo; privacy policy.</p>
                                         <p>This Privacy Statement explains the personal data we collect, how we process it and for what purpose. It also describes how Pharvers handles your data when you use any of our products and the controls Pharvers has established to safeguard your data. The Privacy Statement applies to our visitors who either physically visit our premises or our website, users of any of our products and services, suppliers, agents, customers and all our stakeholders.&nbsp;</p>
