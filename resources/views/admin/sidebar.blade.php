@@ -7,12 +7,13 @@
          <li><img src="{{url('/')}}/uploads/users/{{Auth::user()->image }}" alt="">
          </li>
          <li>
-            <h5>{{Auth::user()->name}}<span>{{$SiteSettings->location}}</span></h5>
+            <h5>{{Auth::user()->name}}<span>{{Auth::user()->address }}</span></h5>
          </li>
          <li></li>
       </ul>
    </div>
    <!--== LEFT MENU ==-->
+   @if(Auth::User()->is_admin == "1")
    <div class="sb2-13">
       <ul class="collapsible" data-collapsible="accordion">
          <li><a href="{{url('/')}}/admin/home" class="menu-active"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a>
@@ -44,28 +45,7 @@
                 </div>
             </li>
 
-         {{-- <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-podcast" aria-hidden="true"></i> Podcasts </a>
-            <div class="collapsible-body left-sub-menu">
-               <ul>
-                  <li><a href="{{url('/')}}/admin/podcasts">All Podcasts</a>
-                  </li>
-                  <li><a href="{{url('/')}}/admin/addPodcast">Add Podcast</a>
-                  </li>
-               </ul>
-            </div>
-         </li>
-         <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-video-camera" aria-hidden="true"></i> Videos </a>
-            <div class="collapsible-body left-sub-menu">
-               <ul>
-                  <li><a href="{{url('/')}}/admin/videos">All Videos</a>
-                  </li>
-                  <li><a href="{{url('/')}}/admin/addVideo">Add Video</a>
-                  </li>
-               </ul>
-            </div>
-         </li> --}}
+       
 
          <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bar-chart" aria-hidden="true"></i> Manage Ads  </a>
@@ -88,52 +68,12 @@
                   <li>
                      <a href="{{url('/')}}/admin/partners">All Partners </a>
                   </li>
-                  {{-- <li>
-                     <a href="{{url('/')}}/admin/addPartner">Add Partner</a>
-                  </li> --}}
+              
                </ul>
             </div>
          </li>
          {{--  --}}
 
-         {{--  --}}
-         {{-- <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-comment" aria-hidden="true"></i> Testimonials </a>
-            <div class="collapsible-body left-sub-menu">
-               <ul>
-                  <li><a href="{{url('/')}}/admin/testimonials">All Testimonials </a>
-                  </li>
-                  <li><a href="{{url('/')}}/admin/addTestimonials">Add Testimonials</a>
-                  </li>
-               </ul>
-            </div>
-         </li> --}}
-         {{--  --}}
-         {{--  --}}
-         {{-- <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-ticket" aria-hidden="true"></i> Payments</a>
-            <div class="collapsible-body left-sub-menu">
-               <ul>
-                  <li>
-                     <a style="color:#000000 !important; font-weight:600" href="javascript:void(0)" class="collapsible-header"><i class="fa fa-money" aria-hidden="true"></i>M-PESA API</a>
-                     <div class="left-sub-menu">
-                        <ul>
-                           <li><a style="color:#000000 !important; text-align: center;" href="{{url('/')}}/admin/lnmo_api_response">STK Transactions</a>
-                           </li>
-                           <li><a style="color:#000000 !important; text-align: center;" href="{{url('/')}}/admin/mobile_payments">C2B Transactions</a>
-                           </li>
-                        </ul>
-                     </div>
-                  </li>
-                  <li>
-                     <a style="color:#000000 !important; font-weight:600" href="{{url('/')}}" class="collapsible-header"><i class="fa fa-paypal" aria-hidden="true"></i>Paypal Payments</a>
-                     <div class="left-sub-menu">
-                     </div>
-                  </li>
-               </ul>
-            </div>
-         </li> --}}
-         {{--  --}}
          <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i>System Users</a>
             <div class="collapsible-body left-sub-menu">
@@ -147,19 +87,7 @@
                </ul>
             </div>
          </li>
-         {{--  --}}
-         {{-- <li>
-            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-info" aria-hidden="true"></i>Information Center</a>
-            <div class="collapsible-body left-sub-menu">
-               <ul>
-                  <li><a href="{{url('/')}}/admin/faq">Frequently Asked Questions</a>
-                  </li>
-                  <li><a href="{{url('/')}}/admin/how">How It Works</a>
-                  </li>
-               </ul>
-            </div>
-         </li> --}}
-         {{--  --}}
+        
 
          <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-envelope" aria-hidden="true"></i>News Letters(Issue #)</a>
@@ -196,10 +124,6 @@
                <ul>
                   <li><a href="{{url('/')}}/admin/SiteSettings">Systems Settings </a>
                   </li>
-                  {{-- <li><a href="{{url('/')}}/admin/mailerSettings">Mailer Settings </a>
-                  </li> --}}
-                  {{-- <li><a href="{{url('/')}}/admin/credentials">Systems Credentials </a>
-                  </li> --}}
                </ul>
             </div>
          </li>
@@ -226,5 +150,64 @@
          </form>
       </ul>
    </div>
+   @else
+   <div class="sb2-13">
+    <ul class="collapsible" data-collapsible="accordion">
+        <li>
+            <a href="{{url('/')}}/admin/home" class="menu-active"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a>
+        </li>
+        <li><a target="_blank" href="{{url('/')}}/" class="menu-active"><i class="fa fa-globe" aria-hidden="true"></i> Visit Website</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-rss" aria-hidden="true"></i>Manage Posts</a>
+            <div class="collapsible-body left-sub-menu">
+            <ul>
+                <li><a href="{{url('/')}}/admin/blog">All Posts</a>
+                </li>
+                <li><a href="{{url('/')}}/admin/addBlog">Add Posts</a>
+                </li>
+            </ul>
+            </div>
+        </li>
+        <li>
+          <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bar-chart" aria-hidden="true"></i> Manage Ads  </a>
+          <div class="collapsible-body left-sub-menu">
+             <ul>
+                <li>
+                  <a href="{{url('/')}}/admin/advertisements">All Ads</a>
+                </li>
+             </ul>
+          </div>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-handshake-o" aria-hidden="true"></i> Partners </a>
+            <div class="collapsible-body left-sub-menu">
+                <ul>
+                    <li>
+                    <a href="{{url('/')}}/admin/partners">All Partners </a>
+                    </li>
+                
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-envelope" aria-hidden="true"></i>News Letters(Issue #)</a>
+            <div class="collapsible-body left-sub-menu">
+            <ul>
+                <li><a href="{{url('/')}}/admin/newsletters">All Issues</a>
+                </li>
+                <li><a href="{{url('/')}}/admin/addNewsletter">Add Issue</a>
+                </li>
+            </ul>
+            </div>
+        </li>
+        <li><a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" target="_blank"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout </a>
+        </li>
+       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+           @csrf
+       </form>
+    </ul>
+   </div>
+   @endif
 </div>
 @endforeach

@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="input-field col s12">
                                     <input autocomplete="off" name="mobile" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">User Mobile Number</label>
+                                    <label for="list-title">User Mobile Number <small>(Also Used as Password)</small></label>
                                 </div>
                                 <div class="input-field col s12">
                                     <input autocomplete="off" name="country" id="list-title" type="text" class="validate" required>
@@ -82,14 +82,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" value="1" name="type">
                             <div class="row">
                              
                                 {{--  --}}
                                 <div class="input-field col s12">
                                     <select required name="is_admin" class="icons" id="mydiv">
-                                        <option value="0" disabled selected>User Role</option>
-                                        <option value="0" class="circle">Normal User</option>
-                                        <option value="1" class="circle">Administrator</option>
+                                        
+                                        <option value="0" class="circle">Normal Admin</option>
+                                        <option value="1" class="circle">Super Admin</option>
                                         
                                     </select>
                                     <label>User Role</label>

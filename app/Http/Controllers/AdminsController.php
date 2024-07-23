@@ -1048,16 +1048,18 @@ class AdminsController extends Controller
         }else{
             $image = "0";
         }
+        // dd($request->all());
 
         $Password = $request->mobile;
-        $password = Hash::make($Password);
+        $password = Hash::make($Password); 
         $User = new User;
-        $User->name = $request->name;
+        $User->name = $request->name; 
         $User->email = $request->email;
         $User->mobile = $request->mobile;
         $User->address = $request->address;
         $User->country = $request->country;
         $User->is_admin = $request->is_admin;
+        $User->type = $request->type;
         $User->password = $password;
         $User->image = $image;
         $User->save();
