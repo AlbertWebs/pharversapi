@@ -1302,6 +1302,7 @@ class AdminsController extends Controller
         $blog = new Blog;
         $blog->title = $request->title;
         $blog->type = $request->type;
+        $blog->whitepaper_link = $request->whitepaper_link;
         $blog->meta = $request->meta;
         $blog->video_url = $request->video_url;
         $blog->podcast_url = $request->podcast_url;
@@ -1315,14 +1316,6 @@ class AdminsController extends Controller
         $blog->image_credit = $request->image_credit;
         $blog->image_one = $SaveFilePath;
         $blog->save();
-        Session::flash('message', "Post Saved Successfully");
-        return Redirect::back();
-
-
-
-
-        $Blog->save();
-
         Session::flash('message', "Blog Has Been Added");
         return Redirect::back();
     }

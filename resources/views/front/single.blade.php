@@ -121,6 +121,20 @@
                                  @elseif($content->type == "Whitepapers/Application Notes")
                                  <hr>
                                     @if(Auth::User())
+                                            @if($content->whitepaper_file == null)
+                                            <div class="sidebar-widget sidebar-widget-two">
+                                                <div class="sidebar-newsletter">
+                                                    <div class="icon"><i class="flaticon-envelope"></i></div>
+                                                    <h4 class="title">Download Whitepapers/Application Note</h4>
+                                                    <div class="sidebar-newsletter-form">
+                                                        <a id="register-download" target="new"  href="{{$content->whitepaper_link}}">
+                                                            <span class="fa fa-link fa-2x"></span>
+                                                            <span class="fab fa-file-pdf-o fa-2x"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @else
                                             <div class="sidebar-widget sidebar-widget-two">
                                                 <div class="sidebar-newsletter">
                                                     <div class="icon"><i class="flaticon-envelope"></i></div>
@@ -133,6 +147,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
                                             <form id="register-form" style="display:none" action="{{route('register-download')}}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="user" value="{{Auth::User()->id}}">
