@@ -132,11 +132,9 @@
                                         </ul>
                                         <ol start="5">
                                             <li><strong>
-                                                    <ul>
-                                                        <li style="list-style-type:decimal;font-size:13pt;">
+                                                   
                                                             <p>Use of information</p>
-                                                        </li>
-                                                    </ul>
+                                                       
                                                 </strong></li>
                                         </ol>
                                         <p>We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:</p>
