@@ -48,8 +48,8 @@
                             <th>Title</th>
 
                             <th>image</th>
-                            {{-- <th>Edit</th>
-                            <th>Delete</th> --}}
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,15 +57,15 @@
                         @foreach ($Partner as $item)
                         <tr>
                             <td>{{$item->id}}</td>
-                            <td><a target="new" href="{{url('/')}}/product/{{$item->slung}}">{{$item->title}}</td>
+                            <td><a target="new" href="{{url('/')}}/companies/featured-companies/{{$item->slung}}">{{$item->title}}</td>
 
                             <td>
-                                <a target="new" href="{{url('/')}}/Partners/{{$item->slung}}"><img width="150" src="{{url('/')}}/uploads/logo/{{$item->logo}}"></a>
+                                <a target="new" href="{{url('/')}}/admin/edit-company-logo/{{$item->id}}"><img width="150" src="{{$item->logo}}" alt="{{$item->title}}"></a>
                             </td>
-                            {{-- <td><a href="{{url('/')}}/admin/editPartners/{{$item->id}}" class="sb2-2-1-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            <td><a href="{{url('/')}}/admin/editPartners/{{$item->id}}" class="sb2-2-1-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                             </td>
                             <td><a onclick="archiveFunction{{$item->id}}()" href="#" class="sb2-2-1-edit"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            </td> --}}
+                            </td>
                         </tr>
                         <script>
                             function archiveFunction{{$item->id}}()

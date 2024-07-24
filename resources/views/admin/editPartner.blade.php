@@ -1,11 +1,8 @@
 @extends('admin.master')
 @section('content')
 <!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <style>
     .modal a.close-modal{
         top:0px !important;
@@ -24,7 +21,7 @@
                 <ul>
                     <li><a href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                     </li>
-                    <li class="active-bre"><a href="#"> Add New Partner</a>
+                    <li class="active-bre"><a href="#"> Edit Partners </a>
                     </li>
                     <li class="page-back"><a href="{{url('/')}}/admin/Partner"><i class="fa fa-backward" aria-hidden="true"></i> All Partners</a>
                     </li>
@@ -32,85 +29,95 @@
 
             </div>
             <div class="sb2-2-add-blog sb2-2-1">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add Partner</h4>
-                        <center>
-                            @if(Session::has('message'))
-                                          <div class="alert alert-success">{{ Session::get('message') }}</div>
-                           @endif
-
-                           @if(Session::has('messageError'))
-                                          <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
-                           @endif
-                        </center>
-                    </div>
-                    <div class="bor">
-                        <form method="POST" action="{{url('/')}}/admin/add_Partner" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" value="{{$Partner->name}}" name="title" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">Partner Name</label>
-                                </div>
-
-
-
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box-inn-sp">
+                            <div class="inn-title">
+                                <h4>Company Settings</h4>
+                                <p></p>
                             </div>
-                            <br><br>
-                            <style>
-                                .btn-file {
-                                    position: relative;
-                                    overflow: hidden;
-                                }
-                                .btn-file input[type=file] {
-                                    position: absolute;
-                                    top: 0;
-                                    right: 0;
-                                    min-width: 33.33%;
-                                    min-height: 100%;
-                                    font-size: 100px;
-                                    text-align: right;
-                                    filter: alpha(opacity=0);
-                                    opacity: 0;
-                                    outline: none;
-                                    background: white;
-                                    cursor: inherit;
-                                    display: block;
-                                }
-
-                                #img-upload{
-                                    width: 33.33%;
-                                }
-                                .image-preview{
-                                    max-height:100%;
-                                    height:100% !important;
-                                }
-                            </style>
-                            <div class="input-field col s3 col-lg-3">
-                                <div class="form-group">
-                                    <label>Image One</label>
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <span class="btn btn-default btn-file">
-                                               <small> One: Size 277 by 377  Browse… </small><input name="image_one" type="file" id="imgInp">
-                                            </span>
-                                        </span>
-                                        <input type="text" class="form-control" readonly>
+                            <div class="tab-inn">
+                                <form method="PUT" id="saveSettings" enctype="multipart/form-data">
+                                    {{csrf_field()}}
+                                    <input type="hidden" value="{{$Setting->id}}" name="company_id">
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input autocomplete="off" type="url" name="website" value="{{$Setting->website}}" class="validate">
+                                            <label for="website">Website</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input autocomplete="off" type="text" value="{{$Setting->title}}" name="title" class="validate">
+                                            <label>Sitename</label>
+                                        </div>
                                     </div>
-                                    <img class="image-preview" style="width:100%" src="{{url('/')}}/uploads/partners/{{$Partner->image}}"/>
-                                </div>
+
+                                    <div class="row">
+
+                                        <div class="input-field col s12">
+                                            <input autocomplete="off" type="text" value="{{$Setting->tagline}}" name="tagline"  class="validate">
+                                            <label>Tagline</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input autocomplete="off" id="phone" value="{{$Setting->mobile}}" type="text" name="mobile" class="validate">
+                                            <label for="phone">Mobile</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input autocomplete="off" value="{{$Setting->email}}" id="email" name="email" type="email"  class="validate">
+                                            <label for="email">Email</label>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input autocomplete="off" value="{{$Setting->address}}" id="email1" name="address" type="text" class="validate">
+                                            <label for="email1">Address</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input autocomplete="off" value="{{$Setting->facebook}}" id="email1" name="facebook" type="text" class="validate">
+                                            <label for="email1">Facebook</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input autocomplete="off" value="{{$Setting->instagram}}" id="email1" name="instagram" type="text" class="validate">
+                                            <label for="email1">Instagram</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input autocomplete="off" value="{{$Setting->twitter}}" id="email1" name="twitter" type="text" class="validate">
+                                            <label for="email1">Twitter</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input autocomplete="off" value="{{$Setting->linkedin}}" id="email1" name="linkedin" type="text" class="validate">
+                                            <label for="email1">Linkedin</label>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea required id="article-ckeditor" name="ckeditor" class="materialilze-textarea" placeholder="content">{{$Setting->content}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input type="submit"  value="Save Changes" class="waves-effect waves-light btn-large">
+                                        </div>
+                                    </div>
+
+                                </form>
                             </div>
-
-                            <input type="hidden" name="image_one_cheat" value="{{$Partner->image}}">
-
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,73 +127,40 @@
     </div>
 </div>
 
-{{--  --}}
-<div id="ex1" class="modal">
-    <div class="sb2-2-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add New Category</h4>
-                    </div>
-                    <div class="tab-inn">
-                        <form method="POST" id="categoryAddForm">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="CategoryTitle" type="text" class="validate">
-                                    <label for="CategoryName">Category Name</label>
-                                </div>
-                            </div>
-                            <div class="row" id="submitButton">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
 
-                            <div class="tab-inn" id="loading-bar">
-                                <div class="progress">
-                                    <div class="indeterminate"></div>
-                                </div>
-                            </div>
+    $("#saveSettings").on('submit',function(event)
+        {
+            event.preventDefault(); // prevent form submit
+            swal({
+                title: "Are you sure you want to make this changes?",
+                text: "Once submited You cannot revert back to the previous state",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    //do the ajax stuff.
+                    $.ajax({
+                        url: "{{url('/')}}/admin/CompanySiteSettingsAjax",
+                        type: "PUT",
+                        dataType: "html",
+                        data: $(this).serialize(),
+                        success: function ()
+                        {
+                            swal("Done!","Your Changes Have Been Updated");
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 3000);
+                        }
+                    });
+                    //
 
-                        </form>
-                    </div>
-                </div>
-            </div>
-{{-- <a href="#" rel="modal:close">Close</a> --}}
-<script type="text/javascript">
-        // A $( document ).ready() block.
-    $( document ).ready(function() {
-        $('#loading-bar').hide();
-    });
-
-    $('#categoryAddForm').on('submit',function(event){
-        event.preventDefault();
-        $('#loading-bar').show();
-
-
-        let title = $('#CategoryTitle').val();
-
-
-        $.ajax({
-          url: "{{url('/')}}/admin/addCategoryAjaxRequest",
-          type:"POST",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            title:title,
-          },
-          success:function(response){
-            $('#loading-bar').hide();
-            $('#submitButton').html('<center><span class="alert-success text-center">Category Added Successfully! Refreshing page...........</span></center>').delay(3000);
-            $('#categoryAddForm')[0].reset();
-            setTimeout(function() {
-                location.reload();
-            }, 5000);
-          },
-         });
+                }
+            });
         });
-      </script>
-</div>
-{{--  --}}
+</script>
+
 @endsection

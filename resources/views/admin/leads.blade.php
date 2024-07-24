@@ -62,7 +62,13 @@
                                <a target="new" href="{{$item->link}}">{{$item->link}}</a>
                             </td>
                             <td>
-                                {{$item->user}}
+                                <?php
+                                    $print_content=json_decode($item->user);
+                                ?>
+                                IP: {{$print_content->ip}}<br>
+                                Country: {{$print_content->countryName}}<br>
+                                Region Name: {{$print_content->regionName}}<br>
+                                City: {{$print_content->cityName}}<br>
                             </td>
                         </tr>
                         <script>

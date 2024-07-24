@@ -45,7 +45,7 @@
                 </div>
             </li>
 
-       
+
 
          <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bar-chart" aria-hidden="true"></i> Manage Ads  </a>
@@ -68,7 +68,7 @@
                   <li>
                      <a href="{{url('/')}}/admin/partners">All Partners </a>
                   </li>
-              
+
                </ul>
             </div>
          </li>
@@ -87,7 +87,7 @@
                </ul>
             </div>
          </li>
-        
+
 
          <li>
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-envelope" aria-hidden="true"></i>News Letters(Issue #)</a>
@@ -99,6 +99,10 @@
                 </li>
             </ul>
             </div>
+        </li>
+
+        <li>
+            <a href="{{url('/')}}/admin/newsletter-link" class="collapsible-header"><i class="fa fa-link" aria-hidden="true"></i>Newsletter Link</a>
         </li>
 
          <li>
@@ -186,7 +190,7 @@
                     <li>
                     <a href="{{url('/')}}/admin/partners">All Partners </a>
                     </li>
-                
+
                 </ul>
             </div>
         </li>

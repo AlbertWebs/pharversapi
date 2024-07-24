@@ -36,6 +36,56 @@
           </div>
        </div>
 
+
+       <?php
+          $Link = DB::table('links')->get();
+       ?>
+
+
+        @if($Link->isEmpty())
+
+        @else
+            @foreach ($Link as $link)
+            <div class="row">
+                <div class="col-12 col-md-12 col-xl-12 d-flex">
+                <div class="card report-blk">
+                    <div class="card-body">
+                        <div class="report-head">
+                            <h4>Newsletter Title: {{$link->title}}</h4>
+                            <br>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text fa fa-link"></span>
+                            </div>
+                            <input id="myLink" class="form-control" value="{{$link->link}}" type="text">
+                            <button onclick="copyLink()" class="btn btn-primary" type="button">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            @endforeach
+        @endif
+        <script>
+            function copyLink() {
+            // Get the text field
+            var copyText = document.getElementById("myLink");
+
+            // Select the text field
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.value);
+
+            // Alert the copied text
+            alert("Copied the text: " + copyText.value);
+            }
+        </script>
+
        <div class="row">
           <div class="col-12 col-md-6 col-xl-6 d-flex">
              <div class="card report-blk">

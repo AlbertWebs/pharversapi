@@ -162,6 +162,52 @@ class AdminsController extends Controller
         return view('admin.systemsCredentials',compact('SiteSettings'));
     }
 
+    public function edit_company_logo ($id){
+        activity()->log('User Accessed Company Logo');
+        $SiteSettings = Company::find($id);
+        return view('admin.edit_company_logo',compact('SiteSettings'));
+    }
+
+    public function edit_company_logo_post(Request $request){
+        activity()->log('Evoked add Company Logo');
+        $path = 'uploads/companies';
+
+        if(isset($request->image)){
+            $dir = 'uploads/companies';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+
+        $updateDetails = array(
+            'logo'=>$SaveFilePath
+        );
+
+        DB::table('companies')->where('id',$request->id)->update($updateDetails);
+        Session::flash('message', "Category Has Been Added");
+        return Redirect::back();
+    }
+
+
+    public function link(){
+        activity()->log('Newsletter Link');
+        $Link = DB::table('links')->get();
+        return view('admin.link',compact('Link'));
+    }
+
+    public function link_post(Request $request){
+        $updateDetails = array (
+            'title'=>$request->title,
+            'link'=>$request->link,
+        );
+
+        DB::table('links')->update($updateDetails);
+        Session::flash('message', "Changes have Been Saved");
+        return Redirect::back();
+    }
+
     public function logo_and_favicon(){
         activity()->log('User Accessed Logo & Favicon Settings Page');
         $SiteSettings = DB::table('_site_settings')->get();
@@ -552,6 +598,7 @@ class AdminsController extends Controller
         $page_name = 'Add Category';
         return view('admin.addCategory',compact('page_title','page_name'));
     }
+
 
     public function add_Category(Request $request){
         activity()->log('Evoked add Category Operation');
@@ -977,10 +1024,10 @@ class AdminsController extends Controller
     public function editPartner($id){
         $Category = Category::all();
         activity()->log('Access Edit Partner ID number '.$id.' ');
-        $Partner = Partner::find($id);
+        $Setting = Company::find($id);
         $page_title = 'formfiletext';
         $page_name = 'Edit Home Page Slider';
-        return view('admin.editPartner',compact('page_title','Partner','page_name','Category'));
+        return view('admin.editPartner',compact('page_title','Setting','page_name','Category'));
     }
 
     public function edit_Partner(Request $request, $id){
@@ -1051,9 +1098,9 @@ class AdminsController extends Controller
         // dd($request->all());
 
         $Password = $request->mobile;
-        $password = Hash::make($Password); 
+        $password = Hash::make($Password);
         $User = new User;
-        $User->name = $request->name; 
+        $User->name = $request->name;
         $User->email = $request->email;
         $User->mobile = $request->mobile;
         $User->address = $request->address;
@@ -2302,6 +2349,29 @@ class AdminsController extends Controller
         $id = $request->id;
         DB::table('videos')->where('id',$id)->delete();
         return response()->json(['success'=>'Deleted Successfully!']);
+    }
+
+    public function CompanySiteSettingsAjax(Request $request){
+        activity()->log('Evoked an update Settings Request');
+        $updateDetails = array (
+            'slung' => Str::slug($request->title),
+            'title' => $request->title,
+            'email'=>$request->email,
+            'mobile'=>$request->mobile,
+            'tagline'=>$request->tagline,
+            'website'=>$request->website,
+            'address'=>$request->address,
+            'content'=>$request->ckeditor,
+            'facebook'=>$request->facebook,
+            'instagram'=>$request->instagram,
+            'linkedin'=>$request->linkedin,
+            'twitter'=>$request->twitter
+
+        );
+
+        DB::table('companies')->where('id',$request->company_id)->update($updateDetails);
+        Session::flash('message', "Changes have Been Saved");
+        return response()->json(['success'=>'Changes Saved Successfully!']);
     }
 
 

@@ -12,7 +12,7 @@
                 <ul>
                     <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                     </li>
-                    <li class="active-bre"><a href="#">System Settings</a>
+                    <li class="active-bre"><a href="#">Company Settings</a>
                     </li>
                     <li class="page-back"><a href="{{url('/')}}/manager/dashboard/home"><i class="fa fa-backward" aria-hidden="true"></i> Dashboard </a>
                     </li>
@@ -23,8 +23,8 @@
                     <div class="col-md-12">
                         <div class="box-inn-sp">
                             <div class="inn-title">
-                                <h4>System Settings</h4>
-                                <p>System Defaults For various Operations</p>
+                                <h4>Company Settings</h4>
+                                <p></p>
                             </div>
                             <div class="tab-inn">
                                 <form method="PUT" id="saveSettings" enctype="multipart/form-data">

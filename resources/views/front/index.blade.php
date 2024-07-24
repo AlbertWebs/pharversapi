@@ -222,7 +222,7 @@
                                     <div class="tab-pane fade show active" id="latest-tab-pane" role="tabpanel" aria-labelledby="latest-tab" tabindex="0">
                                         <div class="sidebar-widget sidebar-widget-two">
                                             <?php
-                                               $Podcasts = DB::table('blogs')->where('active','1')->where('type','podcasts')->OrderBy('created_at', 'desc')->limit('4')->get();
+                                               $Podcasts = DB::table('blogs')->where('active','1')->where('type','podcasts')->OrderBy('created_at', 'desc')->limit('2')->get();
                                             ?>
                                             @foreach ($Podcasts as $podcast)
                                             <div class="popular-post popular-post-two">
@@ -241,12 +241,15 @@
                                                 </div>
                                             </div>
                                             @endforeach
+                                            {{--  --}}
+                                            @include('front.ad-rectangle-30')
+                                            {{--  --}}
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="featured-tab-pane" role="tabpanel" aria-labelledby="featured-tab" tabindex="0">
                                         <div class="sidebar-widget sidebar-widget-two">
                                             <?php
-                                            $Podcasts = DB::table('blogs')->where('active','1')->where('type','videos')->OrderBy('created_at', 'desc')->limit('4')->get();
+                                            $Podcasts = DB::table('blogs')->where('active','1')->where('type','videos')->OrderBy('created_at', 'desc')->limit('2')->get();
                                          ?>
                                          @foreach ($Podcasts as $podcast)
                                          <div class="popular-post popular-post-two">
@@ -265,6 +268,9 @@
                                             </div>
                                         </div>
                                          @endforeach
+                                         {{--  --}}
+                                         @include('front.ad-rectangle-30')
+                                         {{--  --}}
                                         </div>
                                     </div>
                                 </div>

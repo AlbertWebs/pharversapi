@@ -184,6 +184,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('logo-and-favicon', [AdminsController::class, 'logo_and_favicon']);
         Route::post('logo-and-favicon-update', [AdminsController::class, 'logo_and_favicon_update']);
 
+        Route::get('edit-company-logo/{id}', [AdminsController::class, 'edit_company_logo']);
+        Route::post('edit-company-logo-post', [AdminsController::class, 'edit_company_logo_post']);
+
+
         // mailerSettings
         Route::get('mailerSettings', [AdminsController::class, 'mailerSettings']);
         // Terms and Conditions
@@ -193,6 +197,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('add_term', [AdminsController::class, 'add_term']);
         Route::post('edit_term/{id}', [AdminsController::class, 'edit_term']);
         Route::get('delete_term/{id}', [AdminsController::class, 'delete_term']);
+
+        Route::get('newsletter-link', [AdminsController::class, 'link']);
+        Route::post('newsletter-link-post', [AdminsController::class, 'link_post']);
 
         // Downloads
         Route::get('downloads', [AdminsController::class, 'downloads']);
@@ -466,6 +473,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::post('deleteExtraAjax', [AdminsController::class, 'deleteExtraAjaxRequest']);
         Route::post('deleteBlogAjax', [AdminsController::class, 'deleteBlogAjax']);
         Route::put('updateSiteSettingsAjax', [AdminsController::class, 'updateSiteSettingsAjax']);
+        Route::put('CompanySiteSettingsAjax', [AdminsController::class, 'CompanySiteSettingsAjax']);
         Route::put('updateMailerAjax', [AdminsController::class, 'updateMailerAjax']);
         Route::put('updateSiteSocialMediaAjax', [AdminsController::class, 'updateSiteSocialMediaAjax']);
         Route::put('updateSiteCredentials', [AdminsController::class, 'updateSiteCredentials']);

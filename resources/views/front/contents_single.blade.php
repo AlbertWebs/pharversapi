@@ -30,7 +30,15 @@
                         </div>
                         <div class="popular-post-item-wrap">
                             <div class="row">
+                                <?php
+                                   $count = 1;
+                                ?>
                                 @foreach ($Posts as $posts)
+                                @if($count == 8)
+                                {{-- <div class="col-lg-4"> --}}
+                                    @include('front.ad-square-30-content')
+                                {{-- </div> --}}
+                                @else
                                 <div class="col-lg-4">
                                     <div class="ta-overlay-post-two">
                                         <div class="overlay-post-thumb-two">
@@ -54,6 +62,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
+                                <?php $count = $count+1 ?>
                                 @endforeach
 
                                 @if($Pubs->isEmpty())
