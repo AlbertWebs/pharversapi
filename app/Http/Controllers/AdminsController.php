@@ -363,7 +363,7 @@ class AdminsController extends Controller
         activity()->log('Updated Terms ID number '.$id.' ');
        $updateDetails = array(
            'title'=>$request->title,
-           'content' =>$request->content
+           'content' =>$request->ckeditor
        );
        DB::table('terms')->where('id',$id)->update($updateDetails);
        Session::flash('message', "Changes have been saved");
