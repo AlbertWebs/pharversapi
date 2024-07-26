@@ -1410,6 +1410,7 @@ class AdminsController extends Controller
 
         $updateDetails = array(
             'title' => $request->title,
+            'meta' => $request->meta,
             'whitepaper_link' => $request->whitepaper_link,
             'whitepaper_file' => $whitepaper_file,
             'type' => $request->type,
