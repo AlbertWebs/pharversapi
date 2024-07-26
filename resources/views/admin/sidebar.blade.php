@@ -109,8 +109,8 @@
             <a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-gavel" aria-hidden="true"></i>Legal Pages</a>
             <div class="collapsible-body left-sub-menu">
                <ul>
-                  <li><a href="{{url('/')}}/admin/editAbout">About Us</a>
-                  </li>
+                  {{-- <li><a href="{{url('/')}}/admin/editAbout">About Us</a>
+                  </li> --}}
                   <li><a href="{{url('/')}}/admin/privacy">Privacy Policy</a>
                   </li>
                   <li><a href="{{url('/')}}/admin/terms">Terms and Conditions</a>
