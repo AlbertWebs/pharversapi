@@ -114,6 +114,7 @@ class DashboardController extends Controller
         $blog->title = $request->title;
         $blog->company_id = Auth::User()->company_id;
         $blog->type = $request->type;
+        $blog->active = "0";
         $blog->meta = $request->meta;
         $blog->video_url = $request->video_url;
         $blog->podcast_url = $request->podcast_url;
