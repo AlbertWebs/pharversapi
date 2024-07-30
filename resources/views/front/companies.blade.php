@@ -27,7 +27,7 @@
         @include('front.superleadboard')
 
         <!-- blog-area -->
-        <section class="blog-area pt-60 pb-60">
+        <section class="blog-area pt-60 pb-60" style="min-height:900px">
             <div class="container">
                 <div class="author-inner-wrap">
                     <div class="row justify-content-center">
