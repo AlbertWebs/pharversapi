@@ -24,23 +24,7 @@
         </div>
         <!-- breadcrumb-area-end -->
 
-        <!-- ad-banner-area -->
-        <div class="ad-banner-area pt-30">
-            <div class="container">
-                <div class="ad-banner-img ad-banner-img-two text-center advertisement-banner">
-                    {{--  --}}
-                    <div class="pharverse-fixed-super" id="pharverse-fixed-super">
-                        <span class="pharverse-close-button-super" id="pharverse-close-super-button" onclick="closeSuperBtn()" title="close"> × </span>
-                            <a href="#" target="_blank" rel="nofollow">
-                                <img src="{{url('/')}}/uploads/ads/ad-footer.gif" alt="Footer Ad" title="Footer Ad" border="0" >
-                            </a></div>
-                        </div>
-                    </div>
-                    {{--  --}}
-                </div>
-            </div>
-        </div>
-        <!-- ad-banner-area-end -->
+        @include('front.superleadboard')
 
         <!-- blog-area -->
         <section class="blog-area pt-60 pb-60">
