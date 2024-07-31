@@ -333,6 +333,7 @@ class DashboardController extends Controller
 
         $updateDetails = array (
             'title' => $request->website,
+            'title' => Str::slug($request->title),
             'email'=>$request->email,
             'mobile'=>$request->mobile,
             'tagline'=>$request->tagline,
