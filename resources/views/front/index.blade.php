@@ -640,7 +640,7 @@
                                 ?>
 
                                 @endforeach
-                                @include('front.ad-medium-rectangle')
+                                {{-- @include('front.ad-medium-rectangle') --}}
                             </div>
                         </div>
                     </div>
