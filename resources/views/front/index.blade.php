@@ -680,7 +680,9 @@
                     <div class="col-lg-4">
                         <div class="editor-post-item">
                             <div class="editor-post-thumb">
-                                <a href="{{url('/')}}/companies/featured-companies/{{$companies->slung}}"><img src="{{url('/')}}/uploads/logo/{{$companies->logo}}" alt="{{$companies->title}}"></a>
+                                <a href="{{url('/')}}/companies/featured-companies/{{$companies->slung}}">
+                                    <img src="{{url('/')}}/uploads/companies/{{$companies->logo}}" alt="{{$companies->title}}">
+                                </a>
                             </div>
                         </div>
                     </div>
