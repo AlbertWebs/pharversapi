@@ -71,7 +71,7 @@
                        Overview
                     </button>
                     <?php
-                       $Blog = DB::table('blogs')->where('active','1')->->where('type','News')->where('company_id',$company->id)->get();
+                       $Blog = DB::table('blogs')->where('active','1')->where('type','News')->where('company_id',$company->id)->get();
                     ?>
                     @foreach ($Blog as $blog)
                     <button class="nav-link nav-btn-style" id="v-pills-news-tab" data-bs-toggle="pill" data-bs-target="#v-pills-news" type="button" role="tab" aria-controls="v-pills-news" aria-selected="false">
@@ -84,7 +84,7 @@
                     @endforeach
 
                     <?php
-                        $Blog = DB::table('blogs')->where('active','1')->->where('type','Interviews')->where('company_id',$company->id)->get();
+                        $Blog = DB::table('blogs')->where('active','1')->where('type','Interviews')->where('company_id',$company->id)->get();
                     ?>
                     @foreach ($Blog as $blog)
                     <button class="nav-link nav-btn-style" id="v-pills-interviews-tab" data-bs-toggle="pill" data-bs-target="#v-pills-interviews" type="button" role="tab" aria-controls="v-pills-interviews" aria-selected="false">
@@ -94,7 +94,7 @@
                     @endforeach
 
                     <?php
-                    $Blog = DB::table('blogs')->where('active','1')->->where('type','Articles')->where('company_id',$company->id)->get();
+                    $Blog = DB::table('blogs')->where('active','1')->where('type','Articles')->where('company_id',$company->id)->get();
                     ?>
                     @foreach ($Blog as $blog)
                     <button class="nav-link nav-btn-style" id="v-pills-articles-tab" data-bs-toggle="pill" data-bs-target="#v-pills-articles" type="button" role="tab" aria-controls="v-pills-articles" aria-selected="false">
@@ -104,7 +104,7 @@
                     @endforeach
 
                     <?php
-                        $Blog = DB::table('blogs')->where('active','1')->->where('type','podcasts')->where('company_id',$company->id)->get();
+                        $Blog = DB::table('blogs')->where('active','1')->where('type','podcasts')->where('company_id',$company->id)->get();
                     ?>
                     @foreach ($Blog as $blog)
                     <button class="nav-link nav-btn-style" id="v-pills-podcasts-tab" data-bs-toggle="pill" data-bs-target="#v-pills-podcasts" type="button" role="tab" aria-controls="v-pills-podcasts" aria-selected="false">
@@ -114,7 +114,7 @@
                     @endforeach
 
                     <?php
-                    $Blog = DB::table('blogs')->where('active','1')->->where('type','Publications')->where('company_id',$company->id)->get();
+                    $Blog = DB::table('blogs')->where('active','1')->where('type','Publications')->where('company_id',$company->id)->get();
                     ?>
                     @foreach ($Blog as $blog)
                     <button class="nav-link nav-btn-style" id="v-pills-Publications-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Publications" type="button" role="tab" aria-controls="v-pills-Publications" aria-selected="false">
@@ -143,7 +143,7 @@
                     </div>
 
                     <?php
-                        $News = DB::table('blogs')->where('active','1')->->where('type','News')->where('company_id',$company->id)->get();
+                        $News = DB::table('blogs')->where('active','1')->where('type','News')->where('company_id',$company->id)->get();
                     ?>
                     @if($News->isEmpty())
 
@@ -180,7 +180,7 @@
                     @endif
 
                     <?php
-                        $Interviews = DB::table('blogs')->where('active','1')->->where('type','interviews')->where('company_id',$company->id)->get();
+                        $Interviews = DB::table('blogs')->where('active','1')->where('type','interviews')->where('company_id',$company->id)->get();
                     ?>
                     @if($Interviews->isEmpty())
 
@@ -217,7 +217,7 @@
                     @endif
 
                     <?php
-                        $Articles = DB::table('blogs')->where('active','1')->->where('type','Articles')->where('company_id',$company->id)->get();
+                        $Articles = DB::table('blogs')->where('active','1')->where('type','Articles')->where('company_id',$company->id)->get();
                     ?>
                     @if($Articles->isEmpty())
 
@@ -254,7 +254,7 @@
                     @endif
 
                     <?php
-                        $Podcasts = DB::table('blogs')->where('active','1')->->where('type','podcasts')->where('company_id',$company->id)->get();
+                        $Podcasts = DB::table('blogs')->where('active','1')->where('type','podcasts')->where('company_id',$company->id)->get();
                     ?>
                     @if($Podcasts->isEmpty())
 
@@ -291,7 +291,7 @@
                     @endif
 
                     <?php
-                    $Publications = DB::table('blogs')->where('active','1')->->where('type','Publications')->where('company_id',$company->id)->get();
+                    $Publications = DB::table('blogs')->where('active','1')->where('type','Publications')->where('company_id',$company->id)->get();
                     ?>
                     @if($Publications->isEmpty())
 
