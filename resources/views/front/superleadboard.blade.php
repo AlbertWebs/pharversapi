@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="ad-banner-img">
                     <span class="pharverse-close-button-super" id="pharverse-close-super-button" title="close"> × </span>
-                    <a href="#">
+                    <a href="{{$footerAd->url}}">
                         <img src="{{$footerAd->image}}" alt="">
                     </a>
                 </div>

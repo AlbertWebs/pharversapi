@@ -378,6 +378,7 @@ class DashboardController extends Controller
         }else{
             $favicon = $request->favicon_cheat;
         }
+
         if(isset($request->banner)){
             $file = $request->file('banner');
             $filename = $file->getClientOriginalName();
