@@ -42,7 +42,9 @@
                                     <div class="col-md-3">
                                         <div class="weekly-post-three">
                                             <div class="weekly-post-thumbs">
-                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/{{$companies->slung}}"><img src="{{url('/')}}/uploads/logo/{{$companies->logo}}" alt=""></a>
+                                                <a class="weekly-post-thumbs" href="{{url('/')}}/companies/featured-companies/{{$companies->slung}}">
+                                                    <img src="{{url('/')}}/uploads/companies/{{$companies->logo}}" alt="">
+                                                </a>
                                             </div>
                                             <div class="weekly-post-content company-title">
                                                 <h2 class="post-title"><a href="{{url('/')}}/companies/featured-companies/{{$companies->slung}}">{{$companies->title}}</a></h2>
