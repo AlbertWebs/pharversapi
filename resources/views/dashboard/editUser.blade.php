@@ -71,6 +71,12 @@
                                     <label for="list-title">User address</label>
                                 </div>
                                 {{--  --}}
+
+                                <div class="input-field col s12">
+                                    <textarea required name="content" class="materialize-textarea">{{$User->content}}</textarea>
+                                    <label for="textarea1">{{$User->name}} Bio:</label>
+                                </div>
+
  {{-- Images --}}
                                  {{-- Preview --}}
                             {{-- Style --}}

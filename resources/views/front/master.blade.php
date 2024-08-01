@@ -39,6 +39,7 @@
 		<meta name="twitter:image" content="{{url('/')}}/uploads/logo/log.png" />
 
 	    @include('front.schema-home')
+        @include('front.analytics')
         {{--  --}}
 
         <!-- CSS here -->

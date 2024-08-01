@@ -464,6 +464,7 @@ class DashboardController extends Controller
             }
         $updateDetails = array(
             'name'=>$request->name,
+            'content'=>$request->content,
             'country'=>$request->country,
             'email'=>$request->email,
             'mobile'=>$request->mobile,
