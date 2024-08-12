@@ -7230,6 +7230,16 @@ label {
     .pharverse-fixed-footer{
         display: none;
     }
+    .single-title{
+        font-size: 1.5em !important;
+    }
+    .meta-data {
+        font-size: 1.1em !important;
+    }
+
+    .loader-inner #loader h2 {
+        font-size: 16px;
+    }
 
 }
 
