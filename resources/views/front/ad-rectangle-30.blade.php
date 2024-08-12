@@ -9,7 +9,7 @@
             <div class="ad-banner-img">
                 <div class="hot-post-thumb">
                     <span class="pharverse-close-button-super" id="pharverse-close-super-button"  title="close"> × </span>
-                    <a id="pharverse-ad-rectangle-btn-30" href="{{$footerAd->url}}"><img style="width:320px; height:120px" src="{{$footerAd->image}}" alt=""></a>
+                    <a id="pharverse-ad-rectangle-btn-30" href="{{$footerAd->url}}" target="new"><img style="width:320px; height:120px" src="{{$footerAd->image}}" alt=""></a>
                 </div>
             </div>
         </div>

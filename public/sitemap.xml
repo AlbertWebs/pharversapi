@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    <url>
+        <loc>http://localhost:8000/contents/news</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/contents/articles</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/contents/interviews</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/contents/videos</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/contents/webinars</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/contents/publications</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/contents/white-papers-application-notes</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/contents/events</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/contents/podcasts</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/qaqc</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/rd</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/supply-chain</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/digitalization</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/analytical-techniques</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/manufacturing</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/regulatory-affairs</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/biopharma</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/drug-delivery</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/formulation</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/vaccines</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/microbiology</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topic/ai</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/new-african-nation-reaches-who-maturity-level-3-in-medicines-regulation</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/gsk-raises-ps125-billion-from-discounted-sale-of-haleon-shares</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/new-nation-has-officially-ratified-the-african-medicines-agency-treaty</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/nigeria-sets-pace-with-rollout-of-new-meningitis-vaccine</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/malaria-12-african-countries-to-benefit-from-life-saving-vaccine</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/daewoong-pharmaceuticals-fexuprazan-looks-into-africa</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/gambia-70-children-lost-lives-due-to-substandard-cough-syrups</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/nigeria-pfizer-seeks-collaboration-in-the-fight-against-counterfeit-medicines</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/msf-blames-viiv-healthcare-for-delaying-access-to-new-life-changing-hiv-medicine-in-vulnerable-regions</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/south-africa-pharmacists-now-allowed-to-prescribe-hivtb-medicines</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/cipla-expands-in-south-africa-with-acquisition-of-actor-pharma-for-49million</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/johnson-johnson-makes-major-rebrand-to-signal-new-era</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/uganda-set-to-roll-out-new-injectable-hiv-prevention-drug</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/new-country-ratifies-the-african-medicines-agency-treaty</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/the-african-pharmaceutical-technology-foundation-receives-12million-to-operationalize-and-recruit-pharma-expertise</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/pfizer-expected-to-offload-ps2-billion-worth-of-haleon-shares</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/sahpra-signs-mou-with-rwanda-food-and-drug-authority</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/how-to-improve-inventory-management-in-the-pharmaceutical-industry-5-quick-tips</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/pharmaceuticals-5-important-principles-to-improve-forecasting</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/access-to-quality-medication-in-kenya-4-limiting-factors</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/how-to-boost-pharmaceutical-manufacturing-in-africa</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/counterfeit-medicines-3-ways-africa-can-win-the-fight</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/african-pharma-3-technology-trends-that-could-revolutionize-the-industry</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/new-study-shows-antidiabetic-drug-helps-in-weight-loss</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/african-pharma-industry-2023-what-made-the-headlines</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/the-3as-that-will-drive-africas-pharmaceutical-agenda-2024</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/why-multinational-pharma-companies-are-withdrawing-operations-in-africa</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/who-maturity-levels-3-and-4-how-to-attract-more-african-countries</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/10-important-medical-product-recalls-in-the-african-market-so-far-2024</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/how-to-improve-feasibility-of-local-pharma-manufacturing-in-africa</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/using-ai-to-tailor-drugs-for-africa</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/new-report-highlights-pregabalin-trafficking-as-a-major-concern</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/nafdac-boss-how-local-production-is-the-answer-to-high-cost-of-medicines</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/how-to-improve-pharma-through-africa-pooled-procurement-mechanism</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Articles/counterfeit-medicines-3-ways-africa-can-win-the-fight-ii</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Podcasts/dr-evelyn-wesangula-millions-will-die-in-africa-due-to-antimicrobial-resistance</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Podcasts/methadone-clinic-pharmacist-drug-dealers-lace-marijuana-with-heroin-to-get-people-hooked</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Videos/dr-evelyn-wesangula-senior-antimicrobial-resistance-control-specialist-east-central-and-southern-africa-health-community</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Interviews/exclusive-interview-dr-evelyn-wesangula-why-you-should-care-about-resistance</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Interviews/exclusive-dr-tracie-muraya-why-we-should-all-join-forces-to-fight-antimicrobial-resistance</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Interviews/dr-christabel-khaemba-patient-safety-in-africa-through-pharmacovigilance</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Interviews/dr-irene-chege-the-pharmacist-with-a-keen-eye-on-traditional-medicine</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Interviews/prof-faith-okalebo-a-stalwart-of-the-pharmacy-profession</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Publications/issue-1</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/News/sample</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Whitepapers/Application Notes/asas</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Videos/ssasaaa</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/topics/Whitepapers/Application Notes/aaaa-app</loc>
+    
+            </url>
+</urlset>

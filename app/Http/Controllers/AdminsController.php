@@ -1138,7 +1138,8 @@ class AdminsController extends Controller
             'email'=>$request->email,
             'mobile'=>$request->mobile,
             'address'=>$request->address,
-            'image'=>$image
+            'image'=>$image,
+            'content'=>$request->content
 
         );
         DB::table('users')->where('id',$id)->update($updateDetails);
@@ -2327,7 +2328,7 @@ class AdminsController extends Controller
     public function deletePartnerAjax(Request $request){
         activity()->log('Evoked a delete Partner Request');
         $id = $request->id;
-        DB::table('partners')->where('id',$id)->delete();
+        DB::table('companies')->where('id',$id)->delete();
         return response()->json(['success'=>'Deleted Successfully!']);
     }
 

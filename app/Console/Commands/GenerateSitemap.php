@@ -34,27 +34,15 @@ class GenerateSitemap extends Command
         $postsitmap = Sitemap::create();
 
         Content::get()->each(function (Content $post) use ($postsitmap) {
-            $postsitmap->add(
-                Url::create("/contents/{$post->slung}")
-                    ->setPriority(0.9)
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-            );
+            $postsitmap->add(Url::create("/contents/{$post->slung}")->setPriority(0.9)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
         });
 
         Category::get()->each(function (Category $post) use ($postsitmap) {
-            $postsitmap->add(
-                Url::create("/topic/{$post->slung}")
-                    ->setPriority(0.8)
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-            );
+            $postsitmap->add(Url::create("/topic/{$post->slung}")->setPriority(0.9)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
         });
 
         Blog::get()->each(function (Blog $post) use ($postsitmap) {
-            $postsitmap->add(
-                Url::create("/topics/{$post->type}/{$post->slung}")
-                    ->setPriority(0.7)
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-            );
+            $postsitmap->add(Url::create("/topics/{$post->type}/{$post->slung}")->setPriority(0.9)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
         });
 
 

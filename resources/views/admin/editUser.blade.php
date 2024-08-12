@@ -18,7 +18,7 @@
         @include('admin.sidebar')
 
         <!--== BODY INNER CONTAINER ==-->
-        
+
         <div class="sb2-2">
             <div class="sb2-2-2">
                 <ul>
@@ -29,7 +29,7 @@
                     <li class="page-back"><a href="{{url('/')}}/admin/users"><i class="fa fa-backward" aria-hidden="true"></i> All Users</a>
                     </li>
                 </ul>
-               
+
             </div>
             <div class="sb2-2-Edit-blog sb2-2-1">
                 <div class="box-inn-sp">
@@ -40,7 +40,7 @@
                             @if(Session::has('message'))
                                           <div class="alert alert-success">{{ Session::get('message') }}</div>
                            @endif
-           
+
                            @if(Session::has('messageError'))
                                           <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
                            @endif
@@ -71,6 +71,10 @@
                                     <label for="list-title">User address</label>
                                 </div>
                                 {{--  --}}
+                                <div class="input-field col s12">
+                                    <textarea required name="content" class="materialize-textarea">{{$User->content}}</textarea>
+                                    <label for="textarea1">{{$User->name}} Bio:</label>
+                                </div>
  {{-- Images --}}
                                  {{-- Preview --}}
                             {{-- Style --}}
@@ -121,12 +125,12 @@
                             {{-- Preview --}}
 
                             {{-- Images --}}
-                            
-                                
+
+
                             </div>
-                            
+
                             <br><br>
-                           
+
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input readonly required autocomplete="off" value="{{Auth::user()->name }}" id="post-auth" name="author" type="text" class="validate">
@@ -134,7 +138,7 @@
                                 </div>
                             </div>
                             <input type="hidden" name="image_cheat" value={{$User->image}}>
-                            
+
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input  type="submit" class="waves-effect waves-light btn-large" value="Save Changes">
@@ -173,13 +177,13 @@
                                     <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
                                 </div>
                             </div>
-                            
+
                             <div class="tab-inn" id="loading-bar">
                                 <div class="progress">
                                     <div class="indeterminate"></div>
                                 </div>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>
@@ -194,10 +198,10 @@
     $('#categoryEditForm').on('submit',function(event){
         event.preventDefault();
         $('#loading-bar').show();
-   
+
 
         let title = $('#CategoryTitle').val();
-       
+
 
         $.ajax({
           url: "{{url('/')}}/admin/EditCategoryAjaxRequest",

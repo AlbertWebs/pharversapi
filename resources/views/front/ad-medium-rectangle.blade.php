@@ -8,7 +8,7 @@
         <div class="advertisement-banner ad-banner-area align-center" id="pharverse-ad-side-home-2">
             <div class="ta-overlay-post-two">
                 <div class="overlay-post-thumb-two">
-                    <a id="pharverse-ad-whitepapers-btn-Medium" href="{{$footerAd->url}}"><img src="{{$footerAd->image}}" alt="Ads"></a>
+                    <a id="pharverse-ad-whitepapers-btn-Medium" href="{{$footerAd->url}}" target="new"><img src="{{$footerAd->image}}" alt="Ads"></a>
                 </div>
             </div>
         </div>
