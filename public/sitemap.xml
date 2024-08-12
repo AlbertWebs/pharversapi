@@ -283,11 +283,7 @@
   <priority>0.9</priority>
   <changefreq>daily</changefreq>
 </url>
-<url>
-  <loc></loc>
-  <priority>0.9</priority>
-  <changefreq>daily</changefreq>
-</url>
+
 <url>
   <loc>http://africanpharmaceuticalreview.com/content/nigeria-pfizer-seeks-collaboration-in-the-fight-against-counterfeit-medicines</loc>
   <priority>0.9</priority>
