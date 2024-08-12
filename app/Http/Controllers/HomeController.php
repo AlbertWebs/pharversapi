@@ -67,8 +67,8 @@ class HomeController extends Controller
              $page_topic = $category->title;
              $page_title = $page_topic;
              $page_slung = $category->slung;
-             $Posts = DB::table('blogs')->where('active','1')->where('category',$category->id)->get();
-             $Pubs = DB::table('blogs')->where('active','1')->where('category',$category->id)->where('publishable','1')->get();
+             $Posts = DB::table('blogs')->where('active','1')->where('category',$category->id)->orderBy('id','DESC')->get();
+             $Pubs = DB::table('blogs')->where('active','1')->where('category',$category->id)->orderBy('id','DESC')->where('publishable','1')->get();
              return view('front.default_topic', compact('page_title','page_topic','Posts','page_slung','Pubs'));
          }
     }
@@ -115,8 +115,8 @@ class HomeController extends Controller
             $page_topic = $category->title;
             $page_title = $page_topic;
             $page_slung = $category->slung;
-            $Posts = DB::table('blogs')->where('active','1')->where('type',$page_topic)->get();
-            $Pubs = DB::table('blogs')->where('active','1')->where('type',$page_topic)->where('publishable','1')->get();
+            $Posts = DB::table('blogs')->where('active','1')->where('type',$page_topic)->orderBy('id','DESC')->get();
+            $Pubs = DB::table('blogs')->where('active','1')->where('type',$page_topic)->where('publishable','1')->orderBy('id','DESC')->get();
             return view('front.contents_single', compact('page_title','page_topic','Posts','page_slung','Pubs'));
         }
    }
