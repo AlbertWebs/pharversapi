@@ -379,4 +379,8 @@ class HomeController extends Controller
     }
 
 
+    public function redirect($slung){
+        $url = ('http://wp.africanpharmaceuticalreview.com/'.$slung.'');
+        return Redirect::away($url);
+    }
 }

@@ -102,6 +102,7 @@ Route::post('product/img', [HomeController::class, 'uploadMedia'])->name('admin.
 Route::get('subscribe', [NewsLetterController::class, 'subscribe'])->name('subscribe.mailchimp');
 Route::get('unsubscribe', [NewsLetterController::class, 'unsubscribe'])->name('unsubscribe.mailchimp');
 
+Route::get('/{slung}', [HomeController::class, 'redirect']);
 
 Route::get('/subscribe-flow', [HomeController::class, 'subscribe']);
 Route::middleware(['auth', 'user-access:user'])->group(function () {
