@@ -380,7 +380,20 @@ class HomeController extends Controller
 
 
     public function redirect($slung){
-        $url = ('http://wp.africanpharmaceuticalreview.com/'.$slung.'');
-        return Redirect::away($url);
+
+        $Posts = DB::table('blogs')->where('active','1')->where('slung',$slung)->get();
+        If($Posts->isEmpty()){
+            $url = ('http://wp.africanpharmaceuticalreview.com/'.$slung.'');
+            return Redirect::away($url);
+        }else{
+            foreach($Posts as $posts){
+                $page_topic = $posts->type;
+                $page_title = $page_topic;
+                $page_slung = $posts->slung;
+                $title = $posts->title;
+                return view('front.single', compact('page_title','page_topic','Posts','page_slung','title'));
+            }
+        }
+
     }
 }
