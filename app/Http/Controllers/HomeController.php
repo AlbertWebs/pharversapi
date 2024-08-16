@@ -380,7 +380,7 @@ class HomeController extends Controller
 
 
     public function redirect($slung){
-
+        // Fix Posts from the wp website
         $Posts = DB::table('blogs')->where('active','1')->where('slung',$slung)->get();
         If($Posts->isEmpty()){
             $url = ('http://wp.africanpharmaceuticalreview.com/'.$slung.'');
