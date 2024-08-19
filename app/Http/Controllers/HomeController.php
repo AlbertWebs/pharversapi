@@ -378,22 +378,31 @@ class HomeController extends Controller
         return response()->json(['success'=>'Download Successfully!']);
     }
 
+    public function login(){
+        return view('auth.login');
+    }
+
 
     public function redirect($slung){
-        // Fix Posts from the wp website
-        $Posts = DB::table('blogs')->where('active','1')->where('slung',$slung)->get();
-        If($Posts->isEmpty()){
-            $url = ('http://wp.africanpharmaceuticalreview.com/'.$slung.'');
-            return Redirect::away($url);
+        if($slung == "login"){
+            return view('auth.login');
         }else{
-            foreach($Posts as $posts){
-                $page_topic = $posts->type;
-                $page_title = $page_topic;
-                $page_slung = $posts->slung;
-                $title = $posts->title;
-                return view('front.single', compact('page_title','page_topic','Posts','page_slung','title'));
+            // Fix Posts from the wp website
+            $Posts = DB::table('blogs')->where('active','1')->where('slung',$slung)->get();
+            If($Posts->isEmpty()){
+                $url = ('http://wp.africanpharmaceuticalreview.com/'.$slung.'');
+                return Redirect::away($url);
+            }else{
+                foreach($Posts as $posts){
+                    $page_topic = $posts->type;
+                    $page_title = $page_topic;
+                    $page_slung = $posts->slung;
+                    $title = $posts->title;
+                    return view('front.single', compact('page_title','page_topic','Posts','page_slung','title'));
+                }
             }
         }
+
 
     }
 }

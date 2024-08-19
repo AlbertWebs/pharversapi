@@ -103,6 +103,7 @@ Route::get('subscribe', [NewsLetterController::class, 'subscribe'])->name('subsc
 Route::get('unsubscribe', [NewsLetterController::class, 'unsubscribe'])->name('unsubscribe.mailchimp');
 
 Route::get('/{slung}', [HomeController::class, 'redirect']);
+Route::get('/login', [HomeController::class, 'login'])->name('login');
 
 Route::get('/subscribe-flow', [HomeController::class, 'subscribe']);
 Route::middleware(['auth', 'user-access:user'])->group(function () {

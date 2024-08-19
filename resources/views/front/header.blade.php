@@ -92,7 +92,7 @@
                                         </div>
                                     @else
                                         <div class="sign-in">
-                                            <a href="{{url('/')}}/login"><i class="flaticon-user"></i>Sign In</a>
+                                            <a href="{{route('login')}}"><i class="flaticon-user"></i>Sign In</a>
                                         </div>
                                     @endif
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

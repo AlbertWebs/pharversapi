@@ -1,6 +1,9 @@
 @extends('front.master')
 
 @section('content')
+<h1 style="display: none">
+    African Pharmaceutical Review provides information and insights on many pharmaceutical related topics, all based on recent evidence and have been written and reviewed by professionals from the pharmaceutical industry.
+</h1>
 
       <!-- banner-post-area -->
       <section class="banner-post-area">
@@ -22,6 +25,7 @@
         </div>
     </section>
     <!-- banner-post-area-end -->
+
 
       <!-- about-area -->
       <section class="about-area pt-80">
