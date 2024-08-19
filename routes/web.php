@@ -108,7 +108,7 @@ Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/subscribe-flow', [HomeController::class, 'subscribe']);
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::group(['prefix' => '/dashboard'], function () {
-        Route::get('/', [UserController::class, 'index'])->name('dashboard');
+        Route::get('/home', [UserController::class, 'index'])->name('dashboard');
         Route::post('/post-subscription-update', [UserController::class, 'update'])->name('post-subscription-update');
         Route::post('/update-profile', [UserController::class, 'update_profile'])->name('update-profile');
         Route::post('/update-options', [UserController::class, 'update_options'])->name('update-options');
@@ -176,8 +176,8 @@ Auth::routes();
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::group(['prefix' => '/admin'], function () {
         Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-        Route::get('/', [AdminsController::class, 'adminHome'])->name('admin.home');
-        Route::get('/home', [AdminsController::class, 'adminHome'])->name('admin.homes');
+        // Route::get('/', [AdminsController::class, 'adminHome'])->name('admin.home');
+        Route::get('/home', [AdminsController::class, 'adminHome'])->name('admin.home');
 
         // SiteSettings
         Route::get('credentials', [AdminsController::class, 'systemsCredentials']);
