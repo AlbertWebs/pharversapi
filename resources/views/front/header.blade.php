@@ -190,17 +190,12 @@
                                         <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
 
                                             <ul class="navigation">
-
-
-
                                                 <?php
-                                                $Content = DB::table('contents')->get();
-                                             ?>
-                                             @foreach ($Content as $content)
-                                             <li><a href="{{url('/')}}/contents/{{$content->slung}}">{{$content->title}}</a></li>
-                                             @endforeach
-
-
+                                                    $Content = DB::table('contents')->get();
+                                                ?>
+                                                @foreach ($Content as $content)
+                                                <li><a href="{{url('/')}}/contents/{{$content->slung}}">{{$content->title}}</a></li>
+                                                @endforeach
                                             </ul>
 
                                         </div>
@@ -221,13 +216,10 @@
                             </div>
                             <div class="menu-backdrop"></div>
                             <!-- End Mobile Menu -->
-
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </header>
 
 
