@@ -117,7 +117,7 @@
                                             </span>
                                             <input type="text" class="form-control" readonly>
                                         </div>
-                                        <img class="image-preview" style="width:auto;" src="{{url('/')}}/uploads/users/{{$User->image}}" id='img-upload'/>
+                                        <img class="image-preview" style="width:auto;" src="{{$User->image}}" id='img-upload'/>
                                     </div>
                                 </div>
                                 </div>
