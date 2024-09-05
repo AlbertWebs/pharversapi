@@ -1087,14 +1087,7 @@ class AdminsController extends Controller
     public function add_User(Request $request){
         activity()->log('Evoked and add User Operation');
         $path = 'uploads/users';
-        if(isset($request->image)){
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $file->move($path, $filename);
-            $image = $filename;
-        }else{
-            $image = "0";
-        }
+
 
         if(isset($request->image)){
             $dir = 'uploads/users';
@@ -1104,9 +1097,6 @@ class AdminsController extends Controller
         }else{
             $SaveFilePath = "0";
         }
-
-
-
 
         $Password = $request->mobile;
         $password = Hash::make($Password);
@@ -1136,20 +1126,21 @@ class AdminsController extends Controller
     public function edit_User(Request $request, $id){
         activity()->log('Evoked an edit user for user with ID number '.$id.' ');
         $path = 'uploads/users';
-            if(isset($request->image)){
-                $file = $request->file('image');
-                $filename = $file->getClientOriginalName();
-                $file->move($path, $filename);
-                $image = $filename;
-            }else{
-                $image = $request->image_cheat;
-            }
+        if(isset($request->image)){
+            $dir = 'uploads/users';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = $request->image_cheat;
+        }
+
         $updateDetails = array(
             'name'=>$request->name,
             'email'=>$request->email,
             'mobile'=>$request->mobile,
             'address'=>$request->address,
-            'image'=>$image,
+            'image'=>$SaveFilePath,
             'content'=>$request->content
 
         );
