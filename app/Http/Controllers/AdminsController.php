@@ -1095,7 +1095,18 @@ class AdminsController extends Controller
         }else{
             $image = "0";
         }
-        // dd($request->all());
+
+        if(isset($request->image)){
+            $dir = 'uploads/users';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
+        }else{
+            $SaveFilePath = "0";
+        }
+
+
+
 
         $Password = $request->mobile;
         $password = Hash::make($Password);
@@ -1108,7 +1119,7 @@ class AdminsController extends Controller
         $User->is_admin = $request->is_admin;
         $User->type = $request->type;
         $User->password = $password;
-        $User->image = $image;
+        $User->image = $SaveFilePath;
         $User->save();
         Session::flash('message', "User Has Been Added");
         return Redirect::back();
