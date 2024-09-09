@@ -60,7 +60,7 @@
                                             <ul class="list-wrap">
                                                 <li><a href="https://www.facebook.com/sharer/sharer.php?u={{url('/')}}/topics/{{$content->type}}/{{$content->slung}}"><i class="fab fa-facebook-f"></i></a></li>
                                                 <li><a href="https://twitter.com/intent/tweet?url={{url('/')}}/topics/{{$content->type}}/{{$content->slung}}"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="https://www.youtube.com/@AfricanPharmaceuticalReview"><i class="fab fa-youtube"></i></a></li>
+                                                <li><a href="whatsapp://send?text={{url('/')}}/topics/{{$content->type}}/{{$content->slung}}"><i class="fab fa-whatsapp"></i></a></li>
                                                 <li><a href="http://www.linkedin.com/shareArticle?mini=true&url={{url('/')}}/topics/{{$content->type}}/{{$content->slung}}"><i class="fab fa-linkedin-in"></i></a></li>
                                             </ul>
                                         </div>
