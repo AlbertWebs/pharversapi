@@ -30,6 +30,7 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'logins']);
 Route::get('/topics', [HomeController::class, 'topics_list']);
 Route::get('/topic/{slung}', [HomeController::class, 'topic']);
 Route::get('/topic/{slung}/{product}', [HomeController::class, 'topic_explore']);

@@ -382,6 +382,19 @@ class HomeController extends Controller
         return view('auth.login');
     }
 
+    public function logins(){
+        if (auth()->user()->type == 'admin') {
+            return redirect()->route('admin.home');
+        }else if (auth()->user()->type == 'manager') {
+            return redirect()->route('manager.home');
+        }else{
+            // Check company
+            return redirect()->route('dashboard');
+        }
+    }
+
+
+
 
     public function redirect($slung){
         if($slung == "login"){
