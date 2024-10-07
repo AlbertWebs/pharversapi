@@ -49,6 +49,7 @@
         {{-- <link rel="stylesheet" href="{{asset('theme/assets/css/ads.css')}}"> --}}
         <link rel="stylesheet" href="{{asset('theme/assets/css/responsive.css')}}">
         <link rel="stylesheet" href="{{asset('theme/assets/css/ads.css')}}">
+        @include('front.analytics')
     </head>
     <body>
         @foreach ($Company as $company)

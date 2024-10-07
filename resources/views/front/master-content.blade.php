@@ -40,6 +40,7 @@
         @endforeach
 
 	    @include('front.schema-content-single')
+        @include('front.analytics')
         {{--  --}}
 
         <!-- CSS here -->
