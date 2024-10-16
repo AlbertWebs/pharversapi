@@ -40,7 +40,7 @@
                                     </p>
                                     <br>
                                     <div class="subscribe-btn">
-                                        <a download href="#" class="btn btn-two">Download media planner</a>
+                                        <a href="#contact-form" class="btn btn-two">Download media planner</a>
                                     </div>
                                     <hr>
                                     <h3>Why Advertise with Us?</h3>
@@ -78,7 +78,7 @@
                                         <strong>- Social Media Campaigns:</strong> Reach our followers with targeted social media advertisements.<br>
                                     </p>
                                     <br>
-                                    <h3>Reach</h3>
+                                    <h3 id="contact-form">Reach</h3>
                                     <p>Advertising with African Pharmaceutical Review gives you the chance to reach important figures in the biotechnology and pharmaceutical industries, who make up a substantial amount of our readership.</p>
                                     <p>We strive to meet all your marketing goals including:</p>
                                     <ul>
@@ -90,7 +90,7 @@
                                     <p>Get in Touch</p>
 
                                     {{-- Form --}}
-                                    <div class="contact-form">
+                                    <div class="contact-form" >
 
                                         <form id="advertisment-form" action="{{route('advertise-with-us')}}" method="POST">
                                             @csrf
