@@ -531,24 +531,24 @@ class UserController extends Controller
 
 
 
-        // $CurrentID = $request->user_id;
+        $CurrentID = $request->user_id;
 
 
-        //
+
         // get the current user
-        // $user = User::find($CurrentID);
+        $user = User::find($CurrentID);
 
         // get previous user id
-        // $previous = User::where('id', '<', $user->id)->max('id');
+        $previous = User::where('id', '<', $user->id)->max('id');
 
         // get next user id
-        // $Users = User::where('id', '>', $user->id)->min('id');
-        // $User = User::find($Users);
-        // return view('user.options-temp', compact('User'));
-        // $getLastError = Newsletter::getLastError();
-        // echo $getLastError;
+        $Users = User::where('id', '>', $user->id)->min('id');
+        $User = User::find($Users);
+        return view('user.options-temp', compact('User'));
+        $getLastError = Newsletter::getLastError();
+        echo $getLastError;
 
-        //
+
 
         return Redirect::back();
     }

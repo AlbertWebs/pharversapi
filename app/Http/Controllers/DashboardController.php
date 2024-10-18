@@ -329,8 +329,6 @@ class DashboardController extends Controller
     public function updateSiteSettingsAjax(Request $request){
         activity()->log('Evoked an update Settings Request');
 
-
-
         $updateDetails = array (
             'title' => $request->website,
             'title' => Str::slug($request->title),
