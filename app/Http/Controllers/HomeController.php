@@ -265,7 +265,7 @@ class HomeController extends Controller
          $marketing_interest = $request->marketing_interest;
          $marketing_goals = $request->marketing_goals;
 
-         africanpharmaceuticalreview
+
 
          $Sender = "no-reply@africanpharmaceuticalreview.com";
          $SenderId = "Africa Pharmaceutical Reviews";
