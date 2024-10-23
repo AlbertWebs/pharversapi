@@ -281,7 +281,7 @@ class HomeController extends Controller
 
           // Send Email To Subscriber
         $SendEmail = SendEmail::sendEmail($Sender,$SenderId,$MessageToSubscriber,$SubscriberName,$SubscriberId,$Subject);
-        dd($SendEmail);
+
 
     }
 
