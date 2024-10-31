@@ -546,7 +546,7 @@ class UserController extends Controller
         // $User = User::find($Users);
         // return view('user.options-temp', compact('User'));
         $getLastError = Newsletter::getLastError();
-        // dd($getLastError);
+        echo $getLastError;
 
 
 
