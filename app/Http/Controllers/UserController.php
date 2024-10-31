@@ -31,7 +31,7 @@ class UserController extends Controller
     }
 
     public function options_temp($id){
-        $id = 24;
+
         $User = User::find($id);
         return view('user.options-temp', compact('User'));
     }
