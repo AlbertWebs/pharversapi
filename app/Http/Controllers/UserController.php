@@ -231,89 +231,129 @@ class UserController extends Controller
 
 
     public function options_update($id){
-        $Users = User::where('id',$id)->get();
-        foreach ($Users as $Use) {
-            $User = $Use->id;
-
-            $areas_of_interest = prepareArray(User::find($User)->areas_of_interest);
-            $subscription_options = prepareArray(User::find($User)->subscription_options);
-
-            //News Letters
-            $Key = "Newsletter";
-            if(in_array($Key, $subscription_options))
-            {
-            $UpdateDetails = array(
-                'Newsletter'=>"Yes",
-            );
-            $UpdateUser = DB::table('users')->where('id', $User)->update($UpdateDetails);
-            }
-            //News Letters
-            $Key = "Analytical Techniques";
-            if(in_array($Key, $subscription_options))
-            {
-            $UpdateDetails = array(
-                'Newsletter'=>"Yes",
-            );
-            $UpdateUser = DB::table('users')->where('id', $User)->update($UpdateDetails);
-            }
-
-            // Third_party
-            $Key = "Drug Delivery";
-            if(in_array($Key, $subscription_options))
-            {
-            $UpdateDetails = array(
-                'Third_party'=>"Yes",
-            );
-            $UpdateUser = DB::table('users')->where('id', $User)->update($UpdateDetails);
-            }
-
-            //Digital Version
-            $Key = "Digital version of the African Pharmaceutical Review";
-            if(in_array($Key, $subscription_options))
-            {
-            $UpdateDetails = array(
-                'Digital_version'=>"Yes",
-            );
-            $UpdateUser = DB::table('users')->where('id', $User)->update($UpdateDetails);
-            }
-
-            //Digital Version
-            $Key = "Digital version of the African Pharmaceutical Review";
-            if(in_array($Key, $subscription_options))
-            {
-            $UpdateDetails = array(
-                'Digital_version'=>"Yes",
-            );
-            $UpdateUser = DB::table('users')->where('id', $User)->update($UpdateDetails);
-            }
-
-            $Key = "Webinar notifications";
-            if(in_array($Key, $subscription_options))
-            {
-            $UpdateDetails = array(
-                'Webinar_notifications'=>"Yes",
-            );
-            $UpdateUser = DB::table('users')->where('id', $User)->update($UpdateDetails);
-            }
-
-            $Key = "Printed Version of Magazine";
-            if(in_array($Key, $subscription_options))
-            {
-            $UpdateDetails = array(
-                'Printed_Version_of_Magazine'=>"Yes",
-            );
-            $UpdateUser = DB::table('users')->where('id', $User)->update($UpdateDetails);
-            }
-
-            $Key = "Event notifications";
-            if(in_array($Key, $subscription_options))
-            {
-            $UpdateDetails = array(
-                'Event_notifications'=>"Yes",
-            );
-            $UpdateUser = DB::table('users')->where('id', $User)->update($UpdateDetails);
-            }
+        $Users = User::find($id);
+        if( $request->has('Microbiology') ){
+            $Microbiology = "Yes";
+        }else{
+            $Microbiology = "No";
         }
+        if( $request->has('Drug_Delivery') ){
+            $Drug_Delivery = "Yes";
+        }else
+        {
+            $Drug_Delivery = "No";
+        }
+        if( $request->has('Formulation_Development') )
+        {
+            $Formulation_Development = "Yes";
+        }else{
+            $Formulation_Development = "No";
+        }
+        if( $request->has('Bioprocessing') ){
+            $Bioprocessing = "Yes";
+        }else{
+            $Bioprocessing = "No";
+        }
+        // do the rest
+        if( $request->has('Analytical_Techniques') ){
+            $Analytical_Techniques = "Yes";
+        }else{
+            $Analytical_Techniques = "No";
+        }
+        if( $request->has('Manufacturing') ){
+            $Manufacturing = "Yes";
+        }else{
+            $Manufacturing = "No";
+        }
+        if( $request->has('QA/QC') ){
+            $QA_QC = "Yes";
+        }else{
+            $QA_QC = "No";
+        }
+        if( $request->has('Biopharma') ){
+            $Biopharma = "Yes";
+        }else{
+            $Biopharma = "No";
+        }
+        if( $request->has('Packaging_and_Labelling') ){
+            $Packaging_and_Labelling = "Yes";
+        }else{
+            $Packaging_and_Labelling = "No";
+        }
+        if( $request->has('Regulatory_Affairs') ){
+            $Regulatory_Affairs = "Yes";
+        }else{
+            $Regulatory_Affairs = "No";
+        }
+
+        if( $request->has('Health_Supply_Chain_Management') ){
+            $Health_Supply_Chain_Management = "Yes";
+        }else{
+            $Health_Supply_Chain_Management = "No";
+        }
+
+        if( $request->has('Artificial_Intelligence') ){
+            $Artificial_Intelligence = "Yes";
+        }else{
+            $Artificial_Intelligence = "No";
+        }
+        if( $request->has('Digital_version') ){
+            $Digital_version = "Yes";
+        }else{
+            $Digital_version = "No";
+        }
+        if( $request->has('Newsletter') ){
+            $Newsletter = "Yes";
+        }else{
+            $Newsletter = "No";
+        }
+        if( $request->has('Third_party') ){
+            $Third_party = "Yes";
+        }else{
+            $Third_party = "No";
+        }
+        if( $request->has('Webinar_notifications') ){
+            $Webinar_notifications = "Yes";
+        }else{
+            $Webinar_notifications = "No";
+        }
+        if( $request->has('Printed_Version_of_Magazine') ){
+            $Printed_Version_of_Magazine = "Yes";
+        }else{
+            $Printed_Version_of_Magazine = "No";
+        }
+        if( $request->has('Event_notifications') ){
+            $Event_notifications = "Yes";
+        }else{
+            $Event_notifications = "No";
+        }
+
+
+        $User = User::find($id);
+        // Update Newsletter
+        $CollectAddres =  array(
+            'addr1' => $User->address,
+            'city'  => $User->city,
+            'state'  => $User->state,
+            'zip'  => '00100',
+        );
+
+        $email = $User->email;
+        $fname = $User->fname;
+        $lname = $User->lname;
+        // dd($User->phone);
+        if(empty($User->phone)){
+             $mobile="NA";
+        }else{
+            $mobile=$User->phone;
+        };
+
+        if(empty($User->country)){
+            $country="NA";
+       }else{
+           $country=$User->country;
+       };
+
 
         $Newsletter = Newsletter::subscribeorUpdate($email,
              [
@@ -343,6 +383,27 @@ class UserController extends Controller
             ]);
 
 
+
+        $CurrentID = $request->user_id;
+
+
+
+        // get the current user
+        $user = User::find($CurrentID);
+
+        // get previous user id
+        // $previous = User::where('id', '<', $user->id)->max('id');
+
+        // get next user id
+        // $Users = User::where('id', '>', $user->id)->min('id');
+        // $User = User::find($Users);
+        // return view('user.options-temp', compact('User'));
+        $getLastError = Newsletter::getLastError();
+        echo $getLastError;
+
+
+
+        return Redirect::back();
         echo "Options Updated Successfully";
     }
 
