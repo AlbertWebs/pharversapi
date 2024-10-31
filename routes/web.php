@@ -117,6 +117,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
         Route::get('/my-profile-password', [UserController::class, 'password'])->name('my-profile-password');
 
         Route::get('/subscription-options', [UserController::class, 'options'])->name('subscription-options');
+        Route::get('/subscription-options-fetch/{id}', [UserController::class, 'options_temp'])->name('subscription-options');
         Route::get('/whitepapers', [UserController::class, 'whitepapers'])->name('whitepapers');
 
         // OneTime Run
