@@ -230,8 +230,8 @@ class UserController extends Controller
     }
 
 
-    public function options_update(){
-        $Users = User::all();
+    public function options_update($id){
+        $Users = User::where('id',$id)->get();
         foreach ($Users as $Use) {
             $User = $Use->id;
 

@@ -120,7 +120,8 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
         Route::get('/whitepapers', [UserController::class, 'whitepapers'])->name('whitepapers');
 
         // OneTime Run
-        Route::get('/subscription-options-update', [UserController::class, 'options_update'])->name('subscription-options-update');
+        Route::get('/subscription-options-updates', [UserController::class, 'options_update'])->name('subscription-options-update');
+        Route::get('/subscription-options-update/{id}', [UserController::class, 'options_update'])->name('subscription-options-update');
         Route::get('/areas-update', [UserController::class, 'areas_update'])->name('areas-update');
         Route::get('/allSubscribers', [UserController::class, 'allSubscribers'])->name('allSubscribers');
 
