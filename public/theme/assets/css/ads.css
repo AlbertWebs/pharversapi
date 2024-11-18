@@ -1,0 +1,134 @@
+.pharverse-fixed-super{
+    margin-left: -14px;
+    position: relative;
+    margin:0 auto;
+}
+
+.pharverse-close-button-super{
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    position:absolute;
+    line-height: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.pharverse-fixed-footer{
+    /* margin-left: -14px; */
+    /* position: fixed;
+    bottom: 0px;
+    z-index: 10000;
+    width: 728px;
+    margin: 0 auto; */
+}
+
+.margin-center{
+    margin: 0 auto;
+}
+
+.pharverse-close-button{
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    position: relative;
+    line-height: 15px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10000;
+    left:-15px;
+    float: left;
+    margin-right: -15px;
+
+}
+
+.pharverse-fixed-side-left{
+    position: fixed;
+    top:20%;
+    left: 5px;
+    z-index: 10000;
+    width: 90px;
+}
+
+.pharverse-close-button-left{
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    position:absolute;
+    line-height: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.pharverse-fixed-side-right{
+    position: fixed;
+    top:20%;
+    right: 5px;
+    z-index: 10000;
+    width: 90px;
+}
+
+#wrapLeft {
+	float:none;
+	width:210px;
+	margin-right:0;
+	left:0;
+	max-width: 210px !important;
+	overflow:hidden;
+    position:absolute;
+	top:283px;
+	min-width:122px !important;
+}
+
+#wrapLeft a, #wrapLeft div{
+    position:relative;
+    right: 0;
+    float:right;
+    }
+
+    #wrapRight div {
+    position:relative;
+    right: 0;
+    float:left;
+    }
+
+    #wrapRight{
+            float:none;
+        width:210px;
+        margin-right:0;
+        right:0;
+        max-width: 210px !important;
+        overflow:hidden;
+    position:absolute;
+        top:283px;
+        min-width:122px !important;
+
+        }
+
+    .logged-in #wrapLeft, .logged-in #wrapRight {
+    top:276px;
+    }
+
+
+
+@media (max-width: 900px) {
+    .pharverse-fixed-super{
+      display: none;
+    }
+
+    .pharverse-fixed-footer{
+        display: none;
+      }
+}
+
+@media (max-width: 1580px) {
+   .wrapRight{
+    display: none !important;
+   }
+
+   .wrapLeft{
+    display: none !important;
+   }
+
+}
+
