@@ -257,31 +257,34 @@ class HomeController extends Controller
     }
 
     public function advertise_post(Request $request){
-         $fname = $request->fname;
-         $lname = $request->lname;
-         $email = $request->email;
-         $phone = $request->phone;
-         $position = $request->position;
-         $marketing_interest = $request->marketing_interest;
-         $marketing_goals = $request->marketing_goals;
+        if($request->verify_contact == $request->verify_contact_input){
+            $fname = $request->fname;
+            $lname = $request->lname;
+            $email = $request->email;
+            $phone = $request->phone;
+            $position = $request->position;
+            $marketing_interest = $request->marketing_interest;
+            $marketing_goals = $request->marketing_goals;
 
-         $Sender = "no-reply@africanpharmaceuticalreview.com";
-         $SenderId = "Africa Pharmaceutical Reviews";
-         $Subject = "Advertise With Us";
-         $SubscriberId  = $email;
-         $SubscriberName = $fname;
-         $MessageToSubscriber =
-         "
-            Name: $fname $lname, Email:$email,<br>
-            Phone: $phone, <br>
-            Position: $position,
+            $Sender = "no-reply@africanpharmaceuticalreview.com";
+            $SenderId = "Africa Pharmaceutical Reviews";
+            $Subject = "Advertise With Us";
+            $SubscriberId  = $email;
+            $SubscriberName = $fname;
+            $MessageToSubscriber =
+            "
+                Name: $fname $lname, Email:$email,<br>
+                Phone: $phone, <br>
+                Position: $position,
 
-        ";
-        // Save to database
+            ";
+            // Save to database
 
-          // Send Email To Subscriber
-        $SendEmail = SendEmail::sendEmail($Sender,$SenderId,$MessageToSubscriber,$SubscriberName,$SubscriberId,$Subject);
+            // Send Email To Subscriber
+            $SendEmail = SendEmail::sendEmail($Sender,$SenderId,$MessageToSubscriber,$SubscriberName,$SubscriberId,$Subject);
+        }{
 
+        }
 
     }
 
