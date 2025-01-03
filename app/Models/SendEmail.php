@@ -19,7 +19,7 @@ class SendEmail extends Model
 
         Mail::send('mailTheme', $data, function($message) use ($Subject,$Sender,$SenderId,$SubscriberId,$SubscriberName){
             $message->from($Sender , $SenderId);
-            $message->to($SubscriberId, $SubscriberName)->cc('albertmuhatia@gmail.com')->subject($Subject);
+            $message->to($SubscriberId, $SubscriberName)->cc('albertmuhatia@gmail.com')->cc('info@africanpharmaceuticalreview.com')->subject($Subject);
         });
     }
 
@@ -33,7 +33,7 @@ class SendEmail extends Model
 
         Mail::send('front.mail', $data, function($message) use ($Subject,$Sender,$SenderId,$SubscriberId,$SubscriberName){
             $message->from($Sender , $SenderId);
-            $message->to($SubscriberId, $SubscriberName)->cc('albertmuhatia@gmail.com')->subject($Subject);
+            $message->to($SubscriberId, $SubscriberName)->cc('albertmuhatia@gmail.com')->cc('info@africanpharmaceuticalreview.com')->subject($Subject);
         });
     }
 
@@ -49,7 +49,7 @@ class SendEmail extends Model
 
         Mail::send('mailTheme', $data, function($message) use ($Subject,$Sender,$SenderId,$to,$toName){
             $message->from($Sender , $SenderId);
-            $message->to($to, $toName)->cc('albertmuhatia@gmail.com')->subject($Subject);
+            $message->to($to, $toName)->cc('albertmuhatia@gmail.com')->cc('info@africanpharmaceuticalreview.com')->subject($Subject);
         });
     }
 }
