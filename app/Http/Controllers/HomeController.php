@@ -313,41 +313,46 @@ class HomeController extends Controller
         }
 
     public function hidden(Request $request){
-        $name = $request->name;
-        $email = $request->email;
+        if($request->verify_contact == $request->verify_contact_input){
+            $name = $request->name;
+            $email = $request->email;
 
-        $User = User::where('email',$email)->get();
-        if($User->isEmpty()){
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
-            ]);
+            $User = User::where('email',$email)->get();
+            if($User->isEmpty()){
+                $request->validate([
+                    'name' => 'required',
+                    'email' => 'required|email|unique:users',
+                ]);
 
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->email),
-            ]);
-            // event(new Registered($user));
-            // Email Customer Details about account
-            $Sender = "noreply@africanpharmaceuticalreview.com";
-            $SenderId = "No Reply";
-            $MessageToSubscriber = "";
-            $SubscriberName = $request->name;
-            $SubscriberId = $request->email;
-            $subject = "African Pharmaceutical Review";
-            SendEmail::sendEmailSubscriber($Sender,$SenderId,$MessageToSubscriber,$SubscriberName,$SubscriberId,$subject);
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->email),
+                ]);
+                // event(new Registered($user));
+                // Email Customer Details about account
+                $Sender = "noreply@africanpharmaceuticalreview.com";
+                $SenderId = "No Reply";
+                $MessageToSubscriber = "";
+                $SubscriberName = $request->name;
+                $SubscriberId = $request->email;
+                $subject = "African Pharmaceutical Review";
+                SendEmail::sendEmailSubscriber($Sender,$SenderId,$MessageToSubscriber,$SubscriberName,$SubscriberId,$subject);
+            }else{
+
+
+
+            }
+
+            $user = User::where('email','=',$email)->first();
+            // Take count of who downloaded
+
+            Auth::login($user);
+            return Redirect::back();
+
         }else{
 
-
-
         }
-
-        $user = User::where('email','=',$email)->first();
-        // Take count of who downloaded
-
-        Auth::login($user);
-        return Redirect::back();
 
 
     }
