@@ -55,6 +55,7 @@
                                     <label for="list-title">Title</label>
                                 </div>
                             </div>
+                            {{-- author --}}
 
                             <div class="row">
                                 <div class="input-field col s6">
@@ -69,7 +70,18 @@
 
                             {{--  --}}
                             <div class="row">
-                                <div class="input-field col s6">
+                                <div class="input-field col s4">
+                                    <select required name="author" class="icons" id="mydiv">
+                                        <option value="" disabled selected>Choose User</option>
+                                        <?php $User = \App\Models\User::get(); ?>
+                                        <option value="{{Auth::User()->id}}" class="circle" selected>{{Auth::User()->name}}</option>
+                                        @foreach ($User as $user)
+                                        <option value="{{$user->id}}" class="circle" >{{$user->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    {{-- <label>Choose Category</label> --}}
+                                </div>
+                                <div class="input-field col s4">
                                     <select required name="category" class="icons" id="mydiv">
                                         <option value="" disabled selected>Choose Topic</option>
                                         @foreach ($Category as $Categories)
@@ -78,7 +90,7 @@
                                     </select>
                                     {{-- <label>Choose Category</label> --}}
                                 </div>
-                                <div class="input-field col s6">
+                                <div class="input-field col s4">
                                     <select required name="type" class="icons" onchange="showDiv('hidden_div', this)">
                                         <option value="" disabled selected>Choose Content Type</option>
                                         <option value="News"  class="circle">News</option>

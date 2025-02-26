@@ -1360,7 +1360,7 @@ class AdminsController extends Controller
         $blog->podcast_url = $request->podcast_url;
         $blog->slung = Str::slug($request->title);
         $blog->content = $request->ckeditor;
-        $blog->author = Auth::User()->id;
+        $blog->author = $request->author;
         $blog->category = $request->category;
         $blog->tags = $request->tags;
         $blog->whitepaper_file = $whitepaper_file;
