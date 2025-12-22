@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-5 company-thumbs">
-                                    <img src="{{url('/')}}/uploads/companies/{{$company->logo}}" alt="">
+                                    <img src="{{$company->logo}}" alt="">
                             </div>
                         </div>
 

@@ -29,13 +29,13 @@
   ),
   'leshkens/laravel-read-time' => 
   array (
-    'providers' => 
-    array (
-      0 => 'Leshkens\\LaravelReadTime\\Providers\\ReadTimeServiceProvider',
-    ),
     'aliases' => 
     array (
       'ReadTime' => 'ReadTimeFacade',
+    ),
+    'providers' => 
+    array (
+      0 => 'Leshkens\\LaravelReadTime\\Providers\\ReadTimeServiceProvider',
     ),
   ),
   'logiek/laravel-reading-time' => 
@@ -75,24 +75,24 @@
   ),
   'spatie/laravel-ignition' => 
   array (
-    'providers' => 
-    array (
-      0 => 'Spatie\\LaravelIgnition\\IgnitionServiceProvider',
-    ),
     'aliases' => 
     array (
       'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
     ),
+    'providers' => 
+    array (
+      0 => 'Spatie\\LaravelIgnition\\IgnitionServiceProvider',
+    ),
   ),
   'spatie/laravel-newsletter' => 
   array (
-    'providers' => 
-    array (
-      0 => 'Spatie\\Newsletter\\NewsletterServiceProvider',
-    ),
     'aliases' => 
     array (
       'Newsletter' => 'Spatie\\Newsletter\\Facades\\Newsletter',
+    ),
+    'providers' => 
+    array (
+      0 => 'Spatie\\Newsletter\\NewsletterServiceProvider',
     ),
   ),
   'spatie/laravel-sitemap' => 
@@ -104,13 +104,13 @@
   ),
   'stevebauman/location' => 
   array (
-    'providers' => 
-    array (
-      0 => 'Stevebauman\\Location\\LocationServiceProvider',
-    ),
     'aliases' => 
     array (
       'Location' => 'Stevebauman\\Location\\Facades\\Location',
+    ),
+    'providers' => 
+    array (
+      0 => 'Stevebauman\\Location\\LocationServiceProvider',
     ),
   ),
   'van-ons/laraberg' => 

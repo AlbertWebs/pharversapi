@@ -3,6 +3,7 @@
 /public/build
 /public/hot
 /public/wp-content
+/public/uploads
 /public/storage
 /storage/*.key
 /vendor

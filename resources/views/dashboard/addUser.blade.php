@@ -1,180 +1,148 @@
 @extends('dashboard.master')
 @section('content')
-<!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<style>
-    .modal a.close-modal{
-        top:0px !important;
-        right:0px !important;
-    }
-</style>
-<!--== BODY CONTNAINER ==-->
- <div class="container-fluid sb2">
-    <div class="row">
-        @include('dashboard.sidebar')
-
-        <!--== BODY INNER CONTAINER ==-->
-
-        <div class="sb2-2">
-            <div class="sb2-2-2">
-                <ul>
-                    <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li class="active-bre"><a href="#"> Add User</a>
-                    </li>
-                    <li class="page-back"><a href="{{url('/')}}/manager/dashboard/users"><i class="fa fa-backward" aria-hidden="true"></i> All Users</a>
-                    </li>
-                </ul>
-
+<div class="p-6">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{url('/')}}/manager/dashboard/home" class="hover:text-primary-600"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li><a href="{{url('/')}}/manager/dashboard/users" class="hover:text-primary-600">Users</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li class="text-gray-900 font-medium">Add New User</li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Add New User</h2>
+        <p class="text-gray-600 mt-1">Create a new user account for your company</p>
+    </div>
+    
+    <!-- Form -->
+    <div class="admin-card-modern animate-fade-in">
+        <form method="POST" action="{{url('/')}}/manager/dashboard/add_User" enctype="multipart/form-data">
+            @csrf
+            
+            <!-- Name -->
+            <div class="mb-6">
+                <label for="name" class="admin-label admin-label-required">User Name</label>
+                <input type="text" 
+                       id="name" 
+                       name="name" 
+                       required
+                       class="admin-input"
+                       placeholder="Enter user name">
             </div>
-            <div class="sb2-2-add-blog sb2-2-1">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add New User</h4>
-                        <p> Create New User </p>
-                        <center>
-                            @if(Session::has('message'))
-                                          <div class="alert alert-success">{{ Session::get('message') }}</div>
-                           @endif
-
-                           @if(Session::has('messageError'))
-                                          <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
-                           @endif
-                        </center>
+            
+            <!-- Email -->
+            <div class="mb-6">
+                <label for="email" class="admin-label admin-label-required">User Email</label>
+                <input type="email" 
+                       id="email" 
+                       name="email" 
+                       required
+                       class="admin-input"
+                       placeholder="user@example.com">
+            </div>
+            
+            <!-- Mobile -->
+            <div class="mb-6">
+                <label for="mobile" class="admin-label admin-label-required">User Mobile Number</label>
+                <input type="text" 
+                       id="mobile" 
+                       name="mobile" 
+                       required
+                       class="admin-input"
+                       placeholder="+1234567890">
+                <p class="text-sm text-gray-500 mt-1">Mobile number will be used as the initial password</p>
+            </div>
+            
+            <!-- Country & Address -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="country" class="admin-label admin-label-required">User Country</label>
+                    <input type="text" 
+                           id="country" 
+                           name="country" 
+                           required
+                           class="admin-input"
+                           placeholder="Enter country">
+                </div>
+                <div>
+                    <label for="address" class="admin-label admin-label-required">User Address</label>
+                    <input type="text" 
+                           id="address" 
+                           name="address" 
+                           required
+                           class="admin-input"
+                           placeholder="Enter address">
+                </div>
+            </div>
+            
+            <!-- User Image -->
+            <div class="mb-6">
+                <label class="admin-label admin-label-required">User Image</label>
+                <div class="mt-1">
+                    <div class="mb-4 hidden" id="image-preview-container">
+                        <p class="text-sm text-gray-600 mb-2">Preview:</p>
+                        <img id="img-upload" 
+                             src="" 
+                             alt="Image preview" 
+                             class="w-32 h-32 rounded-full object-cover shadow-md border-2 border-gray-200">
                     </div>
-                    <div class="bor">
-                        <form method="POST" action="{{url('/')}}/manager/dashboard/add_User" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="name" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">User Name</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="email" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">User Email</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="mobile" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">User Mobile Number</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="country" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">User Country</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="address" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">User Address</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <div class="file-field">
-                                        <div class="btn">
-                                            <span>File</span>
-                                            <input required name="image" type="file">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input  class="file-path validate" type="text" placeholder="Upload Blog Banner">
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-primary-400 transition-colors">
+                        <div class="space-y-1 text-center">
+                            <i class="fas fa-user-circle text-3xl text-gray-400"></i>
+                            <div class="flex text-sm text-gray-600">
+                                <label for="imgInp" class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none">
+                                    <span>Upload image</span>
+                                    <input id="imgInp" name="image" type="file" accept="image/*" required class="sr-only">
+                                </label>
                             </div>
-                            <input type="hidden" name="is_admin" value="1">
-
-                            <br><br>
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input required autocomplete="off" value="{{Auth::user()->name }}" id="post-auth" name="author" type="text" class="validate">
-                                    <label for="post-auth">Author</label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Add New User">
-                                </div>
-                            </div>
-                        </form>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--== BODY INNER CONTAINER ==-->
-
+            
+            <!-- User Role -->
+            <div class="mb-6">
+                <label for="is_admin" class="admin-label admin-label-required">User Role</label>
+                <select id="is_admin" name="is_admin" required class="admin-input">
+                    <option value="0" selected>Normal User</option>
+                    <option value="1">Admin</option>
+                </select>
+                <p class="text-sm text-gray-500 mt-1">Select the user's role within your company</p>
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-200">
+                <a href="{{url('/')}}/manager/dashboard/users" class="admin-btn admin-btn-secondary">
+                    <i class="fas fa-times mr-2"></i>Cancel
+                </a>
+                <button type="submit" class="admin-btn admin-btn-primary">
+                    <i class="fas fa-save mr-2"></i>Create User
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
-{{--  --}}
-<div id="ex1" class="modal">
-    <div class="sb2-2-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add New Category</h4>
-                    </div>
-                    <div class="tab-inn">
-                        <form method="POST" id="categoryAddForm">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="CategoryTitle" type="text" class="validate">
-                                    <label for="CategoryName">Category Name</label>
-                                </div>
-                            </div>
-                            <div class="row" id="submitButton">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
-
-                            <div class="tab-inn" id="loading-bar">
-                                <div class="progress">
-                                    <div class="indeterminate"></div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-{{-- <a href="#" rel="modal:close">Close</a> --}}
-<script type="text/javascript">
-        // A $( document ).ready() block.
-    $( document ).ready(function() {
-        $('#loading-bar').hide();
-    });
-
-    $('#categoryAddForm').on('submit',function(event){
-        event.preventDefault();
-        $('#loading-bar').show();
-
-
-        let title = $('#CategoryTitle').val();
-
-
-        $.ajax({
-          url: "{{url('/')}}/admin/addCategoryAjaxRequest",
-          type:"POST",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            title:title,
-          },
-          success:function(response){
-            $('#loading-bar').hide();
-            $('#submitButton').html('<center><span class="alert-success text-center">Category Added Successfully</span></center>').delay(3000);
-            $('#categoryAddForm')[0].reset();
-            setTimeout(function() {
-                location.reload();
-            }, 5000);
-          },
-         });
-        });
-      </script>
-</div>
-{{--  --}}
+<script>
+// Image preview
+document.getElementById('imgInp')?.addEventListener('change', function(e) {
+    if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imgPreview = document.getElementById('img-upload');
+            const container = document.getElementById('image-preview-container');
+            if (imgPreview && container) {
+                imgPreview.src = e.target.result;
+                container.classList.remove('hidden');
+            }
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+});
+</script>
 @endsection

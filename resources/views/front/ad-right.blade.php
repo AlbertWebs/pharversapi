@@ -12,20 +12,17 @@
         </div>
 
      </div>
+    {{--  --}}
+    <form id="register-form-Medium-walpaper-left" style="display:none" action="{{route('register-ad-click')}}" method="POST">
+        @csrf
+        <input type="hidden" name="ad" value="Wallpaper-left">
+        <input type="hidden" name="file" value="{{$footerAd->url}}">
+        <input type="hidden" name="link" value="{{$footerAd->url}}">
+        <input type="submit">
+    </form>
     @endif
 @endforeach
-
-
-
-
 {{--  --}}
-<form id="register-form-Medium-walpaper-left" style="display:none" action="{{route('register-ad-click')}}" method="POST">
-    @csrf
-    <input type="hidden" name="ad" value="Wallpaper-left">
-    <input type="hidden" name="file" value="{{$footerAd->url}}">
-    <input type="hidden" name="link" value="{{$footerAd->url}}">
-    <input type="submit">
-</form>
 {{--  --}}
 
 

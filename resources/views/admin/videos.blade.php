@@ -1,196 +1,112 @@
 @extends('admin.master')
 @section('content')
-<!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<style>
-    .modal a.close-modal{
-        top:0px !important;
-        right:0px !important;
-    }
-</style>
-<!--== BODY CONTNAINER ==-->
- <div class="container-fluid sb2">
-    <div class="row">
-        @include('admin.sidebar')
-
-        <!--== BODY INNER CONTAINER ==-->
-        <div class="sb2-2">
-            <div class="sb2-2-2">
-                <ul>
-                    <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li class="active-bre"><a href="#"> Video</a>
-                    </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/addVideo"><i class="fa fa-pencil" aria-hidden="true"></i> Add Video Post</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="sb2-2-1">
-                <h2>All Video Posts</h2>
-                <center>
-                    @if(Session::has('message'))
-                                  <div class="alert alert-success">{{ Session::get('message') }}</div>
-                   @endif
-
-                   @if(Session::has('messageError'))
-                                  <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
-                   @endif
-                </center>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Category & Tags</th>
-                            <th>Video</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-                        @foreach ($Video as $item)
-                        <tr>
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->title}}</td>
-                            <td>
-                                <?php $Category = DB::table('categories')->where('id',$item->category)->get(); ?>
-                                @foreach ($Category as $cat)
+<div class="p-6">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{url('/')}}/admin/home" class="hover:text-primary-600"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li class="text-gray-900 font-medium">Video</li>
+            <li class="ml-auto">
+                <a href="{{url('/')}}/admin/addVideo" class="admin-btn admin-btn-primary">
+                    <i class="fas fa-plus mr-2"></i>Add Video Post
+                </a>
+            </li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">All Video Posts</h2>
+        <p class="text-gray-600 mt-1">Manage your video content</p>
+    </div>
+    
+    <!-- Videos Table -->
+    <div class="admin-card">
+        <div class="overflow-x-auto">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Category & Tags</th>
+                        <th>Video</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($Video as $item)
+                    <tr>
+                        <td class="font-medium">{{$item->id}}</td>
+                        <td class="font-medium text-gray-900">{{$item->title}}</td>
+                        <td>
+                            <?php $Category = DB::table('categories')->where('id',$item->category)->get(); ?>
+                            @foreach ($Category as $cat)
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                     {{$cat->title}}
-                                @endforeach
-                            </td>
-                            <td>
-                                <div class="audiocontainer">
-                                    <iframe id="player" type="text/html" width="170" height="85"
-                                        src="http://www.youtube.com/embed/{{$item->file}}"
-                                        frameborder="0">
-                                    </iframe>
-                                </div>
-                            </td>
-                            <td><a href="{{url('/')}}/admin/editVideo/{{$item->id}}" class="sb2-2-1-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                            </td>
-                            <td><a onclick="archiveFunction{{$item->id}}()" href="#" class="sb2-2-1-edit"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            </td>
-                        </tr>
-                        <script>
-                            function archiveFunction{{$item->id}}()
-                                {
-                                    event.preventDefault(); // prevent form submit
-                                    swal({
-                                        title: "Are you sure?",
-                                        text: "Once deleted, you will not be able to recover this imaginary file!",
-                                        icon: "warning",
-                                        buttons: true,
-                                        dangerMode: true,
-                                        })
-                                        .then((willDelete) => {
-                                        if (willDelete) {
-                                            //do the ajax stuff.
-                                            $.ajax({
-                                                url: "{{url('/')}}/admin/deleteVideoAjax",
-                                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                type: "POST",
-                                                data: {id: {{$item->id}}},
-                                                dataType: "html",
-                                                success: function ()
-                                                {
-                                                    swal("Done!","It was succesfully deleted!","success");
-                                                    setTimeout(function() {
-                                                        window.location.reload();
-                                                    }, 3000);
-
-                                                }
-                                            });
-                                            //
-
-                                        } else {
-                                            swal("Your imaginary file is safe!");
-                                        }
-                                    });
-                                }
-                        </script>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                                </span>
+                            @endforeach
+                        </td>
+                        <td>
+                            <div class="w-40">
+                                <iframe class="w-full h-24 rounded-lg" 
+                                        src="https://www.youtube.com/embed/{{$item->file}}"
+                                        frameborder="0" 
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex items-center space-x-2">
+                                <a href="{{url('/')}}/admin/editVideo/{{$item->id}}" 
+                                   class="text-primary-600 hover:text-primary-700 p-2 hover:bg-primary-50 rounded-lg transition-colors"
+                                   title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <button onclick="deleteVideo({{$item->id}})" 
+                                        class="text-red-600 hover:text-red-700 p-2 hover:bg-red-50 rounded-lg transition-colors"
+                                        title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-        <!--== BODY INNER CONTAINER ==-->
-
     </div>
 </div>
 
-{{--  --}}
-<div id="ex1" class="modal">
-    <div class="sb2-2-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add New Category</h4>
-                    </div>
-                    <div class="tab-inn">
-                        <form method="POST" id="categoryAddForm">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="CategoryTitle" type="text" class="validate">
-                                    <label for="CategoryName">Category Name</label>
-                                </div>
-                            </div>
-                            <div class="row" id="submitButton">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
-
-                            <div class="tab-inn" id="loading-bar">
-                                <div class="progress">
-                                    <div class="indeterminate"></div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-{{-- <a href="#" rel="modal:close">Close</a> --}}
-<script type="text/javascript">
-        // A $( document ).ready() block.
-    $( document ).ready(function() {
-        $('#loading-bar').hide();
+<script>
+function deleteVideo(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Once deleted, you will not be able to recover this video!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc2626',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "{{url('/')}}/admin/deleteVideoAjax",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                type: "POST",
+                data: {id: id},
+                success: function() {
+                    Swal.fire('Deleted!', 'Video has been deleted successfully.', 'success');
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
+                },
+                error: function() {
+                    Swal.fire('Error!', 'Something went wrong.', 'error');
+                }
+            });
+        }
     });
-
-    $('#categoryAddForm').on('submit',function(event){
-        event.preventDefault();
-        $('#loading-bar').show();
-
-
-        let title = $('#CategoryTitle').val();
-
-
-        $.ajax({
-          url: "{{url('/')}}/admin/addCategoryAjaxRequest",
-          type:"POST",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            title:title,
-          },
-          success:function(response){
-            $('#loading-bar').hide();
-            $('#submitButton').html('<center><span class="alert-success text-center">Category Added Successfully</span></center>').delay(3000);
-            $('#categoryAddForm')[0].reset();
-            setTimeout(function() {
-                location.reload();
-            }, 5000);
-          },
-         });
-        });
-      </script>
-</div>
-{{--  --}}
+}
+</script>
 @endsection

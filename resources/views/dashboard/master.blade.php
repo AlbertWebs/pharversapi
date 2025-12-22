@@ -3,181 +3,191 @@
 <?php $SiteSettings = DB::table('_site_settings')->get(); ?>
 @foreach ($SiteSettings as $SiteSettings)
 <head>
-    <title> {{$SiteSettings->sitename}} - AdminsPanel </title>
-    <!--== META TAGS ==-->
+    <title>{{$SiteSettings->sitename}} - Manager Panel</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <!--== FAV ICON ==-->
-    {{-- @include('favicon') --}}
-
-    <!-- GOOGLE FONTS -->
-    <link href="../../../../fonts.googleapis.com/cssbcc5.css?family=Open+Sans:300,400,600|Quicksand:300,400,500" rel="stylesheet">
-
-    <!-- FONT-AWESOME ICON CSS -->
-    <link rel="stylesheet" href="{{asset('admin-theme/css/font-awesome.min.css')}}">
-
-    <!--== ALL CSS FILES ==-->
-    <link rel="stylesheet" href="{{asset('admin-theme/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('admin-theme/css/mob.css')}}">
-    <link rel="stylesheet" href="{{asset('admin-theme/css/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('admin-theme/css/materialize.css')}}" />
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-
-    <script src="{{ asset('js/app.js') }}"></script>
-    <link rel="stylesheet" href="{{asset('vendor/laraberg/css/laraberg.css')}}">
-
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    <!-- CKEditor -->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body>
-    <!--== MAIN CONTRAINER ==-->
-    <div class="container-fluid sb1">
-        <div class="row">
-            <!--== LOGO ==-->
-            <div class="col-md-2 col-sm-3 col-xs-6 sb1-1">
-                <a href="#" class="btn-close-menu"><i class="fa fa-times" aria-hidden="true"></i></a>
-                <a href="#" class="atab-menu"><i class="fa fa-bars tab-menu" aria-hidden="true"></i></a>
-                <a href="{{url('/')}}/admin/home" class="logo"><img src="{{url('/')}}/uploads/logo/{{$SiteSettings->logo}}" alt="{{$SiteSettings->sitename}}" />
-                </a>
-            </div>
-            <!--== SEARCH ==-->
-            <div class="col-md-6 col-sm-6 mob-hide">
-                <form class="app-search">
-                    <input type="text" placeholder="Search..." class="form-control">
-                    <a href="#"><i class="fa fa-search"></i></a>
-                </form>
-            </div>
-            <!--== NOTIFICATION ==-->
-            <div class="col-md-2 tab-hide">
-                <div class="top-not-cen">
-                     <?php $Message = App\Models\Message::all() ?>
-                     <?php $User = App\Models\User::all() ?>
-                     <?php $Posts = App\Models\Blog::all() ?>
-                    <a title="Podcasts" class='waves-effect btn-noti' href='#'><i class="fa fa-podcast" aria-hidden="true"></i><span><?php echo count($Message = DB::table('blogs')->get()) ?></span></a>
-                    <a title="Messages" class='waves-effect btn-noti' href='#'><i class="fa fa-envelope-o" aria-hidden="true"></i><span><?php echo count($Message = DB::table('messages')->get()) ?></span></a>
-                    <a title="Users" class='waves-effect btn-noti' href='#'><i class="fa fa-user" aria-hidden="true"></i><span><?php echo count($Users = DB::table('users')->get()) ?></span></a>
-                    <a title="Site Settings" class='waves-effect btn-noti' href='{{url('/')}}/admin/SiteSettings'><i class="fa fa-cog" aria-hidden="true"></i><span>1</span></a>
+<body class="bg-gray-50">
+    <!-- Main Container -->
+    <div class="flex h-screen overflow-hidden" x-data="{ sidebarCollapsed: localStorage.getItem('sidebarCollapsed') === 'true' }" x-init="$watch('sidebarCollapsed', value => { const sidebar = document.getElementById('sidebar'); if (sidebar) { sidebar.__x.$data.collapsed = value; } })">
+        <!-- Sidebar -->
+        @include('dashboard.sidebar')
+        
+        <!-- Main Content Area -->
+        <div :class="sidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'"
+             class="flex-1 flex flex-col overflow-hidden ml-0 transition-all duration-300">
+            <!-- Top Navigation Bar -->
+            <header class="bg-white shadow-sm border-b border-gray-200">
+                <div class="flex items-center justify-between px-6 py-4">
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="lg:hidden text-gray-600 hover:text-gray-900">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    
+                    <!-- Search Bar -->
+                    <div class="hidden md:flex flex-1 max-w-xl mx-4">
+                        <div class="relative w-full">
+                            <input type="text" placeholder="Search..." 
+                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side Actions -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Notifications -->
+                        <div class="relative">
+                            <button class="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                                <i class="fas fa-bell text-xl"></i>
+                                <?php $Message = App\Models\Message::all() ?>
+                                <?php $User = App\Models\User::all() ?>
+                                <?php $Posts = App\Models\Blog::all() ?>
+                                <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500"></span>
+                            </button>
+                        </div>
+                        
+                        <!-- User Dropdown -->
+                        <div class="relative" x-data="{ open: false }">
+                            <button @click="open = !open" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                                <img src="{{ Auth::user()->avatarUrl }}" 
+                                     alt="{{ Auth::user()->name }}" 
+                                     class="w-10 h-10 rounded-full object-cover">
+                                <div class="hidden md:block text-left">
+                                    <p class="text-sm font-medium text-gray-900">{{Auth::user()->name}}</p>
+                                    <p class="text-xs text-gray-500">{{Auth::user()->address ?? 'Manager'}}</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400 hidden md:block"></i>
+                            </button>
+                            
+                            <!-- Dropdown Menu -->
+                            <div x-show="open" 
+                                 @click.away="open = false"
+                                 x-transition
+                                 class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                                <a href="{{url('/')}}/manager/dashboard/users" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <i class="fas fa-user-edit w-5"></i>
+                                    <span>My Profile</span>
+                                </a>
+                                <div class="border-t border-gray-200 my-2"></div>
+                                <a href="{{url('/')}}/manager/dashboard/SiteSettings" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <i class="fas fa-cog w-5"></i>
+                                    <span>Site Settings</span>
+                                </a>
+                                <div class="border-t border-gray-200 my-2"></div>
+                                <a href="{{url('/')}}/logout" 
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                   class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                                    <i class="fas fa-sign-out-alt w-5"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!--== MY ACCCOUNT ==-->
-            <div class="col-md-2 col-sm-3 col-xs-6">
-                <!-- Dropdown Trigger -->
-                <a class='waves-effect dropdown-button top-user-pro' href='#' data-activates='top-menu'>
-                    <img src="{{url('/')}}/uploads/users/{{Auth::user()->image }}" alt="" />My Account
-                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                </a>
-
-                <!-- Dropdown Structure -->
-                <ul id='top-menu' class='dropdown-content top-menu-sty'>
-                    <li><a href="{{url('/')}}/admin/SiteSettings" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Site Settings</a>
-                    </li>
-                    <li><a href="{{url('/')}}/admin/users" class="waves-effect"><i class="fa fa-user" aria-hidden="true"></i> Manage Users </a>
-                    </li>
-                    <li><a href="{{url('/')}}/admin/admins" class="waves-effect"><i class="fa fa-support" aria-hidden="true"></i> Manage Admins </a>
-                    </li>
-                    <li><a href="{{url('/')}}/admin/addUser" class="waves-effect"><i class="fa fa-user-plus" aria-hidden="true"></i> Add New User</a>
-                    </li>
-                    <li><a href="{{url('/')}}/create-backup" class="waves-effect"><i class="fa fa-undo" aria-hidden="true"></i> Backup Data</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="{{url('/')}}/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
-                    </li>
-                </ul>
-            </div>
+            </header>
+            
+            <!-- Page Content -->
+            <main class="flex-1 overflow-y-auto bg-gray-50">
+                <!-- Flash Messages -->
+                @if(Session::has('message'))
+                    <div class="mx-6 mt-4 animate-slide-in">
+                        <div class="admin-alert admin-alert-success">
+                            <i class="fas fa-check-circle text-xl flex-shrink-0"></i>
+                            <span class="font-medium">{{ Session::get('message') }}</span>
+                        </div>
+                    </div>
+                @endif
+                
+                @if(Session::has('messageError'))
+                    <div class="mx-6 mt-4 animate-slide-in">
+                        <div class="admin-alert admin-alert-error">
+                            <i class="fas fa-exclamation-circle text-xl flex-shrink-0"></i>
+                            <span class="font-medium">{{ Session::get('messageError') }}</span>
+                        </div>
+                    </div>
+                @endif
+                
+                @yield('content')
+            </main>
         </div>
     </div>
-
-   @yield('content')
-
-    <!--== BOTTOM FLOAT ICON ==-->
-    <section>
-        <div class="fixed-action-btn vertical">
-            <a class="btn-floating btn-large red pulse">
-                <i class="large material-icons">mode_edit</i>
-            </a>
-            <ul>
-                <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a>
-                </li>
-                <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a>
-                </li>
-                <li><a class="btn-floating green"><i class="material-icons">publish</i></a>
-                </li>
-                <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <!--======== SCRIPT FILES =========-->
-    <script src="{{asset('admin-theme/js/jquery.min.js')}}"></script>
-    <script src="{{asset('admin-theme/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('admin-theme/js/materialize.min.js')}}"></script>
-    <script src="{{asset('admin-theme/js/custom.js')}}"></script>
-
-    {{-- Process Image --}}
+    
+    <!-- Logout Form -->
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+        @csrf
+    </form>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- CKEditor Configuration -->
     <script>
-        $(document).ready( function() {
-            $(document).on('change', '.btn-file :file', function() {
-            var input = $(this),
-                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-            input.trigger('fileselect', [label]);
-            });
-
-            $('.btn-file :file').on('fileselect', function(event, label) {
-
-                var input = $(this).parents('.input-group').find(':text'),
-                    log = label;
-
-                if( input.length ) {
-                    input.val(log);
-                } else {
-                    if( log ) alert(log);
-                }
-
-            });
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        $('#img-upload').attr('src', e.target.result);
-                    }
-
-                    reader.readAsDataURL(input.files[0]);
-                }
+        // Initialize CKEditor for all textareas with class 'ckeditor'
+        document.addEventListener('DOMContentLoaded', function() {
+            // Replace all textareas with id 'article-ckeditor' or class 'ckeditor'
+            if (document.getElementById('article-ckeditor')) {
+                CKEDITOR.replace('article-ckeditor', {
+                    filebrowserUploadUrl: "{{ route('admin.product.uploadMedia', ['_token' => csrf_token()]) }}",
+                    filebrowserUploadMethod: 'form'
+                });
             }
-
-            $("#imgInp").change(function(){
-                readURL(this);
+            
+            // Replace all textareas with name 'ckeditor'
+            var ckeditorTextareas = document.querySelectorAll('textarea[name="ckeditor"]');
+            ckeditorTextareas.forEach(function(textarea) {
+                if (!textarea.id) {
+                    textarea.id = 'ckeditor-' + Math.random().toString(36).substr(2, 9);
+                }
+                CKEDITOR.replace(textarea.id, {
+                    filebrowserUploadUrl: "{{ route('admin.product.uploadMedia', ['_token' => csrf_token()]) }}",
+                    filebrowserUploadMethod: 'form'
+                });
             });
         });
-    </script>
-    {{-- Process Image --}}
-    {{-- <script src="{{ asset('vendor/laraberg/js/laraberg.js') }}"></script> --}}
-    {{-- <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> --}}
-    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-    {{-- <script>
-        CKEDITOR.replace( 'ckeditor' );
-        CKEDITOR.config.filebrowserImageUploadUrl = '/ck-upload';
-    </script> --}}
-
-    <script>
-        CKEDITOR.replace('ckeditor', {
-            filebrowserUploadUrl: "{{ route('admin.product.uploadMedia', ['_token' => csrf_token()]) }}",
-            filebrowserUploadMethod: 'form'
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+        });
+        
+        // Image preview functionality
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imgPreview = document.getElementById('img-upload');
+                    if (imgPreview) {
+                        imgPreview.src = e.target.result;
+                    }
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        // File input change handler
+        document.addEventListener('change', function(e) {
+            if (e.target.type === 'file' && e.target.id === 'imgInp') {
+                readURL(e.target);
+            }
         });
     </script>
-
-    {{-- <script>
-        Laraberg.init('area');
-    </script> --}}
-
+    
+    @yield('scripts')
 </body>
 @endforeach
 </html>

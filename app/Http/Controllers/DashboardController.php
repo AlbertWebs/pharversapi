@@ -21,7 +21,18 @@ use Illuminate\Support\Str;
 class DashboardController extends Controller
 {
     public function index(){
-       return view('dashboard.index');
+        $Notifications = DB::table('notifications')->limit('5')->get();
+        $ActivityLog = DB::table('activity_log')->where('causer_id', Auth::User()->id)->orderBy('id','DESC')->limit('5')->get();
+        $SiteSettings = DB::table('_site_settings')->get();
+        $Message = DB::table('messages')->limit('5')->get();
+        
+        // Get company-specific data
+        $companyId = Auth::User()->company_id;
+        $Blogs = DB::table('blogs')->where('company_id', $companyId)->get();
+        $Videos = DB::table('videos')->where('company_id', $companyId)->get();
+        $Podcasts = DB::table('podcasts')->where('company_id', $companyId)->get();
+        
+        return view('dashboard.index', compact('Notifications', 'ActivityLog', 'SiteSettings', 'Message', 'Blogs', 'Videos', 'Podcasts'));
     }
 
     public function blog(){
@@ -322,7 +333,30 @@ class DashboardController extends Controller
 
     public function SiteSettings(){
         activity()->log('User Accessed Site Settings Page');
-        $SiteSettings = DB::table('companies')->where('id', Auth::User()->company_id)->get();
+        $user = Auth::User();
+        
+        // Get company settings, create if doesn't exist
+        $SiteSettings = DB::table('companies')->where('id', $user->company_id)->get();
+        
+        // If no company found, create a default one
+        if ($SiteSettings->isEmpty() || !$user->company_id) {
+            $companyId = DB::table('companies')->insertGetId([
+                'title' => $user->name . "'s Company",
+                'email' => $user->email,
+                'mobile' => $user->mobile,
+                'address' => $user->address,
+                'user_id' => $user->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            
+            // Update user's company_id
+            DB::table('users')->where('id', $user->id)->update(['company_id' => $companyId]);
+            
+            // Get the newly created company
+            $SiteSettings = DB::table('companies')->where('id', $companyId)->get();
+        }
+        
         return view('dashboard.site_settings',compact('SiteSettings'));
     }
 
@@ -330,8 +364,8 @@ class DashboardController extends Controller
         activity()->log('Evoked an update Settings Request');
 
         $updateDetails = array (
-            'title' => $request->website,
-            'title' => Str::slug($request->title),
+            'title' => $request->title,
+            'slung' => Str::slug($request->title),
             'email'=>$request->email,
             'mobile'=>$request->mobile,
             'tagline'=>$request->tagline,
@@ -351,7 +385,30 @@ class DashboardController extends Controller
 
     public function logo_and_favicon(){
         activity()->log('User Accessed Logo & Favicon Settings Page');
-        $SiteSettings = DB::table('companies')->where('id', Auth::User()->company_id)->get();
+        $user = Auth::User();
+        
+        // Get company settings, create if doesn't exist
+        $SiteSettings = DB::table('companies')->where('id', $user->company_id)->get();
+        
+        // If no company found, create a default one
+        if ($SiteSettings->isEmpty() || !$user->company_id) {
+            $companyId = DB::table('companies')->insertGetId([
+                'title' => $user->name . "'s Company",
+                'email' => $user->email,
+                'mobile' => $user->mobile,
+                'address' => $user->address,
+                'user_id' => $user->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            
+            // Update user's company_id
+            DB::table('users')->where('id', $user->id)->update(['company_id' => $companyId]);
+            
+            // Get the newly created company
+            $SiteSettings = DB::table('companies')->where('id', $companyId)->get();
+        }
+        
         return view('dashboard.logo_and_favicon',compact('SiteSettings'));
     }
 
@@ -383,7 +440,7 @@ class DashboardController extends Controller
             $file->move($path, $filename);
             $image = $filename;
         }else{
-            $image = $request->favicon_cheat;
+            $image = $request->banner_cheat ?? null;
         }
 
         $updateDetails = array (

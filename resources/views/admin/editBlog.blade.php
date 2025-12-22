@@ -1,335 +1,225 @@
 @extends('admin.master')
 @section('content')
-<!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<style>
-    .modal a.close-modal{
-        top:0px !important;
-        right:0px !important;
-    }
-</style>
-<!--== BODY CONTNAINER ==-->
- <div class="container-fluid sb2">
-    <div class="row">
-        @include('admin.sidebar')
-
-        <!--== BODY INNER CONTAINER ==-->
-
-        <div class="sb2-2">
-            <div class="sb2-2-2">
-                <ul>
-                    <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li class="active-bre"><a href="#"> Edit Blog Post</a>
-                    </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/home"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
-                    </li>
-                </ul>
-
+<div class="p-6">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{url('/')}}/admin/home" class="hover:text-primary-600"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li><a href="{{url('/')}}/admin/blog" class="hover:text-primary-600">Blog Posts</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li class="text-gray-900 font-medium">Edit Post</li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Edit Blog Post</h2>
+        <p class="text-gray-600 mt-1">Editing <strong>{{$Blog->title}}</strong></p>
+    </div>
+    
+    <!-- Form -->
+    <div class="admin-card-modern animate-fade-in">
+        <form method="POST" action="{{url('/')}}/admin/edit_Blog/{{$Blog->id}}" enctype="multipart/form-data">
+            @csrf
+            
+            <!-- Title -->
+            <div class="mb-6">
+                <label for="title" class="admin-label">Post Title <span class="text-red-500">*</span></label>
+                <input type="text" 
+                       id="title" 
+                       name="title" 
+                       value="{{$Blog->title}}"
+                       required
+                       class="admin-input"
+                       placeholder="Enter post title">
             </div>
-            <div class="sb2-2-add-blog sb2-2-1">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Edit Blog Post</h4>
-                        <p> Editing <strong>{{$Blog->title}}</strong> </p>
-                        <center>
-                            @if(Session::has('message'))
-                                          <div class="alert alert-success">{{ Session::get('message') }}</div>
-                           @endif
-
-                           @if(Session::has('messageError'))
-                                          <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
-                           @endif
-                        </center>
+            
+            <!-- Video URL & Podcast URL -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="video_url" class="admin-label">Video URL</label>
+                    <input type="text" 
+                           id="video_url" 
+                           name="video_url" 
+                           value="{{$Blog->video_url}}"
+                           class="admin-input"
+                           placeholder="https://...">
+                </div>
+                <div>
+                    <label for="podcast_url" class="admin-label">Podcast URL</label>
+                    <input type="text" 
+                           id="podcast_url" 
+                           name="podcast_url" 
+                           value="{{$Blog->podcast_url}}"
+                           class="admin-input"
+                           placeholder="https://...">
+                </div>
+            </div>
+            
+            <!-- Type & Category -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="type" class="admin-label">Content Type <span class="text-red-500">*</span></label>
+                    <select id="type" name="type" required class="admin-input" onchange="toggleWhitepaperFields(this.value)">
+                        <option value="{{$Blog->type}}" selected>{{$Blog->type}}</option>
+                        <option value="News">News</option>
+                        <option value="Articles">Articles</option>
+                        <option value="Interviews">Interviews</option>
+                        <option value="Videos">Videos</option>
+                        <option value="Webinars">Webinars</option>
+                        <option value="Publications">Publications</option>
+                        <option value="Whitepapers/Application Notes">Whitepapers/Application Notes</option>
+                        <option value="Events">Events</option>
+                        <option value="Podcasts">Podcasts</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="category" class="admin-label">Topic <span class="text-red-500">*</span></label>
+                    <select id="category" name="category" required class="admin-input">
+                        <?php $CategorySelected = DB::table('categories')->where('id',$Blog->category)->get() ?>
+                        @foreach ($CategorySelected as $CatSel)
+                            <option value="{{$CatSel->id}}" selected>{{$CatSel->title}}</option>
+                        @endforeach
+                        @foreach ($Category as $Categories)
+                            <option value="{{$Categories->id}}">{{$Categories->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Whitepaper Fields -->
+            <div id="whitepaper_fields" class="{{$Blog->type == 'Whitepapers/Application Notes' ? '' : 'hidden'}} grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div>
+                    <label for="whitepaper_file" class="admin-label">Upload New Whitepaper File</label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-primary-400 transition-colors">
+                        <div class="space-y-1 text-center">
+                            <i class="fas fa-cloud-upload-alt text-3xl text-gray-400"></i>
+                            <div class="flex text-sm text-gray-600">
+                                <label for="whitepaper_file" class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none">
+                                    <span>Upload file</span>
+                                    <input id="whitepaper_file" name="whitepaper_file" type="file" class="sr-only">
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bor">
-                        <form method="POST" action="{{url('/')}}/admin/edit_Blog/{{$Blog->id}}" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input value="{{$Blog->title}}" autocomplete="off" name="title" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">Post Title</label>
-                                </div>
+                </div>
+                <div>
+                    <label for="whitepaper_link" class="admin-label">Whitepaper External Link</label>
+                    <input type="text" 
+                           id="whitepaper_link" 
+                           name="whitepaper_link" 
+                           value="{{$Blog->whitepaper_link}}"
+                           class="admin-input"
+                           placeholder="https://...">
+                </div>
+                <div>
+                    <label class="admin-label">Current Whitepaper File</label>
+                    <input type="text" 
+                           value="{{$Blog->whitepaper_file}}" 
+                           class="admin-input bg-gray-50"
+                           readonly
+                           placeholder="No file uploaded">
+                </div>
+            </div>
+            
+            <!-- Meta Description -->
+            <div class="mb-6">
+                <label for="meta" class="admin-label">Meta Description <span class="text-red-500">*</span></label>
+                <textarea id="meta" 
+                          name="meta" 
+                          required
+                          rows="3"
+                          class="admin-input"
+                          placeholder="Enter meta description for SEO">{{$Blog->meta}}</textarea>
+            </div>
+            
+            <!-- Content Editor -->
+            <div class="mb-6">
+                <label class="admin-label">Content <span class="text-red-500">*</span></label>
+                <textarea id="article-ckeditor" 
+                          name="ckeditor" 
+                          required
+                          class="admin-input"
+                          style="min-height:500px !important"
+                          placeholder="Write your content here...">{{$Blog->content}}</textarea>
+            </div>
+            
+            <!-- Author Name -->
+            <div class="mb-6">
+                <label for="author" class="admin-label">Author Name <span class="text-red-500">*</span></label>
+                <input type="text" 
+                       id="author" 
+                       name="author" 
+                       value="{{Auth::user()->name}}"
+                       required
+                       class="admin-input"
+                       placeholder="Author name">
+            </div>
+            
+            <!-- Featured Image -->
+            <div class="mb-6">
+                <label class="admin-label">Change Featured Image</label>
+                <div class="mt-1">
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600 mb-2">Current Image:</p>
+                        <img src="{{$Blog->image_one}}" 
+                             alt="Current featured image" 
+                             id="img-upload"
+                             class="max-w-md h-auto rounded-lg shadow-md">
+                    </div>
+                    <div class="flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-primary-400 transition-colors">
+                        <div class="space-y-1 text-center">
+                            <i class="fas fa-image text-3xl text-gray-400"></i>
+                            <div class="flex text-sm text-gray-600">
+                                <label for="imgInp" class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none">
+                                    <span>Upload new image</span>
+                                    <input id="imgInp" name="image_one" type="file" accept="image/*" class="sr-only">
+                                </label>
                             </div>
-
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input autocomplete="off" name="video_url" id="list-title" type="text" value="{{$Blog->video_url}}" class="validate" >
-                                    <label for="list-title">Video Uri</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input autocomplete="off" name="podcast_url" id="list-title" value="{{$Blog->podcast_url}}" type="text" class="validate" >
-                                    <label for="list-title">Podcats Uri</label>
-                                </div>
-                            </div>
-
-                            {{--  --}}
-                            <div class="row">
-
-                                {{--  --}}
-                                <div class="input-field col s12">
-                                    <select required name="type" class="icons" >
-                                        <option value="{{$Blog->type}}" selected>{{$Blog->type}}</option>
-                                        <option value="News"  class="circle">News</option>
-                                        <option value="Articles"  class="circle">Articles</option>
-                                        <option value="Interviews"  class="circle">Interviews</option>
-                                        <option value="Videos"  class="circle">Videos</option>
-                                        <option value="Webinars"  class="circle">Webinars</option>
-                                        <option value="Publications"  class="circle">Publications</option>
-                                        <option value="Whitepapers/Application Notes"  class="circle">Whitepapers/Application Notes</option>
-                                        <option value="Events"  class="circle">Events</option>
-                                        <option value="Podcasts"  class="circle">Podcasts</option>
-                                    </select>
-                                    <label>Choose Type</label>
-                                </div>
-                            </div>
-                            {{--  --}}
-
-                            <div class="row">
-
-                                {{--  --}}
-                                <div class="input-field col s12">
-                                    <select required name="category" class="icons" id="mydiv">
-                                        <?php $CategorySelected = DB::table('categories')->where('id',$Blog->category)->get() ?>
-                                        @foreach ($CategorySelected as $CatSel)
-                                        <option value="{{$CatSel->id}}" selected>{{$CatSel->title}}</option>
-                                        @endforeach
-                                        @foreach ($Category as $Categories)
-                                        <option value="{{$Categories->id}}" data-icon="{{url('/')}}/uploads/categories/{{$Categories->image}}" class="circle">{{$Categories->title}}</option>
-                                        @endforeach
-                                    </select>
-                                    <label>Choose Category</label>
-                                </div>
-
-                                {{--  --}}
-                                <div class="section-space col s12"></div>
-
-                            </div>
-                            @if($Blog->type == "Whitepapers/Application Notes")
-                            <div class="row">
-                                <div class="input-field col s2" >
-                                    <div class="file-field">
-                                        <div class="btn">
-                                            <span>File</span>
-                                            <input  name="whitepaper_file" type="file">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input  class="file-path validate" type="text" placeholder="Upload Different Whitepaper File">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-field col s5">
-                                    <input autocomplete="off" name="whitepaper_link" id="list-title" type="text" value="{{$Blog->whitepaper_link}}" class="validate">
-                                    <label for="list-title">Whitepaper External Link</label>
-                                </div>
-                                <div class="input-field col s5">
-                                    <input autocomplete="off" name="" id="list-title" type="text" value="{{$Blog->whitepaper_file}}" class="validate">
-                                    <label for="list-title">Whitepaper File Link</label>
-                                </div>
-                            </div>
-                            @endif
-                            <div class="section-space col s12"></div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <textarea required name="meta" class="materialize-textarea">{{$Blog->meta}}</textarea>
-                                    <label for="textarea1">Meta Descriptions:</label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <textarea  required id="article-ckeditor" name="ckeditor" class="materialilze-textarea" placeholder="content" style="min-height:500px !important">
-                                        {{$Blog->content}}
-                                    </textarea>
-                                </div>
-                            </div>
-                            <div class="section-space col s12"></div>
-
-
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input required autocomplete="off" value="{{Auth::user()->name }}" id="post-auth" name="author" type="text" class="validate">
-                                    <label for="post-auth">Author Name</label>
-                                </div>
-                            </div>
-                            {{-- Images --}}
-                                 {{-- Preview --}}
-                            {{-- Style --}}
-                            <style>
-                                .btn-file {
-                                    position: relative;
-                                    overflow: hidden;
-                                }
-                                .btn-file input[type=file] {
-                                    position: absolute;
-                                    top: 0;
-                                    right: 0;
-                                    min-width: 100%;
-                                    min-height: 100%;
-                                    font-size: 100px;
-                                    text-align: right;
-                                    filter: alpha(opacity=0);
-                                    opacity: 0;
-                                    outline: none;
-                                    background: white;
-                                    cursor: inherit;
-                                    display: block;
-                                }
-
-                                #img-upload{
-                                    width: 100%;
-                                }
-                            </style>
-                            {{-- Style --}}
-                            <div class="row">
-                            <div class="">
-                                <div class="input-field col s12">
-                                    <div class="form-group">
-                                        <label>Change Image</label>
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-default btn-file">
-                                                    Browse… <input name="image_one" type="file" id="imgInp">
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" readonly>
-                                        </div>
-                                        <img class="image-preview" style="width:auto;" src="{{$Blog->image_one}}" id='img-upload'/>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            {{-- Preview --}}
-
-                            {{-- Images --}}
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Save Changes">
-                                </div>
-                            </div>
-                            <input type="hidden" name="image_one_cheat" value="{{$Blog->image_one}}">
-                            <input type="hidden" name="whitepaper_file_cheat" value="{{$Blog->whitepaper_file}}">
-
-                        </form>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--== BODY INNER CONTAINER ==-->
-
+            
+            <!-- Hidden Fields -->
+            <input type="hidden" name="image_one_cheat" value="{{$Blog->image_one}}">
+            <input type="hidden" name="whitepaper_file_cheat" value="{{$Blog->whitepaper_file}}">
+            
+            <!-- Submit Button -->
+            <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-200">
+                <a href="{{url('/')}}/admin/blog" class="admin-btn admin-btn-secondary">
+                    <i class="fas fa-times mr-2"></i>Cancel
+                </a>
+                <button type="submit" class="admin-btn admin-btn-primary">
+                    <i class="fas fa-save mr-2"></i>Save Changes
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
-{{--  --}}
-<div id="ex1" class="modal">
-    <div class="sb2-2-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add New Category</h4>
-                    </div>
-                    <div class="tab-inn">
-                        <form method="POST" id="categoryAddForm">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="CategoryTitle" type="text" class="validate">
-                                    <label for="CategoryName">Category Name</label>
-                                </div>
-                            </div>
-                            <div class="row" id="submitButton">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
+<script>
+function toggleWhitepaperFields(value) {
+    const fields = document.getElementById('whitepaper_fields');
+    if (value === 'Whitepapers/Application Notes') {
+        fields.classList.remove('hidden');
+    } else {
+        fields.classList.add('hidden');
+    }
+}
 
-                            <div class="tab-inn" id="loading-bar">
-                                <div class="progress">
-                                    <div class="indeterminate"></div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-{{-- <a href="#" rel="modal:close">Close</a> --}}
-<script type="text/javascript">
-        // A $( document ).ready() block.
-    $( document ).ready(function() {
-        $('#loading-bar').hide();
-    });
-
-    $('#categoryAddForm').on('submit',function(event){
-        event.preventDefault();
-        $('#loading-bar').show();
-
-
-        let title = $('#CategoryTitle').val();
-
-
-        $.ajax({
-          url: "{{url('/')}}/admin/addCategoryAjaxRequest",
-          type:"POST",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            title:title,
-          },
-          success:function(response){
-            $('#loading-bar').hide();
-            $('#submitButton').html('<center><span class="alert-success text-center">Category Added Successfully</span></center>').delay(3000);
-            $('#categoryAddForm')[0].reset();
-            setTimeout(function() {
-                location.reload();
-            }, 5000);
-          },
-         });
-        });
-      </script>
-        <script>
-            $(document).ready( function() {
-                $(document).on('change', '.btn-file :file', function() {
-                var input = $(this),
-                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                input.trigger('fileselect', [label]);
-                });
-
-                $('.btn-file :file').on('fileselect', function(event, label) {
-
-                    var input = $(this).parents('.input-group').find(':text'),
-                        log = label;
-
-                    if( input.length ) {
-                        input.val(log);
-                    } else {
-                        if( log ) alert(log);
-                    }
-
-                });
-                function readURL(input) {
-                    if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-
-                        reader.onload = function (e) {
-                            $('#img-upload').attr('src', e.target.result);
-                        }
-
-                        reader.readAsDataURL(input.files[0]);
-                    }
-                }
-
-                $("#imgInp").change(function(){
-                    readURL(this);
-                });
-            });
-        </script>
-</div>
-{{--  --}}
+// Image preview
+document.getElementById('imgInp')?.addEventListener('change', function(e) {
+    if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imgPreview = document.getElementById('img-upload');
+            imgPreview.src = e.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+});
+</script>
 @endsection

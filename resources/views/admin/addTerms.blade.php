@@ -1,81 +1,60 @@
 @extends('admin.master')
 @section('content')
-<!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<style>
-    .modal a.close-modal{
-        top:0px !important;
-        right:0px !important;
-    }
-</style>
-<!--== BODY CONTNAINER ==-->
- <div class="container-fluid sb2">
-    <div class="row">
-        @include('admin.sidebar')
-
-        <!--== BODY INNER CONTAINER ==-->
-        
-        <div class="sb2-2">
-            <div class="sb2-2-2">
-                <ul>
-                    <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li class="active-bre"><a href="#"> Add Terms and Conditions</a>
-                    </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/terms"><i class="fa fa-backward" aria-hidden="true"></i> Terms and Conditions </a>
-                    </li>
-                </ul>
-               
+<div class="p-6">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{url('/')}}/admin/home" class="hover:text-primary-600"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li><a href="{{url('/')}}/admin/terms" class="hover:text-primary-600">Terms and Conditions</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li class="text-gray-900 font-medium">Add Terms</li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Add Terms and Conditions</h2>
+        <p class="text-gray-600 mt-1">Create a new terms and conditions document</p>
+    </div>
+    
+    <!-- Form -->
+    <div class="admin-card-modern animate-fade-in">
+        <form method="POST" action="{{url('/')}}/admin/add_term" enctype="multipart/form-data">
+            @csrf
+            
+            <!-- Title -->
+            <div class="mb-6">
+                <label for="title" class="admin-label">Terms Title <span class="text-red-500">*</span></label>
+                <input type="text" 
+                       id="title" 
+                       name="title" 
+                       required
+                       class="admin-input"
+                       placeholder="Enter terms and conditions title">
             </div>
-            <div class="sb2-2-add-blog sb2-2-1">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add Terms and Conditions</h4>
-                        <p> Create Terms </p>
-                        <center>
-                            @if(Session::has('message'))
-                                          <div class="alert alert-success">{{ Session::get('message') }}</div>
-                           @endif
-           
-                           @if(Session::has('messageError'))
-                                          <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
-                           @endif
-                        </center>
-                    </div>
-                    <div class="bor">
-                        <form method="POST" action="{{url('/')}}/admin/add_term" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">Terms Title</label>
-                                </div>
-                            </div>
-                           
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <textarea required id="article-ckeditor" name="content" class="materialilze-textarea" placeholder="content"></textarea>
-                                    {{-- <label for="textarea1">Blog Descriptions:</label> --}}
-                                </div>
-                            </div><br><br>
-                           
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            
+            <!-- Content Editor -->
+            <div class="mb-6">
+                <label for="article-ckeditor" class="admin-label">Content <span class="text-red-500">*</span></label>
+                <textarea id="article-ckeditor" 
+                          name="content" 
+                          required
+                          class="admin-input"
+                          style="min-height:500px !important"
+                          placeholder="Enter terms and conditions content..."></textarea>
             </div>
-        </div>
-        <!--== BODY INNER CONTAINER ==-->
-
+            
+            <!-- Submit Button -->
+            <div class="flex items-center justify-end space-x-3 pt-4 border-t border-gray-200">
+                <a href="{{url('/')}}/admin/terms" class="admin-btn admin-btn-secondary">
+                    <i class="fas fa-times mr-2"></i>Cancel
+                </a>
+                <button type="submit" class="admin-btn admin-btn-primary">
+                    <i class="fas fa-save mr-2"></i>Submit
+                </button>
+            </div>
+        </form>
     </div>
 </div>
-
 @endsection

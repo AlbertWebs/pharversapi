@@ -1,332 +1,178 @@
 @extends('admin.master')
 @section('content')
-<!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<style>
-    .modal a.close-modal{
-        top:0px !important;
-        right:0px !important;
-    }
-</style>
-<!--== BODY CONTNAINER ==-->
- <div class="container-fluid sb2">
-    <div class="row">
-        @include('admin.sidebar')
-
-        <!--== BODY INNER CONTAINER ==-->
-        <div class="sb2-2">
-            <div class="sb2-2-2">
-                <ul>
-                    <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li class="active-bre"><a href="#"> Blog</a>
-                    </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/addBlog"><i class="fa fa-pencil" aria-hidden="true"></i> Add Blog Post</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="sb2-2-1">
-                <h2>All Blog Posts</h2>
-                <center>
-                    @if(Session::has('message'))
-                                  <div class="alert alert-success">{{ Session::get('message') }}</div>
-                   @endif
-
-                   @if(Session::has('messageError'))
-                                  <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
-                   @endif
-                </center>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Active</th>
-                            <th>Featured</th>
-                            <th>Topics</th>
-                            <th>Content Types</th>
-                            <th>Date</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-                        @foreach ($Blog as $item)
-                        <tr>
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->title}}</td>
-                            <td>
-                                <!-- Switch -->
-                                <div class="switch">
-                                    @if($item->active == 1)
-                                    <label>
-                                        On
-                                        <input class="switchers" checked type="checkbox" id="{{$item->id}}">
-                                        <span class="lever"></span> On
-                                    </label>
-                                    @else
-                                    <label>
-                                        off
-                                        <input class="switchers" type="checkbox" id="{{$item->id}}">
-                                        <span class="lever"></span> off
-                                    </label>
-                                    @endif
-                                </div>
-                            </td>
-                            <td>
-                                <!-- Switch -->
-                                <div class="switch">
-                                    @if($item->featured == 1)
-                                    <label>
-                                        On
-                                        <input class="switcher" checked type="checkbox" id="{{$item->id}}">
-                                        <span class="lever"></span> On
-                                    </label>
-                                    @else
-                                    <label>
-                                        off
-                                        <input class="switcher" type="checkbox" id="{{$item->id}}">
-                                        <span class="lever"></span> off
-                                    </label>
-                                    @endif
-                                </div>
-                            </td>
-                            <td>
-                               {{$item->type}}
-                            </td>
-                            <td>
-                                <?php $Category = DB::table('categories')->where('id',$item->category)->get(); ?>
-                                @foreach ($Category as $cat)
-                                    {{$cat->title}}
-                                @endforeach
-                            </td>
-                            <td>
-                                <?php
-                                    $RawDate = $item->created_at;
-                                    $FormatDate = strtotime($RawDate);
-                                    $Month = date('M',$FormatDate);
-                                    $Date = date('D',$FormatDate);
-                                    $date = date('d',$FormatDate);
-                                    $Year = date('Y',$FormatDate);
-                                ?>
-                                {{$Date}}, {{$date}} {{$Month}}, {{$Year}}
-                            </td>
-                            <td><a href="{{url('/')}}/admin/editBlog/{{$item->id}}" class="sb2-2-1-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                            </td>
-                            <td><a onclick="archiveFunction{{$item->id}}()" href="#" class="sb2-2-1-edit"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            </td>
-                        </tr>
-                        <script>
-                            function archiveFunction{{$item->id}}()
-                                {
-                                    event.preventDefault(); // prevent form submit
-                                    swal({
-                                        title: "Are you sure?",
-                                        text: "Once deleted, you will not be able to recover this imaginary file!",
-                                        icon: "warning",
-                                        buttons: true,
-                                        dangerMode: true,
-                                        })
-                                        .then((willDelete) => {
-                                        if (willDelete) {
-                                            //do the ajax stuff.
-                                            $.ajax({
-                                                url: "{{url('/')}}/admin/deleteBlogAjax",
-                                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                type: "POST",
-                                                data: {id: {{$item->id}}},
-                                                dataType: "html",
-                                                success: function ()
-                                                {
-                                                    swal("Done!","It was succesfully deleted!","success");
-                                                    setTimeout(function() {
-                                                        window.location.reload();
-                                                    }, 3000);
-
-                                                }
-                                            });
-                                            //
-
-                                        } else {
-                                            swal("Your imaginary file is safe!");
-                                        }
-                                    });
-                                }
-                        </script>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+<div class="p-6">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{url('/')}}/admin/home" class="hover:text-primary-600"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li class="text-gray-900 font-medium">Blog Posts</li>
+            <li class="ml-auto">
+                <a href="{{url('/')}}/admin/addBlog" class="admin-btn admin-btn-primary">
+                    <i class="fas fa-plus mr-2"></i>Add Blog Post
+                </a>
+            </li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">All Blog Posts</h2>
+        <p class="text-gray-600 mt-1">Manage your blog posts and articles</p>
+    </div>
+    
+    <!-- Blog Posts Table -->
+    <div class="admin-card-modern animate-fade-in">
+        <div class="overflow-x-auto">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Active</th>
+                        <th>Featured</th>
+                        <th>Type</th>
+                        <th>Topic</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($Blog as $item)
+                    <tr>
+                        <td class="font-medium">{{$item->id}}</td>
+                        <td>
+                            <div class="font-medium text-gray-900">{{Str::limit($item->title, 40)}}</div>
+                        </td>
+                        <td>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" 
+                                       class="switchers sr-only peer" 
+                                       id="active-{{$item->id}}"
+                                       {{$item->active == 1 ? 'checked' : ''}}
+                                       data-id="{{$item->id}}">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" 
+                                       class="switcher sr-only peer" 
+                                       id="featured-{{$item->id}}"
+                                       {{$item->featured == 1 ? 'checked' : ''}}
+                                       data-id="{{$item->id}}">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </td>
+                        <td>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                {{$item->type}}
+                            </span>
+                        </td>
+                        <td>
+                            <?php $Category = DB::table('categories')->where('id',$item->category)->get(); ?>
+                            @foreach ($Category as $cat)
+                                <span class="text-gray-600">{{$cat->title}}</span>
+                            @endforeach
+                        </td>
+                        <td class="text-gray-600">
+                            <?php
+                                $RawDate = $item->created_at;
+                                $FormatDate = strtotime($RawDate);
+                                $Month = date('M',$FormatDate);
+                                $Date = date('D',$FormatDate);
+                                $date = date('d',$FormatDate);
+                                $Year = date('Y',$FormatDate);
+                            ?>
+                            {{$Date}}, {{$date}} {{$Month}}, {{$Year}}
+                        </td>
+                        <td>
+                            <div class="flex items-center space-x-2">
+                                <a href="{{url('/')}}/admin/editBlog/{{$item->id}}" 
+                                   class="text-primary-600 hover:text-primary-700 p-2 hover:bg-primary-50 rounded-lg transition-colors"
+                                   title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <button onclick="deleteBlog({{$item->id}})" 
+                                        class="text-red-600 hover:text-red-700 p-2 hover:bg-red-50 rounded-lg transition-colors"
+                                        title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-        <!--== BODY INNER CONTAINER ==-->
-
     </div>
 </div>
 
 <script>
-    $('.switcher').click(function() {
-    // alert($(this).attr('id'));
-    var id = $(this).attr('id');
-    datas = {
-            TheId: $(this).attr('id'),
-            "_token": "{{ csrf_token() }}",
+// Active toggle
+$(document).on('change', '.switchers', function() {
+    var id = $(this).data('id');
+    var isChecked = $(this).is(':checked');
+    
+    $.ajax({
+        type: "POST",
+        url: '{{url('/')}}/admin/switchActiveAjaxRequest',
+        data: {
+            TheId: id,
+            "_token": "{{ csrf_token() }}"
+        },
+        success: function(data) {
+            // Success feedback can be added here
         }
-    // alert(id)
-       if(this.checked){
-            $.ajax({
-                type: "POST",
-                url: '{{url('/')}}/admin/switchFeatredAjaxRequest',
-                data: datas,  //--> send id of checked checkbox on other page
-                success: function(data) {
-                    // alert("Success");
-                    // $('#container').html(data);
-                },
-                 error: function() {
-                    // alert('it broke');
-                },
-                complete: function() {
-                    // alert('it completed');
-                }
-            });
-
-        }else{
-            $.ajax({
-                type: "POST",
-                url: '{{url('/')}}/admin/switchFeatredAjaxRequest',
-                data: datas,  //--> send id of checked checkbox on other page
-                success: function(data) {
-                    // alert("Success");
-                    // $('#container').html(data);
-                },
-                 error: function() {
-                    // alert('it broke');
-                },
-                complete: function() {
-                    // alert('it completed');
-                }
-            });
-        }
-      });
-</script>
-
-<script>
-    $('.switchers').click(function() {
-    // alert($(this).attr('id'));
-    var id = $(this).attr('id');
-    datas = {
-            TheId: $(this).attr('id'),
-            "_token": "{{ csrf_token() }}",
-        }
-    // alert(id)
-       if(this.checked){
-            $.ajax({
-                type: "POST",
-                url: '{{url('/')}}/admin/switchActiveAjaxRequest',
-                data: datas,  //--> send id of checked checkbox on other page
-                success: function(data) {
-                    // alert("Success");
-                    // $('#container').html(data);
-                },
-                 error: function() {
-                    // alert('it broke');
-                },
-                complete: function() {
-                    // alert('it completed');
-                }
-            });
-
-        }else{
-            $.ajax({
-                type: "POST",
-                url: '{{url('/')}}/admin/switchActiveAjaxRequest',
-                data: datas,  //--> send id of checked checkbox on other page
-                success: function(data) {
-                    // alert("Success");
-                    // $('#container').html(data);
-                },
-                 error: function() {
-                    // alert('it broke');
-                },
-                complete: function() {
-                    // alert('it completed');
-                }
-            });
-        }
-      });
-</script>
-{{--  --}}
-<div id="ex1" class="modal">
-    <div class="sb2-2-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add New Category</h4>
-                    </div>
-                    <div class="tab-inn">
-                        <form method="POST" id="categoryAddForm">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="CategoryTitle" type="text" class="validate">
-                                    <label for="CategoryName">Category Name</label>
-                                </div>
-                            </div>
-                            <div class="row" id="submitButton">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
-
-                            <div class="tab-inn" id="loading-bar">
-                                <div class="progress">
-                                    <div class="indeterminate"></div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-{{-- <a href="#" rel="modal:close">Close</a> --}}
-<script type="text/javascript">
-        // A $( document ).ready() block.
-    $( document ).ready(function() {
-        $('#loading-bar').hide();
     });
+});
 
-    $('#categoryAddForm').on('submit',function(event){
-        event.preventDefault();
-        $('#loading-bar').show();
+// Featured toggle
+$(document).on('change', '.switcher', function() {
+    var id = $(this).data('id');
+    var isChecked = $(this).is(':checked');
+    
+    $.ajax({
+        type: "POST",
+        url: '{{url('/')}}/admin/switchFeatredAjaxRequest',
+        data: {
+            TheId: id,
+            "_token": "{{ csrf_token() }}"
+        },
+        success: function(data) {
+            // Success feedback can be added here
+        }
+    });
+});
 
-
-        let title = $('#CategoryTitle').val();
-
-
-        $.ajax({
-          url: "{{url('/')}}/admin/addCategoryAjaxRequest",
-          type:"POST",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            title:title,
-          },
-          success:function(response){
-            $('#loading-bar').hide();
-            $('#submitButton').html('<center><span class="alert-success text-center">Category Added Successfully</span></center>').delay(3000);
-            $('#categoryAddForm')[0].reset();
-            setTimeout(function() {
-                location.reload();
-            }, 5000);
-          },
-         });
-        });
-      </script>
-</div>
-{{--  --}}
+function deleteBlog(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Once deleted, you will not be able to recover this post!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc2626',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "{{url('/')}}/admin/deleteBlogAjax",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                type: "POST",
+                data: {id: id},
+                success: function() {
+                    Swal.fire('Deleted!', 'Blog post has been deleted successfully.', 'success');
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
+                },
+                error: function() {
+                    Swal.fire('Error!', 'Something went wrong.', 'error');
+                }
+            });
+        }
+    });
+}
+</script>
 @endsection

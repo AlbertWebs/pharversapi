@@ -11,26 +11,34 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('Microbiology')->nullable();
-            $table->string('Drug_Delivery')->nullable();
-            $table->string('Formulation_Development')->nullable();
-            $table->string('Bioprocessing')->nullable();
-            $table->string('Manufacturing')->nullable();
-            $table->string('QA_QC')->nullable();
-            $table->string('Biopharma')->nullable();
-            $table->string('Packaging_and_Labelling')->nullable();
-            $table->string('Regulatory_Affairs')->nullable();
-            $table->string('Health_Supply_Chain_Management')->nullable();
-            $table->string('Artificial_Intelligence')->nullable();
-            $table->string('Analytical_Techniques')->nullable();
-            $table->string('Third_party')->nullable();
-            $table->string('Digital_version')->nullable();
-            $table->string('Webinar_notifications')->nullable();
-            $table->string('Printed_Version_of_Magazine')->nullable();
-            $table->string('Newsletter')->nullable();
-            $table->string('Event_notifications')->nullable();
-        });
+        $columns = [
+            'Microbiology',
+            'Drug_Delivery',
+            'Formulation_Development',
+            'Bioprocessing',
+            'Manufacturing',
+            'QA_QC',
+            'Biopharma',
+            'Packaging_and_Labelling',
+            'Regulatory_Affairs',
+            'Health_Supply_Chain_Management',
+            'Artificial_Intelligence',
+            'Analytical_Techniques',
+            'Third_party',
+            'Digital_version',
+            'Webinar_notifications',
+            'Printed_Version_of_Magazine',
+            'Newsletter',
+            'Event_notifications',
+        ];
+
+        foreach ($columns as $column) {
+            if (!Schema::hasColumn('users', $column)) {
+                Schema::table('users', function (Blueprint $table) use ($column) {
+                    $table->string($column)->nullable();
+                });
+            }
+        }
     }
 
     /**
@@ -38,8 +46,33 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        $columns = [
+            'Microbiology',
+            'Drug_Delivery',
+            'Formulation_Development',
+            'Bioprocessing',
+            'Manufacturing',
+            'QA_QC',
+            'Biopharma',
+            'Packaging_and_Labelling',
+            'Regulatory_Affairs',
+            'Health_Supply_Chain_Management',
+            'Artificial_Intelligence',
+            'Analytical_Techniques',
+            'Third_party',
+            'Digital_version',
+            'Webinar_notifications',
+            'Printed_Version_of_Magazine',
+            'Newsletter',
+            'Event_notifications',
+        ];
+
+        foreach ($columns as $column) {
+            if (Schema::hasColumn('users', $column)) {
+                Schema::table('users', function (Blueprint $table) use ($column) {
+                    $table->dropColumn($column);
+                });
+            }
+        }
     }
 };

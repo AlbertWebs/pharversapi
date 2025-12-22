@@ -1,158 +1,89 @@
 @extends('admin.master')
 @section('content')
-<!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<style>
-    .modal a.close-modal{
-        top:0px !important;
-        right:0px !important;
-    }
-</style>
-<!--== BODY CONTNAINER ==-->
- <div class="container-fluid sb2">
-    <div class="row">
-        @include('admin.sidebar')
-
-        <!--== BODY INNER CONTAINER ==-->
-
-        <div class="sb2-2">
-            <div class="sb2-2-2">
-                <ul>
-                    <li><a href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li class="active-bre"><a href="#"> Add New Partner</a>
-                    </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/Partner"><i class="fa fa-backward" aria-hidden="true"></i> All Partners</a>
-                    </li>
-                </ul>
-
+<div class="p-6">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{url('/')}}/admin/home" class="hover:text-primary-600"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li><a href="{{url('/')}}/admin/partners" class="hover:text-primary-600">Partners</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li class="text-gray-900 font-medium">Add New Partner</li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Add Partner</h2>
+        <p class="text-gray-600 mt-1">Create a new partner entry</p>
+    </div>
+    
+    <!-- Form -->
+    <div class="admin-card-modern animate-fade-in">
+        <form method="POST" action="{{url('/')}}/admin/add_Partner" enctype="multipart/form-data">
+            @csrf
+            
+            <!-- Partner Name -->
+            <div class="mb-6">
+                <label for="title" class="admin-label admin-label-required">Partner Name</label>
+                <input type="text" 
+                       id="title" 
+                       name="title" 
+                       required
+                       class="admin-input"
+                       placeholder="Enter partner name">
             </div>
-            <div class="sb2-2-add-blog sb2-2-1">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add Partner</h4>
-                        <center>
-                            @if(Session::has('message'))
-                                          <div class="alert alert-success">{{ Session::get('message') }}</div>
-                           @endif
-
-                           @if(Session::has('messageError'))
-                                          <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
-                           @endif
-                        </center>
-                    </div>
-                    <div class="bor">
-                        <form method="POST" action="{{url('/')}}/admin/add_Partner" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">Partner Name</label>
-                                </div>
-
-
-                                <div class="input-field col s12">
-                                    <div class="file-field">
-                                        <div class="btn">
-                                            <span>File(272px by 377px)</span>
-                                            <input required name="image_one" type="file">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input  class="file-path validate" type="text" placeholder="Upload Partner Main Image, Size 390 by 480">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
-                        </form>
+            
+            <!-- Image Upload -->
+            <div class="mb-6">
+                <label for="image_one" class="admin-label admin-label-required">Partner Image</label>
+                <div class="mt-2">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img id="img-upload" 
+                                 src="https://via.placeholder.com/390x480?text=No+Image" 
+                                 alt="Partner image preview" 
+                                 class="h-48 w-auto object-cover rounded-lg border-2 border-gray-200 bg-gray-100">
+                        </div>
+                        <div class="flex-1">
+                            <label for="image_one" class="admin-btn admin-btn-secondary cursor-pointer inline-block">
+                                <i class="fas fa-upload mr-2"></i>Browse...
+                            </label>
+                            <input type="file" 
+                                   id="image_one" 
+                                   name="image_one" 
+                                   accept="image/*"
+                                   required
+                                   class="hidden"
+                                   onchange="readURL(this)">
+                            <p class="text-sm text-gray-500 mt-2">Recommended size: 390px by 480px</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--== BODY INNER CONTAINER ==-->
-
+            
+            <!-- Submit Button -->
+            <div class="flex items-center justify-end space-x-3 pt-4 border-t border-gray-200">
+                <a href="{{url('/')}}/admin/partners" class="admin-btn admin-btn-secondary">
+                    <i class="fas fa-times mr-2"></i>Cancel
+                </a>
+                <button type="submit" class="admin-btn admin-btn-primary">
+                    <i class="fas fa-save mr-2"></i>Submit
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
-{{--  --}}
-<div id="ex1" class="modal">
-    <div class="sb2-2-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add New Category</h4>
-                    </div>
-                    <div class="tab-inn">
-                        <form method="POST" id="categoryAddForm">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="CategoryTitle" type="text" class="validate">
-                                    <label for="CategoryName">Category Name</label>
-                                </div>
-                            </div>
-                            <div class="row" id="submitButton">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
-
-                            <div class="tab-inn" id="loading-bar">
-                                <div class="progress">
-                                    <div class="indeterminate"></div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-{{-- <a href="#" rel="modal:close">Close</a> --}}
-<script type="text/javascript">
-        // A $( document ).ready() block.
-    $( document ).ready(function() {
-        $('#loading-bar').hide();
-    });
-
-    $('#categoryAddForm').on('submit',function(event){
-        event.preventDefault();
-        $('#loading-bar').show();
-
-
-        let title = $('#CategoryTitle').val();
-
-
-        $.ajax({
-          url: "{{url('/')}}/admin/addCategoryAjaxRequest",
-          type:"POST",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            title:title,
-          },
-          success:function(response){
-            $('#loading-bar').hide();
-            $('#submitButton').html('<center><span class="alert-success text-center">Category Added Successfully! Refreshing page...........</span></center>').delay(3000);
-            $('#categoryAddForm')[0].reset();
-            setTimeout(function() {
-                location.reload();
-            }, 5000);
-          },
-         });
-        });
-      </script>
-</div>
-{{--  --}}
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('img-upload').src = e.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 @endsection

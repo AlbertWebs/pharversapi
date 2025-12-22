@@ -1,160 +1,171 @@
 @extends('admin.master')
 @section('content')
-<!--== BODY CONTNAINER ==-->
- <div class="container-fluid sb2">
-    <div class="row">
-        @include('admin.sidebar')
-
-        <!--== BODY INNER CONTAINER ==-->
-        <div class="sb2-2">
-            <!--== breadcrumbs ==-->
-            <div class="sb2-2-2">
-                <ul>
-                    <li><a href="{{url('/')}}/admin/home/home"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li class="active-bre"><a href="#"> Dashboard</a>
-                    </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/admins"><i class="fa fa-user" aria-hidden="true"></i>Admins</a>
-                    </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/home"><i class="fa fa-forward" aria-hidden="true"></i>Dashboard</a>
-                    </li>
-                </ul>
+<div class="p-6">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{url('/')}}/admin/home" class="hover:text-primary-600"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li class="text-gray-900 font-medium">System Users</li>
+            <li class="ml-auto">
+                <a href="{{url('/')}}/admin/addUser" class="admin-btn admin-btn-primary">
+                    <i class="fas fa-user-plus mr-2"></i>Add New User
+                </a>
+            </li>
+        </ol>
+    </nav>
+    
+    <!-- Dashboard Stats -->
+    @include('admin.dashboard')
+    
+    <!-- Users Table -->
+    <div class="admin-card-modern mt-6 animate-fade-in">
+        <div class="flex items-center justify-between mb-4">
+            <div>
+                <h3 class="text-xl font-semibold text-gray-900">System Users</h3>
+                <p class="text-sm text-gray-500 mt-1">Registered Users</p>
             </div>
-            <!--== DASHBOARD INFO ==-->
-            @include('admin.dashboard')
-            <!--== DASHBOARD INFO ==-->
-
-
-            <!--== User Details ==-->
-            <div class="sb2-2-3">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box-inn-sp">
-                            <div class="inn-title">
-                                <h4>System Users</h4>
-                                <p>Registered Users</p>
-                                <a class="dropdown-button drop-down-meta" href="#" data-activates="dr-users"><i class="material-icons">more_vert</i></a>
-                                <ul id="dr-users" class="dropdown-content">
-                                    <li><a href="{{url('/')}}/admin/addUser">Add New User</a>
-                                    </li>
-
-                                    <li><a href="#!"><i class="material-icons">play_for_work</i>Download</a>
-                                    </li>
-                                </ul>
-                                <!-- Dropdown Structure -->
-
-                            </div>
-                            <div class="tab-inn">
-                                <div class="table-responsive table-desi">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>User</th>
-                                                <th>Name</th>
-                                                <th>Mandate</th>
-                                                <th>Contacts</th>
-
-                                                <th>Country</th>
-                                                <th>Status</th>
-                                                <th>Delete</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-                                            @foreach ($Users as $item)
-                                            <tr>
-                                                <td><span class="list-img"><img src="{{$item->image}}" alt="{{$item->name}}"></span>
-                                                </td>
-                                                <td><a href="{{url('/')}}/editUser/{{$item->id}}"><span class="list-enq-name">{{$item->name}}</span></a>
-                                                </td>
-                                                <td><a href="{{url('/')}}/editUser/{{$item->id}}">
-                                                    <span class="list-enq-name">
-                                                        @if($item->type == 1)
-                                                        System Admin
-                                                        @elseif($item->type == 2)
-                                                        Manager
-                                                        @else
-                                                        subscribers
-                                                        @endif
-                                                    </span></a>
-                                                </td>
-                                                <td>{{$item->mobile}}<br>{{$item->email}}<br>{{$item->address}}<br>{{$item->country}}</td>
-
-                                                <td>{{$item->country}}</td>
-                                                @if($item->status == 1)
-                                                <td>
-                                                    <span class="label label-success">Active</span>
-                                                    <br><hr>
-
-                                                    <a title="Switch To Inactive" href="{{url('/')}}/admin/switchStatus/{{$item->id}}" class="sb2-2-1-edit text-center"><i class="fa fa-exchange" aria-hidden="true"></i><span>Switch To Inactive</span></a>
-
-                                                </td>
-                                                @else
-                                                <td>
-                                                    <span class="label label-danger">Inactive</span><br><hr>
-
-                                                    <a title="Switch To Active" href="{{url('/')}}/admin/switchStatus/{{$item->id}}" class="sb2-2-1-edit text-center"><i class="fa fa-exchange" aria-hidden="true"></i><span>Switch To Active</span></a>
-
-                                                </td>
-                                                @endif
-
-
-                                                <td>
-                                                    <a href="{{url('/')}}/admin/editUser/{{$item->id}}" class="sb2-2-1-edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-                                                    <a onclick="archiveFunction{{$item->id}}()" href="#" class="sb2-2-1-edit"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                </td>
-                                            </tr>
-                                            <script>
-                                                function archiveFunction{{$item->id}}()
-                                                    {
-                                                        event.preventDefault(); // prevent form submit
-                                                        swal({
-                                                            title: "Are you sure you want to delete this user?",
-                                                            text: "Once deleted, you will not be able to recover this data!",
-                                                            icon: "warning",
-                                                            buttons: true,
-                                                            dangerMode: true,
-                                                            })
-                                                            .then((willDelete) => {
-                                                            if (willDelete) {
-                                                                //do the ajax stuff.
-                                                                $.ajax({
-                                                                    url: "{{url('/')}}/admin/deleteUserAjax",
-                                                                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                                    type: "POST",
-                                                                    data: {id: {{$item->id}}},
-                                                                    dataType: "html",
-                                                                    success: function ()
-                                                                    {
-                                                                        swal("Done!","It was succesfully deleted!","success");
-                                                                        setTimeout(function() {
-                                                                            window.location.reload();
-                                                                        }, 3000);
-
-                                                                    }
-                                                                });
-                                                                //
-
-                                                            } else {
-                                                                swal("Your imaginary file is safe!");
-                                                            }
-                                                        });
-                                                    }
-                                            </script>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
-
+        
+        <div class="overflow-x-auto">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Name</th>
+                        <th>Mandate</th>
+                        <th>Contacts</th>
+                        <th>Country</th>
+                        <th>Admin</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($Users as $item)
+                    <tr>
+                        <td>
+                            <img src="{{$item->avatarUrl}}" 
+                                 alt="{{$item->name}}" 
+                                 class="w-10 h-10 rounded-full object-cover">
+                        </td>
+                        <td>
+                            <a href="{{url('/')}}/admin/editUser/{{$item->id}}" class="hover:text-primary-600">
+                                <div class="font-medium text-gray-900">{{$item->name}}</div>
+                            </a>
+                        </td>
+                        <td>
+                            @if($item->type == 1)
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                    <i class="fas fa-shield-alt mr-1"></i>System Admin
+                                </span>
+                            @elseif($item->type == 2)
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                    Manager
+                                </span>
+                            @else
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                    Subscriber
+                                </span>
+                            @endif
+                        </td>
+                        <td>
+                            <div class="text-sm text-gray-600">
+                                @if($item->mobile)<div><i class="fas fa-phone mr-1"></i>{{$item->mobile}}</div>@endif
+                                @if($item->email)<div><i class="fas fa-envelope mr-1"></i>{{$item->email}}</div>@endif
+                                @if($item->address)<div><i class="fas fa-map-marker-alt mr-1"></i>{{$item->address}}</div>@endif
+                            </div>
+                        </td>
+                        <td class="text-gray-600">{{$item->country ?? 'N/A'}}</td>
+                        <td>
+                            @if($item->is_admin == 1)
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                    <i class="fas fa-user-shield mr-1"></i>Admin
+                                </span>
+                                <div class="mt-2">
+                                    <a href="{{url('/')}}/admin/switchRole/{{$item->id}}" 
+                                       class="text-xs text-primary-600 hover:text-primary-700">
+                                        <i class="fas fa-exchange-alt mr-1"></i>Remove Admin
+                                    </a>
+                                </div>
+                            @else
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                    <i class="fas fa-user mr-1"></i>User
+                                </span>
+                                <div class="mt-2">
+                                    <a href="{{url('/')}}/admin/switchRole/{{$item->id}}" 
+                                       class="text-xs text-primary-600 hover:text-primary-700">
+                                        <i class="fas fa-exchange-alt mr-1"></i>Make Admin
+                                    </a>
+                                </div>
+                            @endif
+                        </td>
+                        <td>
+                            @if($item->status == 1)
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    <i class="fas fa-check-circle mr-1"></i>Active
+                                </span>
+                                <div class="mt-2">
+                                    <a href="{{url('/')}}/admin/switchStatus/{{$item->id}}" 
+                                       class="text-xs text-primary-600 hover:text-primary-700">
+                                        <i class="fas fa-exchange-alt mr-1"></i>Switch To Inactive
+                                    </a>
+                                </div>
+                            @else
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                    <i class="fas fa-times-circle mr-1"></i>Inactive
+                                </span>
+                                <div class="mt-2">
+                                    <a href="{{url('/')}}/admin/switchStatus/{{$item->id}}" 
+                                       class="text-xs text-primary-600 hover:text-primary-700">
+                                        <i class="fas fa-exchange-alt mr-1"></i>Switch To Active
+                                    </a>
+                                </div>
+                            @endif
+                        </td>
+                        <td>
+                            <button onclick="deleteUser({{$item->id}})" 
+                                    class="text-red-600 hover:text-red-700 p-2 hover:bg-red-50 rounded-lg transition-colors">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
+<script>
+function deleteUser(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Once deleted, you will not be able to recover this user!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc2626',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "{{url('/')}}/admin/deleteUserAjax",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                type: "POST",
+                data: {id: id},
+                success: function() {
+                    Swal.fire('Deleted!', 'User has been deleted successfully.', 'success');
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
+                },
+                error: function() {
+                    Swal.fire('Error!', 'Something went wrong.', 'error');
+                }
+            });
+        }
+    });
+}
+</script>
 @endsection

@@ -1,129 +1,99 @@
 @extends('admin.master')
 @section('content')
-<!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<style>
-    .modal a.close-modal{
-        top:0px !important;
-        right:0px !important;
-    }
-</style>
-<!--== BODY CONTNAINER ==-->
- <div class="container-fluid sb2">
-    <div class="row">
-        @include('admin.sidebar')
-
-        <!--== BODY INNER CONTAINER ==-->
-
-        <div class="sb2-2">
-            <div class="sb2-2-2">
-                <ul>
-                    <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li class="active-bre"><a href="#"> Add New Newsletter</a>
-                    </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/newsletters"><i class="fa fa-backward" aria-hidden="true"></i> All Newsletters</a>
-                    </li>
-                </ul>
-
+<div class="p-6">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{url('/')}}/admin/home" class="hover:text-primary-600"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li><a href="{{url('/')}}/admin/newsletters" class="hover:text-primary-600">Newsletters</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li class="text-gray-900 font-medium">Add New Newsletter</li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Add New Newsletter</h2>
+        <p class="text-gray-600 mt-1">Create a new newsletter issue</p>
+    </div>
+    
+    <!-- Form -->
+    <div class="admin-card-modern animate-fade-in">
+        <form method="POST" action="{{url('/')}}/admin/add_Newsletter" enctype="multipart/form-data">
+            @csrf
+            
+            <!-- Newsletter Title -->
+            <div class="mb-6">
+                <label for="title" class="admin-label admin-label-required">Newsletter Title</label>
+                <input type="text" 
+                       id="title" 
+                       name="title" 
+                       required
+                       class="admin-input"
+                       placeholder="Enter newsletter title">
             </div>
-            <div class="sb2-2-add-blog sb2-2-1">
-                <h2>Add New Newsletters</h2>
-                {{-- <p>Newsletters Are Used In Both Blogs And General Content Classification</p> --}}
-                <center>
-                    @if(Session::has('message'))
-                                  <div class="alert alert-success">{{ Session::get('message') }}</div>
-                   @endif
-
-                   @if(Session::has('messageError'))
-                                  <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
-                   @endif
-                </center>
-                <form method="POST" action="{{url('/')}}/admin/add_Newsletter" enctype="multipart/form-data">
-                    {{csrf_field()}}
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="list-title" name="title" type="text" value="" class="validate">
-                            <label for="list-title">Enter Newsletter Title</label>
+            
+            <!-- Content -->
+            <div class="mb-6">
+                <label for="article-ckeditor" class="admin-label admin-label-required">Content</label>
+                <textarea id="article-ckeditor" 
+                          name="ckeditor" 
+                          required
+                          class="admin-input min-h-[300px]"
+                          placeholder="Enter newsletter content"></textarea>
+            </div>
+            
+            <!-- Image Upload -->
+            <div class="mb-6">
+                <label for="imgInp" class="admin-label admin-label-required">Featured Image</label>
+                <div class="mt-2">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img id="img-upload" 
+                                 src="https://via.placeholder.com/800x600?text=No+Image" 
+                                 alt="Newsletter image preview" 
+                                 class="h-48 w-auto object-cover rounded-lg border-2 border-gray-200 bg-gray-100">
+                        </div>
+                        <div class="flex-1">
+                            <label for="imgInp" class="admin-btn admin-btn-secondary cursor-pointer inline-block">
+                                <i class="fas fa-upload mr-2"></i>Browse...
+                            </label>
+                            <input type="file" 
+                                   id="imgInp" 
+                                   name="image" 
+                                   accept="image/*"
+                                   required
+                                   class="hidden"
+                                   onchange="readURL(this)">
+                            <p class="text-sm text-gray-500 mt-2">Select a featured image for the newsletter</p>
                         </div>
                     </div>
-
-
-
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea required id="article-ckeditor" name="ckeditor" class="materialilze-textarea" placeholder="content"></textarea>
-                            {{-- <label for="textarea1">Blog Descriptions:</label> --}}
-                        </div>
-                    </div><br><br>
-                     {{-- Images --}}
-                                 {{-- Preview --}}
-                            {{-- Style --}}
-                            <style>
-                                .btn-file {
-                                    position: relative;
-                                    overflow: hidden;
-                                }
-                                .btn-file input[type=file] {
-                                    position: absolute;
-                                    top: 0;
-                                    right: 0;
-                                    min-width: 100%;
-                                    min-height: 100%;
-                                    font-size: 100px;
-                                    text-align: right;
-                                    filter: alpha(opacity=0);
-                                    opacity: 0;
-                                    outline: none;
-                                    background: white;
-                                    cursor: inherit;
-                                    display: block;
-                                }
-
-                                #img-upload{
-                                    width: 100%;
-                                }
-                            </style>
-                            {{-- Style --}}
-                            <div class="row">
-                                <div class="">
-                                    <div class="input-field col s12">
-                                        <div class="form-group">
-                                            <label>Add Newsletter Featured Image</label>
-                                            <div class="input-group">
-                                                <span class="input-group-btn">
-                                                    <span class="btn btn-default btn-file">
-                                                        Browse… <input name="image" type="file" id="imgInp">
-                                                    </span>
-                                                </span>
-                                                <input type="text" class="form-control" readonly>
-                                            </div>
-                                            <img class="image-preview" style="width:auto;" src="" id='img-upload'/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- Preview --}}
-
-                            {{-- Images --}}
-                            <br><br>
-                            <div class="clearfix"></div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input type="submit" class="waves-effect waves-light btn-large" value="Add Newsletter">
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
-        <!--== BODY INNER CONTAINER ==-->
-
+            
+            <!-- Submit Button -->
+            <div class="flex items-center justify-end space-x-3 pt-4 border-t border-gray-200">
+                <a href="{{url('/')}}/admin/newsletters" class="admin-btn admin-btn-secondary">
+                    <i class="fas fa-times mr-2"></i>Cancel
+                </a>
+                <button type="submit" class="admin-btn admin-btn-primary">
+                    <i class="fas fa-save mr-2"></i>Add Newsletter
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
-
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('img-upload').src = e.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 @endsection

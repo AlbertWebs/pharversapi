@@ -1,233 +1,109 @@
 @extends('admin.master')
 @section('content')
-<!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<style>
-    .modal a.close-modal{
-        top:0px !important;
-        right:0px !important;
-    }
-</style>
-<!--== BODY CONTNAINER ==-->
- <div class="container-fluid sb2">
-    <div class="row">
-        @include('admin.sidebar')
-
-        <!--== BODY INNER CONTAINER ==-->
-        <div class="sb2-2">
-            <div class="sb2-2-2">
-                <ul>
-                    <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li class="active"><a href="#"> Downloads</a>
-                    </li>
-                    {{-- <li class="page-back"><a href="{{url('/')}}/admin/addAdvertisement"><i class="fa fa-pencil" aria-hidden="true"></i> Add Advertisement Post</a>
-                    </li> --}}
-                </ul>
-            </div>
-            <div class="sb2-2-1">
-                <h2>All Downloads</h2>
-                <center>
-                   @if(Session::has('message'))
-                                  <div class="alert alert-success">{{ Session::get('message') }}</div>
-                   @endif
-
-                   @if(Session::has('messageError'))
-                                  <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
-                   @endif
-                </center>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>DOwnload Link</th>
-                            <th>User</th>
-
-                            {{-- <th>Delete</th> --}}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-                        @foreach ($Advertisement as $item)
-                        <tr>
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->title}}</td>
-                            <td>
-                               <a target="new" href="{{$item->link}}">{{$item->link}}</a>
-                            </td>
-                            <td>
-                                <?php
-                                  $User = App\Models\User::find($item->user);
-                                  echo $User->name;
-                                ?>
-                            </td>
-                        </tr>
-                        <script>
-                            function archiveFunction{{$item->id}}()
-                                {
-                                    event.preventDefault(); // prevent form submit
-                                    swal({
-                                        title: "Are you sure?",
-                                        text: "Once deleted, you will not be able to recover this imaginary file!",
-                                        icon: "warning",
-                                        buttons: true,
-                                        dangerMode: true,
-                                        })
-                                        .then((willDelete) => {
-                                        if (willDelete) {
-                                            //do the ajax stuff.
-                                            $.ajax({
-                                                url: "{{url('/')}}/admin/deleteAdvertisementAjax",
-                                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                                type: "POST",
-                                                data: {id: {{$item->id}}},
-                                                dataType: "html",
-                                                success: function ()
-                                                {
-                                                    swal("Done!","It was succesfully deleted!","success");
-                                                    setTimeout(function() {
-                                                        window.location.reload();
-                                                    }, 3000);
-
-                                                }
-                                            });
-                                            //
-
-                                        } else {
-                                            swal("Your imaginary file is safe!");
-                                        }
-                                    });
-                                }
-                        </script>
-                        @endforeach
-                    </tbody>
-                </table>
+<div class="p-6">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{url('/')}}/admin/home" class="hover:text-primary-600"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li class="text-gray-900 font-medium">Downloads</li>
+        </ol>
+    </nav>
+    
+    <!-- Dashboard Stats -->
+    @include('admin.dashboard')
+    
+    <!-- Downloads Table -->
+    <div class="admin-card-modern mt-6 animate-fade-in">
+        <div class="flex items-center justify-between mb-4">
+            <div>
+                <h3 class="text-xl font-semibold text-gray-900">All Downloads</h3>
+                <p class="text-sm text-gray-500 mt-1">Track and manage download requests</p>
             </div>
         </div>
-        <!--== BODY INNER CONTAINER ==-->
-
+        
+        <div class="overflow-x-auto">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Download Link</th>
+                        <th>User</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($Downloads as $item)
+                    <tr>
+                        <td class="text-gray-600 font-medium">{{$item->id}}</td>
+                        <td>
+                            <div class="font-medium text-gray-900">{{$item->title ?? 'N/A'}}</div>
+                        </td>
+                        <td>
+                            @if($item->link)
+                                <a href="{{$item->link}}" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer"
+                                   class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
+                                    <i class="fas fa-external-link-alt mr-2"></i>
+                                    <span class="max-w-xs truncate">{{$item->link}}</span>
+                                </a>
+                            @else
+                                <span class="text-gray-400">No link</span>
+                            @endif
+                        </td>
+                        <td>
+                            @php
+                                $User = App\Models\User::find($item->user);
+                            @endphp
+                            @if($User)
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-8 w-8">
+                                        <img class="h-8 w-8 rounded-full object-cover" 
+                                             src="{{$User->avatarUrl}}" 
+                                             alt="{{$User->name}}">
+                                    </div>
+                                    <div class="ml-3">
+                                        <div class="text-sm font-medium text-gray-900">{{$User->name}}</div>
+                                        <div class="text-xs text-gray-500">{{$User->email}}</div>
+                                    </div>
+                                </div>
+                            @else
+                                <span class="text-gray-400">Unknown User</span>
+                            @endif
+                        </td>
+                        <td class="text-gray-600">
+                            @if($item->created_at)
+                                <?php
+                                    $RawDate = $item->created_at;
+                                    $FormatDate = strtotime($RawDate);
+                                    $Month = date('M', $FormatDate);
+                                    $Date = date('D', $FormatDate);
+                                    $day = date('d', $FormatDate);
+                                    $Year = date('Y', $FormatDate);
+                                ?>
+                                <div class="text-sm">
+                                    <div class="font-medium">{{$Date}}, {{$day}} {{$Month}}, {{$Year}}</div>
+                                    <div class="text-xs text-gray-500">{{date('h:i A', $FormatDate)}}</div>
+                                </div>
+                            @else
+                                <span class="text-gray-400">N/A</span>
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        
+        @if(count($Downloads) == 0)
+        <div class="text-center py-12">
+            <i class="fas fa-download text-4xl text-gray-300 mb-4"></i>
+            <p class="text-gray-500 text-lg">No downloads found</p>
+            <p class="text-gray-400 text-sm mt-2">Download requests will appear here when users request files.</p>
+        </div>
+        @endif
     </div>
 </div>
-
-<script>
-    $('.switcher').click(function() {
-    // alert($(this).attr('id'));
-    var id = $(this).attr('id');
-    datas = {
-            TheId: $(this).attr('id'),
-            "_token": "{{ csrf_token() }}",
-        }
-    // alert(id)
-       if(this.checked){
-            $.ajax({
-                type: "POST",
-                url: '{{url('/')}}/admin/switchAdsAjaxRequest',
-                data: datas,  //--> send id of checked checkbox on other page
-                success: function(data) {
-                    // alert("Success");
-                    // $('#container').html(data);
-                },
-                 error: function() {
-                    // alert('it broke');
-                },
-                complete: function() {
-                    // alert('it completed');
-                }
-            });
-
-        }else{
-            $.ajax({
-                type: "POST",
-                url: '{{url('/')}}/admin/switchAdsAjaxRequest',
-                data: datas,  //--> send id of checked checkbox on other page
-                success: function(data) {
-                    // alert("Success");
-                    // $('#container').html(data);
-                },
-                 error: function() {
-                    // alert('it broke');
-                },
-                complete: function() {
-                    // alert('it completed');
-                }
-            });
-        }
-      });
-</script>
-
-{{--  --}}
-<div id="ex1" class="modal">
-    <div class="sb2-2-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add New Category</h4>
-                    </div>
-                    <div class="tab-inn">
-                        <form method="POST" id="categoryAddForm">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="CategoryTitle" type="text" class="validate">
-                                    <label for="CategoryName">Category Name</label>
-                                </div>
-                            </div>
-                            <div class="row" id="submitButton">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
-
-                            <div class="tab-inn" id="loading-bar">
-                                <div class="progress">
-                                    <div class="indeterminate"></div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-{{-- <a href="#" rel="modal:close">Close</a> --}}
-<script type="text/javascript">
-        // A $( document ).ready() block.
-    $( document ).ready(function() {
-        $('#loading-bar').hide();
-    });
-
-    $('#categoryAddForm').on('submit',function(event){
-        event.preventDefault();
-        $('#loading-bar').show();
-
-
-        let title = $('#CategoryTitle').val();
-
-
-        $.ajax({
-          url: "{{url('/')}}/admin/addCategoryAjaxRequest",
-          type:"POST",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            title:title,
-          },
-          success:function(response){
-            $('#loading-bar').hide();
-            $('#submitButton').html('<center><span class="alert-success text-center">Category Added Successfully</span></center>').delay(3000);
-            $('#categoryAddForm')[0].reset();
-            setTimeout(function() {
-                location.reload();
-            }, 5000);
-          },
-         });
-        });
-      </script>
-</div>
-{{--  --}}
 @endsection

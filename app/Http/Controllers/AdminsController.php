@@ -982,8 +982,7 @@ class AdminsController extends Controller
     }
 
     //Portfolio
-
-     // Partner
+    // Partner
      public function partners(){
         activity()->log('Accessed All Partners');
         $Partner = Company::all();
@@ -1003,19 +1002,28 @@ class AdminsController extends Controller
     public function add_Partner(Request $request){
         activity()->log('Evoked add Partner Operation');
         $path = public_path('uploads/partners');
+        // if(isset($request->image_one)){
+        //     $file = $request->file('image_one');
+        //     $filename = $file->getClientOriginalName();
+        //     $file->move($path, $filename);
+        //     $image_one = $filename;
+        // }else{
+        //     $image_one = "0";
+        // }
         if(isset($request->image_one)){
+            $dir = 'uploads/partners';
             $file = $request->file('image_one');
-            $filename = $file->getClientOriginalName();
-            $file->move($path, $filename);
-            $image_one = $filename;
+            $realPath = $request->file('image_one')->getRealPath();
+            $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
         }else{
-            $image_one = "0";
+            $SaveFilePath = "0";
         }
 
-        $Partner = new Partner;
-        $Partner->name = $request->title;
+        $Partner = new Company;
+        $Partner->title = $request->title;
         $Partner->slung = Str::slug($request->title);
-        $Partner->image = $image_one;
+        $Partner->image = $SaveFilePath;
+        $Partner->logo = $SaveFilePath;
         $Partner->save();
         Session::flash('message', "Partner Has Been Added");
         return Redirect::back();
@@ -1033,37 +1041,47 @@ class AdminsController extends Controller
     public function edit_Partner(Request $request, $id){
         activity()->log('Evoked Edit Partner For Partner ID number '.$id.' ');
         $path = public_path('uploads/partners');
+            // if(isset($request->image_one)){
+            //     $file = $request->file('image_one');
+            //     $filename = $file->getClientOriginalName();
+            //     $file->move($path, $filename);
+            //     $image_one = $filename;
+            // }else{
+            //     $image_one = $request->image_one_cheat;
+            // }
+
             if(isset($request->image_one)){
+                $dir = 'uploads/partners';
                 $file = $request->file('image_one');
-                $filename = $file->getClientOriginalName();
-                $file->move($path, $filename);
-                $image_one = $filename;
+                $realPath = $request->file('image_one')->getRealPath();
+                $SaveFilePath = $this->genericFIleUpload($file,$dir,$realPath);
             }else{
-                $image_one = $request->image_one_cheat;
+                $SaveFilePath = "0";
             }
 
         $updateDetails = array(
             'name'=>$request->title,
             'slung' => Str::slug($request->title),
-            'image'=>$image_one,
+            'image'=>$SaveFilePath,
+
+            'logo'=>$SaveFilePath,
         );
-        DB::table('partners')->where('id',$id)->update($updateDetails);
+        DB::table('companies')->where('id',$id)->update($updateDetails);
         Session::flash('message', "Changes have been saved");
         return Redirect::back();
     }
 
     public function deletePartner($id){
         activity()->log('Deleted Partner ID number '.$id.' ');
-        DB::table('partners')->where('id',$id)->delete();
+        DB::table('companies')->where('id',$id)->delete();
         return Redirect::back();
     }
-
     //Partner
 
      // Manage Users
      public function admins(){
         activity()->log('Accessed All Admins Page');
-        $Users = DB::table('users')->where('is_admin','1')->get();
+        $Users = User::where('is_admin','1')->get();
         $page_title = 'list';
         $page_name = 'Admins';
         return view('admin.admins',compact('page_title','Users','page_name'));
@@ -1071,7 +1089,7 @@ class AdminsController extends Controller
 
     public function users(){
         activity()->log('Access All users Page');
-        $Users = DB::table('users')->get();
+        $Users = User::all();
         $page_title = 'list';
         $page_name = 'Users';
         return view('admin.users',compact('page_title','Users','page_name'));
@@ -2378,6 +2396,162 @@ class AdminsController extends Controller
         return response()->json(['success'=>'Changes Saved Successfully!']);
     }
 
+    // Company Management Methods
+    public function companies(){
+        activity()->log('Accessed Companies Management Page');
+        $Companies = DB::table('companies')->orderBy('id', 'DESC')->get();
+        return view('admin.companies', compact('Companies'));
+    }
+
+    public function addCompany(){
+        activity()->log('Accessed Add Company Page');
+        return view('admin.addCompany');
+    }
+
+    public function add_Company(Request $request){
+        activity()->log('Evoked an add Company Operation');
+        
+        $path = 'uploads/companies';
+        
+        // Handle logo upload
+        if(isset($request->logo)){
+            $dir = 'uploads/companies';
+            $file = $request->file('logo');
+            $realPath = $request->file('logo')->getRealPath();
+            $logo = $this->genericFIleUpload($file, $dir, $realPath);
+        } else {
+            $logo = null;
+        }
+
+        // Handle favicon upload
+        if(isset($request->favicon)){
+            $dir = 'uploads/companies';
+            $file = $request->file('favicon');
+            $realPath = $request->file('favicon')->getRealPath();
+            $favicon = $this->genericFIleUpload($file, $dir, $realPath);
+        } else {
+            $favicon = null;
+        }
+
+        // Handle banner/image upload
+        if(isset($request->image)){
+            $dir = 'uploads/companies';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $image = $this->genericFIleUpload($file, $dir, $realPath);
+        } else {
+            $image = null;
+        }
+
+        $company = Company::create([
+            'title' => $request->title,
+            'tagline' => $request->tagline,
+            'slung' => Str::slug($request->title),
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'website' => $request->website,
+            'address' => $request->address,
+            'content' => $request->ckeditor ?? null,
+            'facebook' => $request->facebook ?? null,
+            'instagram' => $request->instagram ?? null,
+            'linkedin' => $request->linkedin ?? null,
+            'twitter' => $request->twitter ?? null,
+            'logo' => $logo,
+            'favicon' => $favicon,
+            'image' => $image,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        Session::flash('message', "Company Has Been Added Successfully");
+        return redirect()->route('admin.companies');
+    }
+
+    public function editCompany($id){
+        activity()->log('Accessed Edit Company Page For Company ID '.$id);
+        $Company = Company::find($id);
+        if (!$Company) {
+            Session::flash('messageError', "Company not found");
+            return redirect()->route('admin.companies');
+        }
+        return view('admin.editCompany', compact('Company'));
+    }
+
+    public function edit_Company(Request $request, $id){
+        activity()->log('Evoked an edit Company Operation For Company ID '.$id);
+        
+        $Company = Company::find($id);
+        if (!$Company) {
+            Session::flash('messageError', "Company not found");
+            return redirect()->route('admin.companies');
+        }
+
+        $path = 'uploads/companies';
+        
+        // Handle logo upload
+        if(isset($request->logo)){
+            $dir = 'uploads/companies';
+            $file = $request->file('logo');
+            $realPath = $request->file('logo')->getRealPath();
+            $logo = $this->genericFIleUpload($file, $dir, $realPath);
+        } else {
+            $logo = $request->logo_cheat ?? $Company->logo;
+        }
+
+        // Handle favicon upload
+        if(isset($request->favicon)){
+            $dir = 'uploads/companies';
+            $file = $request->file('favicon');
+            $realPath = $request->file('favicon')->getRealPath();
+            $favicon = $this->genericFIleUpload($file, $dir, $realPath);
+        } else {
+            $favicon = $request->favicon_cheat ?? $Company->favicon;
+        }
+
+        // Handle banner/image upload
+        if(isset($request->image)){
+            $dir = 'uploads/companies';
+            $file = $request->file('image');
+            $realPath = $request->file('image')->getRealPath();
+            $image = $this->genericFIleUpload($file, $dir, $realPath);
+        } else {
+            $image = $request->image_cheat ?? $Company->image;
+        }
+
+        $updateDetails = array(
+            'title' => $request->title,
+            'tagline' => $request->tagline,
+            'slung' => Str::slug($request->title),
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'website' => $request->website,
+            'address' => $request->address,
+            'content' => $request->ckeditor ?? $Company->content,
+            'facebook' => $request->facebook ?? null,
+            'instagram' => $request->instagram ?? null,
+            'linkedin' => $request->linkedin ?? null,
+            'twitter' => $request->twitter ?? null,
+            'logo' => $logo,
+            'favicon' => $favicon,
+            'image' => $image,
+        );
+
+        DB::table('companies')->where('id', $id)->update($updateDetails);
+        Session::flash('message', "Company Has Been Updated Successfully");
+        return redirect()->route('admin.companies');
+    }
+
+    public function deleteCompany($id){
+        activity()->log('Deleted Company ID number '.$id);
+        $Company = Company::find($id);
+        if ($Company) {
+            DB::table('companies')->where('id', $id)->delete();
+            Session::flash('message', "Company Has Been Deleted Successfully");
+        } else {
+            Session::flash('messageError', "Company not found");
+        }
+        return Redirect::back();
+    }
+
 
     public function updateSiteSettingsAjax(Request $request){
         activity()->log('Evoked an update Settings Request');
@@ -2412,7 +2586,16 @@ class AdminsController extends Controller
             'welcome'=>$request->welcome
         );
 
-        DB::table('_site_settings')->update($updateDetails);
+        // Update the first record (typically there's only one site settings record)
+        // If you have multiple, you may need to add a WHERE clause with a specific ID
+        $settings = DB::table('_site_settings')->first();
+        if ($settings) {
+            DB::table('_site_settings')->where('id', $settings->id)->update($updateDetails);
+        } else {
+            // If no record exists, create one
+            DB::table('_site_settings')->insert($updateDetails);
+        }
+        
         Session::flash('message', "Changes have Been Saved");
         return response()->json(['success'=>'Changes Saved Successfully!']);
     }
@@ -2450,7 +2633,15 @@ class AdminsController extends Controller
             'google'=>$request->google,
         );
 
-        DB::table('_site_settings')->update($updateDetails);
+        // Update the first record (typically there's only one site settings record)
+        $settings = DB::table('_site_settings')->first();
+        if ($settings) {
+            DB::table('_site_settings')->where('id', $settings->id)->update($updateDetails);
+        } else {
+            // If no record exists, create one
+            DB::table('_site_settings')->insert($updateDetails);
+        }
+        
         Session::flash('message', "Changes have Been Saved");
         return response()->json(['success'=>'Changes Saved Successfully!']);
     }
@@ -2989,10 +3180,10 @@ class AdminsController extends Controller
 
     public function downloads(){
         activity()->log('Accessed the all downloads page ');
-        $Advertisement = Download::all();
+        $Downloads = Download::all();
         $page_title = 'list';
-        $page_name = 'Advertisement';
-        return view('admin.downloads ', compact('page_title', 'Advertisement', 'page_name'));
+        $page_name = 'Downloads';
+        return view('admin.downloads', compact('page_title', 'Downloads', 'page_name'));
     }
 
     public function leads(){

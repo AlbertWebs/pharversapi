@@ -1,238 +1,215 @@
 @extends('dashboard.master')
 @section('content')
-<!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<style>
-    .modal a.close-modal{
-        top:0px !important;
-        right:0px !important;
-    }
-</style>
-<!--== BODY CONTNAINER ==-->
- <div class="container-fluid sb2">
-    <div class="row">
-        @include('dashboard.sidebar')
-
-        <!--== BODY INNER CONTAINER ==-->
-
-        <div class="sb2-2">
-            <div class="sb2-2-2">
-                <ul>
-                    <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li class="active-bre"><a href="#"> Create Post</a>
-                    </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/blog"><i class="fa fa-backward" aria-hidden="true"></i> All Posts</a>
-                    </li>
-                </ul>
-
+<div class="p-6">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{url('/')}}/manager/dashboard/home" class="hover:text-primary-600"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li><a href="{{url('/')}}/manager/dashboard/blog" class="hover:text-primary-600">Blog Posts</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li class="text-gray-900 font-medium">Create Post</li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Create Post</h2>
+        <p class="text-gray-600 mt-1">Add a new blog post or article</p>
+    </div>
+    
+    <!-- Form -->
+    <div class="admin-card-modern animate-fade-in">
+        <form method="POST" action="{{url('/')}}/manager/dashboard/add_Blog" enctype="multipart/form-data">
+            @csrf
+            
+            <!-- Title -->
+            <div class="mb-6">
+                <label for="title" class="admin-label admin-label-required">Title</label>
+                <input type="text" 
+                       id="title" 
+                       name="title" 
+                       required
+                       class="admin-input"
+                       placeholder="Enter post title">
             </div>
-            <div class="sb2-2-add-blog sb2-2-1">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Create Post</h4>
-                        {{-- <p> Create Blog Posts </p> --}}
-                        <center>
-                            @if(Session::has('message'))
-                                          <div class="alert alert-success">{{ Session::get('message') }}</div>
-                           @endif
-
-                           @if(Session::has('messageError'))
-                                          <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
-                           @endif
-                        </center>
+            
+            <!-- Video URL & Podcast URL -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="video_url" class="admin-label">Video URL</label>
+                    <input type="text" 
+                           id="video_url" 
+                           name="video_url" 
+                           class="admin-input"
+                           placeholder="https://...">
+                </div>
+                <div>
+                    <label for="podcast_url" class="admin-label">Podcast URL</label>
+                    <input type="text" 
+                           id="podcast_url" 
+                           name="podcast_url" 
+                           class="admin-input"
+                           placeholder="https://...">
+                </div>
+            </div>
+            
+            <!-- Category, Type -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="category" class="admin-label">Topic <span class="text-red-500">*</span></label>
+                    <select id="category" name="category" required class="admin-input">
+                        <option value="" disabled selected>Choose Topic</option>
+                        @foreach ($Category as $Categories)
+                            <option value="{{$Categories->id}}">{{$Categories->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label for="type" class="admin-label">Content Type <span class="text-red-500">*</span></label>
+                    <select id="type" name="type" required class="admin-input" onchange="toggleWhitepaperFields(this.value)">
+                        <option value="" disabled selected>Choose Content Type</option>
+                        <option value="News">News</option>
+                        <option value="Articles">Articles</option>
+                        <option value="Interviews">Interviews</option>
+                        <option value="Videos">Videos</option>
+                        <option value="Webinars">Webinars</option>
+                        <option value="Publications">Publications</option>
+                        <option value="Whitepapers/Application Notes">Whitepapers/Application Notes</option>
+                        <option value="Events">Events</option>
+                        <option value="Podcasts">Podcasts</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Whitepaper Fields (Hidden by default) -->
+            <div id="whitepaper_fields" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="whitepaper_file" class="admin-label">Whitepaper File</label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-primary-400 transition-colors">
+                        <div class="space-y-1 text-center">
+                            <i class="fas fa-cloud-upload-alt text-3xl text-gray-400"></i>
+                            <div class="flex text-sm text-gray-600">
+                                <label for="whitepaper_file" class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none">
+                                    <span>Upload a file</span>
+                                    <input id="whitepaper_file" name="whitepaper_file" type="file" class="sr-only">
+                                </label>
+                            </div>
+                            <p class="text-xs text-gray-500">PDF, DOC, DOCX up to 10MB</p>
+                        </div>
                     </div>
-                    <div class="bor">
-                        <form method="POST" action="{{url('/')}}/manager/dashboard/add_Blog" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="list-title" type="text" class="validate" required>
-                                    <label for="list-title">Title</label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input autocomplete="off" name="video_url" id="list-title" type="text" class="validate" >
-                                    <label for="list-title">Video Uri</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input autocomplete="off" name="podcast_url" id="list-title" type="text" class="validate" >
-                                    <label for="list-title">Podcats Uri</label>
-                                </div>
-                            </div>
-
-                            {{--  --}}
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <select required name="category" class="icons" id="mydiv">
-                                        <option value="" disabled selected>Choose Topic</option>
-                                        @foreach ($Category as $Categories)
-                                        <option value="{{$Categories->id}}" class="circle">{{$Categories->title}}</option>
-                                        @endforeach
-                                    </select>
-                                    {{-- <label>Choose Category</label> --}}
-                                </div>
-                                <div class="input-field col s6">
-                                    <select required name="type" class="icons" onchange="showDiv('hidden_div', this)">
-                                        <option value="" disabled selected>Choose Content Type</option>
-                                        <option value="News"  class="circle">News</option>
-                                        <option value="Articles"  class="circle">Articles</option>
-                                        <option value="Interviews"  class="circle">Interviews</option>
-                                        <option value="Videos"  class="circle">Videos</option>
-                                        <option value="Webinars"  class="circle">Webinars</option>
-                                        <option value="Publications"  class="circle">Publications</option>
-                                        <option value="Whitepapers/Application Notes"  class="circle">Whitepapers/Application Notes</option>
-                                        <option value="Events"  class="circle">Events</option>
-                                        <option value="Podcasts"  class="circle">Podcasts</option>
-                                    </select>
-                                    {{-- <label>Choose Content Type</label> --}}
-                                </div>
-                            </div>
-                            {{--  --}}
-                            {{-- Show Dynamics --}}
-                            <div class="row" id="hidden_div">
-                                <div class="input-field col s6" >
-                                    <div class="file-field">
-                                        <div class="btn">
-                                            <span>File</span>
-                                            <input  name="whitepaper_file" type="file">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input  class="file-path validate" type="text" placeholder="Whitepaper File">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input autocomplete="off" name="whitepaper_link" id="list-title" type="text" class="validate">
-                                    <label for="list-title">Whitepaper Link</label>
-                                </div>
-                            </div>
-                            {{-- Show Dynamics --}}
-                            <script>
-                                function showDiv(divId, element)
-                                {
-                                    document.getElementById(divId).style.display = element.value == "Whitepapers/Application Notes" ? 'block' : 'none';
-                                }
-                            </script>
-                            <div class="section-space col s12"></div>
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <textarea required name="meta" class="materialize-textarea"></textarea>
-                                    <label for="textarea1">Meta Descriptions:</label>
-                                </div>
-                            </div>
-                            <div class="section-space col s12"></div>
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <textarea  required id="article-ckeditor" name="ckeditor" class="materialilze-textarea" placeholder="content" style="min-height:500px !important"></textarea>
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="section-space col s12"></div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <div class="file-field">
-                                        <div class="btn">
-                                            <span>File</span>
-                                            <input required name="image_one" type="file">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input  class="file-path validate" type="text" placeholder="Featured Image">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
-                        </form>
+                </div>
+                <div>
+                    <label for="whitepaper_link" class="admin-label">Whitepaper Link</label>
+                    <input type="text" 
+                           id="whitepaper_link" 
+                           name="whitepaper_link" 
+                           class="admin-input"
+                           placeholder="https://...">
+                </div>
+            </div>
+            
+            <!-- Meta Description -->
+            <div class="mb-6">
+                <label for="meta" class="admin-label">Meta Description <span class="text-red-500">*</span></label>
+                <textarea id="meta" 
+                          name="meta" 
+                          required
+                          rows="3"
+                          class="admin-input"
+                          placeholder="Enter meta description for SEO"></textarea>
+            </div>
+            
+            <!-- Content Editor -->
+            <div class="mb-6">
+                <label class="admin-label">Content <span class="text-red-500">*</span></label>
+                <textarea id="article-ckeditor" 
+                          name="ckeditor" 
+                          required
+                          class="admin-input"
+                          style="min-height:500px !important"
+                          placeholder="Write your content here..."></textarea>
+            </div>
+            
+            <!-- Featured Image -->
+            <div class="mb-6">
+                <label for="image_one" class="admin-label">Featured Image <span class="text-red-500">*</span></label>
+                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-primary-400 transition-colors">
+                    <div class="space-y-1 text-center">
+                        <img id="img-upload" src="" alt="" class="hidden mx-auto h-32 w-auto mb-2 rounded-lg">
+                        <i class="fas fa-image text-3xl text-gray-400"></i>
+                        <div class="flex text-sm text-gray-600">
+                            <label for="imgInp" class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none">
+                                <span>Upload an image</span>
+                                <input id="imgInp" name="image_one" type="file" accept="image/*" required class="sr-only">
+                            </label>
+                        </div>
+                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--== BODY INNER CONTAINER ==-->
-
+            
+            <!-- Image Credit -->
+            <div class="mb-6">
+                <label for="image_credit" class="admin-label">Image Credit</label>
+                <input type="text" 
+                       id="image_credit" 
+                       name="image_credit" 
+                       class="admin-input"
+                       placeholder="Photo by...">
+            </div>
+            
+            <!-- Audio File -->
+            <div class="mb-6">
+                <label for="audio" class="admin-label">Audio File</label>
+                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-primary-400 transition-colors">
+                    <div class="space-y-1 text-center">
+                        <i class="fas fa-music text-3xl text-gray-400"></i>
+                        <div class="flex text-sm text-gray-600">
+                            <label for="audio" class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none">
+                                <span>Upload audio</span>
+                                <input id="audio" name="audio" type="file" accept="audio/*" class="sr-only">
+                            </label>
+                        </div>
+                        <p class="text-xs text-gray-500">MP3, WAV up to 50MB</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-200">
+                <a href="{{url('/')}}/manager/dashboard/blog" class="admin-btn admin-btn-secondary">
+                    <i class="fas fa-times mr-2"></i>Cancel
+                </a>
+                <button type="submit" class="admin-btn admin-btn-primary">
+                    <i class="fas fa-save mr-2"></i>Create Post
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
-{{--  --}}
-<div id="ex1" class="modal">
-    <div class="sb2-2-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add New Category</h4>
-                    </div>
-                    <div class="tab-inn">
-                        <form method="POST" id="categoryAddForm">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="CategoryTitle" type="text" class="validate">
-                                    <label for="CategoryName">Category Name</label>
-                                </div>
-                            </div>
-                            <div class="row" id="submitButton">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
+<script>
+function toggleWhitepaperFields(value) {
+    const fields = document.getElementById('whitepaper_fields');
+    if (value === 'Whitepapers/Application Notes') {
+        fields.classList.remove('hidden');
+    } else {
+        fields.classList.add('hidden');
+    }
+}
 
-                            <div class="tab-inn" id="loading-bar">
-                                <div class="progress">
-                                    <div class="indeterminate"></div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-{{-- <a href="#" rel="modal:close">Close</a> --}}
-<script type="text/javascript">
-        // A $( document ).ready() block.
-    $( document ).ready(function() {
-        $('#loading-bar').hide();
-    });
-
-    $('#categoryAddForm').on('submit',function(event){
-        event.preventDefault();
-        $('#loading-bar').show();
-
-
-        let title = $('#CategoryTitle').val();
-
-
-        $.ajax({
-          url: "{{url('/')}}/admin/addCategoryAjaxRequest",
-          type:"POST",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            title:title,
-          },
-          success:function(response){
-            $('#loading-bar').hide();
-            $('#submitButton').html('<center><span class="alert-success text-center">Category Added Successfully</span></center>').delay(3000);
-            $('#categoryAddForm')[0].reset();
-            setTimeout(function() {
-                location.reload();
-            }, 5000);
-          },
-         });
-        });
-      </script>
-</div>
-{{--  --}}
+// Image preview
+document.getElementById('imgInp')?.addEventListener('change', function(e) {
+    if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imgPreview = document.getElementById('img-upload');
+            imgPreview.src = e.target.result;
+            imgPreview.classList.remove('hidden');
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+});
+</script>
 @endsection

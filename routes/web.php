@@ -104,7 +104,13 @@ Route::get('subscribe', [NewsLetterController::class, 'subscribe'])->name('subsc
 Route::get('unsubscribe', [NewsLetterController::class, 'unsubscribe'])->name('unsubscribe.mailchimp');
 
 Route::get('/{slung}', [HomeController::class, 'redirect']);
-Route::get('/login', [HomeController::class, 'login'])->name('login');
+
+// OLD LOGIN ROUTES DISABLED - Using new authentication system
+// Route::get('/login', [HomeController::class, 'login'])->name('login');
+// Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);
+
+// Include new authentication routes
+require __DIR__.'/auth.php';
 
 Route::get('/subscribe-flow', [HomeController::class, 'subscribe']);
 Route::middleware(['auth', 'user-access:user'])->group(function () {
@@ -191,6 +197,14 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
         Route::get('edit-company-logo/{id}', [AdminsController::class, 'edit_company_logo']);
         Route::post('edit-company-logo-post', [AdminsController::class, 'edit_company_logo_post']);
+
+        // Company Management
+        Route::get('companies', [AdminsController::class, 'companies'])->name('admin.companies');
+        Route::get('addCompany', [AdminsController::class, 'addCompany'])->name('admin.addCompany');
+        Route::post('add_Company', [AdminsController::class, 'add_Company'])->name('admin.add_Company');
+        Route::get('editCompany/{id}', [AdminsController::class, 'editCompany'])->name('admin.editCompany');
+        Route::post('edit_Company/{id}', [AdminsController::class, 'edit_Company'])->name('admin.edit_Company');
+        Route::get('deleteCompany/{id}', [AdminsController::class, 'deleteCompany'])->name('admin.deleteCompany');
 
 
         // mailerSettings

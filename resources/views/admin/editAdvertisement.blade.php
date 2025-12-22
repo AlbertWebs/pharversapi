@@ -1,271 +1,119 @@
 @extends('admin.master')
 @section('content')
-<!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<style>
-    .modal a.close-modal{
-        top:0px !important;
-        right:0px !important;
-    }
-</style>
-<!--== BODY CONTNAINER ==-->
- <div class="container-fluid sb2">
-    <div class="row">
-        @include('admin.sidebar')
-
-        <!--== BODY INNER CONTAINER ==-->
-
-        <div class="sb2-2">
-            <div class="sb2-2-2">
-                <ul>
-                    <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li class="active-bre"><a href="#"> Edit Advertisement</a>
-                    </li>
-                    <li class="page-back"><a href="{{url('/')}}/admin/advertisements"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
-                    </li>
-                </ul>
-
+<div class="p-6">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{url('/')}}/admin/home" class="hover:text-primary-600"><i class="fas fa-home mr-1"></i> Home</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li><a href="{{url('/')}}/admin/advertisements" class="hover:text-primary-600">Advertisements</a></li>
+            <li><i class="fas fa-chevron-right text-gray-400"></i></li>
+            <li class="text-gray-900 font-medium">Edit Advertisement</li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Edit Advertisement</h2>
+        <p class="text-gray-600 mt-1">Editing <strong>{{$Advertisement->title}}</strong></p>
+    </div>
+    
+    <!-- Form -->
+    <div class="admin-card-modern animate-fade-in">
+        <form method="POST" action="{{url('/')}}/admin/edit_Advertisement/{{$Advertisement->id}}" enctype="multipart/form-data">
+            @csrf
+            
+            <!-- Ad Type -->
+            <div class="mb-6">
+                <label for="title" class="admin-label">Ad Type</label>
+                <input type="text" 
+                       id="title" 
+                       name="title" 
+                       value="{{$Advertisement->title}}"
+                       readonly
+                       required
+                       class="admin-input bg-gray-50 cursor-not-allowed">
             </div>
-            <div class="sb2-2-add-Advertisement sb2-2-1">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Edit Advertisement </h4>
-                        <p> Editing <strong>{{$Advertisement->title}}</strong> </p>
-                        <center>
-                            @if(Session::has('message'))
-                                          <div class="alert alert-success">{{ Session::get('message') }}</div>
-                           @endif
-
-                           @if(Session::has('messageError'))
-                                          <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
-                           @endif
-                        </center>
-                    </div>
-                    <div class="bor">
-                        <form method="POST" action="{{url('/')}}/admin/edit_Advertisement/{{$Advertisement->id}}" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input value="{{$Advertisement->title}}" autocomplete="off" name="title" id="list-title" type="text" class="validate" readonly required>
-                                    <label for="list-title">Ad Type</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input value="{{$Advertisement->url}}" autocomplete="off" name="url" id="list-title" type="url" class="validate"  required>
-                                    <label for="list-title">Ad URI</label>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <p>
-                                        <input type="date" id="date-picker" value="{{$Advertisement->date}}" name="date" class="datepicker" required>
-                                    </p>
-                                    {{--  --}}
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="input-field col s4">
-                                    <input value="{{$Advertisement->dimension}}" autocomplete="off"  id="list-title" type="hidden" class="validate" readonly required>
-                                    {{-- <label for="list-title">Dimensions</label> --}}
-                                </div>
-                                <div class="input-field col s4">
-                                    <input value="{{$Advertisement->placement}}" autocomplete="off" id="list-title" type="hidden" class="validate" readonly required>
-                                    {{-- <label for="list-title">Placements</label> --}}
-                                </div>
-                                <div class="input-field col s4">
-                                    <input value="{{$Advertisement->page}}" autocomplete="off" id="list-title" type="hidden" class="validate" readonly required>
-                                    {{-- <label for="list-title">Page</label> --}}
-                                </div>
-                            </div>
-
-
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input required autocomplete="off" value="{{Auth::user()->name }}" id="post-auth" name="author" type="hidden" class="validate">
-                                    {{-- <label for="post-auth">Author Name</label> --}}
-                                </div>
-                            </div>
-                            {{-- Images --}}
-                                 {{-- Preview --}}
-                            {{-- Style --}}
-                            <style>
-                                .btn-file {
-                                    position: relative;
-                                    overflow: hidden;
-                                }
-                                .btn-file input[type=file] {
-                                    position: absolute;
-                                    top: 0;
-                                    right: 0;
-                                    min-width: 100%;
-                                    min-height: 100%;
-                                    font-size: 100px;
-                                    text-align: right;
-                                    filter: alpha(opacity=0);
-                                    opacity: 0;
-                                    outline: none;
-                                    background: white;
-                                    cursor: inherit;
-                                    display: block;
-                                }
-
-                                #img-upload{
-                                    width: 100%;
-                                }
-                            </style>
-                            {{-- Style --}}
-                            <div class="row">
-                            <div class="">
-                                <div class="input-field col s12">
-                                    <div class="form-group">
-                                        <label>Change Image</label>
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-default btn-file">
-                                                    Browse… <input name="image" type="file" id="imgInp">
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" readonly>
-                                        </div>
-                                        <img class="image-preview" style="width:auto;" src="{{$Advertisement->image}}" id='img-upload'/>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            {{-- Preview --}}
-
-                            {{-- Images --}}
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Save Changes">
-                                </div>
-                            </div>
-                            <input type="hidden" name="image_cheat" value="{{$Advertisement->image}}">
-                        </form>
+            
+            <!-- Ad URI -->
+            <div class="mb-6">
+                <label for="url" class="admin-label">Ad URI</label>
+                <input type="url" 
+                       id="url" 
+                       name="url" 
+                       value="{{$Advertisement->url}}"
+                       required
+                       class="admin-input"
+                       placeholder="https://...">
+            </div>
+            
+            <!-- Date -->
+            <div class="mb-6">
+                <label for="date" class="admin-label">Date</label>
+                <input type="date" 
+                       id="date" 
+                       name="date" 
+                       value="{{$Advertisement->date}}"
+                       required
+                       class="admin-input">
+            </div>
+            
+            <!-- Hidden Fields -->
+            <input type="hidden" name="dimension" value="{{$Advertisement->dimension}}">
+            <input type="hidden" name="placement" value="{{$Advertisement->placement}}">
+            <input type="hidden" name="page" value="{{$Advertisement->page}}">
+            <input type="hidden" name="author" value="{{Auth::user()->name}}">
+            <input type="hidden" name="image_cheat" value="{{$Advertisement->image}}">
+            
+            <!-- Image Upload -->
+            <div class="mb-6">
+                <label class="admin-label">Change Image</label>
+                <div class="mt-2">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <img id="img-upload" 
+                                 src="{{$Advertisement->image}}" 
+                                 alt="Advertisement image" 
+                                 class="h-32 w-auto object-cover rounded-lg border-2 border-gray-200">
+                        </div>
+                        <div class="flex-1">
+                            <label for="imgInp" class="admin-btn admin-btn-secondary cursor-pointer inline-block">
+                                <i class="fas fa-upload mr-2"></i>Browse...
+                            </label>
+                            <input type="file" 
+                                   id="imgInp" 
+                                   name="image" 
+                                   accept="image/*"
+                                   class="hidden"
+                                   onchange="readURL(this)">
+                            <p class="text-sm text-gray-500 mt-2">Select a new image to replace the current one</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--== BODY INNER CONTAINER ==-->
-
+            
+            <!-- Submit Button -->
+            <div class="flex items-center justify-end space-x-3 pt-4 border-t border-gray-200">
+                <a href="{{url('/')}}/admin/advertisements" class="admin-btn admin-btn-secondary">
+                    <i class="fas fa-times mr-2"></i>Cancel
+                </a>
+                <button type="submit" class="admin-btn admin-btn-primary">
+                    <i class="fas fa-save mr-2"></i>Save Changes
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
-{{--  --}}
-<div id="ex1" class="modal">
-    <div class="sb2-2-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box-inn-sp">
-                    <div class="inn-title">
-                        <h4>Add New Category</h4>
-                    </div>
-                    <div class="tab-inn">
-                        <form method="POST" id="categoryAddForm">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input autocomplete="off" name="title" id="CategoryTitle" type="text" class="validate">
-                                    <label for="CategoryName">Category Name</label>
-                                </div>
-                            </div>
-                            <div class="row" id="submitButton">
-                                <div class="input-field col s12">
-                                    <input  type="submit" class="waves-effect waves-light btn-large" value="Submit">
-                                </div>
-                            </div>
-
-                            <div class="tab-inn" id="loading-bar">
-                                <div class="progress">
-                                    <div class="indeterminate"></div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-{{-- <a href="#" rel="modal:close">Close</a> --}}
-<script type="text/javascript">
-        // A $( document ).ready() block.
-    $( document ).ready(function() {
-        $('#loading-bar').hide();
-    });
-
-    $('#categoryAddForm').on('submit',function(event){
-        event.preventDefault();
-        $('#loading-bar').show();
-
-
-        let title = $('#CategoryTitle').val();
-
-
-        $.ajax({
-          url: "{{url('/')}}/admin/addCategoryAjaxRequest",
-          type:"POST",
-          data:{
-            "_token": "{{ csrf_token() }}",
-            title:title,
-          },
-          success:function(response){
-            $('#loading-bar').hide();
-            $('#submitButton').html('<center><span class="alert-success text-center">Category Added Successfully</span></center>').delay(3000);
-            $('#categoryAddForm')[0].reset();
-            setTimeout(function() {
-                location.reload();
-            }, 5000);
-          },
-         });
-        });
-      </script>
-        <script>
-            $(document).ready( function() {
-                $(document).on('change', '.btn-file :file', function() {
-                var input = $(this),
-                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                input.trigger('fileselect', [label]);
-                });
-
-                $('.btn-file :file').on('fileselect', function(event, label) {
-
-                    var input = $(this).parents('.input-group').find(':text'),
-                        log = label;
-
-                    if( input.length ) {
-                        input.val(log);
-                    } else {
-                        if( log ) alert(log);
-                    }
-
-                });
-                function readURL(input) {
-                    if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-
-                        reader.onload = function (e) {
-                            $('#img-upload').attr('src', e.target.result);
-                        }
-
-                        reader.readAsDataURL(input.files[0]);
-                    }
-                }
-
-                $("#imgInp").change(function(){
-                    readURL(this);
-                });
-            });
-        </script>
-</div>
-{{--  --}}
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('img-upload').src = e.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 @endsection

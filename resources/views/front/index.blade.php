@@ -684,9 +684,9 @@
                     @foreach ($Companies as $companies)
                     <div class="col-lg-4">
                         <div class="editor-post-item">
-                            <div class="editor-post-thumb">
+                            <div class="editor-post-thumb" style="width:200px">
                                 <a href="{{url('/')}}/companies/featured-companies/{{$companies->slung}}">
-                                    <img src="{{url('/')}}/uploads/companies/{{$companies->logo}}" alt="{{$companies->title}}">
+                                    <img src="{{$companies->logo}}" alt="{{$companies->title}}">
                                 </a>
                             </div>
                         </div>
