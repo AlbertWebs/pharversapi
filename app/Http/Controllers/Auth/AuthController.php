@@ -72,6 +72,7 @@ class AuthController extends Controller
         $remember = $request->filled('remember');
 
         // Attempt authentication
+        // Note: Auth::attempt() automatically regenerates session for security
         if (Auth::attempt($credentials, $remember)) {
             // Clear rate limiter on successful login
             RateLimiter::clear($this->throttleKey($request));
@@ -93,9 +94,6 @@ class AuthController extends Controller
                     ->withErrors(['email' => 'Your account has been deactivated. Please contact administrator.']);
             }
 
-            // Regenerate session for security (Auth::attempt already handles this, but we do it explicitly for extra security)
-            $request->session()->regenerate();
-
             // Log successful login (minimal logging for performance)
             Log::info('User logged in successfully', [
                 'user_id' => $user->id,
@@ -103,8 +101,14 @@ class AuthController extends Controller
                 'ip' => $request->ip(),
             ]);
 
-            // Redirect immediately - session will be saved automatically by Laravel
-            return $this->redirectToDashboard();
+            // Get redirect response - session is already set by Auth::attempt()
+            $redirectResponse = $this->redirectToDashboard();
+            
+            // Ensure session is saved with the response
+            // This ensures the session cookie is sent with the redirect
+            $request->session()->save();
+            
+            return $redirectResponse;
         }
 
         // Increment rate limiter on failed attempt
