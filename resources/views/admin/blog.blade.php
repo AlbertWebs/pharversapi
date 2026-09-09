@@ -107,41 +107,45 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('scripts')
 <script>
 // Active toggle
 $(document).on('change', '.switchers', function() {
     var id = $(this).data('id');
-    var isChecked = $(this).is(':checked');
-    
+    var isChecked = $(this).is(':checked') ? 1 : 0;
+
     $.ajax({
         type: "POST",
         url: '{{url('/')}}/admin/switchActiveAjaxRequest',
         data: {
             TheId: id,
+            status: isChecked,
             "_token": "{{ csrf_token() }}"
         },
-        success: function(data) {
-            // Success feedback can be added here
-        }
+        error: function() {
+            $(this).prop('checked', !isChecked);
+        }.bind(this)
     });
 });
 
 // Featured toggle
 $(document).on('change', '.switcher', function() {
     var id = $(this).data('id');
-    var isChecked = $(this).is(':checked');
-    
+    var isChecked = $(this).is(':checked') ? 1 : 0;
+
     $.ajax({
         type: "POST",
         url: '{{url('/')}}/admin/switchFeatredAjaxRequest',
         data: {
             TheId: id,
+            status: isChecked,
             "_token": "{{ csrf_token() }}"
         },
-        success: function(data) {
-            // Success feedback can be added here
-        }
+        error: function() {
+            $(this).prop('checked', !isChecked);
+        }.bind(this)
     });
 });
 

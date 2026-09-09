@@ -2142,49 +2142,56 @@ class AdminsController extends Controller
     public function switchAdsAjaxRequest(Request $request){
         $AdsId = $request->TheId;
         $Advertisement = Advertisements::find($AdsId);
-        if($Advertisement->active == 1){
-            $newStatus = "0";
-        }else{
-            $newStatus = "1";
+        if (!$Advertisement) {
+            return response()->json(['error' => 'Advertisement not found'], 404);
         }
-        $updateDetails = array(
-            'active' => $newStatus,
-        );
-        DB::table('advertisements')->where('id', $AdsId)->update($updateDetails);
+
+        // Prefer explicit status from the toggle; fall back to flip for older clients
+        if ($request->has('status')) {
+            $newStatus = $request->status ? "1" : "0";
+        } else {
+            $newStatus = $Advertisement->active == 1 ? "0" : "1";
+        }
+
+        DB::table('advertisements')->where('id', $AdsId)->update(['active' => $newStatus]);
         activity()->log('Evoked a Switch Ads Request');
-        return response()->json(['success'=>'Status Successfully!']);
+        return response()->json(['success'=>'Status Successfully!', 'active' => $newStatus]);
     }
 
     public function switchFeatredAjaxRequest(Request $request){
-        $AdsId = $request->TheId;
-        $Advertisement = Blog::find($AdsId);
-        if($Advertisement->featured == 1){
-            $newStatus = "0";
-        }else{
-            $newStatus = "1";
+        $BlogId = $request->TheId;
+        $Blog = Blog::find($BlogId);
+        if (!$Blog) {
+            return response()->json(['error' => 'Blog not found'], 404);
         }
-        $updateDetails = array(
-            'featured' => $newStatus,
-        );
-        DB::table('blogs')->where('id', $AdsId)->update($updateDetails);
-        activity()->log('Evoked a Switch Ads Request');
-        return response()->json(['success'=>'Status Successfully!']);
+
+        if ($request->has('status')) {
+            $newStatus = $request->status ? "1" : "0";
+        } else {
+            $newStatus = $Blog->featured == 1 ? "0" : "1";
+        }
+
+        DB::table('blogs')->where('id', $BlogId)->update(['featured' => $newStatus]);
+        activity()->log('Evoked a Switch Featured Request');
+        return response()->json(['success'=>'Status Successfully!', 'featured' => $newStatus]);
     }
 
     public function switchActiveAjaxRequest(Request $request){
-        $AdsId = $request->TheId;
-        $Advertisement = Blog::find($AdsId);
-        if($Advertisement->active == 1){
-            $newStatus = "0";
-        }else{
-            $newStatus = "1";
+        $BlogId = $request->TheId;
+        $Blog = Blog::find($BlogId);
+        if (!$Blog) {
+            return response()->json(['error' => 'Blog not found'], 404);
         }
-        $updateDetails = array(
-            'active' => $newStatus,
-        );
-        DB::table('blogs')->where('id', $AdsId)->update($updateDetails);
+
+        if ($request->has('status')) {
+            $newStatus = $request->status ? "1" : "0";
+        } else {
+            $newStatus = $Blog->active == 1 ? "0" : "1";
+        }
+
+        DB::table('blogs')->where('id', $BlogId)->update(['active' => $newStatus]);
         activity()->log('Evoked a Switch Active Request');
-        return response()->json(['success'=>'Status Successfully!']);
+        return response()->json(['success'=>'Status Successfully!', 'active' => $newStatus]);
     }
 
     public function deleteWaterAjax(Request $request){
@@ -3175,7 +3182,7 @@ class AdminsController extends Controller
         $Advertisement = Advertisements::all();
         $page_title = 'list';
         $page_name = 'Advertisement';
-        return view('admin.advertisements ', compact('page_title', 'Advertisement', 'page_name'));
+        return view('admin.advertisements', compact('page_title', 'Advertisement', 'page_name'));
     }
 
     public function downloads(){

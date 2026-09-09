@@ -1,5 +1,5 @@
 <?php
-   $FooterAd = DB::table('advertisements')->where('title','Medium Rectangle')->get();
+   $FooterAd = DB::table('advertisements')->whereRaw('TRIM(title) = ?', ['Medium Rectangle'])->get();
 ?>
 @foreach ($FooterAd as $footerAd)
     @if($footerAd->active == "1")
