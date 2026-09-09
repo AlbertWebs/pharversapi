@@ -194,17 +194,57 @@ class AdminsController extends Controller
     public function link(){
         activity()->log('Newsletter Link');
         $Link = DB::table('links')->get();
-        return view('admin.link',compact('Link'));
+        $NewsletterAd = DB::table('advertisements')->where('title', 'ad-newsletter')->first();
+        return view('admin.link', compact('Link', 'NewsletterAd'));
     }
 
     public function link_post(Request $request){
-        $updateDetails = array (
-            'title'=>$request->title,
-            'link'=>$request->link,
-        );
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'link' => 'required|url|max:1000',
+            'image' => 'nullable|image|max:5120',
+        ]);
 
-        DB::table('links')->update($updateDetails);
-        Session::flash('message', "Changes have Been Saved");
+        $existing = DB::table('links')->first();
+        $newsletterAd = DB::table('advertisements')->where('title', 'ad-newsletter')->first();
+
+        if ($request->hasFile('image')) {
+            $dir = 'uploads/advertisements';
+            if (!file_exists(public_path($dir))) {
+                mkdir(public_path($dir), 0755, true);
+            }
+            $file = $request->file('image');
+            $realPath = $file->getRealPath();
+            $imagePath = $this->genericFIleUpload($file, $dir, $realPath);
+        } else {
+            $imagePath = $request->image_cheat
+                ?: ($existing->image ?? null)
+                ?: ($newsletterAd->image ?? null);
+        }
+
+        $updateDetails = [
+            'title' => $request->title,
+            'link' => $request->link,
+            'image' => $imagePath,
+            'updated_at' => now(),
+        ];
+
+        if ($existing) {
+            DB::table('links')->where('id', $existing->id)->update($updateDetails);
+        } else {
+            $updateDetails['created_at'] = now();
+            DB::table('links')->insert($updateDetails);
+        }
+
+        // Keep the website newsletter promo ad in sync
+        if ($newsletterAd) {
+            DB::table('advertisements')->where('id', $newsletterAd->id)->update([
+                'url' => $request->link,
+                'image' => $imagePath,
+            ]);
+        }
+
+        Session::flash('message', "Newsletter link and image have been saved");
         return Redirect::back();
     }
 

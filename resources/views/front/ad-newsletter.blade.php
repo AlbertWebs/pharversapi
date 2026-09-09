@@ -1,7 +1,14 @@
 <?php
    $FooterAd = DB::table('advertisements')->where('title','ad-newsletter')->get();
+   $NewsletterLink = DB::table('links')->first();
 ?>
 @foreach ($FooterAd as $footerAd)
+    @php
+        $newsletterUrl = $NewsletterLink->link
+            ?? (!empty($footerAd->url) ? $footerAd->url : 'https://subscribers.africanpharmaceuticalreview.com/');
+        $newsletterImage = $NewsletterLink->image
+            ?? $footerAd->image;
+    @endphp
     @if($footerAd->active == "1")
     <div class="widget-title mb-newsletter">
         <h6 class="title">Explore Our Latest issue</h6>
@@ -10,14 +17,14 @@
     <div class="row justify-content-center">
         <div class="row">
         <!-- ad-banner-area-end -->
-            <div class="col-lg-12 p-3fix">
+            <div class="col-lg-12 p-3 float">
                 <div class="advertisement-banners ad-banner-area align-center" id="pharverse-ad-side-home">
                     <div class="containes">
                         <div class="ad-banner-img">
 
                             <div class="hot-post-thumsb">
 
-                                <a id="pharverse-ad-whitepapers-btn--newsletter" target="new" href="https://subscribers.africanpharmaceuticalreview.com/"><img class="ad-newsletter-border" src="{{$footerAd->image}}" alt="ad-newsletter"></a>
+                                <a id="pharverse-ad-whitepapers-btn--newsletter" target="new" href="{{ $newsletterUrl }}"><img class="ad-newsletter-border" src="{{ $newsletterImage }}" alt="ad-newsletter"></a>
                             </div>
                         </div>
                     </div>
@@ -31,14 +38,14 @@
         </div>
     </div>
     <div class="subscribe-button">
-        <a href="https://subscribers.africanpharmaceuticalreview.com/" class="btn btn-two">Get Free Copy</a>
+        <a href="{{ $newsletterUrl }}" class="btn btn-two">Get Free Copy</a>
     </div>
     {{--  --}}
     <form id="register-form-newsletter" style="display:none" action="{{route('register-ad-click')}}" method="POST">
         @csrf
         <input type="hidden" name="ad" value="ad-newsletter">
-        <input type="hidden" name="file" value="{{$footerAd->url}}">
-        <input type="hidden" name="link" value="{{$footerAd->url}}">
+        <input type="hidden" name="file" value="{{ $newsletterUrl }}">
+        <input type="hidden" name="link" value="{{ $newsletterUrl }}">
         <input type="submit">
     </form>
     @endif

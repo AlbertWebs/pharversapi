@@ -13,18 +13,19 @@
     <!-- Page Header -->
     <div class="mb-6">
         <h2 class="text-2xl font-bold text-gray-900">Update Newsletter Link</h2>
-        <p class="text-gray-600 mt-1">Manage newsletter subscription links</p>
+        <p class="text-gray-600 mt-1">Manage the newsletter promo link and image shown on the website</p>
     </div>
     
-    @foreach ($Link as $link)
+    @php
+        $link = $Link->first();
+    @endphp
+
     <!-- Form Card -->
     <div class="admin-card-modern animate-fade-in">
-        <!-- Card Title Section -->
         <div class="mb-6 pb-4 border-b border-gray-200">
             <h4 class="text-xl font-semibold text-gray-900">Update Newsletter Link</h4>
         </div>
         
-        <!-- Form Content -->
         <div class="pt-2">
             <form method="POST" action="{{url('/')}}/admin/newsletter-link-post" enctype="multipart/form-data">
                 @csrf
@@ -35,7 +36,7 @@
                     <input type="text" 
                            id="title" 
                            name="title" 
-                           value="{{$link->title}}"
+                           value="{{ old('title', $link->title ?? '') }}"
                            required
                            class="admin-input"
                            placeholder="Enter newsletter title">
@@ -44,12 +45,45 @@
                 <!-- Link -->
                 <div class="mb-6">
                     <label for="link" class="admin-label">Link <span class="text-red-500">*</span></label>
-                    <textarea id="link" 
-                              name="link" 
-                              required
-                              rows="4"
-                              class="admin-input"
-                              placeholder="Enter newsletter link">{{$link->link}}</textarea>
+                    <input type="url" 
+                           id="link" 
+                           name="link" 
+                           value="{{ old('link', $link->link ?? '') }}"
+                           required
+                           class="admin-input"
+                           placeholder="https://subscribers.africanpharmaceuticalreview.com/">
+                    <p class="text-sm text-gray-500 mt-2">This URL is used for the newsletter image and “Get Free Copy” button on the site.</p>
+                </div>
+
+                <!-- Image -->
+                <div class="mb-6">
+                    <label class="admin-label">Newsletter Image</label>
+                    <input type="hidden" name="image_cheat" value="{{ $link->image ?? ($NewsletterAd->image ?? '') }}">
+                    <div class="mt-2">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img id="img-upload" 
+                                     src="{{ $link->image ?? ($NewsletterAd->image ?? '') }}" 
+                                     alt="Newsletter image" 
+                                     class="h-40 w-auto object-cover rounded-lg border-2 border-gray-200 bg-gray-50 {{ empty($link->image ?? ($NewsletterAd->image ?? '')) ? 'hidden' : '' }}">
+                                <div id="img-placeholder" class="h-40 w-32 flex items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-gray-400 text-sm {{ empty($link->image ?? ($NewsletterAd->image ?? '')) ? '' : 'hidden' }}">
+                                    No image
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <label for="imgInp" class="admin-btn admin-btn-secondary cursor-pointer inline-block">
+                                    <i class="fas fa-upload mr-2"></i>Browse...
+                                </label>
+                                <input type="file" 
+                                       id="imgInp" 
+                                       name="image" 
+                                       accept="image/*"
+                                       class="hidden"
+                                       onchange="previewNewsletterImage(this)">
+                                <p class="text-sm text-gray-500 mt-2">Upload a new cover/image for the newsletter promo on the homepage and article pages.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Submit Button -->
@@ -64,6 +98,25 @@
             </form>
         </div>
     </div>
-    @endforeach
 </div>
+@endsection
+
+@section('scripts')
+<script>
+function previewNewsletterImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var img = document.getElementById('img-upload');
+            var placeholder = document.getElementById('img-placeholder');
+            img.src = e.target.result;
+            img.classList.remove('hidden');
+            if (placeholder) {
+                placeholder.classList.add('hidden');
+            }
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 @endsection
