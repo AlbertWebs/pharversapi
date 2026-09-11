@@ -47,16 +47,24 @@ class SubscriberController extends Controller
     }
 
     public function subscription(Request $request){
-        if(isset($request->website)){
-            // this is a spam
-        }else{
-            $organization = $request->organization;
-            $areas_of_interest = $request->areas_of_interest;
+        // Honeypot: the hidden website field is always present; only filled values are spam
+        if (!empty($request->website)) {
+            return redirect()->back();
         }
-        // dd($request->all());
+
+        $areasOfInterest = $request->areas_of_interest;
+        if (is_array($areasOfInterest)) {
+            $areasOfInterest = implode(', ', $areasOfInterest);
+        }
+
+        $subscriptionOptions = $request->subscription_options;
+        if (is_array($subscriptionOptions)) {
+            $subscriptionOptions = implode(', ', $subscriptionOptions);
+        }
+
         $updateUserDetails = array(
-            'organization' => $organization,
-            'areas_of_interest' => $areas_of_interest,
+            'organization' => $request->organization,
+            'areas_of_interest' => $areasOfInterest,
             'country_code' => $request->country_code,
             'address' => $request->address,
             'phone' => $request->phone,
@@ -65,11 +73,10 @@ class SubscriberController extends Controller
             'Job_function' => $request->Job_function,
             'other_Job_function' => $request->other_Job_function,
             'other_areas_of_interest' => $request->other_areas_of_interest,
-            'subscription_options' => $request->subscription_options,
+            'subscription_options' => $subscriptionOptions,
             'terms' => $request->terms,
             'subscription_status' => 'active',
         );
-        // dd($updateUserDetails);
         DB::table('users')->where('id',Auth::User()->id)->update($updateUserDetails);
         $Sender = "info@africanpharmaceuticalreviews.com";
         $SenderId = "Africa Pharmaceutical Reviews";
@@ -83,7 +90,7 @@ class SubscriberController extends Controller
         $Subject = "New Subscriber:Success";
         // Send Email To Pharverse
         SendEmail::sendEmails($Sender,$SenderId,$MessageToCompany,$SubscriberName,$SubscriberId,$Subject);
-        return view('thanks');
+        return redirect()->route('thank-you');
     }
 
     public function check(Request $request)

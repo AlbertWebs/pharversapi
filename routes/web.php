@@ -103,6 +103,10 @@ Route::post('product/img', [HomeController::class, 'uploadMedia'])->name('admin.
 Route::get('subscribe', [NewsLetterController::class, 'subscribe'])->name('subscribe.mailchimp');
 Route::get('unsubscribe', [NewsLetterController::class, 'unsubscribe'])->name('unsubscribe.mailchimp');
 
+Route::get('/subscribers/thank-you', [App\Http\Controllers\SubscriberController::class, 'thank'])->name('thank-you');
+Route::get('/post-subscription', [App\Http\Controllers\SubscriberController::class, 'thank']);
+Route::post('/post-subscription', [App\Http\Controllers\SubscriberController::class, 'subscription'])->name('post-subscription');
+
 Route::get('/{slung}', [HomeController::class, 'redirect']);
 
 // OLD LOGIN ROUTES DISABLED - Using new authentication system
@@ -546,9 +550,6 @@ All Managers Routes List
 // });
 
 
-
-Route::get('/subscribers/thank-you', [App\Http\Controllers\SubscriberController::class, 'thank'])->name('thank-you');
-Route::post('/post-subscription', [App\Http\Controllers\SubscriberController::class, 'subscription'])->name('post-subscription');
 
 Route::get('/impoorts', [ImportController::class, 'impoorts']);
 Route::post('/impoort', [ImportController::class, 'import'])->name('import');
