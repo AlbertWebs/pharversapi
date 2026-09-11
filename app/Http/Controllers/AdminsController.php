@@ -32,6 +32,8 @@ use App\Models\Copyright;
 
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\Schema;
+
 use App\Models\ProExcel;
 
 use App\Models\FAQ;
@@ -218,16 +220,19 @@ class AdminsController extends Controller
             $imagePath = $this->genericFIleUpload($file, $dir, $realPath);
         } else {
             $imagePath = $request->image_cheat
-                ?: ($existing->image ?? null)
-                ?: ($newsletterAd->image ?? null);
+                ?: ($existing?->image)
+                ?: ($newsletterAd?->image);
         }
 
         $updateDetails = [
             'title' => $request->title,
             'link' => $request->link,
-            'image' => $imagePath,
             'updated_at' => now(),
         ];
+
+        if (Schema::hasColumn('links', 'image')) {
+            $updateDetails['image'] = $imagePath;
+        }
 
         if ($existing) {
             DB::table('links')->where('id', $existing->id)->update($updateDetails);
@@ -236,12 +241,26 @@ class AdminsController extends Controller
             DB::table('links')->insert($updateDetails);
         }
 
-        // Keep the website newsletter promo ad in sync
+        // Keep the website newsletter promo ad in sync and visible
+        $adDetails = [
+            'url' => $request->link,
+            'image' => $imagePath,
+            'active' => 1,
+            'updated_at' => now(),
+        ];
+
         if ($newsletterAd) {
-            DB::table('advertisements')->where('id', $newsletterAd->id)->update([
-                'url' => $request->link,
-                'image' => $imagePath,
-            ]);
+            DB::table('advertisements')->where('id', $newsletterAd->id)->update($adDetails);
+        } else {
+            DB::table('advertisements')->insert(array_merge($adDetails, [
+                'title' => 'ad-newsletter',
+                'date' => 'ad-newsletter',
+                'dimension' => '300X100',
+                'page' => 'all',
+                'placement' => 'sidebar',
+                'author' => auth()->id() ?? '1',
+                'created_at' => now(),
+            ]));
         }
 
         Session::flash('message', "Newsletter link and image have been saved");

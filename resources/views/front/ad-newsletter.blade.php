@@ -1,15 +1,16 @@
 <?php
-   $FooterAd = DB::table('advertisements')->where('title','ad-newsletter')->get();
+   $FooterAd = DB::table('advertisements')->where('title', 'ad-newsletter')->first();
    $NewsletterLink = DB::table('links')->first();
+
+   $newsletterUrl = $NewsletterLink?->link ?: $FooterAd?->url;
+   $newsletterImage = $NewsletterLink?->image ?: $FooterAd?->image;
+   if (empty($newsletterUrl)) {
+       $newsletterUrl = 'https://subscribers.africanpharmaceuticalreview.com/';
+   }
+
+   $showNewsletter = !empty($newsletterImage);
 ?>
-@foreach ($FooterAd as $footerAd)
-    @php
-        $newsletterUrl = $NewsletterLink->link
-            ?? (!empty($footerAd->url) ? $footerAd->url : 'https://subscribers.africanpharmaceuticalreview.com/');
-        $newsletterImage = $NewsletterLink->image
-            ?? $footerAd->image;
-    @endphp
-    @if($footerAd->active == "1")
+@if($showNewsletter)
     <div class="widget-title mb-newsletter">
         <h6 class="title">Explore Our Latest issue</h6>
         <div class="section-title-line"></div>
@@ -17,7 +18,7 @@
     <div class="row justify-content-center">
         <div class="row">
         <!-- ad-banner-area-end -->
-            <div class="col-lg-12 p-3 float">
+            <div class="col-lg-12 p-3fix">
                 <div class="advertisement-banners ad-banner-area align-center" id="pharverse-ad-side-home">
                     <div class="containes">
                         <div class="ad-banner-img">
@@ -30,17 +31,12 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-lg-6 theme-bg">
-                <h5 class="newsletter-heading">Read the latest issue</h5>
-                <p class="newsletter-text">All subscriptions include online membership, giving you access to the journal and exclusive content.</p></div>
-            </div> --}}
         <!-- ad-banner-area-end -->
         </div>
     </div>
     <div class="subscribe-button">
         <a href="{{ $newsletterUrl }}" class="btn btn-two">Get Free Copy</a>
     </div>
-    {{--  --}}
     <form id="register-form-newsletter" style="display:none" action="{{route('register-ad-click')}}" method="POST">
         @csrf
         <input type="hidden" name="ad" value="ad-newsletter">
@@ -48,17 +44,12 @@
         <input type="hidden" name="link" value="{{ $newsletterUrl }}">
         <input type="submit">
     </form>
-    @endif
-@endforeach
-{{--  --}}
-{{--  --}}
-
+@endif
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
     $("#pharverse-ad-whitepapers-btn--newsletter").on('click', function(event)
         {
-            // event.preventDefault();
             var dataString = $("#register-form-newsletter").serialize();
             $.ajax({
                 type: "POST",

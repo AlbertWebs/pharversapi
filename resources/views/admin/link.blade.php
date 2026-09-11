@@ -18,6 +18,7 @@
     
     @php
         $link = $Link->first();
+        $currentImage = $link?->image ?: ($NewsletterAd?->image ?? '');
     @endphp
 
     <!-- Form Card -->
@@ -36,7 +37,7 @@
                     <input type="text" 
                            id="title" 
                            name="title" 
-                           value="{{ old('title', $link->title ?? '') }}"
+                           value="{{ old('title', $link?->title ?? '') }}"
                            required
                            class="admin-input"
                            placeholder="Enter newsletter title">
@@ -48,7 +49,7 @@
                     <input type="url" 
                            id="link" 
                            name="link" 
-                           value="{{ old('link', $link->link ?? '') }}"
+                           value="{{ old('link', $link?->link ?? '') }}"
                            required
                            class="admin-input"
                            placeholder="https://subscribers.africanpharmaceuticalreview.com/">
@@ -58,15 +59,15 @@
                 <!-- Image -->
                 <div class="mb-6">
                     <label class="admin-label">Newsletter Image</label>
-                    <input type="hidden" name="image_cheat" value="{{ $link->image ?? ($NewsletterAd->image ?? '') }}">
+                    <input type="hidden" name="image_cheat" value="{{ $currentImage }}">
                     <div class="mt-2">
                         <div class="flex items-center space-x-4">
                             <div class="flex-shrink-0">
                                 <img id="img-upload" 
-                                     src="{{ $link->image ?? ($NewsletterAd->image ?? '') }}" 
+                                     src="{{ $currentImage }}" 
                                      alt="Newsletter image" 
-                                     class="h-40 w-auto object-cover rounded-lg border-2 border-gray-200 bg-gray-50 {{ empty($link->image ?? ($NewsletterAd->image ?? '')) ? 'hidden' : '' }}">
-                                <div id="img-placeholder" class="h-40 w-32 flex items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-gray-400 text-sm {{ empty($link->image ?? ($NewsletterAd->image ?? '')) ? '' : 'hidden' }}">
+                                     class="h-40 w-auto object-cover rounded-lg border-2 border-gray-200 bg-gray-50 {{ empty($currentImage) ? 'hidden' : '' }}">
+                                <div id="img-placeholder" class="h-40 w-32 flex items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-gray-400 text-sm {{ empty($currentImage) ? '' : 'hidden' }}">
                                     No image
                                 </div>
                             </div>
